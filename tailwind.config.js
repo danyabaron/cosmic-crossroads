@@ -9,7 +9,8 @@ module.exports = {
       'mars-red': '#BD3508',
       'jupiter-purple': '#796A7F',
       'venus-pink': '#D77BBA',
-      'white' : '#FFFFFF'
+      'white' : '#FFFFFF',
+      'team-gray': '#616161'
     },
     backgroundImage: {
       'mars-bg-reg': "url('./assets/backgrounds/mars-normal-size.png')"
