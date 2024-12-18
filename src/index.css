@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+    font-family: '04B_03__';
+    src: url('./assets/font/04B_03__.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pixellari';
+    src: url('./assets/font/Pixellari.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+body {
+    @apply m-0;
+    font-family: '04B_03__', sans-serif;
+}

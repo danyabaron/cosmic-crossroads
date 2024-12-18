@@ -4,11 +4,13 @@ import './App.css';
 import MarsIntro from './Pages/MarsPath/MarsIntro';
 import MarsGame from './Pages/MarsPath/MarsGame';
 import MarsEndings from './Pages/MarsPath/MarsEndings';
+import StatusBar from './Components/StatusBar';
 
 function App() {
   return (
     <Router>
     <div className="App">
+      <StatusBar />
       <Routes>
         <Route path="/" element={<MarsIntro />} />
         {/* <Route path="/mars-game" element={<MarsGame />} />

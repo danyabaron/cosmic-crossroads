@@ -3,11 +3,9 @@ import React from 'react';
 
 function StatusBar() {
     return (
-        <div>
-            <h2 className="text-md">
-               status bar component
-            </h2>
-        </div>
+        <nav id='status-bar' className='bg-main-black text-white flex w-full h-12 fixed top-0 shadow-lg'>
+
+        </nav>
 
     );
 
