@@ -9,13 +9,16 @@ import StatusBar from './Components/StatusBar';
 function App() {
   return (
     <Router>
-    <div className="App">
+    <div className="App flex flex-col h-screen">
       <StatusBar />
+
+      <main className="mt-12">
       <Routes>
         <Route path="/" element={<MarsIntro />} />
-        {/* <Route path="/mars-game" element={<MarsGame />} />
-        <Route path="/mars-endings" element={<MarsEndings />} /> */}
+        <Route path="/mars-game" element={<MarsGame />} />
+        {/* <Route path="/mars-endings" element={<MarsEndings />} /> */}
       </Routes>
+      </main>
     </div>
   </Router>
 
