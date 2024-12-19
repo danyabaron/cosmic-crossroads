@@ -17,7 +17,7 @@ function StatusBar() {
 
 
     return (
-    <nav id='status-bar' className='bg-main-black text-white flex w-full h-14 fixed top-0 shadow-xl'>
+    <nav id='status-bar' className='bg-main-black text-white flex w-full h-14 fixed top-0 shadow-xl z-10'>
             
             {/* stats */}
             <div className='max-w-screen flex items-center w-full'>
