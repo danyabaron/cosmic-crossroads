@@ -9,7 +9,7 @@ import StatusBar from './Components/StatusBar';
 function App() {
   return (
     <Router>
-    <div className="App flex flex-col h-screen">
+    <div className="App flex flex-col min-h-screen min-w-screen">
       <StatusBar />
 
       <main className="mt-12">
