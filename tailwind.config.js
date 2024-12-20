@@ -13,7 +13,15 @@ module.exports = {
       'team-gray': '#616161'
     },
     backgroundImage: {
-      'mars-bg-reg': "url('./assets/backgrounds/mars-normal-size.png')"
+      'mars-bg-reg': "url('./assets/backgrounds/mars-normal-size.png')",
+      'mars-bg-scroll': "url('./assets/backgrounds/mars-background-official.png')",
+      'venus-bg-scroll': "url('./assets/backgrounds/venus-background-official.png')",
+      'venus-bg-reg': "url('./assets/backgrounds/venus-normal-size.png')",
+      'jupiter-bg-reg': "url('./assets/backgrounds/jupiter-normal-size.png')",
+      'jupiter-bg-scroll': "url('./assets/backgrounds/jupiter-background-official.png')",
+      'saturn-bg-reg': "url('./assets/backgrounds/saturn-normal-size.png')",
+      'saturn-bg-scroll': "url('./assets/backgrounds/saturn-background-official.png')"
+
 
     },
     fontFamily: {

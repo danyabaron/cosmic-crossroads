@@ -64,7 +64,7 @@ function MarsIntro() {
             </div>
     
            <div className="flex flex-row max-w-screen justify-center z-0 items-center gap-10 md:gap-30 lg:gap-42 p-5">
-                <div className="bg-main-black text-white rounded-md text-xs md:text-base lg:text-lg shadow-md flex items-center justify-center
+                <div className="bg-main-black text-white rounded-md text-xs md:text-sm lg:text-base shadow-md flex items-center justify-center
                 text-wrap w-full md:w-full lg:w-1/2 m-5 p-4 md:p-10" id="malefic-text">
                     <p>
                     Based on your answers to the quiz, you have been classified as
