@@ -18,7 +18,8 @@ function MarsGame() {
             
             el: document.querySelector('[data-scroll-container]'),
             smooth: true,
-            direction: 'horizontal'
+            direction: 'horizontal',
+            gestureDirection: 'vertical',
         });
 
         return () => {
@@ -54,15 +55,15 @@ function MarsGame() {
 
 
     return (
-        <div className='bg-venus-bg-scroll bg-cover bg-center flex flex-row items-start  w-full pt-12' data-scroll-container id='venus-scroll-container'>
+        <div className='bg-venus-bg-scroll flex flex-row items-start pt-12' data-scroll-container id='venus-scroll-container'>
            <div data-scroll-section className='w-full h-screen items-center justify-start p-6'>
                     
-                    <div data-scroll className='flex flex-col gap-4'>
+                    <div data-scroll className='flex flex-col gap-4 w-1/3'>
                     <div data-scroll className='bg-main-black text-white rounded-md text-xs md:text-sm lg:text-base shadow-md flex flex-row items-center justify-center
-                        text-wrap w-full md:w-full lg:w-1/2 p-6 gap-10' id='venus-grotto'>
+                        text-wrap w-[400px] md:w-[700px] lg:w-[700px] p-6 gap-10' id='venus-grotto'>
                             <div className='flex flex-col items-start gap-2' id='venus-grotto-text'>
                                 <h1 className='text-base font-header md:text-xl lg:text-2xl'>Venus' Grotto</h1>
-                                    <p className='text-sm sm:text-xs'>
+                                    <p className='text-xs md:text-sm'>
                                             Based on your answers to the quiz, you have been classified as
                                             a malefic planet. Malefic planets are planets in traditional astrology that can contribute to some of the more challenging,
                                             or difficult aspects of life and it’s values.
@@ -83,7 +84,7 @@ function MarsGame() {
                     </div>
 
                     <div data-scroll className='bg-main-black text-white rounded-md text-xs md:text-sm lg:text-base shadow-md flex flex-row items-center justify-center
-                        text-wrap w-full md:w-1/3 lg:w-1/3 p-2' id='venus-grotto'>
+                        text-wrap w-full md:w-1/3 lg:w-1/3 p-2' id='scroll-text'>
                             <h1> hi </h1>
                         </div>
 
@@ -91,7 +92,7 @@ function MarsGame() {
                     
 
 
-                    <p className='w-full flex-shrink-0'>
+                    <p className=''>
 
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vulputate euismod nunc, id sagittis quam vestibulum nec. Praesent aliquam nisi non orci faucibus posuere in sit amet sem. Donec aliquam sed erat eu viverra. Proin consectetur, erat eget condimentum dignissim, erat tortor egestas erat, et consequat augue ante sit amet risus. Praesent id diam non est rhoncus interdum id sit amet sem. Ut cursus neque risus, non molestie tortor eleifend non. Aenean et est a est sagittis interdum. Quisque vulputate, nulla eget vestibulum finibus, turpis ligula pretium lectus, eget finibus ipsum metus a sem. Ut consectetur libero vitae mauris dapibus mattis.
 
