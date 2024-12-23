@@ -2,6 +2,15 @@ import React, { useEffect } from 'react';
 import LocomotiveScroll from 'locomotive-scroll';
 import 'locomotive-scroll/dist/locomotive-scroll.css';
 import VenusMouthOpen from '../../assets/venus-art/venus-mouth-open.png';
+import MarsGif from '../../assets/mars-art/mars-art-official.gif';
+import MarsStaticImg from '../../assets/mars-art/mars-art-official1.png';
+import VenusGifDefault from '../../assets/venus-art/venus-default-GIF.gif';
+import VenusGifAnnoyed from '../../assets/venus-art/venus-annoyed-gif.gif';
+import VenusGifSmirk from '../../assets/venus-art/venus-smirk-gif.gif';
+import VenusGifMouthOpen from '../../assets/venus-art/venus-mouth-open-gif.gif';
+
+
+
 
 
 
@@ -16,6 +25,7 @@ function MarsGame() {
         console.log('starting scroll');
         const scroll = new LocomotiveScroll({
             
+            // sets horizontal scroll 
             el: document.querySelector('[data-scroll-container]'),
             smooth: true,
             direction: 'horizontal',
@@ -55,7 +65,10 @@ function MarsGame() {
 
 
     return (
-        <div className='bg-venus-bg-scroll flex flex-row items-start pt-12' data-scroll-container id='venus-scroll-container'>
+        <div className='bg-venus-bg-scroll min-w-screen min-h-screen'>
+
+   
+        <div className=' flex flex-row items-start pt-12' data-scroll-container id='venus-scroll-container'>
            <div data-scroll-section className='w-full h-screen items-center justify-start p-6'>
                     
                     <div data-scroll className='flex flex-col gap-4 w-1/3'>
@@ -69,7 +82,7 @@ function MarsGame() {
                                             or difficult aspects of life and it’s values.
 
                                     </p>
-                                    <p className='text-sm sm:text-xs'>
+                                    <p className='text-xs md:text lg:text-sm'>
                                         Traits: <span className='text-venus-pink'>positivity</span>, <span className='text-[#CF8242]'>love</span>, <span className='text-[#A40073]'>harmony</span>
                                     </p>
                         </div>
@@ -83,16 +96,16 @@ function MarsGame() {
 
                     </div>
 
-                    <div data-scroll className='bg-main-black text-white rounded-md text-xs md:text-sm lg:text-base shadow-md flex flex-row items-center justify-center
-                        text-wrap w-full md:w-1/3 lg:w-1/3 p-2' id='scroll-text'>
-                            <h1> hi </h1>
+                    <div data-scroll className='bg-main-black text-white rounded-md text-xs md:text-sm lg:text-base shadow-md flex flex-row px-4 py-2 items-center justify-center
+                        text-wrap w-[160px] md:w-[260px]' id='scroll-text'>
+                            <h1 className='text-xs md:text-sm'> Scroll right or press your L or R arrow keys to move</h1>
                         </div>
 
                     </div>
                     
 
 
-                    <p className=''>
+                      <p className=''>
 
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vulputate euismod nunc, id sagittis quam vestibulum nec. Praesent aliquam nisi non orci faucibus posuere in sit amet sem. Donec aliquam sed erat eu viverra. Proin consectetur, erat eget condimentum dignissim, erat tortor egestas erat, et consequat augue ante sit amet risus. Praesent id diam non est rhoncus interdum id sit amet sem. Ut cursus neque risus, non molestie tortor eleifend non. Aenean et est a est sagittis interdum. Quisque vulputate, nulla eget vestibulum finibus, turpis ligula pretium lectus, eget finibus ipsum metus a sem. Ut consectetur libero vitae mauris dapibus mattis.
 
@@ -103,13 +116,22 @@ Curabitur in ex vel tortor posuere dapibus sit amet vitae purus. Vestibulum effi
 Morbi laoreet, orci in semper suscipit, lectus massa blandit mi, eu placerat quam mi non augue. Pellentesque id cursus turpis. Maecenas vitae tristique augue. Proin elementum nisl tincidunt dolor cursus, at faucibus nulla malesuada. Integer dui nibh, mollis sit amet nulla ac, sollicitudin iaculis ligula. Donec id elit velit. Integer eget nunc commodo, rutrum orci sed, viverra nunc. Morbi eget nulla ac libero cursus interdum. Sed congue ligula in magna viverra eleifend. Sed dolor risus, auctor non facilisis ac, tincidunt vel urna. Donec dui nunc, imperdiet eu elit in, hendrerit egestas ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
 
 Praesent leo ex, sodales malesuada tempor vel, rutrum et mi. Fusce risus nisl, consequat sed tincidunt nec, accumsan eu elit. Quisque lobortis ligula ut tempus egestas. Vivamus sit amet semper nibh, id vulputate nulla. Sed cursus nisl eleifend neque sodales, et consectetur ante cursus. Sed lobortis gravida nibh mollis mattis. Mauris aliquet ultrices mi at iaculis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dapibus, massa ut consectetur suscipit, lectus massa pretium purus, et fringilla neque diam ut sem. Vestibulum iaculis imperdiet metus non tincidunt. Morbi condimentum at arcu eu bibendum.
-                    </p>
+                    </p>   
+                    <div className='flex' id='mars-dialogue-1'>
+                        <div id='mars-image'>
+                            <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
+                        </div>
+                        <div id='mars-text-1'>
+                            mars text?
+                        </div>
+                        
+                    </div>
 
 
                 </div>
         
         </div>
-     
+    </div>
 
     );
 
