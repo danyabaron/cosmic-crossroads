@@ -71,15 +71,14 @@ function MarsGame() {
         <div className=' flex flex-row items-start pt-12' data-scroll-container id='venus-scroll-container'>
            <div data-scroll-section className='w-full h-screen items-center justify-start p-6'>
                     
-                    <div data-scroll className='flex flex-col gap-4 w-1/3'>
+                <div data-scroll className='flex flex-col gap-4 w-1/3'>
                     <div data-scroll className='bg-main-black text-white rounded-md text-xs md:text-sm lg:text-base shadow-md flex flex-row items-center justify-center
                         text-wrap w-[400px] md:w-[700px] lg:w-[700px] p-6 gap-10' id='venus-grotto'>
                             <div className='flex flex-col items-start gap-2' id='venus-grotto-text'>
                                 <h1 className='text-base font-header md:text-xl lg:text-2xl'>Venus' Grotto</h1>
                                     <p className='text-xs md:text-sm'>
-                                            Based on your answers to the quiz, you have been classified as
-                                            a malefic planet. Malefic planets are planets in traditional astrology that can contribute to some of the more challenging,
-                                            or difficult aspects of life and it’s values.
+                                        Keep scrolling to learn about Venus and what she thinks about the asteroids coming. 
+                                        Learn more about your benefic friend!
 
                                     </p>
                                     <p className='text-xs md:text lg:text-sm'>
@@ -117,13 +116,20 @@ Morbi laoreet, orci in semper suscipit, lectus massa blandit mi, eu placerat qua
 
 Praesent leo ex, sodales malesuada tempor vel, rutrum et mi. Fusce risus nisl, consequat sed tincidunt nec, accumsan eu elit. Quisque lobortis ligula ut tempus egestas. Vivamus sit amet semper nibh, id vulputate nulla. Sed cursus nisl eleifend neque sodales, et consectetur ante cursus. Sed lobortis gravida nibh mollis mattis. Mauris aliquet ultrices mi at iaculis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dapibus, massa ut consectetur suscipit, lectus massa pretium purus, et fringilla neque diam ut sem. Vestibulum iaculis imperdiet metus non tincidunt. Morbi condimentum at arcu eu bibendum.
                     </p>   
-                    <div className='flex' id='mars-dialogue-1'>
-                        <div id='mars-image'>
+                    <div className='flex flex-row w-fit h-fit mt-12' id='mars-dialogue-1'>
+
+                        <div className='mt-9' id='mars-image'>
                             <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
                         </div>
-                        <div id='mars-text-1'>
-                            mars text?
+                    <div className='' id='mars-text-1'>
+                        <div className="bg-white text-main-black rounded-md text-xs md:text-sm lg:text-base flex items-center justify-center 
+                        text-wrap shadow-lg md:w-[382px] px-4 py-2" >
+                            <p>
+                            Oof.. why is everything so bright and pink in here? We must be at Venus’ place... I wanna go home already...
+
+                            </p>
                         </div>
+                    </div>
                         
                     </div>
 
