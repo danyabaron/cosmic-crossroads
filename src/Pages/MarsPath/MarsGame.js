@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import LocomotiveScroll from 'locomotive-scroll';
 import 'locomotive-scroll/dist/locomotive-scroll.css';
 import VenusMouthOpen from '../../assets/venus-art/venus-mouth-open.png';
@@ -18,6 +19,9 @@ import VenusGifMouthOpen from '../../assets/venus-art/venus-mouth-open-gif.gif';
 function MarsGame() {
 
     // const scroll = new LocomotiveScroll();
+
+    const [choice, setChoice] = useState(null);
+    const [screen, setScreen] = useState('venus');
 
     
     useEffect(() => {
@@ -63,6 +67,7 @@ function MarsGame() {
     //     };
     // }, []);
 
+    if (screen === 'venus') {
 
     return (
         <div className='bg-venus-bg-scroll min-w-screen min-h-screen'>
@@ -71,7 +76,7 @@ function MarsGame() {
         <div className=' flex flex-row items-start pt-12' data-scroll-container id='venus-scroll-container'>
            <div data-scroll-section className='w-full h-screen items-center justify-start p-6'>
                     
-                <div data-scroll className='flex flex-col gap-4 w-1/3'>
+                <div data-scroll className='flex flex-col gap-4 '>
                     <div data-scroll className='bg-main-black text-white rounded-md text-xs md:text-sm lg:text-base shadow-md flex flex-row items-center justify-center
                         text-wrap w-[400px] md:w-[700px] lg:w-[700px] p-6 gap-10' id='venus-grotto'>
                             <div className='flex flex-col items-start gap-2' id='venus-grotto-text'>
@@ -110,30 +115,50 @@ function MarsGame() {
 
 Mauris at lacinia nisl. Nam et fermentum tellus. Suspendisse potenti. Fusce non elementum lacus, ut venenatis nisl. Proin pulvinar quam eu massa ultricies aliquet. Curabitur finibus, diam varius condimentum accumsan, felis augue tempor massa, quis tristique nibh justo in eros. Donec pretium, nulla vel tristique eleifend, dui neque aliquet sem, eget cursus nibh metus quis nisi. Etiam fringilla aliquet risus, sit amet imperdiet libero malesuada eu. Vivamus accumsan ullamcorper lacus, sit amet congue leo ultricies eu.
 
-Curabitur in ex vel tortor posuere dapibus sit amet vitae purus. Vestibulum efficitur et ante non facilisis. Fusce ut hendrerit felis, id mollis quam. Morbi tincidunt libero dui, nec aliquam eros aliquet eu. Vivamus feugiat consequat diam, et ultrices ipsum sagittis in. Phasellus ultrices aliquet mauris id commodo. Maecenas sodales rutrum turpis eget pharetra. Pellentesque in risus erat. Suspendisse eget nulla consectetur, porttitor metus et, faucibus ex. Fusce mattis sem gravida scelerisque molestie. Curabitur enim massa, dictum a odio quis, condimentum porta ligula. Proin elit mi, rutrum fermentum rhoncus a, luctus sed orci. Etiam sed tincidunt velit, non porttitor mauris.
+Curabitur Morbi laoreet, orci in semper suscipit, lectus massa blandit mi, 
 
-Morbi laoreet, orci in semper suscipit, lectus massa blandit mi, eu placerat quam mi non augue. Pellentesque id cursus turpis. Maecenas vitae tristique augue. Proin elementum nisl tincidunt dolor cursus, at faucibus nulla malesuada. Integer dui nibh, mollis sit amet nulla ac, sollicitudin iaculis ligula. Donec id elit velit. Integer eget nunc commodo, rutrum orci sed, viverra nunc. Morbi eget nulla ac libero cursus interdum. Sed congue ligula in magna viverra eleifend. Sed dolor risus, auctor non facilisis ac, tincidunt vel urna. Donec dui nunc, imperdiet eu elit in, hendrerit egestas ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-
-Praesent leo ex, sodales malesuada tempor vel, rutrum et mi. Fusce risus nisl, consequat sed tincidunt nec, accumsan eu elit. Quisque lobortis ligula ut tempus egestas. Vivamus sit amet semper nibh, id vulputate nulla. Sed cursus nisl eleifend neque sodales, et consectetur ante cursus. Sed lobortis gravida nibh mollis mattis. Mauris aliquet ultrices mi at iaculis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dapibus, massa ut consectetur suscipit, lectus massa pretium purus, et fringilla neque diam ut sem. Vestibulum iaculis imperdiet metus non tincidunt. Morbi condimentum at arcu eu bibendum.
+                       
                     </p>   
                     <div className='flex flex-row w-fit h-fit mt-12' id='mars-dialogue-1'>
-
-                        <div className='mt-9' id='mars-image'>
-                            <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
+                            <div className='mt-9' id='mars-image'>
+                                <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
+                            </div>
+                        <div className='' id='mars-text-1'>
+                            <div className="bg-white text-main-black rounded-md text-xs md:text-sm lg:text-base flex items-center justify-center 
+                             text-wrap shadow-lg md:w-[382px] px-4 py-2" >
+                                <p>
+                                    Oof.. why is everything so bright and pink in here? We must be at Venus’ place... I wanna go home already...
+                                </p>
+                            </div>
                         </div>
-                    <div className='' id='mars-text-1'>
-                        <div className="bg-white text-main-black rounded-md text-xs md:text-sm lg:text-base flex items-center justify-center 
-                        text-wrap shadow-lg md:w-[382px] px-4 py-2" >
-                            <p>
-                            Oof.. why is everything so bright and pink in here? We must be at Venus’ place... I wanna go home already...
 
-                            </p>
-                        </div>
-                    </div>
+                        
                         
                     </div>
 
+                    <div id='button-container' className='flex flex-col items-center justify-center gap-4'>
+                     <button
+                            onClick={() => {
+                            setChoice('malefic');
+                            setScreen('stick-mars'); // Navigate to choice screen
+                            }}
+                    className="bg-main-black text-white px-4 py-2 rounded-md shadow-md">
+                Stick with Malefic
+              </button>
+             
+                    <button
+                        onClick={() => {
+                        setChoice('benefic');
+                        setScreen('choose-venus'); // Navigate to choice screen
+                        }}
+                className="bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-green-600">
+                Add Venus to Your Team
+              </button>
 
+                        </div>
+
+
+                    
                 </div>
         
         </div>
@@ -141,7 +166,152 @@ Praesent leo ex, sodales malesuada tempor vel, rutrum et mi. Fusce risus nisl, c
 
     );
 
+
+
+    }
+
+
+    // USER CHOOSES TO STICK WITH MARS, THEIR MALEFIC PLANET/THEMSELVES. THIS DOES NOT CHANGE THE STATUS BAR, AND NO ONE GETS ADDED TO THEIR TEAM. STATUS BAR IS NOT UPDATED.
+    if (screen ==='stick-mars'){
+
+        return (
+            <div className="bg-mars-bg-reg min-w-screen min-h-screen flex items-center justify-center">
+          
+            <button
+              onClick={() => setScreen('jupiter')}
+              className="mt-8 bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600"
+            >
+              Who's Next?
+            </button>
+          </div>
+        )
+
+    }
+
+    // USER CHOOSES TO STICK WITH VENUS, THE BENEFIC PLANET FRIEND. THIS ADDS VENUS TO THE STATUS BAR, AND ADDS VENUS TO THEIR TEAM. THEY ENTER JUPITER'S GROTTO WITH MARS AND VENUS 
+    // IN THEIR TEAM. NEED TO UPDATE THE STATUS BAR TO DISPLAY THIS.
+    if (screen === 'choose-venus') {
+
+        
+        return (
+            <div className="bg-venus-bg-reg min-w-screen min-h-screen flex items-center justify-center">
+          
+            <button
+              onClick={() => setScreen('jupiter')}
+              className="mt-8 bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600"
+            >
+              Who's Next?
+            </button>
+          </div>
+        )
+
+        
+
+    }
+
+
+
+    // JUPITER'S GROTTO/SCREEN. STATUS BAR IS UPDATED BASED ON WHAT THE USER CHOSE. THE NEXT SCREENS AFTER THIS ONE ARE DETERMINED BY THE STATUS BAR. NEED TO FIGURE THIS OUT.
+
+    if (screen === 'jupiter') {
+
+        return (
+            <div className='bg-jupiter-bg-scroll min-w-screen min-h-screen'>
     
+       
+            <div className=' flex flex-row items-start pt-12' data-scroll-container id='venus-scroll-container'>
+               <div data-scroll-section className='w-full h-screen items-center justify-start p-6'>
+                        
+                    <div data-scroll className='flex flex-col gap-4 '>
+                        <div data-scroll className='bg-main-black text-white rounded-md text-xs md:text-sm lg:text-base shadow-md flex flex-row items-center justify-center
+                            text-wrap w-[400px] md:w-[700px] lg:w-[700px] p-6 gap-10' id='venus-grotto'>
+                                <div className='flex flex-col items-start gap-2' id='venus-grotto-text'>
+                                    <h1 className='text-base font-header md:text-xl lg:text-2xl'>Venus' Grotto</h1>
+                                        <p className='text-xs md:text-sm'>
+                                            Keep scrolling to learn about Venus and what she thinks about the asteroids coming. 
+                                            Learn more about your benefic friend!
+    
+                                        </p>
+                                        <p className='text-xs md:text lg:text-sm'>
+                                            Traits: <span className='text-venus-pink'>positivity</span>, <span className='text-[#CF8242]'>love</span>, <span className='text-[#A40073]'>harmony</span>
+                                        </p>
+                            </div>
+                            <div className='flex flex-col items-center' id='venus-bio'>
+                                <h1 className='whitespace-nowrap text-base sm:text-sm'>View Venus' Bio</h1>
+                                <img className="md:max-w-[65px] h-auto" src={VenusMouthOpen} alt="Venus Bio Image"/>
+                                
+    
+                            </div>
+                           
+    
+                        </div>
+    
+                        <div data-scroll className='bg-main-black text-white rounded-md text-xs md:text-sm lg:text-base shadow-md flex flex-row px-4 py-2 items-center justify-center
+                            text-wrap w-[160px] md:w-[260px]' id='scroll-text'>
+                                <h1 className='text-xs md:text-sm'> Scroll right or press your L or R arrow keys to move</h1>
+                            </div>
+    
+                        </div>
+                        
+    
+    
+                          <p className=''>
+    
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vulputate euismod nunc, id sagittis quam vestibulum nec. Praesent aliquam nisi non orci faucibus posuere in sit amet sem. Donec aliquam sed erat eu viverra. Proin consectetur, erat eget condimentum dignissim, erat tortor egestas erat, et consequat augue ante sit amet risus. Praesent id diam non est rhoncus interdum id sit amet sem. Ut cursus neque risus, non molestie tortor eleifend non. Aenean et est a est sagittis interdum. Quisque vulputate, nulla eget vestibulum finibus, turpis ligula pretium lectus, eget finibus ipsum metus a sem. Ut consectetur libero vitae mauris dapibus mattis.
+    
+    Mauris at lacinia nisl. Nam et fermentum tellus. Suspendisse potenti. Fusce non elementum lacus, ut venenatis nisl. Proin pulvinar quam eu massa ultricies aliquet. Curabitur finibus, diam varius condimentum accumsan, felis augue tempor massa, quis tristique nibh justo in eros. Donec pretium, nulla vel tristique eleifend, dui neque aliquet sem, eget cursus nibh metus quis nisi. Etiam fringilla aliquet risus, sit amet imperdiet libero malesuada eu. Vivamus accumsan ullamcorper lacus, sit amet congue leo ultricies eu.
+    
+    Curabitur Morbi laoreet, orci in semper suscipit, lectus massa blandit mi, 
+    
+                           
+                        </p>   
+                        <div className='flex flex-row w-fit h-fit mt-12' id='mars-dialogue-1'>
+                                <div className='mt-9' id='mars-image'>
+                                    <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
+                                </div>
+                            <div className='' id='mars-text-1'>
+                                <div className="bg-white text-main-black rounded-md text-xs md:text-sm lg:text-base flex items-center justify-center 
+                                 text-wrap shadow-lg md:w-[382px] px-4 py-2" >
+                                    <p>
+                                        Oof.. why is everything so bright and pink in here? We must be at Venus’ place... I wanna go home already...
+                                    </p>
+                                </div>
+                            </div>
+    
+                            
+                            
+                        </div>
+    
+                        <div id='button-container' className='flex flex-col items-center justify-center gap-4'>
+                         <button
+                                onClick={() => {
+                                setChoice('malefic');
+                                setScreen('stick-mars'); // Navigate to choice screen
+                                }}
+                        className="bg-main-black text-white px-4 py-2 rounded-md shadow-md">
+                    Stick with Malefic
+                  </button>
+                 
+                        <button
+                            onClick={() => {
+                            setChoice('benefic');
+                            setScreen('choose-venus'); // Navigate to choice screen
+                            }}
+                    className="bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-green-600">
+                    Add Venus to Your Team
+                  </button>
+    
+                            </div>
+    
+    
+                        
+                    </div>
+            
+            </div>
+        </div>
+    
+        );
+    }
 }
 
 export default MarsGame;
