@@ -14,7 +14,7 @@ function App() {
     <div className="App flex flex-col min-h-screen min-w-screen">
       <StatusBar />
 
-      <main className="mt-12">
+      <main className="mt-3">
       <Routes>
         {/* <Route path="/" element={<VenusIntro />} /> */}
         <Route path="/" element={<MarsIntro />} />
