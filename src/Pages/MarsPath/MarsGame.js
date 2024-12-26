@@ -147,7 +147,7 @@ Curabitur Morbi laoreet, orci in semper suscipit, lectus massa blandit mi,
 
                                 
                         </div>
-                        <div className='flex items-start gap-4 flex-shrink-0' data-scroll id='dialogue-section'>
+                        {/* <div className='flex items-start gap-4 flex-shrink-0' data-scroll id='dialogue-section'>
                                 <div className='mt-9 w-fit' id='mars-image'>
                                     <img className="" src={MarsGif} alt="Mars Gif"/>
                                 </div>
@@ -161,8 +161,8 @@ Curabitur Morbi laoreet, orci in semper suscipit, lectus massa blandit mi,
                                 </div>
 
                                 
-                        </div>
-                        <div className='flex items-start gap-4 flex-shrink-0' data-scroll id='dialogue-section'>
+                        </div> */}
+                        {/* <div className='flex items-start gap-4 flex-shrink-0' data-scroll id='dialogue-section'>
                                 <div className='mt-9 w-fit' id='mars-image'>
                                     <img className="" src={MarsGif} alt="Mars Gif"/>
                                 </div>
@@ -176,7 +176,7 @@ Curabitur Morbi laoreet, orci in semper suscipit, lectus massa blandit mi,
                                 </div>
 
                                 
-                        </div>
+                        </div> */}
                 
 
 
