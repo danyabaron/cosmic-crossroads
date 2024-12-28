@@ -37,7 +37,7 @@ function MarsGame() {
             smooth: true,
             getDirection: true,
             direction: 'horizontal',
-            gestureDirection: 'both'
+            // gestureDirection: 'both'
         });
 
         scroll.on('scroll', (args) => {
@@ -61,12 +61,12 @@ function MarsGame() {
     if (screen === 'venus') {
 
     return (
-        <div className='bg-venus-bg-scroll min-w-screen h-[6000px]' data-scroll-container id='venus-scroll-container'>
+        <div className='bg-venus-bg-scroll bg-cover bg-center min-w-screen h-full overflow-y-auto' data-scroll-container id='venus-scroll-container'>
 {/* 
 data-scroll-section data-scroll-direction='vertical' */}
    
-        <section className=' flex flex-col items-start mt-10'  id='venus-container' >
-           <div className='w-full h-full items-center justify-start m-6' id='spacing-venus-grotto-container'>
+        <section className=' flex flex-col items-start mt-10' data-scroll-section  id='venus-container' >
+           <div className='w-1/3 h-fit items-center justify-start m-6 overflow-x-hidden' data-scroll data-scroll-sticky id='spacing-venus-grotto-container'>
                     
                 <div className='flex flex-col gap-4 '>
                     <div  className='bg-main-black text-white rounded-md text-xs md:text-sm lg:text-base shadow-md flex flex-row items-center justify-center
@@ -115,9 +115,9 @@ Curabitur Morbi laoreet, orci in semper suscipit, lectus massa blandit mi,
                 
                     className='m-12 flex flex-row w-full gap-2 flex-nowrap ' 
                     id='horizontal-container'
-                    data-scroll-direction='horizontal'>
+                    >
                         <div className='flex items-start gap-4 flex-shrink-0 min-w-[300vw]' data-scroll 
-                        data-scroll-speed='2' data-scroll-direction='horizontal'
+                        data-scroll-speed='2'
                            id='dialogue-section'>
                                 <div className='mt-9 w-fit ' data-scroll id='mars-image'>
                                     <img className="" src={MarsGif} alt="Mars Gif"/>
@@ -169,7 +169,7 @@ Curabitur Morbi laoreet, orci in semper suscipit, lectus massa blandit mi,
 
 
                         <div id='button-container'  data-scroll 
-                        data-scroll-speed='2' data-scroll-direction='vertical' data-scroll-position='left' className='flex flex-col items-center justify-center gap-4'>
+                        data-scroll-speed='2' className='flex flex-col items-center justify-center gap-4'>
 
                         <button
                             onClick={() => {
