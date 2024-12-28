@@ -36,57 +36,40 @@ function MarsGame() {
             el: document.querySelector('[data-scroll-container]'),
             smooth: true,
             getDirection: true,
-            // direction: 'horizontal',
+            direction: 'horizontal',
             gestureDirection: 'both'
         });
 
         scroll.on('scroll', (args) => {
-            console.log(args.direction); // Check direction changes
+            if (args) {
+                console.log('Scroll direction:', args.direction);
+            } else {
+                console.error('No scroll args received');
+            }
         });
+
         return () => {
             if (scroll) scroll.destroy();
             console.log('destroyed scroll');
         };
     }, []);
 
-    // useEffect(() => {
-    //     const scrollContainer = document.querySelector('[data-scroll-container]');
-    //     let scroll;
-
-    //     const initializeScroll = () => {
-    //         if (scroll) scroll.destroy();
-
-    //         const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    //         scroll = new LocomotiveScroll({
-    //             el: scrollContainer,
-    //             smooth: true,
-    //             direction: isMobile ? 'vertical' : 'horizontal'
-    //         });
-    //     };
-
-    //     initializeScroll();
-
-    //     window.addEventListener('resize', initializeScroll);
-
-    //     return () => {
-    //         if (scroll) scroll.destroy();
-    //         window.removeEventListener('resize', initializeScroll);
-    //     };
-    // }, []);
+  
 
 
     // USER STARTS AT VENUS' GROTTO. THE MAIN START SCREEN. VENUS IS THE BENEFIC PLANET. USER CAN CHOOSE TO STICK WITH MARS, THEIR MALEFIC PLANET, OR ADD VENUS TO THEIR TEAM. 
     if (screen === 'venus') {
 
     return (
-        <div className='bg-venus-bg-scroll min-w-screen h-fit' data-scroll-container id='venus-scroll-container'>
-
+        <div className='bg-venus-bg-scroll min-w-screen h-[6000px]' data-scroll-container id='venus-scroll-container'>
+{/* 
+data-scroll-section data-scroll-direction='vertical' */}
    
-        <div className=' flex flex-col items-start mt-10' id='venus-container' data-scroll-section data-scroll-direction='vertical'>
+        <section className=' flex flex-col items-start mt-10'  id='venus-container' >
            <div className='w-full h-full items-center justify-start m-6' id='spacing-venus-grotto-container'>
                     
-                <div data-scroll data-scroll-sticky className='flex flex-col gap-4 '>
-                    <div data-scroll className='bg-main-black text-white rounded-md text-xs md:text-sm lg:text-base shadow-md flex flex-row items-center justify-center
+                <div className='flex flex-col gap-4 '>
+                    <div  className='bg-main-black text-white rounded-md text-xs md:text-sm lg:text-base shadow-md flex flex-row items-center justify-center
                         text-wrap w-[400px] md:w-[700px] lg:w-[700px] p-6 gap-10' id='venus-grotto'>
                             <div className='flex flex-col items-start gap-2' id='venus-grotto-text'>
                                 <h1 className='text-base font-header md:text-lg lg:text-xl'>Venus' Grotto</h1>
@@ -105,7 +88,7 @@ function MarsGame() {
                             </div>
                        </div>
 
-                    <div data-scroll className='bg-main-black text-white rounded-md text-xs md:text-sm lg:text-base shadow-md flex flex-row px-4 py-2 items-center justify-center
+                    <div  className='bg-main-black text-white rounded-md text-xs md:text-sm lg:text-base shadow-md flex flex-row px-4 py-2 items-center justify-center
                         text-wrap w-[160px] md:w-[260px]' id='scroll-text'>
                             <h1 className='text-xs md:text-sm'> Scroll right or press your L or R arrow keys to move</h1>
                         </div>
@@ -125,19 +108,22 @@ Curabitur Morbi laoreet, orci in semper suscipit, lectus massa blandit mi,
 
                        
                     </p>    */}
-                <div className='w-full h-full items-center justify-start p-6'>
-                    <div data-scroll-section  
-                    data-scroll-direction='horizontal' 
+                {/* <div className=' items-center justify-start p-6'> */}
+                    <section data-scroll-section  
+                    
                    
                 
-                    className='pt-12 pb-10 flex flex-row w-full gap-2 flex-nowrap ' 
-                    id='horizontal-container'>
-                        <div className='flex items-start gap-4 flex-shrink-0' data-scroll id='dialogue-section'>
-                                <div className='mt-9 w-fit' id='mars-image'>
+                    className='m-12 flex flex-row w-full gap-2 flex-nowrap ' 
+                    id='horizontal-container'
+                    data-scroll-direction='horizontal'>
+                        <div className='flex items-start gap-4 flex-shrink-0 min-w-[300vw]' data-scroll 
+                        data-scroll-speed='2' data-scroll-direction='horizontal'
+                           id='dialogue-section'>
+                                <div className='mt-9 w-fit ' data-scroll id='mars-image'>
                                     <img className="" src={MarsGif} alt="Mars Gif"/>
                                 </div>
                             
-                                <div className="bg-white text-main-black rounded-md text-xs md:text-sm lg:text-base flex items-center justify-center 
+                                <div data-scroll className="bg-white text-main-black rounded-md text-xs md:text-sm lg:text-base flex items-center justify-center 
                                 text-wrap shadow-lg px-4 py-2 max-w-sm flex-shrink-0" >
                                     <p>
                                         Oof.. why is everything so bright and pink in here? We must be at Venus’ place... I wanna go home already...
@@ -147,7 +133,8 @@ Curabitur Morbi laoreet, orci in semper suscipit, lectus massa blandit mi,
 
                                 
                         </div>
-                        {/* <div className='flex items-start gap-4 flex-shrink-0' data-scroll id='dialogue-section'>
+                         {/* <div className='flex items-start gap-4 flex-shrink-0'  data-scroll 
+                        data-scroll-speed='2' data-scroll-direction='horizontal' data-scroll-position='left' id='dialogue-section'>
                                 <div className='mt-9 w-fit' id='mars-image'>
                                     <img className="" src={MarsGif} alt="Mars Gif"/>
                                 </div>
@@ -161,8 +148,9 @@ Curabitur Morbi laoreet, orci in semper suscipit, lectus massa blandit mi,
                                 </div>
 
                                 
-                        </div> */}
-                        {/* <div className='flex items-start gap-4 flex-shrink-0' data-scroll id='dialogue-section'>
+                        </div> 
+                        <div className='flex items-start gap-4 flex-shrink-0'  data-scroll 
+                        data-scroll-speed='2' data-scroll-direction='horizontal' data-scroll-position='left'l id='dialogue-section'>
                                 <div className='mt-9 w-fit' id='mars-image'>
                                     <img className="" src={MarsGif} alt="Mars Gif"/>
                                 </div>
@@ -176,11 +164,12 @@ Curabitur Morbi laoreet, orci in semper suscipit, lectus massa blandit mi,
                                 </div>
 
                                 
-                        </div> */}
-                
+                        </div>
+                 */}
 
 
-                        <div id='button-container' className='flex flex-col items-center justify-center gap-4'>
+                        <div id='button-container'  data-scroll 
+                        data-scroll-speed='2' data-scroll-direction='vertical' data-scroll-position='left' className='flex flex-col items-center justify-center gap-4'>
 
                         <button
                             onClick={() => {
@@ -203,8 +192,8 @@ Curabitur Morbi laoreet, orci in semper suscipit, lectus massa blandit mi,
 
                         </div>
 
-                    </div>
-                </div>
+                    {/* </div> */}
+                </section>
                 
                     
                   
@@ -220,7 +209,7 @@ Curabitur Morbi laoreet, orci in semper suscipit, lectus massa blandit mi,
 
                     
                 
-            </div>
+            </section>
 
         
         </div>
