@@ -65,8 +65,8 @@ function MarsGame() {
 {/* 
 data-scroll-section data-scroll-direction='vertical' */}
    
-        <section className=' flex flex-col items-start mt-10' data-scroll-section  id='venus-container' >
-           <div className='w-1/3 h-fit items-center justify-start m-6 overflow-x-hidden' data-scroll data-scroll-sticky id='spacing-venus-grotto-container'>
+        <section className=' flex flex-col items-start mt-10'   id='venus-container' >
+           <div className='w-1/3 h-fit items-center justify-start m-6 overflow-x-hidden relative'  id='spacing-venus-grotto-container'>
                     
                 <div className='flex flex-col gap-4 '>
                     <div  className='bg-main-black text-white rounded-md text-xs md:text-sm lg:text-base shadow-md flex flex-row items-center justify-center
