@@ -8,13 +8,14 @@ import VenusIntro from './Pages/VenusPath/VenusIntro';
 import MarsEndings from './Pages/MarsPath/MarsEndings';
 import StatusBar from './Components/StatusBar';
 
+
 function App() {
   return (
     <Router>
     <div className="App flex flex-col min-h-screen min-w-screen">
       <StatusBar />
 
-      <main className="mt-3">
+      {/* <main className="mt-3"> */}
       <Routes>
         {/* <Route path="/" element={<VenusIntro />} /> */}
         <Route path="/" element={<MarsIntro />} />
@@ -22,7 +23,7 @@ function App() {
         <Route path="/venus-game" element={<VenusGame />} />
         {/* <Route path="/mars-endings" element={<MarsEndings />} /> */}
       </Routes>
-      </main>
+      {/* </main> */}
     </div>
   </Router>
 

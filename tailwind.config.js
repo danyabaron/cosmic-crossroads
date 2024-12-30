@@ -2,7 +2,12 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    
   ],
+  // safelist: [
+  //   "scroll-container", "panel"
+  // ],
+
   theme: {
     colors: {
       'main-black': '#171711',
