@@ -27,67 +27,43 @@ function MarsGame() {
 
         // Register GSAP plugins
 
+        // const container = useRef(document.querySelector("#scroll-container"));
         const container = useRef();
        
         useGSAP(() => {
 
             // Ensure DOM is ready before initializing GSAP
-            const sections = gsap.utils.toArray("#scroll-container section");
-         
+            const sections = gsap.utils.toArray("section", container.current);
+            const containerWidth = sections.length * 100;
+
+          
                 gsap.to(sections, {
                         xPercent: -100 * (sections.length - 1),
                         ease: "none",
                         scrollTrigger: {
                             
-                            trigger: "#scroll-container",
-                            // start: "top top",
+                            trigger: container.current,
+                            start: "top left",
                             pin: true,
-                            scrub: 1,
-                            snap: 1 / (sections.length - 1),
-                            end: "+=30",
+                            scrub: 3,
+                            snap: {
+                                snapTo: 1 / (sections.length - 1), // Snap to the nearest integer section
+                                duration: 0.2, // Duration of snapping animation
+                                delay: 0.1, // Delay before snapping takes effect
+                                ease: "power1.inOut", // Smooth easing for snapping
+                              },
+                              markers: true, // Add this to debug
+                            end: "+=5000",
+                            // end: "+=" + containerWidth, 
                         
                         },
 
                 });
-            },
-                {scope: container}
-            );
 
-            
+                console.log("We are on section", sections.map(section => section.id || section.className));
+            });
 
-
-    // const scroll = new LocomotiveScroll();
-
-    // const [choice, setChoice] = useState(null);
-    // const [screen, setScreen] = useState('venus');
-
-    
-    // useEffect(() => {
-
-    //     console.log('starting scroll');
-    //     const scroll = new LocomotiveScroll({
-            
-    //         // sets horizontal scroll 
-    //         el: document.querySelector('[data-scroll-container]'),
-    //         smooth: true,
-    //         getDirection: true,
-    //         direction: 'horizontal',
-    //         // gestureDirection: 'both'
-    //     });
-
-    //     scroll.on('scroll', (args) => {
-    //         if (args) {
-    //             console.log('Scroll direction:', args.direction);
-    //         } else {
-    //             console.error('No scroll args received');
-    //         }
-    //     });
-
-    //     return () => {
-    //         if (scroll) scroll.destroy();
-    //         console.log('destroyed scroll');
-    //     };
-    // }, []);
+     
 
   
 
@@ -99,7 +75,7 @@ function MarsGame() {
 
 
         //outer div to contain background and screen
-        <div className='bg-venus-bg-scroll bg-cover pt-14 bg-center min-h-screen  overflow-x-hidden' id='mars-path-container'>
+        <div  className='bg-venus-bg-scroll bg-cover pt-14 bg-center min-h-screen  overflow-x-hidden' id='mars-path-container'>
 
 
             {/* container for the venus-grotto portion at top left of screen */}
@@ -133,32 +109,32 @@ function MarsGame() {
                             </div>
             </div>
 
-
+            {/* ref={container} */}
             
-            <div ref={container} id="scroll-container" className=' flex w-[600%] h-[300px] flex-nowrap overflow-x-auto' >
+            <div ref={container}  id="scroll-container" className=' flex w-[600%] h-full flex-nowrap overflow-x-hidden' >
 
                         {/* container for first scroll section */}
-                    <section id="panel" className='bg-mars-red w-screen h-9 mt-10 ml-5 mb-10 p-5'>
+                    <section id="panel" className='bg-mars-red w-screen min-h-screen mt-4 ml-5 mb-4 p-5'>
                         hi hi hi hi hi hi hi 
                             
                         
                     </section>
-                    <section id="panel" className=' bg-venus-pink w-screen h-9 mt-10 ml-5 mb-10 p-5'>
+                    <section id="panel" className=' bg-venus-pink w-screen min-h-screen mt-10 ml-5 mb-10 p-5'>
                         hi hi hi hi hi hi hi 
                             
                         
                     </section>
-                    <section id="panel" className=' bg-jupiter-purple w-screen h-9 mt-10 ml-5 mb-10 p-5'>
+                    <section id="panel" className=' bg-jupiter-purple w-screen min-h-screen mt-10 ml-5 mb-10 p-5'>
                         hi hi hi hi hi hi hi 
                             
                         
                     </section>
-                    <section id="panel" className=' bg-team-gray w-screen h-9 mt-10 ml-5 mb-10 p-5'>
+                    <section id="panel" className=' bg-team-gray w-screen min-h-screen mt-10 ml-5 mb-10 p-5'>
                         hi hi hi hi hi hi hi 
                             
                         
                     </section>
-                    <section id="panel" className=' bg-white w-screen h-9 mt-10 ml-5 mb-10 p-5'>
+                    <section id="panel" className=' bg-white w-screen min-h-screen mt-10 ml-5 mb-10 p-5'>
                         hi hi hi hi hi hi hi 
                             
                         
