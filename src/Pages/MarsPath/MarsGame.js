@@ -33,6 +33,7 @@ function MarsGame() {
         useGSAP(() => {
 
             // Ensure DOM is ready before initializing GSAP
+            // creaTe array of sections
             const sections = gsap.utils.toArray("section", container.current);
             const containerWidth = sections.length * 100;
 
@@ -41,17 +42,17 @@ function MarsGame() {
                         xPercent: -100 * (sections.length - 1),
                         ease: "none",
                         scrollTrigger: {
-                            
                             trigger: container.current,
-                            start: "top left",
+                            // start: "top left",
                             pin: true,
-                            scrub: 3,
-                            snap: {
-                                snapTo: 1 / (sections.length - 1), // Snap to the nearest integer section
-                                duration: 0.2, // Duration of snapping animation
-                                delay: 0.1, // Delay before snapping takes effect
-                                ease: "power1.inOut", // Smooth easing for snapping
-                              },
+                            scrub: 1,
+                            delay: 0.5,
+                            // snap: {
+                            //     snapTo: 1 / (sections.length - 1), // Snap to the nearest integer section
+                            //     duration: 0.2, // Duration of snapping animation
+                            //     delay: 0.5, // Delay before snapping takes effect
+                            //     ease: "power1.inOut", // Smooth easing for snapping
+                            //   },
                               markers: true, // Add this to debug
                             end: "+=5000",
                             // end: "+=" + containerWidth, 
@@ -75,7 +76,7 @@ function MarsGame() {
 
 
         //outer div to contain background and screen
-        <div  className='bg-venus-bg-scroll bg-cover pt-14 bg-center min-h-screen  overflow-x-hidden' id='mars-path-container'>
+        <div  className='bg-venus-bg-scroll pt-14 bg-center min-h-screen  overflow-x-hidden' id='mars-path-container'>
 
 
             {/* container for the venus-grotto portion at top left of screen */}
@@ -111,30 +112,42 @@ function MarsGame() {
 
             {/* ref={container} */}
             
-            <div ref={container}  id="scroll-container" className=' flex w-[600%] h-full flex-nowrap overflow-x-hidden' >
+            <div ref={container}  id="scroll-container" className=' flex w-[600%] h-full flex-nowrap p-7 overflow-x-hidden' >
 
                         {/* container for first scroll section */}
-                    <section id="panel" className='bg-mars-red w-screen min-h-screen mt-4 ml-5 mb-4 p-5'>
+                    <section id="panel" className='w-screen min-h-screen mt-4 ml-5 mb-4 p-9'>
+                        
+                        <div id='mars-dialogue-1' className='flex flex-row w-fit h-fit mt-9 absolute top-20 left-20'>
+
+                            <div id='mars-pic' className='mt-14'>
+                                <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
+                            </div>
+                            <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-sm'>
+                                Oof.. why is everything so bright and pink in here? We must be at Venus’ place... I wanna go home already...
+                            </div>
+                      
+                        </div>
+                        
+                    </section>
+
+
+
+                    <section id="panel" className=' bg-venus-pink w-screen min-h-screen mt-4 ml-5 mb-4 p-9'>
                         hi hi hi hi hi hi hi 
                             
                         
                     </section>
-                    <section id="panel" className=' bg-venus-pink w-screen min-h-screen mt-10 ml-5 mb-10 p-5'>
+                    <section id="panel" className=' bg-jupiter-purple w-screen min-h-screen mt-4 ml-5 mb-4 p-9'>
                         hi hi hi hi hi hi hi 
                             
                         
                     </section>
-                    <section id="panel" className=' bg-jupiter-purple w-screen min-h-screen mt-10 ml-5 mb-10 p-5'>
+                    <section id="panel" className=' bg-team-gray w-screen min-h-screen mt-4 ml-5 mb-4 p-9'>
                         hi hi hi hi hi hi hi 
                             
                         
                     </section>
-                    <section id="panel" className=' bg-team-gray w-screen min-h-screen mt-10 ml-5 mb-10 p-5'>
-                        hi hi hi hi hi hi hi 
-                            
-                        
-                    </section>
-                    <section id="panel" className=' bg-white w-screen min-h-screen mt-10 ml-5 mb-10 p-5'>
+                    <section id="panel" className=' bg-white w-screen min-h-screen mt-4 ml-5 mb-4 p-9'>
                         hi hi hi hi hi hi hi 
                             
                         
@@ -151,173 +164,14 @@ function MarsGame() {
 
 
         </div>
-
-
-
-
-        //         <div className='bg-venus-bg-scroll bg-cover bg-center min-w-screen h-full overflow-y-auto' data-scroll-container id='venus-scroll-container'>
-// {/* 
-// data-scroll-section data-scroll-direction='vertical' */}
-   
-//         <section className=' flex flex-col items-start mt-10'   id='venus-container' >
-//            <div className='w-1/3 h-fit items-center justify-start m-6 overflow-x-hidden relative'  id='spacing-venus-grotto-container'>
-                    
-//                 <div className='flex flex-col gap-4 '>
-//                     <div  className='bg-main-black text-white rounded-md text-xs md:text-sm lg:text-base shadow-md flex flex-row items-center justify-center
-//                         text-wrap w-[400px] md:w-[700px] lg:w-[700px] p-6 gap-10' id='venus-grotto'>
-//                             <div className='flex flex-col items-start gap-2' id='venus-grotto-text'>
-//                                 <h1 className='text-base font-header md:text-lg lg:text-xl'>Venus' Grotto</h1>
-//                                     <p className='text-xs md:text-sm'>
-//                                         Keep scrolling to learn about Venus and what she thinks about the asteroids coming. 
-//                                         Learn more about your benefic friend!
-
-//                                     </p>
-//                                     <p className='text-xs md:text lg:text-sm'>
-//                                         Traits: <span className='text-venus-pink'>positivity</span>, <span className='text-[#CF8242]'>love</span>, <span className='text-[#A40073]'>harmony</span>
-//                                     </p>
-//                             </div>
-//                             <div className='flex flex-col items-center' id='venus-bio'>
-//                                 <h1 className='whitespace-nowrap text-base sm:text-sm'>View Venus' Bio</h1>
-//                                 <img className="md:max-w-[65px] h-auto" src={VenusMouthOpen} alt="Venus Bio Image"/>
-//                             </div>
-//                        </div>
-
-//                     <div  className='bg-main-black text-white rounded-md text-xs md:text-sm lg:text-base shadow-md flex flex-row px-4 py-2 items-center justify-center
-//                         text-wrap w-[160px] md:w-[260px]' id='scroll-text'>
-//                             <h1 className='text-xs md:text-sm'> Scroll right or press your L or R arrow keys to move</h1>
-//                         </div>
-
-//                     </div>
-//                 </div>
-                    
-
-
-//                       {/* <p className='text-sm'>
-
-//                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vulputate euismod nunc, id sagittis quam vestibulum nec. Praesent aliquam nisi non orci faucibus posuere in sit amet sem. Donec aliquam sed erat eu viverra. Proin consectetur, erat eget condimentum dignissim, erat tortor egestas erat, et consequat augue ante sit amet risus. Praesent id diam non est rhoncus interdum id sit amet sem. Ut cursus neque risus, non molestie tortor eleifend non. Aenean et est a est sagittis interdum. Quisque vulputate, nulla eget vestibulum finibus, turpis ligula pretium lectus, eget finibus ipsum metus a sem. Ut consectetur libero vitae mauris dapibus mattis.
-
-// Mauris at lacinia nisl. Nam et fermentum tellus. Suspendisse potenti. Fusce non elementum lacus, ut venenatis nisl. Proin pulvinar quam eu massa ultricies aliquet. Curabitur finibus, diam varius condimentum accumsan, felis augue tempor massa, quis tristique nibh justo in eros. Donec pretium, nulla vel tristique eleifend, dui neque aliquet sem, eget cursus nibh metus quis nisi. Etiam fringilla aliquet risus, sit amet imperdiet libero malesuada eu. Vivamus accumsan ullamcorper lacus, sit amet congue leo ultricies eu.
-
-// Curabitur Morbi laoreet, orci in semper suscipit, lectus massa blandit mi, 
-
-                       
-//                     </p>    */}
-//                 {/* <div className=' items-center justify-start p-6'> */}
-//                     <section data-scroll-section  
-                    
-                   
-                
-//                     className='m-12 flex flex-row w-full gap-2 flex-nowrap ' 
-//                     id='horizontal-container'
-//                     >
-//                         <div className='flex items-start gap-4 flex-shrink-0 min-w-[300vw]' data-scroll 
-//                         data-scroll-speed='2'
-//                            id='dialogue-section'>
-//                                 <div className='mt-9 w-fit ' data-scroll id='mars-image'>
-//                                     <img className="" src={MarsGif} alt="Mars Gif"/>
-//                                 </div>
-                            
-//                                 <div data-scroll className="bg-white text-main-black rounded-md text-xs md:text-sm lg:text-base flex items-center justify-center 
-//                                 text-wrap shadow-lg px-4 py-2 max-w-sm flex-shrink-0" >
-//                                     <p>
-//                                         Oof.. why is everything so bright and pink in here? We must be at Venus’ place... I wanna go home already...
-//                                     </p>
-                               
-//                                 </div>
-
-                                
-//                         </div>
-//                          {/* <div className='flex items-start gap-4 flex-shrink-0'  data-scroll 
-//                         data-scroll-speed='2' data-scroll-direction='horizontal' data-scroll-position='left' id='dialogue-section'>
-//                                 <div className='mt-9 w-fit' id='mars-image'>
-//                                     <img className="" src={MarsGif} alt="Mars Gif"/>
-//                                 </div>
-                            
-//                                 <div className="bg-white text-main-black rounded-md text-xs md:text-sm lg:text-base flex items-center justify-center 
-//                                 text-wrap shadow-lg px-4 py-2 max-w-sm flex-shrink-0" >
-//                                     <p>
-//                                         Oof.. why is everything so bright and pink in here? We must be at Venus’ place... I wanna go home already...
-//                                     </p>
-                               
-//                                 </div>
-
-                                
-//                         </div> 
-//                         <div className='flex items-start gap-4 flex-shrink-0'  data-scroll 
-//                         data-scroll-speed='2' data-scroll-direction='horizontal' data-scroll-position='left'l id='dialogue-section'>
-//                                 <div className='mt-9 w-fit' id='mars-image'>
-//                                     <img className="" src={MarsGif} alt="Mars Gif"/>
-//                                 </div>
-                            
-//                                 <div className="bg-white text-main-black rounded-md text-xs md:text-sm lg:text-base flex items-center justify-center 
-//                                 text-wrap shadow-lg px-4 py-2 w-full" >
-//                                     <p>
-//                                         Oof.. why is everything so bright and pink in here? We must be at Venus’ place... I wanna go home already...
-//                                     </p>
-                               
-//                                 </div>
-
-                                
-//                         </div>
-//                  */}
-
-
-//                         <div id='button-container'  data-scroll 
-//                         data-scroll-speed='2' className='flex flex-col items-center justify-center gap-4'>
-
-//                         <button
-//                             onClick={() => {
-//                             setChoice('benefic');
-//                             setScreen('choose-venus'); // Navigate to choice screen
-//                             }}
-//                             className="bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-green-600">
-//                                 Compromise with Venus
-//                         </button>
-//                         <button
-//                                 onClick={() => {
-//                                 setChoice('malefic');
-//                                 setScreen('stick-mars'); // Navigate to choice screen
-//                                 }}
-//                         className="bg-main-black text-white px-4 py-2 rounded-md shadow-md">
-//                         Stick with your Malefic
-//                         </button>
-
-
-
-//                         </div>
-
-//                     {/* </div> */}
-//                 </section>
-                
-                    
-                  
-                    
-
-
-
-
-
-
-                 
-
-
-                    
-                
-//             </section>
-
-        
-//         </div>
-
-
-   
-  
+ 
 
     );
 
 
 
 
-    // }
+
 
 
 }
