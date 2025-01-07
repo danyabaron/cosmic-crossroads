@@ -114,26 +114,76 @@ function MarsGame() {
             
             <div ref={container}  id="scroll-container" className=' flex w-[600%] h-full flex-nowrap p-7 overflow-x-hidden' >
 
-                        {/* container for first scroll section */}
-                    <section id="panel" className='w-screen min-h-screen mt-4 ml-5 mb-4 p-9'>
+                        {/* container for first scroll section / dialogue */}
+                    <section id="panel" className='bg-mars-red w-screen min-h-screen mt-4 ml-5 mb-4 p-9'>
                         
-                        <div id='mars-dialogue-1' className='flex flex-row w-fit h-fit mt-9 absolute top-20 left-20'>
+                        <div id='mars-dialogue' className='flex flex-row w-fit h-fit mt-9 absolute top-10 left-20'>
 
                             <div id='mars-pic' className='mt-14'>
                                 <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
                             </div>
-                            <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-sm'>
+                            <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
                                 Oof.. why is everything so bright and pink in here? We must be at Venus’ place... I wanna go home already...
                             </div>
                       
                         </div>
+
+                        <div id='venus-dialogue' className='flex flex-row w-fit h-fit mt-9 absolute top-[400px] left-1/3'>
+
+                            <div id='venus-pic' className='mt-14'>
+                                <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={VenusGifAnnoyed} alt="Venus Gif"/>
+                            </div>
+                            <div id ='venus-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                Ohhhhh look who it is. Mars. Heyyy Mars. Let me guess. You want to go to war?
+                            </div>
+
+                        </div>
+                        
+                        <div id='mars-dialogue' className='flex flex-row w-fit h-fit mt-9 absolute top-10 right-32'>
+                            <div id='mars-pic' className='mt-14'>
+                                <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Venus Gif"/>
+                            </div>
+                            <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                Well yeah. I do. Unless you had something better in mind? 
+                            </div>
+
+                        </div>
+
                         
                     </section>
 
 
+                    {/* container for second scroll section / dialogue */}
+                    <section id="panel" className=' bg-venus-pink w-screen flex min-h-screen mt-4 ml-5 mb-4 p-9'>
+                        
+                        <div id='venus-dialogue-2' className='flex flex-row w-fit h-fit mt-9 absolute top-0 '>
 
-                    <section id="panel" className=' bg-venus-pink w-screen min-h-screen mt-4 ml-5 mb-4 p-9'>
-                        hi hi hi hi hi hi hi 
+                            <div id='venus-pic' className='mt-14'>
+                                <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={VenusGifDefault} alt="Venus Gif"/>
+                            </div>
+                            
+                            <div id ='venus-text' className='flex w-72 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                            Maybe the asteroid is lonely and that’s why it’s coming over here. you need to stop asserting dominance for no reason. I probably could charm them with my beauty..
+                            </div>
+
+                        </div> 
+
+                        <div className='flex justify-center absolute mt-52 items-center w-full h-fit' id='animation-container'>
+                            <div id='venus-animation' className='w-1/2 h-72 bg-main-black opacity-40 rounded-md p-5 '>
+                            
+                                <p className='text-white'>venus animation here</p>
+
+
+
+                            </div> 
+
+                        </div>
+
+                        <div id='benefic-text' className='flex w-96 h-fit bg-white rounded-md absolute right-24 font-body text-wrap p-5 text-xs md:text-sm'>
+                        As the other benefic, Venus tends to take the diplomatic approach when it comes to conflict. Venus wants to do things that are going to feel goooood, and tends to shy away from things that may be uncomfortable.
+                    
+                        </div>
+                      
                             
                         
                     </section>
