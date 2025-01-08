@@ -112,7 +112,7 @@ function MarsGame() {
 
             {/* ref={container} */}
             
-            <div ref={container}  id="scroll-container" className=' flex w-[600%] h-full flex-nowrap p-7 overflow-x-hidden' >
+            <div ref={container}  id="scroll-container" className=' flex flex-row gap-4 w-[600%] h-full flex-nowrap p-7 overflow-x-hidden' >
 
                         {/* container for first scroll section / dialogue */}
                     <section id="panel" className=' w-screen min-h-screen flex flex-col gap-14'>
@@ -163,50 +163,109 @@ function MarsGame() {
                     </section>
 
 
+
+
                     {/* container for second scroll section / dialogue */}
-                    <section id="panel" className=' bg-venus-pink w-screen flex min-h-screen mt-4 ml-5 mb-4 p-9'>
+                    <section id="panel" className='  w-screen min-h-screen flex flex-col gap-14 '>
                         
-                        <div id='venus-dialogue-2' className='flex flex-row w-fit h-fit mt-9 absolute top-0 '>
+                        
+                    
+                        
+                    <div id='container-panel-venus' className='flex w-full h-fit pt-12 justify-between
+                     gap-6 flex-col md:flex-row pl-5 pr-5'>
+
+                        <div id='venus-dialogue-2' className='flex flex-row w-fit h-fit'>
 
                             <div id='venus-pic' className='mt-14'>
                                 <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={VenusGifDefault} alt="Venus Gif"/>
                             </div>
-                            
-                            <div id ='venus-text' className='flex w-72 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                            Maybe the asteroid is lonely and that’s why it’s coming over here. you need to stop asserting dominance for no reason. I probably could charm them with my beauty..
+
+                            <div id ='venus-text' className='flex w-fit md:w-72 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                Maybe the asteroid is lonely and that’s why it’s coming over here. you need to stop asserting dominance for no reason. I probably could charm them with my beauty..
                             </div>
-
-                        </div> 
-
-                        <div className='flex justify-center absolute mt-52 items-center w-full h-fit' id='animation-container'>
-                            <div id='venus-animation' className='w-1/2 h-72 bg-main-black opacity-40 rounded-md p-5 '>
-                            
-                                <p className='text-white'>venus animation here</p>
-
-
 
                             </div> 
 
-                        </div>
+                            <div id='benefic-text' className='flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
+                                As the other benefic, Venus tends to take the diplomatic approach when it comes to conflict. Venus wants to do things that are going to feel goooood, and tends to shy away from things that may be uncomfortable.
 
-                        <div id='benefic-text' className='flex w-96 h-fit bg-white rounded-md absolute right-24 font-body text-wrap p-5 text-xs md:text-sm'>
-                        As the other benefic, Venus tends to take the diplomatic approach when it comes to conflict. Venus wants to do things that are going to feel goooood, and tends to shy away from things that may be uncomfortable.
-                    
+                            </div>
+
+                    </div>
+                        
+
+
+
+                        <div className='flex flex-row justify-center items-center w-full h-fit' id='animation-container'>
+                            <div id='venus-animation' className='w-1/2 h-full bg-main-black opacity-40 rounded-md p-5 '>
+                            
+                                <p className='text-white'>venus animation here</p>
+                        </div> 
+
                         </div>
+                    </section>
+
+
+                    {/* container for second scroll section / dialogue */}
+                    <section id="panel" className=' w-screen min-h-screen flex flex-col justify-center'>
+
+                        <div id='container-panel-mars' className='items-center flex flex-col gap-14'>
+
+
+                            <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-start p-5'>
+
+                                <div id='mars-pic' className='mt-14'>
+                                    <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
+                                </div>
+                                <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                    In traditional astrology, Mars was known as the lesser malefic planet, with Saturn being the 
+                                    bigger malefic planet. Traditional astrologers associated malefic planets 
+                                    to represent everything that was ‘bad’ about being alive 
+                                </div>
+
+                                </div>
+
+
+                                <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-end p-5'>
+
+                                    <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                        As a malefic planet, specifically Mars, you thrive on acting on your 
+                                        ‘survival instinct’. Mars is what gets you out of danger, but won’t play defense.
+                                        </div>
+
+                                    
+                                    <div id='mars-pic' className='mt-14'>
+                                        <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Venus Gif"/>
+                                    </div>
+
+                                </div>
+
+                        </div>
+                        
                       
                             
-                        
-                    </section>
-                    <section id="panel" className=' bg-jupiter-purple w-screen min-h-screen mt-4 ml-5 mb-4 p-9'>
-                        hi hi hi hi hi hi hi 
                             
                         
+
+
+                        
+
+
+
+
+                        
+                    
+                        
                     </section>
+
+
                     <section id="panel" className=' bg-team-gray w-screen min-h-screen mt-4 ml-5 mb-4 p-9'>
                         hi hi hi hi hi hi hi 
                             
                         
                     </section>
+
+
                     <section id="panel" className=' bg-white w-screen min-h-screen mt-4 ml-5 mb-4 p-9'>
                         hi hi hi hi hi hi hi 
                             
