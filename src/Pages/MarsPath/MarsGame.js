@@ -80,7 +80,7 @@ function MarsGame() {
 
 
             {/* container for the venus-grotto portion at top left of screen */}
-           <div className='flex flex-col w-1/2 h-fit mt-10 ml-5 gap-5' id='venus-grotto-container'>
+           <div className='flex flex-col w-2/3 md:w-1/2 h-fit mt-10 ml-5 gap-5' id='venus-grotto-container'>
 
                             {/* container for the top black box */}
                             <div className='flex flex-col md:flex-row lg:flex-row gap-8 bg-main-black p-5
@@ -115,20 +115,38 @@ function MarsGame() {
             <div ref={container}  id="scroll-container" className=' flex w-[600%] h-full flex-nowrap p-7 overflow-x-hidden' >
 
                         {/* container for first scroll section / dialogue */}
-                    <section id="panel" className='bg-mars-red w-screen min-h-screen mt-4 ml-5 mb-4 p-9'>
-                        
-                        <div id='mars-dialogue' className='flex flex-row w-fit h-fit mt-9 absolute top-10 left-20'>
+                    <section id="panel" className=' w-screen min-h-screen flex flex-col gap-14'>
 
-                            <div id='mars-pic' className='mt-14'>
-                                <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
+                        <div id='container-panel-mars' className='flex flex-row w-full h-fit pt-12 justify-between'>
+                            
+                            <div id='mars-dialogue' className='flex flex-row w-fit h-fit mt-9 '>
+
+                                <div id='mars-pic' className='mt-14'>
+                                    <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
+                                </div>
+                                <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                    Oof.. why is everything so bright and pink in here? We must be at Venus’ place... I wanna go home already...
+                                </div>
+
                             </div>
-                            <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                                Oof.. why is everything so bright and pink in here? We must be at Venus’ place... I wanna go home already...
-                            </div>
-                      
+
+
+                                <div id='mars-dialogue' className='flex flex-row w-fit h-fit mt-9'>
+                                    <div id='mars-pic' className='mt-14'>
+                                        <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Venus Gif"/>
+                                    </div>
+                                    <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                        Well yeah. I do. Unless you had something better in mind? 
+                                    </div>
+
+                                </div>
+
+
                         </div>
 
-                        <div id='venus-dialogue' className='flex flex-row w-fit h-fit mt-9 absolute top-[400px] left-1/3'>
+
+                    <div id='container-panel-venus' className='flex flex-row w-full h-full justify-center '>
+                        <div id='venus-dialogue' className='flex flex-row w-fit h-fit'>
 
                             <div id='venus-pic' className='mt-14'>
                                 <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={VenusGifAnnoyed} alt="Venus Gif"/>
@@ -138,17 +156,9 @@ function MarsGame() {
                             </div>
 
                         </div>
+
                         
-                        <div id='mars-dialogue' className='flex flex-row w-fit h-fit mt-9 absolute top-10 right-32'>
-                            <div id='mars-pic' className='mt-14'>
-                                <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Venus Gif"/>
-                            </div>
-                            <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                                Well yeah. I do. Unless you had something better in mind? 
-                            </div>
-
-                        </div>
-
+                    </div>                        
                         
                     </section>
 
