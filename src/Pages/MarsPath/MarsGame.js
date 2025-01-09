@@ -45,7 +45,7 @@ function MarsGame() {
                             trigger: container.current,
                             // start: "top left",
                             pin: true,
-                            scrub: 1,
+                            scrub: 3,
                             delay: 0.5,
                             // snap: {
                             //     snapTo: 1 / (sections.length - 1), // Snap to the nearest integer section
@@ -54,8 +54,8 @@ function MarsGame() {
                             //     ease: "power1.inOut", // Smooth easing for snapping
                             //   },
                               markers: true, // Add this to debug
-                            end: "+=5000",
-                            // end: "+=" + containerWidth, 
+                            // end: "+=7000",
+                            end: containerWidth * 5, // End after all sections have been scrolled through
                         
                         },
 
@@ -112,7 +112,7 @@ function MarsGame() {
 
             {/* ref={container} */}
             
-            <div ref={container}  id="scroll-container" className=' flex flex-row gap-4 w-[600%] h-full flex-nowrap p-7 overflow-x-hidden' >
+            <div ref={container}  id="scroll-container" className=' flex flex-row gap-4 w-[600%] h-fit flex-nowrap pt-7 pl-7 overflow-x-hidden' >
 
                         {/* container for first scroll section / dialogue */}
                     <section id="panel" className=' w-screen min-h-screen flex flex-col gap-14'>
@@ -259,14 +259,61 @@ function MarsGame() {
                     </section>
 
 
-                    <section id="panel" className=' bg-team-gray w-screen min-h-screen mt-4 ml-5 mb-4 p-9'>
-                        hi hi hi hi hi hi hi 
+                    <section id="panel" className=' w-screen min-h-screen flex flex-col justify-center'>
+                        <div id='container-panel-mars' className='items-center flex flex-col '>
+
+
+                        <div id='mars-dialogue' className='flex flex-row w-fit h-fit  p-5'>
+
+                            <div id='mars-pic' className='mt-14'>
+                                <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
+                            </div>
+                            <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                mars animation here
+                            </div>
+
+                        </div>
+                    </div>
                             
                         
                     </section>
 
 
-                    <section id="panel" className=' bg-white w-screen min-h-screen mt-4 ml-5 mb-4 p-9'>
+                    <section id="panel" className='bg-venus-pink  w-screen min-h-screen flex flex-col justify-center'>
+                            
+                        <div id='container-panel' className='flex flex-col items-center gap-14'>
+
+                                <div id='venus-dialogue' className='flex flex-row w-fit h-fit self-start p-5'>
+
+                                    <div id='venus-pic' className='mt-14'>
+                                        <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={VenusGifDefault} alt="Venus Gif"/>
+                                    </div>
+
+                                    <div id ='venus-text' className='flex w-fit md:w-72 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                        Mars, we need to make these asteroids feel GOOD! With my beauty.. of course.
+                                    </div>
+
+                                </div> 
+
+                                <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-end p-5'>
+
+                                    <div id='mars-pic' className='mt-14'>
+                                        <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
+                                    </div>
+                                    <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                        mars animation here
+                                    </div>
+
+                                </div>
+                        </div>
+                </section>
+                   
+                   
+                   
+                   
+                   
+                   
+                    <section id="panel" className=' bg-mars-red w-screen min-h-screen flex flex-col justify-center'>
                         hi hi hi hi hi hi hi 
                             
                         
