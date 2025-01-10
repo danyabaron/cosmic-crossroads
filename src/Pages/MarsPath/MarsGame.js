@@ -12,6 +12,8 @@ import VenusGifMouthOpen from '../../assets/venus-art/venus-mouth-open-gif.gif';
 import JupiterDefault from '../../assets/jupiter-art/jupiter-art.png';
 import JupiterGif from '../../assets/jupiter-art/jupiter-art-gif.gif';
 import JupiterAnnoyedGif from '../../assets/jupiter-art/jupiter-art-annoyed-gif.gif';
+import VenusCloudShort from '../../assets/clouds/venus-cloud-short.png';
+import VenusCloudLong from '../../assets/clouds/venus-cloud-long.png';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
@@ -20,15 +22,47 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 
+
 function MarsGame() {
+
+    const [choice, setChoice] = useState(null);
+    const [screen, setScreen] = useState('start');
+
+    console.log("first screen loaded: " + screen);
 
   
 
 
-        // Register GSAP plugins
+   
 
-        // const container = useRef(document.querySelector("#scroll-container"));
+       
+        const [clouds, setClouds] = useState([]);
+        useEffect(() => {
+            const generateClouds = () => {
+              const cloudCount = 20; // Number of clouds to generate
+              const newClouds = Array.from({ length: cloudCount }, (_, index) => {
+                return {
+                  id: index,
+                  type: Math.random() > 0.5 ? VenusCloudLong : VenusCloudShort,
+                  top: Math.random() * 100 + '%', // Random vertical position
+                  left: Math.random() * 200 + '%', // Random horizontal position
+                  size: Math.random() * 0.5 + 0.5, // Random size (scale)
+                };
+              });
+              setClouds(newClouds);
+            };
+        
+            generateClouds();
+          }, []);
+        
+        
+        
+        
+        // Register GSAP plugins
+        
         const container = useRef();
+
+
        
         useGSAP(() => {
 
@@ -70,14 +104,35 @@ function MarsGame() {
 
 
     // USER STARTS AT VENUS' GROTTO. THE MAIN START SCREEN. VENUS IS THE BENEFIC PLANET. USER CAN CHOOSE TO STICK WITH MARS, THEIR MALEFIC PLANET, OR ADD VENUS TO THEIR TEAM. 
-    // if (screen === 'venus') {
+  
 
     return (
 
 
         //outer div to contain background and screen
         <div  className='bg-venus-bg-scroll pt-14 bg-center min-h-screen  overflow-x-hidden' id='mars-path-container'>
+            {/* Render Clouds */}
+            {/* <div className="">
+                        {clouds.map((cloud) => (
+                        <img
+                            key={cloud.id}
+                            src={cloud.type}
+                            alt="Cloud"
+                            style={{
+                            position: 'absolute',
+                            top: cloud.top,
+                            left: cloud.left,
+                            transform: `scale(${cloud.size})`,
+                            opacity: 0.7,
+                            }}
+                            className="transition-opacity duration-500 ease-in-out"
+                        />
+                        ))}
+            </div> */}
 
+           
+             
+               
 
             {/* container for the venus-grotto portion at top left of screen */}
            <div className='flex flex-col w-2/3 md:w-1/2 h-fit mt-10 ml-5 gap-5' id='venus-grotto-container'>
@@ -110,11 +165,11 @@ function MarsGame() {
                             </div>
             </div>
 
-            {/* ref={container} */}
             
+            {/* HORIZONTAL SCROLL SECTION */}
             <div ref={container}  id="scroll-container" className=' flex flex-row gap-4 w-[600%] h-fit flex-nowrap pt-7 pl-7 overflow-x-hidden' >
 
-                        {/* container for first scroll section / dialogue */}
+                    {/* container for FIRST scroll section / dialogue */}
                     <section id="panel" className=' w-screen min-h-screen flex flex-col gap-14'>
 
                         <div id='container-panel-mars' className='flex flex-row w-full h-fit pt-12 justify-between'>
@@ -165,14 +220,11 @@ function MarsGame() {
 
 
 
-                    {/* container for second scroll section / dialogue */}
+                    {/* container for SECOND scroll section / dialogue */}
                     <section id="panel" className='  w-screen min-h-screen flex flex-col gap-14 '>
                         
-                        
-                    
-                        
-                    <div id='container-panel-venus' className='flex w-full h-fit pt-12 justify-between
-                     gap-6 flex-col md:flex-row pl-5 pr-5'>
+                        <div id='container-panel-venus' className='flex w-full h-fit pt-12 justify-between
+                        gap-6 flex-col md:flex-row pl-5 pr-5'>
 
                         <div id='venus-dialogue-2' className='flex flex-row w-fit h-fit'>
 
@@ -206,7 +258,7 @@ function MarsGame() {
                     </section>
 
 
-                    {/* container for second scroll section / dialogue */}
+                    {/* container for THIRD scroll section / dialogue */}
                     <section id="panel" className=' w-screen min-h-screen flex flex-col justify-center'>
 
                         <div id='container-panel-mars' className='items-center flex flex-col gap-14'>
@@ -242,23 +294,9 @@ function MarsGame() {
 
                         </div>
                         
-                      
-                            
-                            
-                        
-
-
-                        
-
-
-
-
-                        
-                    
-                        
                     </section>
 
-
+                     {/* container for FOURTH scroll section / dialogue */}
                     <section id="panel" className=' w-screen min-h-screen flex flex-col justify-center'>
                         <div id='container-panel-mars' className='items-center flex flex-col '>
 
@@ -278,12 +316,12 @@ function MarsGame() {
                         
                     </section>
 
-
-                    <section id="panel" className='bg-venus-pink  w-screen min-h-screen flex flex-col justify-center'>
+                     {/* container for FIFTH scroll section / dialogue */}
+                    <section id="panel" className='  w-screen min-h-screen flex flex-col justify-center'>
                             
                         <div id='container-panel' className='flex flex-col items-center gap-14'>
 
-                                <div id='venus-dialogue' className='flex flex-row w-fit h-fit self-start p-5'>
+                                <div id='venus-dialogue' className='flex flex-row w-fit h-fit self-start p-7 ml-9'>
 
                                     <div id='venus-pic' className='mt-14'>
                                         <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={VenusGifDefault} alt="Venus Gif"/>
@@ -295,7 +333,7 @@ function MarsGame() {
 
                                 </div> 
 
-                                <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-end p-5'>
+                                <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-end p-7 mr-9'>
 
                                     <div id='mars-pic' className='mt-14'>
                                         <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
@@ -312,9 +350,47 @@ function MarsGame() {
                    
                    
                    
-                   
-                    <section id="panel" className=' bg-mars-red w-screen min-h-screen flex flex-col justify-center'>
-                        hi hi hi hi hi hi hi 
+                    {/* container for SIXTH/FINAL scroll section / dialogue */}
+                    <section id="panel" className='  w-screen min-h-screen flex flex-col justify-center pr-5'>
+                        <div id='container-panel' className='flex flex-col items-center gap-14'>
+                            
+                            <div id='header' className='font-header text-white font-bold'>
+                                <h1>Decision Time: 15 seconds</h1>
+                            </div>
+
+                            <div id='planet-pics' className='flex flex-row gap-5 items-center justify-center w-full h-fit'>
+                                <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
+                                <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={VenusGifMouthOpen} alt="Mars Gif"/>
+                                
+                            </div>
+
+                            <div id='decision-text' className='flex w-1/3 h-fit bg-white text-main-black rounded-md shadow-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                It’s up to you to decide if you want to compromise with Venus, or fight the asteroids in the way that you want to. The decision is yours.
+                            </div>
+
+                            <div id='button-container' className='flex flex-col items-center justify-center gap-4'>
+                                {/* compromise button */}
+                                    <button
+                                        onClick={() => {
+                                        setChoice('benefic');
+                                        setScreen('choose-venus'); // Navigate to choice screen
+                                        }}
+                                        className="bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-green-600">
+                                            Compromise with Venus
+                                    </button>
+
+                                {/* stick with mars button */}
+                                    <button
+                                            onClick={() => {
+                                            setChoice('malefic');
+                                            setScreen('stick-mars'); // Navigate to choice screen
+                                            }}
+                                    className="bg-main-black text-white px-4 py-2 rounded-md shadow-md">
+                                    Stick with your Malefic
+                                    </button>
+                            </div>
+                            
+                        </div>
                             
                         
                     </section>
@@ -334,42 +410,54 @@ function MarsGame() {
 
     );
 
-
-
-
-
-
-
 }
-
 
 export default MarsGame;
 
+// console.log("second click screen:" + screen);
 
-     // USER CHOOSES TO COMPROMISE WITH VENUS, THE BENEFIC PLANET FRIEND. THIS ADDS VENUS TO THE STATUS BAR, AND ADDS VENUS TO THEIR TEAM. THEY ENTER JUPITER'S GROTTO WITH MARS AND VENUS 
-    // IN THEIR TEAM. NEED TO UPDATE THE STATUS BAR TO DISPLAY THIS.
-    // if (screen === 'choose-venus') {
+//  //  USER CHOOSES TO COMPROMISE WITH VENUS, THE BENEFIC PLANET FRIEND. THIS ADDS VENUS TO THE STATUS BAR, AND ADDS VENUS TO THEIR TEAM. THEY ENTER JUPITER'S GROTTO WITH MARS AND VENUS 
+//     // IN THEIR TEAM. NEED TO UPDATE THE STATUS BAR TO DISPLAY THIS.
+//     if (screen === 'choose-venus') {
 
         
-    //     return (
-    //         <div className="bg-venus-bg-reg min-w-screen min-h-screen flex items-center justify-center">
+//         return (
+//             <div className="bg-venus-bg-reg min-w-screen min-h-screen flex items-center justify-center">
           
-    //         <button
-    //           onClick={() => setScreen('jupiter')}
-    //           className="mt-8 bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600"
-    //         >
-    //           Who's Next?
-    //         </button>
-    //       </div>
-    //     )
+//             <button
+//               onClick={() => setScreen('jupiter')}
+//               className="mt-8 bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600"
+//             >
+//               Who's Next?
+//             </button>
+//           </div>
+//         );
 
         
 
-    // }
+//     }
+
+    
 
 
 
-    // USER CHOOSES TO STICK WITH MARS, THEIR MALEFIC PLANET/THEMSELVES. THIS DOES NOT CHANGE THE STATUS BAR, AND NO ONE GETS ADDED TO THEIR TEAM. STATUS BAR IS NOT UPDATED.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // // USER CHOOSES TO STICK WITH MARS, THEIR MALEFIC PLANET/THEMSELVES. THIS DOES NOT CHANGE THE STATUS BAR, AND NO ONE GETS ADDED TO THEIR TEAM. STATUS BAR IS NOT UPDATED.
     // if (screen ==='stick-mars'){
 
     //     return (
@@ -382,14 +470,14 @@ export default MarsGame;
     //           Who's Next?
     //         </button>
     //       </div>
-    //     )
+    //     );
 
     // }
 
    
 
 
-    // JUPITER'S GROTTO/SCREEN. STATUS BAR IS UPDATED BASED ON WHAT THE USER CHOSE. THE NEXT SCREENS AFTER THIS ONE ARE DETERMINED BY THE STATUS BAR. NEED TO FIGURE THIS OUT.
+    // // JUPITER'S GROTTO/SCREEN. STATUS BAR IS UPDATED BASED ON WHAT THE USER CHOSE. THE NEXT SCREENS AFTER THIS ONE ARE DETERMINED BY THE STATUS BAR. NEED TO FIGURE THIS OUT.
 
     // if (screen === 'jupiter') {
 
@@ -479,3 +567,12 @@ export default MarsGame;
 
 
 
+
+
+
+
+
+
+
+
+   
