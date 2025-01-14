@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LocomotiveScroll from 'locomotive-scroll';
+
 import 'locomotive-scroll/dist/locomotive-scroll.css';
 import VenusMouthOpen from '../../assets/venus-art/venus-mouth-open.png';
 import MarsGif from '../../assets/mars-art/mars-art-official.gif';
