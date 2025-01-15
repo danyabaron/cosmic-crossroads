@@ -1,0 +1,43 @@
+import React, { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+
+import VenusMouthOpen from '../../assets/venus-art/venus-mouth-open.png';
+import MarsGif from '../../assets/mars-art/mars-art-official.gif';
+import MarsStaticImg from '../../assets/mars-art/mars-art.png';
+import VenusGifDefault from '../../assets/venus-art/venus-default-GIF.gif';
+import VenusGifAnnoyed from '../../assets/venus-art/venus-annoyed-gif.gif';
+import VenusGifSmirk from '../../assets/venus-art/venus-smirk-gif.gif';
+import VenusGifMouthOpen from '../../assets/venus-art/venus-mouth-open-gif.gif';
+import VenusCloudShort from '../../assets/clouds/venus-cloud-short.png';
+import VenusCloudLong from '../../assets/clouds/venus-cloud-long.png';
+
+
+
+
+   function StickMarsDecision2({ setScreen }) {
+
+      //  const [screen, setScreen] = useState(null);
+
+         return (
+             
+                   
+                    <div className="bg-venus-bg-reg fixed top-0 left-0 w-full h-full flex items-center justify-center">
+                        <button
+                        onClick={() => setScreen('MarsHorizontal2')}
+                        className="mt-8 bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600"
+                        >
+                         You have stuck to your Malefic gut!
+                        </button>
+                    </div>
+
+                    );
+    
+
+
+
+   }
+   
+   
+
+   export default StickMarsDecision2;
