@@ -14,32 +14,27 @@ import VenusCloudLong from '../../assets/clouds/venus-cloud-long.png';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
+import ButtonContainer from '../ButtonContainer';
 
+function ChooseVenusDecision2({ setScreen }) {
+    const buttons = [
+        {
+            text: "You have added Venus to your team!",
+            style: "mt-8 bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600",
+            screen: "MarsHorizontal2"
+        }
+    ];
 
+    return (
+        <div className="bg-venus-bg-reg fixed top-0 left-0 w-full h-full flex items-center justify-center">
+            <ButtonContainer 
+                setScreen={setScreen} 
+                buttons={buttons}
+                containerStyle="custom-container-style"
+                buttonStyle="custom-button-style"
+            />
+        </div>
+    );
+}
 
-   function ChooseVenusDecision2({ setScreen }) {
-
-      //  const [screen, setScreen] = useState(null);
-
-         return (
-             
-                   
-                    <div className="bg-venus-bg-reg fixed top-0 left-0 w-full h-full flex items-center justify-center">
-                        <button
-                        onClick={() => setScreen('MarsHorizontal2')}
-                        className="mt-8 bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600"
-                        >
-                         You have added Venus to your team!
-                        </button>
-                    </div>
-
-                    );
-    
-
-
-
-   }
-   
-   
-
-   export default ChooseVenusDecision2;
+export default ChooseVenusDecision2;

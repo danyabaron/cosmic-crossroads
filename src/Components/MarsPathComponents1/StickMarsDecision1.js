@@ -24,14 +24,18 @@ import { useGSAP } from '@gsap/react';
          return (
              
                    
-                    <div className="bg-mars-bg-reg fixed top-0 left-0 w-full h-full flex items-center justify-center">
+            <div className="bg-mars-bg-reg fixed top-0 left-0 w-full h-full flex items-center justify-center">
+  
                         <button
                         onClick={() => setScreen('MarsHorizontal2')}
                         className="mt-8 bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600"
                         >
                         Who's Next?
                         </button>
-                    </div>
+
+
+                        
+            </div>
 
                     );
     

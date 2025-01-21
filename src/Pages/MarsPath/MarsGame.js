@@ -36,6 +36,9 @@ function MarsGame() {
 
     console.log("Current screen:", screen); // Add this for debugging
             
+
+    //switch statement 
+    
     return (
         <div className='relative'>
             {screen === 'MarsHorizontal1' && (
