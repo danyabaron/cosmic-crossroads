@@ -99,13 +99,6 @@ function MarsHorizontal1({ setScreen }) {
 
 
 
-
-
-
-
-
-
-
     
     const buttons = [
         {
@@ -211,7 +204,7 @@ function MarsHorizontal1({ setScreen }) {
 
 
 
-                {/* container for SECOND scroll section / dialogue */}
+                {/* container for SECOND scroll section / dialogue THIS IS WHERE THE LINE ANIMATION SHOULD BE PINNED TO THE FRAME*/}
                 <section ref={venusLineRef} id="panel" className='venus-line relative bg-mars-red w-screen min-h-screen flex flex-col justify-center gap-14 '>
                     
                     <div id='container-panel-venus' className='flex w-full h-fit pt-12 justify-between
