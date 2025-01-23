@@ -17,12 +17,15 @@ import VenusCloudLong from '../../assets/clouds/venus-cloud-long.png';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
-import MarsHorizontal1 from '../../Components/MarsPathComponents1/MarsHorizontal1';
-import MarsHorizontal2 from '../../Components/MarsPathComponents2/MarsHorizontal2';
-import ChooseVenusDecision1 from '../../Components/MarsPathComponents1/ChooseVenusDecision1';
-import StickMarsDecsion1 from '../../Components/MarsPathComponents1/StickMarsDecision1';
-import ChooseVenusDecision2 from '../../Components/MarsPathComponents2/ChooseVenusDecision2';
-import StickMarsDecision2 from '../../Components/MarsPathComponents2/StickMarsDecision2';
+import MarsHorizontal1 from '../../Components/MarsPathComponents/MarsPathComponents1/MarsHorizontal1';
+import MarsHorizontal2 from '../../Components/MarsPathComponents/MarsPathComponents2/MarsHorizontal2';
+import ChooseVenusDecision1 from '../../Components/MarsPathComponents/MarsPathComponents1/ChooseVenusDecision1';
+import StickMarsDecision1 from '../../Components/MarsPathComponents/MarsPathComponents1/StickMarsDecision1';
+import MarsVenusJupiterEnding from '../../Components/MarsPathComponents/MarsEndings/MarsVenusJupiterEnding';
+import MarsSoloEnding from '../../Components/MarsPathComponents/MarsEndings/MarsSoloEnding';
+import MarsVenusEnding from '../../Components/MarsPathComponents/MarsEndings/MarsVenusEnding';
+import MarsJupiterEnding from '../../Components/MarsPathComponents/MarsEndings/MarsJupiterEnding';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,21 +55,21 @@ function MarsGame() {
             )}
 
             {screen === 'stick-mars-1' && (
-                <StickMarsDecsion1 setScreen={setScreen}/>
+                <StickMarsDecision1 setScreen={setScreen}/>
             )}
 
             {screen === 'MarsHorizontal2' && (
                 <MarsHorizontal2 setScreen={setScreen} />
             )}
 
-            {screen === 'choose-venus-2' && (
+            {/* {screen === 'choose-venus-2' && (
 
                 <ChooseVenusDecision2 setScreen={setScreen}/>
             )}
 
             {screen === 'stick-mars-2' && (
                 <StickMarsDecision2 setScreen={setScreen}/>
-            )}
+            )} */}
 
 
 

@@ -25,7 +25,8 @@ module.exports = {
       'jupiter-bg-reg': "url('./assets/backgrounds/jupiter-normal-size.png')",
       'jupiter-bg-scroll': "url('./assets/backgrounds/jupiter-background-official.png')",
       'saturn-bg-reg': "url('./assets/backgrounds/saturn-normal-size.png')",
-      'saturn-bg-scroll': "url('./assets/backgrounds/saturn-background-official.png')"
+      'saturn-bg-scroll': "url('./assets/backgrounds/saturn-background-official.png')",
+      'default-bg': "url('./assets/backgrounds/default-background.png')",
 
 
     },

@@ -3,16 +3,16 @@ import { useNavigate } from 'react-router-dom';
 
 import 'locomotive-scroll/dist/locomotive-scroll.css';
 
-import MarsGif from '../../assets/mars-art/mars-art-official.gif';
-import MarsStaticImg from '../../assets/mars-art/mars-art.png';
+import MarsGif from '../../../assets/mars-art/mars-art-official.gif';
+import MarsStaticImg from '../../../assets/mars-art/mars-art.png';
 
-import JupiterDefault from '../../assets/jupiter-art/jupiter-art.png';
-import JupiterGif from '../../assets/jupiter-art/jupiter-art-gif.gif';
-import JupiterAnnoyedGif from '../../assets/jupiter-art/jupiter-art-annoyed-gif.gif';
-import JupiterCloudLong from '../../assets/clouds/jupiter-cloud-long.png';
-import JupiterCloudShort from '../../assets/clouds/jupiter-cloud-short.png';
+import JupiterDefault from '../../../assets/jupiter-art/jupiter-art.png';
+import JupiterGif from '../../../assets/jupiter-art/jupiter-art-gif.gif';
+import JupiterAnnoyedGif from '../../../assets/jupiter-art/jupiter-art-annoyed-gif.gif';
+import JupiterCloudLong from '../../../assets/clouds/jupiter-cloud-long.png';
+import JupiterCloudShort from '../../../assets/clouds/jupiter-cloud-short.png';
 
-import ButtonContainer from '../ButtonContainer';
+import ButtonContainer from '../../ButtonContainer';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';

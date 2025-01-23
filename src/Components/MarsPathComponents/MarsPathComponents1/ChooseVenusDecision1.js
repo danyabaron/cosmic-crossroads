@@ -1,20 +1,20 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import VenusMouthOpen from '../../assets/venus-art/venus-mouth-open.png';
-import MarsGif from '../../assets/mars-art/mars-art-official.gif';
-import MarsStaticImg from '../../assets/mars-art/mars-art.png';
-import VenusGifDefault from '../../assets/venus-art/venus-default-GIF.gif';
-import VenusDefaultPng from '../../assets/venus-art/venus-default.png';
-import VenusGifAnnoyed from '../../assets/venus-art/venus-annoyed-gif.gif';
-import VenusGifSmirk from '../../assets/venus-art/venus-smirk-gif.gif';
-import VenusGifMouthOpen from '../../assets/venus-art/venus-mouth-open-gif.gif';
-import VenusCloudShort from '../../assets/clouds/venus-cloud-short.png';
-import VenusCloudLong from '../../assets/clouds/venus-cloud-long.png';
+import VenusMouthOpen from '../../../assets/venus-art/venus-mouth-open.png';
+import MarsGif from '../../../assets/mars-art/mars-art-official.gif';
+import MarsStaticImg from '../../../assets/mars-art/mars-art.png';
+import VenusGifDefault from '../../../assets/venus-art/venus-default-GIF.gif';
+import VenusDefaultPng from '../../../assets/venus-art/venus-default.png';
+import VenusGifAnnoyed from '../../../assets/venus-art/venus-annoyed-gif.gif';
+import VenusGifSmirk from '../../../assets/venus-art/venus-smirk-gif.gif';
+import VenusGifMouthOpen from '../../../assets/venus-art/venus-mouth-open-gif.gif';
+import VenusCloudShort from '../../../assets/clouds/venus-cloud-short.png';
+import VenusCloudLong from '../../../assets/clouds/venus-cloud-long.png';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
-import ButtonContainer from '../ButtonContainer';
+import ButtonContainer from '../../ButtonContainer';
 
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 

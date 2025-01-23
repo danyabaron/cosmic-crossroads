@@ -7,23 +7,53 @@ import VenusGame from './Pages/VenusPath/VenusGame';
 import VenusIntro from './Pages/VenusPath/VenusIntro';
 import MarsEndings from './Pages/MarsPath/MarsEndings';
 import StatusBar from './Components/StatusBar';
+import Home from './Pages/Home';
 
 
 function App() {
   return (
     <Router>
     <div className="App flex flex-col min-h-screen min-w-screen">
-      <StatusBar />
+      
 
-      {/* <main className="mt-3"> */}
       <Routes>
-        {/* <Route path="/" element={<VenusIntro />} /> */}
-        <Route path="/" element={<MarsIntro />} />
-        <Route path="/mars-game" element={<MarsGame />} />
-        <Route path="/venus-game" element={<VenusGame />} />
-        {/* <Route path="/mars-endings" element={<MarsEndings />} /> */}
+        
+        <Route path="/" element={<Home />} />
+        <Route 
+            path="/venusintro" 
+            element={
+              <>
+                <StatusBar />
+                <VenusIntro />
+              </>
+            } />
+          <Route 
+            path="/marsintro" 
+            element={
+              <>
+                <StatusBar />
+                <MarsIntro />
+              </>
+            } />
+        <Route 
+            path="/mars-game" 
+            element={
+              <>
+                <StatusBar />
+                <MarsGame />
+              </>
+            } />
+        <Route 
+            path="/venus-game" 
+            element={
+              <>
+                <StatusBar />
+                <VenusGame />
+              </>
+            } />
+       
       </Routes>
-      {/* </main> */}
+      
     </div>
   </Router>
 
