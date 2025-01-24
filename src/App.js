@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import MarsIntro from './Pages/MarsPath/MarsIntro';
@@ -11,6 +11,24 @@ import Home from './Pages/Home';
 
 
 function App() {
+
+  // Create state for characters for status bar team
+  const [characters, setCharacters] = useState([]);
+
+  // Function to add characters to the team
+  const addCharacter = (character) => {
+    if (!characters.includes(character)) {
+      setCharacters((prev) => [...prev, character]);
+    }
+  };
+
+
+
+
+
+
+
+
   return (
     <Router>
     <div className="App flex flex-col min-h-screen min-w-screen">
@@ -18,37 +36,37 @@ function App() {
 
       <Routes>
         
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home addCharacter={addCharacter} />} />
         <Route 
             path="/venusintro" 
             element={
               <>
-                <StatusBar />
-                <VenusIntro />
+                <StatusBar characters={characters} />
+                <VenusIntro addCharacter={addCharacter}/>
               </>
             } />
           <Route 
             path="/marsintro" 
             element={
               <>
-                <StatusBar />
-                <MarsIntro />
+                <StatusBar characters={characters} />
+                <MarsIntro addCharacter={addCharacter} />
               </>
             } />
         <Route 
             path="/mars-game" 
             element={
               <>
-                <StatusBar />
-                <MarsGame />
+                <StatusBar characters={characters} />
+                <MarsGame addCharacter={addCharacter} />
               </>
             } />
         <Route 
             path="/venus-game" 
             element={
               <>
-                <StatusBar />
-                <VenusGame />
+                <StatusBar characters={characters} />
+                <VenusGame addCharacter={addCharacter} />
               </>
             } />
        

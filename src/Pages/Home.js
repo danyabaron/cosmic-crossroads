@@ -13,13 +13,17 @@ import VenusCloudLong from '../assets/clouds/venus-cloud-long.png';
 import ButtonContainer from '../Components/ButtonContainer';
 
 
-function Home() {
+function Home({addCharacter}) {
 
 
     const navigate = useNavigate();
 
     const handleCharacterClick = (path) => {
-        navigate(path);
+        
+            // add Mars to status bar
+            addCharacter('Mars');
+            // navigate to mars intro     
+            navigate(path);
     };
 
 

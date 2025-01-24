@@ -5,11 +5,14 @@ import MarsStats from '../../assets/mars-art/mars-stats.png';
 import MarsCloudLong from '../../assets/clouds/mars-cloud-long.png';
 import MarsCloudShort from '../../assets/clouds/mars-cloud-short.png';
 
-function MarsIntro() {
+function MarsIntro({ addCharacter }) {
 
     const navigate = useNavigate();
 
     const handleEnterClick = () => {
+        // add Mars to status bar
+        addCharacter('Mars');
+        // navigate to mars game / path
         navigate('/mars-game');
     };
 

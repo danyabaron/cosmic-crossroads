@@ -1,19 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { CiSettings } from "react-icons/ci";
+import MarsStaticImg from '../assets/mars-art/mars-art-official.png';
+import VenusStaticImg from '../assets/venus-art/venus-default.png';
+import SaturnStaticImg from '../assets/saturn-art/saturn.png';
+import JupiterStaticImg from '../assets/jupiter-art/jupiter-art.png';
 
 
 
 
 
-function StatusBar() {
+function StatusBar({characters}) {
 
 
-    // const teamMembers = [
-    //     { id: 1, name: "Mars", image: "./assets/mars-art/mars-art-official1.png" },
-    //     { id: 2, name: "Empty", image: "" },
-    //     { id: 3, name: "Empty", image: "" },
-    // ];
+    const characterImages = {
+        Mars: MarsStaticImg,
+        Venus: VenusStaticImg,
+        Jupiter: JupiterStaticImg,
+        Saturn: SaturnStaticImg,
+    };
+
+
+
+
+    // const [characters, setCharacters] = useState([]);
+
+    // const addCharacter = (character) => {
+    //     if(!characters.includes(character)) {
+    //         setCharacters((prev) => [...prev, character]);
+    //     }
+    // };
+
+    const maxTeamSize = 3; // Maximum number of team members
+
 
 
     return (
@@ -27,13 +46,43 @@ function StatusBar() {
                     </div>
                 </div>
               
-            <div className="flex items-center space-x-1 md:space-x-2 p-3">
+            {/* <div className="flex items-center space-x-1 md:space-x-2 p-3">
                 <span className='text-xs md:text-sm'>Your Team: </span>
                 <div className="flex space-x-2">
                    
                     <div className="w-5 h-5 md:w-7 md:h-7 border-2 border-team-gray rounded-full" id="team-member-1"></div>
                     <div className="w-5 h-5 md:w-7 md:h-7 border-2 border-team-gray rounded-full" id="team-member-2"></div>
                     <div className="w-5 h-5 md:w-7 md:h-7 border-2 border-team-gray rounded-full" id="team-member-3"></div>
+                </div>
+            </div>
+             */}
+
+
+
+            <div className="flex items-center space-x-1 md:space-x-2 p-3">
+                <span className="text-xs md:text-sm">Your Team: </span>
+                <div className="flex justify-center items-center space-x-2">
+
+                    {/* Map through characters and render them */}
+                    {Array.from({ length: maxTeamSize }).map((_, index) => {
+                    const character = characters[index]; // Get the character at the current index
+                    return (
+                        <div
+                        key={index}
+                        className={`w-7 h-7 md:w-8 md:h-8 flex relative self-center rounded-full ${
+                            character ? 'overflow-hidden' : 'border-team-gray border-2'
+                        }`}
+                        >
+                        {character ? (
+                            <img
+                            src={characterImages[character]}
+                            alt={character}
+                            className="w-full h-full absolute inset-0 object-center object-cover"
+                            />
+                        ) : null}
+                        </div>
+                    );
+                    })}
                 </div>
             </div>
             
