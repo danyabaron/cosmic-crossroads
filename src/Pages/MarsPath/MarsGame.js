@@ -37,7 +37,7 @@ function MarsGame() {
     // const [choice, setChoice] = useState(null);
     const [screen, setScreen] = useState('MarsHorizontal1');
 
-    console.log("Current screen:", screen); // Add this for debugging
+    console.log("(being set from MarsGame.js: Current screen:", screen); // Add this for debugging
             
 
     //switch statement 

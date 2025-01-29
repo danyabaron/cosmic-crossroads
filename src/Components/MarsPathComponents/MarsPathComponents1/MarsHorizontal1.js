@@ -1,16 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import React, { useEffect, useRef } from 'react';
 import 'locomotive-scroll/dist/locomotive-scroll.css';
 import VenusMouthOpen from '../../../assets/venus-art/venus-mouth-open.png';
 import MarsGif from '../../../assets/mars-art/mars-art-official.gif';
-import MarsStaticImg from '../../../assets/mars-art/mars-art.png';
-import VenusGifDefault from '../../../assets/venus-art/venus-default-GIF.gif';
 import VenusGifAnnoyed from '../../../assets/venus-art/venus-annoyed-gif.gif';
-import VenusGifSmirk from '../../../assets/venus-art/venus-smirk-gif.gif';
 import VenusGifMouthOpen from '../../../assets/venus-art/venus-mouth-open-gif.gif';
-import VenusCloudShort from '../../../assets/clouds/venus-cloud-short.png';
-import VenusCloudLong from '../../../assets/clouds/venus-cloud-long.png';
 import ButtonContainer from '../../ButtonContainer';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -22,6 +15,8 @@ function MarsHorizontal1({ setScreen, addCharacter }) {
     const container = useRef(null);
     const venusLineRef = useRef(null); // Ref for venus-line section
     const lineRef = useRef(null); // Ref for the animated line
+
+    console.log("MarsHorizontal1 received addCharacter:", addCharacter); // Debugging
 
     useGSAP(() => {
         const sections = gsap.utils.toArray("section", container.current);
@@ -102,7 +97,7 @@ function MarsHorizontal1({ setScreen, addCharacter }) {
                     <div id='container-panel-mars' className='flex flex-row w-full h-fit pt-12 justify-between'>
                         <div id='mars-dialogue' className='flex flex-row w-fit h-fit mt-9 '>
                             <div id='mars-pic' className='mt-14'>
-                                <img className="w-[100px] sm:w-[100px] md:w-[100px] lg:w-[150px]" src={MarsGif} alt="Mars Gif"/>
+                                <img className="w-[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Mars Gif"/>
                             </div>
                             <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
                                 Oof.. why is everything so bright and pink in here? We must be at Venus’ place... I wanna go home already...
@@ -110,7 +105,7 @@ function MarsHorizontal1({ setScreen, addCharacter }) {
                         </div>
                         <div id='mars-dialogue' className='flex flex-row w-fit h-fit mt-9'>
                             <div id='mars-pic' className='mt-14'>
-                                <img className="w-[100px] sm:w-[100px] md:w-[100px] lg:w-[150px]" src={MarsGif} alt="Venus Gif"/>
+                                <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Venus Gif"/>
                             </div>
                             <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
                                 Well yeah. I do. Unless you had something better in mind?
@@ -121,7 +116,7 @@ function MarsHorizontal1({ setScreen, addCharacter }) {
                     <div id='container-panel-venus' className='flex flex-row w-full h-full justify-center '>
                         <div id='venus-dialogue' className='flex flex-row w-fit h-fit'>
                             <div id='venus-pic' className='mt-14'>
-                                <img className="w-[100px] sm:w-[100px] md:w-[100px] lg:w-[150px]" src={VenusGifAnnoyed} alt="Venus Gif"/>
+                                <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={VenusGifAnnoyed} alt="Venus Gif"/>
                             </div>
                             <div id ='venus-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
                                 Ohhhhh look who it is. Mars. Heyyy Mars. Let me guess. You want to go to war?
@@ -131,11 +126,11 @@ function MarsHorizontal1({ setScreen, addCharacter }) {
                 </section>
 
                 {/* container for SECOND scroll section / dialogue */}
-                <section ref={venusLineRef} id="panel" className='venus-line relative bg-mars-red w-screen min-h-screen flex flex-col justify-center gap-14'>
+                {/* <section ref={venusLineRef} id="panel" className='venus-line relative bg-mars-red w-screen min-h-screen flex flex-col justify-center gap-14'>
                     <div id='container-panel-venus' className='flex w-full h-fit pt-12 justify-between gap-6 flex-col md:flex-row pl-5 pr-5'>
                         <div id='venus-dialogue-2' className='flex flex-row w-fit h-fit'>
                             <div id='venus-pic' className='mt-14'>
-                                <img className="w-[100px] sm:w-[100px] md:w-[100px] lg:w-[150px]" src={VenusGifDefault} alt="Venus Gif"/>
+                                <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={VenusGifDefault} alt="Venus Gif"/>
                             </div>
                             <div id ='venus-text' className='flex w-fit md:w-72 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
                                 Maybe the asteroid is lonely and that’s why it’s coming over here. you need to stop asserting dominance for no reason. I probably could charm them with my beauty..
@@ -152,14 +147,14 @@ function MarsHorizontal1({ setScreen, addCharacter }) {
                             <p className="text-white mt-4">venus animation here</p>
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                 {/* container for THIRD scroll section / dialogue */}
-                <section id="panel" className='w-screen min-h-screen relative flex flex-col justify-center'>
+                {/* <section id="panel" className='w-screen min-h-screen relative flex flex-col justify-center'>
                     <div id='container-panel-mars' className='items-center flex flex-col gap-14'>
                         <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-start p-5'>
                             <div id='mars-pic' className='mt-14'>
-                                <img className="w-[100px] sm:w-[100px] md:w-[100px] lg:w-[150px]" src={MarsGif} alt="Mars Gif"/>
+                                <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Mars Gif"/>
                             </div>
                             <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
                                 As a Malefic planet, you feel like you need to push people, maybe in not the best of ways. Sometimes that means that people can be uncomfortable with your energy. However, your energy pushes people to be stronger, and better. You tend to take the more aggressive approach.
@@ -170,32 +165,32 @@ function MarsHorizontal1({ setScreen, addCharacter }) {
                                 Waiting to take the offense side is difficult for you. You are prone to taking action immediately and channeling your inner warrior.
                             </div>
                             <div id='mars-pic' className='mt-14'>
-                                <img className="w-[100px] sm:w-[100px] md:w-[100px] lg:w-[150px]" src={MarsGif} alt="Venus Gif"/>
+                                <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Venus Gif"/>
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                 {/* container for FOURTH scroll section / dialogue */}
-                <section id="panel" className='w-screen min-h-screen relative flex flex-col justify-center'>
+                {/* <section id="panel" className='w-screen min-h-screen relative flex flex-col justify-center'>
                     <div id='container-panel-mars' className='items-center flex flex-col'>
                         <div id='mars-dialogue' className='flex flex-row w-fit h-fit p-5'>
                             <div id='mars-pic' className='mt-14'>
-                                <img className="w-[100px] sm:w-[100px] md:w-[100px] lg:w-[150px]" src={MarsGif} alt="Mars Gif"/>
+                                <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Mars Gif"/>
                             </div>
                             <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
                                 mars animation here
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                 {/* container for FIFTH scroll section / dialogue */}
-                <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center'>
+                {/* <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center'>
                     <div id='container-panel' className='flex flex-col items-center gap-14'>
                         <div id='venus-dialogue' className='flex flex-row w-fit h-fit self-start p-7 ml-9'>
                             <div id='venus-pic' className='mt-14'>
-                                <img className="w-[100px] sm:w-[100px] md:w-[100px] lg:w-[150px]" src={VenusGifDefault} alt="Venus Gif"/>
+                                <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={VenusGifDefault} alt="Venus Gif"/>
                             </div>
                             <div id ='venus-text' className='flex w-fit md:w-72 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
                                 Mars, we need to make these asteroids feel GOOD! With my beauty.. of course.
@@ -203,14 +198,14 @@ function MarsHorizontal1({ setScreen, addCharacter }) {
                         </div> 
                         <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-end p-7 mr-9'>
                             <div id='mars-pic' className='mt-14'>
-                                <img className="w-[100px] sm:w-[100px] md:w-[100px] lg:w-[150px]" src={MarsGif} alt="Mars Gif"/>
+                                <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Mars Gif"/>
                             </div>
                             <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
                                 mars animation here
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                 {/* container for SIXTH/FINAL scroll section / dialogue */}
                 <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center pr-5'>
@@ -219,8 +214,8 @@ function MarsHorizontal1({ setScreen, addCharacter }) {
                             <h1>Decision Time: 15 seconds</h1>
                         </div>
                         <div id='planet-pics' className='flex flex-row gap-5 items-center justify-center w-full h-fit'>
-                            <img className="w-[100px] sm:w-[100px] md:w-[100px] lg:w-[150px]" src={MarsGif} alt="Mars Gif"/>
-                            <img className="w-[100px] sm:w-[100px] md:w-[100px] lg:w-[150px]" src={VenusGifMouthOpen} alt="Mars Gif"/>
+                            <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Mars Gif"/>
+                            <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={VenusGifMouthOpen} alt="Mars Gif"/>
                         </div>
                         <div id='decision-text' className='flex w-1/3 h-fit bg-white text-main-black rounded-md shadow-md font-body text-wrap p-5 text-xs md:text-sm'>
                             It’s up to you to decide if you want to compromise with Venus, or fight the asteroids in the way that you want to. The decision is yours.

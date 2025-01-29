@@ -8,7 +8,7 @@ import VenusIntro from './Pages/VenusPath/VenusIntro';
 import MarsEndings from './Pages/MarsPath/MarsEndings';
 import StatusBar from './Components/StatusBar';
 import Home from './Pages/Home';
-
+import MarsHorizontal1 from './Components/MarsPathComponents/MarsPathComponents1/MarsHorizontal1';
 
 function App() {
 
@@ -17,27 +17,25 @@ function App() {
 
   // Function to add characters to the team
   const addCharacter = (character) => {
-    if (!characters.includes(character)) {
-      setCharacters((prev) => [...prev, character]);
-    }
+    setCharacters((prev) => {
+      if (!prev.includes(character)) {
+        console.log("Adding character:", character);
+        return [...prev, character];
+      } else {
+        console.warn("Character already added:", character);
+        return prev; // No change if character already exists
+      }
+    });
   };
-
-
-
-
-
-
-
+  
 
   return (
     <Router>
-    <div className="App flex flex-col min-h-screen min-w-screen">
-      
-
-      <Routes>
-        
-        <Route path="/" element={<Home addCharacter={addCharacter} />} />
-        <Route 
+      <StatusBar characters={characters} />
+      <div className="App flex flex-col min-h-screen min-w-screen">
+        <Routes>
+          <Route path="/" element={<Home addCharacter={addCharacter} />} />
+          <Route 
             path="/venusintro" 
             element={
               <>
@@ -53,7 +51,7 @@ function App() {
                 <MarsIntro addCharacter={addCharacter} />
               </>
             } />
-        <Route 
+          <Route 
             path="/mars-game" 
             element={
               <>
@@ -61,7 +59,7 @@ function App() {
                 <MarsGame addCharacter={addCharacter} />
               </>
             } />
-        <Route 
+          <Route 
             path="/venus-game" 
             element={
               <>
@@ -69,12 +67,19 @@ function App() {
                 <VenusGame addCharacter={addCharacter} />
               </>
             } />
-       
-      </Routes>
-      
-    </div>
-  </Router>
-
+          <Route 
+            path="/mars-horizontal-1" 
+            element={
+              <>
+                <StatusBar characters={characters} />
+                <MarsHorizontal1 setScreen={() => {}} addCharacter={addCharacter} />
+              </>
+            // <MarsHorizontal1 setScreen={() => {}} addCharacter={addCharacter} />
+            } 
+            />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

@@ -24,7 +24,7 @@ gsap.registerPlugin(MotionPathPlugin);
 
    function ChooseVenusDecision1({ setScreen }) {
 
-      const solarAnimationRef = useRef(null);
+      // const solarAnimationRef = useRef(null);
 
       //    useGSAP(() => {   
       //       gsap.to("#mars-planet", {
@@ -80,20 +80,20 @@ gsap.registerPlugin(MotionPathPlugin);
                                     </div>
 
                            </div>
-                           <div
+                           {/* <div
                               id="solar-animation"
                               ref={solarAnimationRef}
                               className="relative flex  w-1/2 h-[500px] p-6 text-white"
-                           >
+                           > */}
 
                                 {/* SVG Orbits */}
-                                 <svg
+                                 {/* <svg
                                     className="absolute top-0 left-0 w-full h-full"
                                     viewBox="0 0 800 800"
                                     xmlns="http://www.w3.org/2000/svg"
-                                 >
+                                 > */}
                                     {/* Mars Orbit */}
-                                    <circle
+                                    {/* <circle
                                        id="orbit1"
                                        cx="400"
                                        cy="400"
@@ -101,9 +101,9 @@ gsap.registerPlugin(MotionPathPlugin);
                                        fill="none"
                                        stroke="white"
                                        strokeWidth="2"
-                                    />
+                                    /> */}
                                     {/* Venus Orbit */}
-                                    <circle
+                                    {/* <circle
                                        id="orbit2"
                                        cx="400"
                                        cy="400"
@@ -112,10 +112,10 @@ gsap.registerPlugin(MotionPathPlugin);
                                        stroke="white"
                                        strokeWidth="2"
                                     />
-                                 </svg>
+                                 </svg> */}
 
                                  {/* Mars Planet */}
-                                 <div
+                                 {/* <div
                                     id="mars-planet"
                                     className="absolute w-10 h-10 flex justify-center items-center"
                                  >
@@ -124,10 +124,10 @@ gsap.registerPlugin(MotionPathPlugin);
                                        src={MarsStaticImg}
                                        alt="Mars"
                                     />
-                                 </div>
+                                 </div> */}
 
                                  {/* Venus Planet */}
-                                 <div
+                                 {/* <div
                                     id="venus-planet"
                                     className="absolute w-10 h-10 flex justify-center items-center"
                                  >
@@ -138,7 +138,7 @@ gsap.registerPlugin(MotionPathPlugin);
                                     />
                                  </div>
                                                          
-                        </div>
+                        </div> */}
 
                         <div id='button-div' className='absolute right-20 bottom-32'>
                            <ButtonContainer 
