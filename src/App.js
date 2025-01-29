@@ -8,7 +8,8 @@ import VenusIntro from './Pages/VenusPath/VenusIntro';
 import MarsEndings from './Pages/MarsPath/MarsEndings';
 import StatusBar from './Components/StatusBar';
 import Home from './Pages/Home';
-import MarsHorizontal1 from './Components/MarsPathComponents/MarsPathComponents1/MarsHorizontal1';
+import MarsHorizontalVenus from './Components/MarsPathComponents/MarsPathComponents1/MarsHorizontalVenus';
+import MarsHorizontalJupiter from './Components/MarsPathComponents/MarsPathComponents2/MarsHorizontalJupiter';
 
 function App() {
 
@@ -68,11 +69,21 @@ function App() {
               </>
             } />
           <Route 
-            path="/mars-horizontal-1" 
+            path="/mars-horizontal-venus" 
             element={
               <>
                 <StatusBar characters={characters} />
-                <MarsHorizontal1 setScreen={() => {}} addCharacter={addCharacter} />
+                <MarsHorizontalVenus setScreen={() => {}} addCharacter={addCharacter} />
+              </>
+            // <MarsHorizontal1 setScreen={() => {}} addCharacter={addCharacter} />
+            } 
+            />
+            <Route 
+            path="/mars-horizontal-jupiter" 
+            element={
+              <>
+                <StatusBar characters={characters} />
+                <MarsHorizontalJupiter setScreen={() => {}} addCharacter={addCharacter} />
               </>
             // <MarsHorizontal1 setScreen={() => {}} addCharacter={addCharacter} />
             } 

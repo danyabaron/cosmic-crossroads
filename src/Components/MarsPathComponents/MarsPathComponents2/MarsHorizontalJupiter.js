@@ -20,7 +20,7 @@ import { useGSAP } from '@gsap/react';
 gsap.registerPlugin(ScrollTrigger);
 
 
-function MarsHorizontal2({ setScreen }) {
+function MarsHorizontalJupiter({ setScreen }) {
 
  
 
@@ -326,4 +326,4 @@ function MarsHorizontal2({ setScreen }) {
 
 
 
-export default MarsHorizontal2;
+export default MarsHorizontalJupiter;

@@ -11,12 +11,12 @@ import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function MarsHorizontal1({ setScreen, addCharacter }) {
+function MarsHorizontalVenus({ setScreen, addCharacter }) {
     const container = useRef(null);
     const venusLineRef = useRef(null); // Ref for venus-line section
     const lineRef = useRef(null); // Ref for the animated line
 
-    console.log("MarsHorizontal1 received addCharacter:", addCharacter); // Debugging
+    console.log("MarsHorizontalVenus received addCharacter:", addCharacter); // Debugging
 
     useGSAP(() => {
         const sections = gsap.utils.toArray("section", container.current);
@@ -236,4 +236,4 @@ function MarsHorizontal1({ setScreen, addCharacter }) {
     );
 }
 
-export default MarsHorizontal1;
+export default MarsHorizontalVenus;

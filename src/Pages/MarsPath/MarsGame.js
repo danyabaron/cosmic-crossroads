@@ -17,8 +17,8 @@ import VenusCloudLong from '../../assets/clouds/venus-cloud-long.png';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
-import MarsHorizontal1 from '../../Components/MarsPathComponents/MarsPathComponents1/MarsHorizontal1';
-import MarsHorizontal2 from '../../Components/MarsPathComponents/MarsPathComponents2/MarsHorizontal2';
+import MarsHorizontalVenus from '../../Components/MarsPathComponents/MarsPathComponents1/MarsHorizontalVenus';
+import MarsHorizontalJupiter from '../../Components/MarsPathComponents/MarsPathComponents2/MarsHorizontalJupiter';
 import ChooseVenusDecision1 from '../../Components/MarsPathComponents/MarsPathComponents1/ChooseVenusDecision1';
 import StickMarsDecision1 from '../../Components/MarsPathComponents/MarsPathComponents1/StickMarsDecision1';
 import MarsVenusJupiterEnding from '../../Components/MarsPathComponents/MarsEndings/MarsVenusJupiterEnding';
@@ -32,10 +32,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 
-function MarsGame() {
+function MarsGame({ addCharacter }) {
 
     // const [choice, setChoice] = useState(null);
-    const [screen, setScreen] = useState('MarsHorizontal1');
+    const [screen, setScreen] = useState('MarsHorizontalVenus');
 
     console.log("(being set from MarsGame.js: Current screen:", screen); // Add this for debugging
             
@@ -44,8 +44,8 @@ function MarsGame() {
     
     return (
         <div className='relative'>
-            {screen === 'MarsHorizontal1' && (
-                <MarsHorizontal1 setScreen={setScreen} />
+            {screen === 'MarsHorizontalVenus' && (
+                <MarsHorizontalVenus setScreen={setScreen} addCharacter={addCharacter} />
 
             )}
             
@@ -58,8 +58,8 @@ function MarsGame() {
                 <StickMarsDecision1 setScreen={setScreen}/>
             )}
 
-            {screen === 'MarsHorizontal2' && (
-                <MarsHorizontal2 setScreen={setScreen} />
+            {screen === 'MarsHorizontalJupiter' && (
+                <MarsHorizontalJupiter setScreen={setScreen} addCharacter={addCharacter} />
             )}
 
             {/* {screen === 'choose-venus-2' && (
