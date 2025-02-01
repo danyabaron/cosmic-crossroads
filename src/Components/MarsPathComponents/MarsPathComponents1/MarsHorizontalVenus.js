@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import 'locomotive-scroll/dist/locomotive-scroll.css';
 import VenusMouthOpen from '../../../assets/venus-art/venus-mouth-open.png';
 import MarsGif from '../../../assets/mars-art/mars-art-official.gif';
@@ -6,15 +6,21 @@ import VenusGifAnnoyed from '../../../assets/venus-art/venus-annoyed-gif.gif';
 import VenusGifMouthOpen from '../../../assets/venus-art/venus-mouth-open-gif.gif';
 import ButtonContainer from '../../ButtonContainer';
 import { gsap } from "gsap";
+import { useNavigate } from 'react-router-dom';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function MarsHorizontalVenus({ setScreen, addCharacter }) {
+
+    const [decisionMade, setDecisionMade] = useState(false); // Track if decision is made
     const container = useRef(null);
     const venusLineRef = useRef(null); // Ref for venus-line section
     const lineRef = useRef(null); // Ref for the animated line
+
+    const navigate = useNavigate(); // Use navigate hook
+
 
     console.log("MarsHorizontalVenus received addCharacter:", addCharacter); // Debugging
 
@@ -32,6 +38,8 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
             delay: 0.5,
             markers: true,
             end: containerWidth * 5,
+            // Disable scrolling after decision
+            onEnter: () => decisionMade && container.current.style.pointerEvents == 'none',
           },
         });
       }, []);
@@ -58,12 +66,18 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
             style: "bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-green-600",
             screen: "choose-venus-1",
             addCharacter: "Venus",
+            onClick: () => {
+                navigate("/choose-venus-1"); // Navigate to the new route
+            }
         },
         {
             text: "Stick with your Malefic",
             style: "bg-main-black text-white px-4 py-2 rounded-md shadow-md",
             screen: "stick-mars-1",
             addCharacter: "Mars",
+            onClick: () => {
+                navigate("/stick-mars-1"); // Navigate to the new route
+            }
         }
     ];
 
