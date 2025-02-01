@@ -28,7 +28,11 @@ function ScrollAnimations()
 {
 
 
+    let config = useRef({strengh: 1});
+
     useGSAP(() => {
+        
+        // line animation
         const tl = gsap.timeline({
             scrollTrigger: {
               trigger: ".panel",
@@ -49,7 +53,43 @@ function ScrollAnimations()
             { x: "0", rotation: -360, ease: "none" }, 
             0 // Start at the same time as the line
           );
-        });
+
+          // intensify animation
+          gsap.to(".intensify", {
+            repeat: -1,
+            yoyo: true,
+            x: 1,
+            duration: 0.2,
+            ease: "power1.inOut",
+            modifiers: {
+              x: gsap.utils.unitize(value => value * config.current.strength, "px"), // Apply strength dynamically
+            },
+          });
+      
+          // Animate the strength value based on scroll
+          gsap.to(config.current, {
+            strength: 100,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".planet-animation1",
+              scrub: true,
+              start: "top center",
+              end: "bottom bottom", // Adjust as needed
+            },
+            onUpdate: () => {
+              console.log("Strength:", config.current.strength); // Debugging log to track strength value
+            },
+          });
+        }, []);
+
+
+
+
+
+
+
+
+        
 
 
 
@@ -93,12 +133,25 @@ function ScrollAnimations()
 
 
 
-
-        <section class='planet-animation1 bg-default-bg w-screen h-screen flex justify-center items-center relative'>
-            <h1 className='font-header font-bold text-white text-xl'>animation 2</h1>
+        {/* text animation */}
+        <section className='planet-animation1 bg-default-bg w-screen h-screen flex justify-center items-center relative'>
+            <h1 className='intensify font-header font-bold text-white text-xl'>animation 2</h1>
         </section>
 
+
+
+
+        <section className='planet-animation2 bg-saturn-bg-reg w-screen h-screen flex justify-center items-center relative'>
+            <h1 className=' font-header font-bold text-white text-xl'>animation 3</h1>
+        </section>
+
+
+
+
+
+
         </div>
+        
         
 
 
