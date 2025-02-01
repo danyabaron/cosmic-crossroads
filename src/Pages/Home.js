@@ -20,7 +20,6 @@ import { useGSAP } from '@gsap/react';
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
-gsap.registerPlugin(ScrollTrigger);
 
 function Home({addCharacter}) {
 

@@ -10,6 +10,7 @@ import StatusBar from './Components/StatusBar';
 import Home from './Pages/Home';
 import MarsHorizontalVenus from './Components/MarsPathComponents/MarsPathComponents1/MarsHorizontalVenus';
 import MarsHorizontalJupiter from './Components/MarsPathComponents/MarsPathComponents2/MarsHorizontalJupiter';
+import ScrollAnimations from './Components/ScrollAnimations';
 
 function App() {
 
@@ -31,8 +32,28 @@ function App() {
   
 
   return (
+    
     <Router>
-      <StatusBar characters={characters} />
+      {/* the div below seems to be the issue with the scroll animations */}
+      {/* <div className="App flex min-h-screen min-w-screen"> */}
+        <Routes>
+          <Route path="/" element={<ScrollAnimations />} />
+        </Routes>
+      {/* </div> */}
+    </Router>
+    
+      
+
+
+     
+ 
+      );
+}
+
+export default App;
+
+
+ {/* <StatusBar characters={characters} />
       <div className="App flex flex-col min-h-screen min-w-screen">
         <Routes>
           <Route path="/" element={<Home addCharacter={addCharacter} />} />
@@ -89,9 +110,4 @@ function App() {
             } 
             />
         </Routes>
-      </div>
-    </Router>
-  );
-}
-
-export default App;
+      </div> */}
