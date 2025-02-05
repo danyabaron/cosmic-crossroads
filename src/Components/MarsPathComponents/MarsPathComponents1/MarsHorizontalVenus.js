@@ -4,11 +4,13 @@ import VenusMouthOpen from '../../../assets/venus-art/venus-mouth-open.png';
 import MarsGif from '../../../assets/mars-art/mars-art-official.gif';
 import VenusGifAnnoyed from '../../../assets/venus-art/venus-annoyed-gif.gif';
 import VenusGifMouthOpen from '../../../assets/venus-art/venus-mouth-open-gif.gif';
+import VenusGifDefault from '../../../assets/venus-art/venus-default-GIF.gif';
 import ButtonContainer from '../../ButtonContainer';
 import { gsap } from "gsap";
 import { useNavigate } from 'react-router-dom';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
+import { SiTrueup } from 'react-icons/si';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,7 +27,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
     console.log("MarsHorizontalVenus received addCharacter:", addCharacter); // Debugging
 
     useGSAP(() => {
-        const sections = gsap.utils.toArray("section", container.current);
+        const sections = gsap.utils.toArray("#panel");
         const containerWidth = sections.length * 100;
     
         gsap.to(sections, {
@@ -34,31 +36,79 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
           scrollTrigger: {
             trigger: container.current,
             pin: true,
+            // pinSpacing: false,
             scrub: 3,
             delay: 0.5,
-            markers: true,
-            end: containerWidth * 5,
+            // markers: true,
+            end: "+=100%",
             // Disable scrolling after decision
             onEnter: () => decisionMade && container.current.style.pointerEvents == 'none',
           },
         });
-      }, []);
+    
 
-    useGSAP(() => {
-        gsap.from(".line", {
-            scrollTrigger: {
-                trigger: venusLineRef.current,
-                start: "left top",
-                end: "bottom top",
-                pin: true,
-                scrub: true,
-                markers: true,
+    // useGSAP(() => {
+    //     gsap.from(".line", {
+    //         scrollTrigger: {
+    //             trigger: venusLineRef.current,
+    //             start: "left top",
+    //             end: "bottom top",
+    //             pin: true,
+    //             scrub: true,
+    //             markers: true,
+    //         },
+    //         scaleX: 0,
+    //         transformOrigin: "left center",
+    //         ease: "none"
+    //     });
+    // }, []);
+
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".venus-panel",
+            scrub: true,
+            pin: false,
+            // pinSpacing: false,
+            start: "top left",
+            end: "+=100%",
+            markers: true,
+            onEnter: () => {
+                // Pause scrollTrigger until line animation is finished
+                tl.pause();
             },
+            onLeaveBack: () => {
+                // Resume scrollTrigger once the animation is finished and we're leaving the section
+                tl.resume();
+            },
+          }
+        });
+
+          // Force recalculation of the ScrollTrigger layout
+        // ScrollTrigger.refresh();  // Refresh ScrollTrigger to ensure proper layout
+
+        // return () => tl.kill();
+
+          // Animate the line from left to right
+          tl.from(".line", {
             scaleX: 0,
             transformOrigin: "left center",
-            ease: "none"
-        });
-    }, []);
+            ease: "none",
+          }, 0) // Start immediately
+
+
+
+        //   tl.from(lineRef.current, {
+        //     scaleX: 0,
+        //     transformOrigin: "left center",
+        //     ease: "none",
+        //   }, 0) // Start immediately
+        //   .fromTo(".asteroid", 
+        //     { x: "-60vw" }, // Start off-screen to the left
+        //     { x: "0", rotation: -360, ease: "none" }, 
+        //     0 // Start at the same time as the line
+        //   );
+
+        }, []);
 
     const buttons = [
         {
@@ -82,7 +132,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
     ];
 
     return (
-        <div className='bg-venus-bg-scroll pt-14 bg-center min-h-screen overflow-x-hidden' id='mars-path-container'>
+        <div className='container overflow-x-hidden overflow-y-hidden relative bg-venus-bg-scroll pt-14 bg-center w-max min-h-screen' id='mars-path-container'>
             {/* container for the venus-grotto portion at top left of screen */}
             <div className='flex flex-col w-2/3 md:w-1/2 h-fit mt-10 ml-5 gap-5' id='venus-grotto-container'>
                 {/* container for the top black box */}
@@ -105,10 +155,12 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
             </div>
 
             {/* HORIZONTAL SCROLL SECTION */}
-            <div ref={container} id="scroll-container" className='flex flex-row gap-4 w-[600%] h-fit flex-nowrap pt-7 pl-7 overflow-x-hidden'>
+            <div ref={container} id="scroll-container" className='flex flex-row gap-4 w-max h-fit flex-nowrap pt-7 pl-7 '>
                 {/* container for FIRST scroll section / dialogue */}
-                <section id="panel" className='w-screen min-h-screen flex flex-col gap-14'>
-                    <div id='container-panel-mars' className='flex flex-row w-full h-fit pt-12 justify-between'>
+                <section id="panel" className='w-screen flex-shrink-0 min-h-screen border-main-black border-2 flex flex-col gap-14'>
+
+                    yo yo yo
+                    {/* <div id='container-panel-mars' className='flex flex-row w-full h-fit pt-12 justify-between'>
                         <div id='mars-dialogue' className='flex flex-row w-fit h-fit mt-9 '>
                             <div id='mars-pic' className='mt-14'>
                                 <img className="w-[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Mars Gif"/>
@@ -136,12 +188,13 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                                 Ohhhhh look who it is. Mars. Heyyy Mars. Let me guess. You want to go to war?
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </section>
+                {/* w-screen h-screen flex justify-center items-center relative */}
 
                 {/* container for SECOND scroll section / dialogue */}
-                {/* <section ref={venusLineRef} id="panel" className='venus-line relative bg-mars-red w-screen min-h-screen flex flex-col justify-center gap-14'>
-                    <div id='container-panel-venus' className='flex w-full h-fit pt-12 justify-between gap-6 flex-col md:flex-row pl-5 pr-5'>
+                <section id='panel' className='venus-panel relative bg-mars-red border-white border-2 w-screen flex-shrink-0 min-h-screen flex flex-col gap-14'>
+                    {/* <div id='container-panel-venus' className='flex w-full h-fit pt-12 justify-between gap-6 flex-col md:flex-row pl-5 pr-5'>
                         <div id='venus-dialogue-2' className='flex flex-row w-fit h-fit'>
                             <div id='venus-pic' className='mt-14'>
                                 <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={VenusGifDefault} alt="Venus Gif"/>
@@ -153,15 +206,15 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                         <div id='benefic-text' className='flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
                             Venus tends to take the diplomatic approach when it comes to conflict. Venus wants to do things that are going to feel goooood, and tends to shy away from things that may be uncomfortable.
                         </div>
-                    </div>
+                    </div> */}
 
-                    <div className='flex flex-row justify-center items-center w-full h-fit' id='animation-container'>
-                        <div id='venus-animation' className='w-1/2 h-full bg-main-black opacity-40 rounded-md p-5'>
-                            <div ref={lineRef} className="line w-full max-w-[800px] h-2 bg-white"></div>
+                    <div className='w-full h-full flex flex-col gap-2 justify-center items-center' id='line-container'>
+                        {/* <div id='venus-animation' className='w-1/2 h-full bg-main-black opacity-40 rounded-md p-5'> */}
+                            <span className="line w-1/2 h-full p-2 m-auto relative inline-block bg-white"></span>
                             <p className="text-white mt-4">venus animation here</p>
-                        </div>
+                        {/* </div> */}
                     </div>
-                </section> */}
+                </section>
 
                 {/* container for THIRD scroll section / dialogue */}
                 {/* <section id="panel" className='w-screen min-h-screen relative flex flex-col justify-center'>
@@ -223,7 +276,9 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
 
                 {/* container for SIXTH/FINAL scroll section / dialogue */}
                 <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center pr-5'>
-                    <div id='container-panel' className='flex flex-col items-center gap-14'>
+
+                    yo yo yo 2
+                    {/* <div id='container-panel' className='flex flex-col items-center gap-14'>
                         <div id='header' className='font-header text-white font-bold'>
                             <h1>Decision Time: 15 seconds</h1>
                         </div>
@@ -243,7 +298,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                                 addCharacter={addCharacter}
                             />
                         </div>
-                    </div>
+                    </div> */}
                 </section>
             </div>
         </div>

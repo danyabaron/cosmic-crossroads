@@ -53,6 +53,10 @@ function ScrollAnimations()
             transformOrigin: "left center",
             ease: "none",
           }, 0) // Start immediately
+
+
+
+          
           .fromTo(".asteroid", 
             { x: "-60vw" }, // Start off-screen to the left
             { x: "0", rotation: -360, ease: "none" }, 
@@ -121,13 +125,13 @@ function ScrollAnimations()
             asteroidRefs.current.forEach((asteroid, index) => {
                 gsap.to(asteroid, {
                 y: '100vh', // Move down relative to starting position
-                x: `${Math.random() * 50 - 25}vw`, // Random horizontal movement
+                x: `${Math.random() * 100 - 50}vw`, // Moves within -50vw to 50vw
                 rotation: '+=360', // Rotate asteroids
                 duration: 1 + index, // Move faster by reducing duration
                 ease: 'power1.inOut',
                 scrollTrigger: {
                     trigger: '.planet-animation2',
-                    // scrub: true,
+                    scrub: true,
                     toggleActions: "restart pause restart pause",
                     start: 'top bottom',
                     end: 'bottom top',
@@ -265,37 +269,61 @@ function ScrollAnimations()
             <div className="asteroids-container">
             <img
                 ref={(el) => (asteroidRefs.current[0] = el)}
-                className="asteroid w-12 h-12 absolute top-[-50px] left-[50vw]"
+                className="asteroid w-12 h-12 absolute top-[50px] left-[{`${Math.random() * 90}vw`}]"
                 src={AsteroidImg1}
                 alt="Asteroid"
             />
             <img
                 ref={(el) => (asteroidRefs.current[1] = el)}
-                className="asteroid w-12 h-12 absolute top-[-50px] left-[55vw]"
+                className="asteroid w-12 h-12 absolute top-[90px] left-[{`${Math.random() * 90}vw`}]"
                 src={AsteroidImg1}
                 alt="Asteroid"
             />
             <img
                 ref={(el) => (asteroidRefs.current[2] = el)}
-                className="asteroid w-12 h-12 absolute top-[-50px] left-[60vw]"
+                className="asteroid w-12 h-12 absolute top-[80px] left-[{`${Math.random() * 90}vw`}]"
                 src={AsteroidImg1}
                 alt="Asteroid"
-            />
-            <img
+            /> 
+             <img
                 ref={(el) => (asteroidRefs.current[3] = el)}
-                className="asteroid w-12 h-12 absolute top-[-50px] left-[60vw]"
+                className="asteroid w-12 h-12 absolute top-[50px] left-[{`${Math.random() * 90}vw`}]"
                 src={AsteroidImg1}
                 alt="Asteroid"
-            />
+            /> 
             <img
                 ref={(el) => (asteroidRefs.current[4] = el)}
-                className="asteroid w-12 h-12 absolute top-[-50px] left-[60vw]"
+                className="asteroid w-12 h-12 absolute top-[-30px] left-[90vw]"
+                src={AsteroidImg1}
+                alt="Asteroid"
+            /> 
+            <img
+                ref={(el) => (asteroidRefs.current[5] = el)}
+                className="asteroid w-12 h-12 absolute top-[-20px] left-[60vw]"
                 src={AsteroidImg1}
                 alt="Asteroid"
             />
-            <img
-                ref={(el) => (asteroidRefs.current[5] = el)}
-                className="asteroid w-12 h-12 absolute top-[-50px] left-[60vw]"
+             <img
+                ref={(el) => (asteroidRefs.current[6] = el)}
+                className="asteroid w-12 h-12 absolute top-[-20px] left-[60vw]"
+                src={AsteroidImg1}
+                alt="Asteroid"
+            />
+             <img
+                ref={(el) => (asteroidRefs.current[7] = el)}
+                className="asteroid w-12 h-12 absolute top-[-20px] left-[60vw]"
+                src={AsteroidImg1}
+                alt="Asteroid"
+            />
+             <img
+                ref={(el) => (asteroidRefs.current[8] = el)}
+                className="asteroid w-12 h-12 absolute top-[-20px] left-[60vw]"
+                src={AsteroidImg1}
+                alt="Asteroid"
+            />
+             <img
+                ref={(el) => (asteroidRefs.current[9] = el)}
+                className="asteroid w-12 h-12 absolute top-[-20px] left-[60vw]"
                 src={AsteroidImg1}
                 alt="Asteroid"
             />

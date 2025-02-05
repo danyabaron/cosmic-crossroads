@@ -37,7 +37,60 @@ function App() {
       {/* the div below seems to be the issue with the scroll animations */}
       {/* <div className="App flex min-h-screen min-w-screen"> */}
         <Routes>
-          <Route path="/" element={<ScrollAnimations />} />
+          {/* <Route path="/" element={<ScrollAnimations />} /> */}
+          <Route path="/" element={<Home addCharacter={addCharacter} />} />
+          <Route 
+            path="/venusintro" 
+            element={
+              <>
+                <StatusBar characters={characters} />
+                <VenusIntro addCharacter={addCharacter}/>
+              </>
+            } />
+          <Route 
+            path="/marsintro" 
+            element={
+              <>
+                <StatusBar characters={characters} />
+                <MarsIntro addCharacter={addCharacter} />
+              </>
+            } />
+          <Route 
+            path="/mars-game" 
+            element={
+              <>
+                <StatusBar characters={characters} />
+                <MarsGame addCharacter={addCharacter} />
+              </>
+            } />
+          <Route 
+            path="/venus-game" 
+            element={
+              <>
+                <StatusBar characters={characters} />
+                <VenusGame addCharacter={addCharacter} />
+              </>
+            } />
+          <Route 
+            path="/mars-horizontal-venus" 
+            element={
+              <>
+                <StatusBar characters={characters} />
+                <MarsHorizontalVenus setScreen={() => {}} addCharacter={addCharacter} />
+              </>
+            // <MarsHorizontal1 setScreen={() => {}} addCharacter={addCharacter} />
+            } 
+            />
+            <Route 
+            path="/mars-horizontal-jupiter" 
+            element={
+              <>
+                <StatusBar characters={characters} />
+                <MarsHorizontalJupiter setScreen={() => {}} addCharacter={addCharacter} />
+              </>
+            // <MarsHorizontal1 setScreen={() => {}} addCharacter={addCharacter} />
+            } 
+            />
         </Routes>
       {/* </div> */}
     </Router>
