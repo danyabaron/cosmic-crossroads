@@ -43,7 +43,7 @@ function MarsGame({ addCharacter }) {
     //switch statement 
     
     return (
-        <div className='min-w-screen min-h-screen'>
+        <div className='relative overflow-x-hidden overflow-y-hidden'>
             {screen === 'MarsHorizontalVenus' && (
                 <MarsHorizontalVenus setScreen={setScreen} addCharacter={addCharacter} />
 
