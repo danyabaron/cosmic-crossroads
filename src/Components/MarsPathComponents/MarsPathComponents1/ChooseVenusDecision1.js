@@ -25,6 +25,22 @@ gsap.registerPlugin(MotionPathPlugin);
 
       const asteroidRefs = useRef([]);
 
+
+      const createSparkle = (x, y) => {
+         const sparkle = document.createElement("div");
+         sparkle.className = "absolute w-[6px] h-[6px] bg-[#fefd9e] opacity-80 rounded-full shadow-md";
+         sparkle.style.left = `${x}px`;
+         sparkle.style.top = `${y}px`;
+         document.getElementById("sparkle-container").appendChild(sparkle);
+       
+         gsap.to(sparkle, {
+           opacity: 0,
+           scale: 1.5,
+           duration: 0.5,
+           onComplete: () => sparkle.remove(),
+         });
+       };
+
       useGSAP(() => {
 
          const numberOfAsteroids = 8;
@@ -47,6 +63,10 @@ gsap.registerPlugin(MotionPathPlugin);
                   repeat: -1, // Infinite loop
                   ease: "linear", // Consistent speed
                   delay: index * delayBetweenAsteroids, // Evenly spaced delay
+                  onUpdate: function () {
+                     const rect = asteroid.getBoundingClientRect();
+                     createSparkle(rect.x + rect.width / 2, rect.y + rect.height / 2);
+                   },
              });
          });
      });
@@ -84,6 +104,9 @@ gsap.registerPlugin(MotionPathPlugin);
 
                            {/* Asteroids */}
                            <div className="flex justify-center items-center">
+
+                               {/* Sparkle Container */}
+                              <div id="sparkle-container" className="absolute w-full h-full top-0 left-0 pointer-events-none"></div>
                               {Array.from({ length: 8 }).map((_, i) => (
                                  <img
                                     key={i}
