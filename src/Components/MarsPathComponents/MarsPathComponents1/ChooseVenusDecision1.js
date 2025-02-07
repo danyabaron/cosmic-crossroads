@@ -11,6 +11,7 @@ import VenusGifSmirk from '../../../assets/venus-art/venus-smirk-gif.gif';
 import VenusGifMouthOpen from '../../../assets/venus-art/venus-mouth-open-gif.gif';
 import AsteroidHappy from '../../../assets/asteroid-art/asteroid-happy.png';
 import ButtonContainer from '../../ButtonContainer';
+import Particles from 'react-tsparticles';
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -26,9 +27,15 @@ gsap.registerPlugin(MotionPathPlugin);
       const asteroidRefs = useRef([]);
       const venusRef = useRef(null);
       const marsRef = useRef(null);
+      const mainTextRef = useRef(null);
 
 
 
+      // SET PROPERTIES OF BACKGROUND PARTICLES
+
+
+
+      // CREATE SPARKLE EFFECT FOR ASTEROID ANIMATION
       const createSparkle = (x, y) => {
          const sparkle = document.createElement("div");
          sparkle.className = "absolute w-[6px] h-[6px] bg-[#fefd9e] opacity-80 rounded-full shadow-md";
@@ -43,6 +50,9 @@ gsap.registerPlugin(MotionPathPlugin);
            onComplete: () => sparkle.remove(),
          });
        };
+
+
+      //  GSAP ANIMATION CONFIGURATIONS
 
       useGSAP(() => {
 
@@ -80,7 +90,20 @@ gsap.registerPlugin(MotionPathPlugin);
             yoyo: true,
             ease: "power1.inOut",
          });
+
+         gsap.from(mainTextRef.current, {
+            x: -50, // Slide in from left
+            opacity: 0, // Start invisible
+            duration: 1.8, // Smooth entrance
+            ease: "power2.out",
+          });
+
+
+
 });
+
+
+
 
 
 
@@ -104,7 +127,11 @@ gsap.registerPlugin(MotionPathPlugin);
              
                    
                     <div className="bg-venus-bg-reg pt-14 bg-center min-h-screen overflow-x-hidden flex flex-col justify-center items-center">
-                        <div id='venus-dialogue' className='absolute left-0 flex flex-row w-fit h-fit top-20 px-6'>
+                        {/* Particles background */}
+                   
+
+                           {/* MAIN TEXT WITH FADE IN EFFECT */}
+                        <div ref={mainTextRef} id='main-text' className='absolute left-0 flex flex-row w-fit h-fit top-20 px-6'>
                                     <div id='venus-pic' className='mt-14'>
                                        <img className="w-[80px]" src={VenusGifMouthOpen} alt="Venus Gif"/>
                                     </div>
@@ -115,12 +142,14 @@ gsap.registerPlugin(MotionPathPlugin);
 
                            </div>
 
+
+                           {/* CONTAINER FOR MARS AND VENUS IMAGERY */}
                            <div id='mars-venus-container' className="relative flex justify-center items-center gap-5 ">
                               <img ref={venusRef} className="w-[80px]" src={VenusGifMouthOpen} alt="Venus" />
                               <img ref={marsRef} className="w-[80px]" src={MarsGif} alt="Mars" />
                            </div>
 
-                           {/* Asteroids */}
+                           {/* ASTEROID CONTAINER */}
                            <div className="flex justify-center items-center">
 
                                {/* Sparkle Container */}
