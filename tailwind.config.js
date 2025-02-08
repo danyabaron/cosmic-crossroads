@@ -48,6 +48,32 @@ module.exports = {
         "5xl": "3rem",
         "6xl": "4rem",
       },
+
+      animation: {
+        'fiery-pulse': 'fieryPulse 1.5s infinite ease-in-out',
+        'fire-trail': 'moveTrail 2s linear infinite, fadeOut 2s linear infinite',
+      },
+      keyframes: {
+        fieryPulse: {
+          '0%': {
+                boxShadow: '0 0 15px #C25811, 0 0 30px #C25811', // Glow with #C25811 color
+                },
+          '50%': {
+            boxShadow: '0 0 25px #C25811, 0 0 50px #C25811', // Intensified glow
+          },
+          '100%': {
+            boxShadow: '0 0 15px #C25811, 0 0 30px #C25811', // Glow with #C25811 color
+          },
+        },
+        moveTrail: {
+          '0%': { transform: 'translateX(0)', opacity: 1 },
+          '100%': { transform: 'translateX(100vw)', opacity: 0 },
+        },
+        fadeOut: {
+          '0%': { opacity: 1 },
+          '100%': { opacity: 0 },
+        },
+      },
     },
   },
   plugins: [],

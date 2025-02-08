@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import 'locomotive-scroll/dist/locomotive-scroll.css';
+
 import VenusMouthOpen from '../../assets/venus-art/venus-mouth-open.png';
 import MarsGif from '../../assets/mars-art/mars-art-official.gif';
 import MarsStaticImg from '../../assets/mars-art/mars-art-official1.png';

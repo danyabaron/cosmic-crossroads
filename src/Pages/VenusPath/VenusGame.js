@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LocomotiveScroll from 'locomotive-scroll';
-import 'locomotive-scroll/dist/locomotive-scroll.css';
+
 import VenusMouthOpen from '../../assets/venus-art/venus-mouth-open.png';
 import MarsGif from '../../assets/mars-art/mars-art-official.gif';
 import MarsStaticImg from '../../assets/mars-art/mars-art-official1.png';
@@ -22,23 +21,23 @@ function VenusGame() {
         const [screen, setScreen] = useState('saturn');
     
         
-        useEffect(() => {
+        // useEffect(() => {
     
-            console.log('starting scroll');
-            const scroll = new LocomotiveScroll({
+        //     console.log('starting scroll');
+        //     const scroll = new LocomotiveScroll({
                 
-                // sets horizontal scroll 
-                el: document.querySelector('[data-scroll-container]'),
-                smooth: true,
-                direction: 'horizontal',
-                gestureDirection: 'vertical',
-            });
+        //         // sets horizontal scroll 
+        //         el: document.querySelector('[data-scroll-container]'),
+        //         smooth: true,
+        //         direction: 'horizontal',
+        //         gestureDirection: 'vertical',
+        //     });
     
-            return () => {
-                if (scroll) scroll.destroy();
-                console.log('destroyed scroll');
-            };
-        }, []);
+        //     return () => {
+        //         if (scroll) scroll.destroy();
+        //         console.log('destroyed scroll');
+        //     };
+        // }, []);
 
 
 

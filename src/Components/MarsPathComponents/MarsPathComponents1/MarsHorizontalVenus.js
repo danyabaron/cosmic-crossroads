@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import 'locomotive-scroll/dist/locomotive-scroll.css';
+
 import VenusMouthOpen from '../../../assets/venus-art/venus-mouth-open.png';
 import MarsGif from '../../../assets/mars-art/mars-art-official.gif';
 import VenusGifAnnoyed from '../../../assets/venus-art/venus-annoyed-gif.gif';
