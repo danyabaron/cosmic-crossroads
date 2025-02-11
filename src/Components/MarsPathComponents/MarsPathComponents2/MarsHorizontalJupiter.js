@@ -20,7 +20,7 @@ import { useGSAP } from '@gsap/react';
 gsap.registerPlugin(ScrollTrigger);
 
 
-function MarsHorizontalJupiter({ characters, setScreen }) {
+function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
 
  
     const navigate = useNavigate();
@@ -46,45 +46,39 @@ function MarsHorizontalJupiter({ characters, setScreen }) {
 
 
 
-      const handleButtonClick = (buttonText) => {
-        console.log("Button clicked, characters:", characters); // Debugging line
-        if (buttonText === "Stick with your Malefic") {
-          // If only Mars is selected, navigate to MarsSoloEnding
-          if (characters.length === 1 && characters.includes("Mars")) {
-            navigate("/mars-solo");
-          }
-          // If Mars and Venus are selected, navigate to MarsVenusEnding
-          else if (characters.length === 2 && characters.includes("Mars") && characters.includes("Venus")) {
-            navigate("/mars-venus");
-          }
-        } else if (buttonText === "Compromise with Jupiter") {
-          // If Mars and Jupiter are selected, navigate to MarsJupiterEnding
-          if (characters.length === 2 && characters.includes("Mars") && characters.includes("Jupiter")) {
-            navigate("/mars-jupiter");
-          }
-          // If Mars, Venus, and Jupiter are selected, navigate to MarsVenusJupiterEnding
-          else if (characters.length === 3 && characters.includes("Mars") && characters.includes("Venus") && characters.includes("Jupiter")) {
-            navigate("/mars-venus-jupiter");
-          }
-        }
-      };
-      
-
-    const buttons = [
-        {
+      // Assuming `characters` is an array that keeps track of selected planets (e.g., "Mars", "Venus", "Jupiter")
+        const handleButtonClick = (buttonText) => {
+            if (buttonText === "Stick with your Malefic") {
+            if (characters.length === 1 && characters.includes("Mars")) {
+                setScreen("mars-solo");
+                navigate("/mars-solo");
+            } else if (characters.length === 2 && characters.includes("Mars") && characters.includes("Venus")) {
+                setScreen("mars-venus");
+                navigate("/mars-venus");
+            }
+            } else if (buttonText === "Compromise with Jupiter") {
+            if (characters.length === 2 && characters.includes("Mars") && characters.includes("Jupiter")) {
+                setScreen("mars-jupiter");
+                navigate("/mars-jupiter");
+            } else if (characters.length === 3 && characters.includes("Mars") && characters.includes("Venus") && characters.includes("Jupiter")) {
+                setScreen("mars-venus-jupiter");
+                navigate("/mars-venus-jupiter");
+            }
+            }
+        };
+        
+        const buttons = [
+            {
             text: "Compromise with Jupiter",
             style: "bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-green-600",
             addCharacter: 'Jupiter',
-            
-            
-        },
-        {
+            },
+            {
             text: "Stick with your Malefic",
             style: "bg-main-black text-white px-4 py-2 rounded-md shadow-md",
             addCharacter: 'Mars',
-            
-        }
-    ];
+            }
+        ];
 
       return (
 
@@ -320,6 +314,7 @@ function MarsHorizontalJupiter({ characters, setScreen }) {
                         <div id='button-container-wrapper'>
                             <ButtonContainer 
                                 setScreen={handleButtonClick} 
+                                addCharacter={addCharacter}
                                 buttons={buttons}
                                 containerStyle="custom-container-style"
                                 buttonStyle="custom-button-style"

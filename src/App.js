@@ -92,10 +92,10 @@ function App() {
             } 
             />
 
-          <Route path="/marssolo" element={<MarsSoloEnding />} />
-          <Route path="/marsvenus" element={<MarsVenusEnding />} />
-          <Route path="/marsjupiter" element={<MarsJupiterEnding />} />
-          <Route path="/marsjupitervenus" element={<MarsJupiterVenusEnding />} />
+          <Route path="/mars-solo" element={<MarsSoloEnding />} />
+          <Route path="/mars-venus" element={<MarsVenusEnding />} />
+          <Route path="/mars-jupiter" element={<MarsJupiterEnding />} />
+          <Route path="/mars-jupiter-venus" element={<MarsJupiterVenusEnding />} />
 
 
         </Routes>
