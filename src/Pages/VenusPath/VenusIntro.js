@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import VenusGifDefault from '../../assets/venus-art/venus-default-GIF.gif';
 import VenusGifAnnoyed from '../../assets/venus-art/venus-annoyed-gif.gif';
 import VenusGifSmirk from '../../assets/venus-art/venus-smirk-gif.gif';
@@ -10,6 +10,8 @@ import VenusCloudShort from '../../assets/clouds/venus-cloud-short.png';
 function VenusIntro() {
 
     const navigate = useNavigate();
+    const location = useLocation();
+    console.log('Location state in VenusIntro:', location.state);
 
     const handleEnterClick = () => {
         navigate('/venus-game');

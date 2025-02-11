@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 
 import VenusMouthOpen from '../assets/venus-art/venus-mouth-open.png';
@@ -20,21 +20,43 @@ import { useGSAP } from '@gsap/react';
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
-gsap.registerPlugin(ScrollTrigger);
 
-function Home({addCharacter}) {
+function Home({setCharacters}) {
 
 
     const navigate = useNavigate();
+    const location = useLocation();  // Get location object which contains state
+  
+    useEffect(() => {
+      // Check if there's state stored in localStorage (or sessionStorage)
+      const storedState = localStorage.getItem('fromIntro');
+      console.log('stored state in home:' + storedState);
+      if (storedState === 'true') {
+        setCharacters([]);  // Reset characters if coming back from intro page
+        localStorage.removeItem('fromIntro');  // Clear the state from localStorage
+      }
+    }, [setCharacters]);
+  
+    const handleAddCharacter = (character, path) => {
+      setCharacters(prevCharacters => {
+        // Add the character if it's not already in the list
+        if (!prevCharacters.includes(character)) {
+          return [...prevCharacters, character];  // Add to the existing team
+        }
+        return prevCharacters;  // Don't add if the character is already in the team
+      });
+  
+      // Save the state in localStorage before navigating
+      localStorage.setItem('fromIntro', 'true');
+  
+      // Navigate to the intro page and pass state
+      navigate(path);
+    }
 
+           
+    
 
-    const handleCharacterClick = (path) => {
-        
-            // add Mars to status bar
-            addCharacter('Mars');
-            // navigate to mars intro     
-            navigate(path);
-    };
+    
 
    
 
@@ -55,13 +77,13 @@ function Home({addCharacter}) {
                         <img src={MarsGif} 
                         alt="Venus" 
                         className='w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] hover:cursor-pointer'
-                        onClick={() => handleCharacterClick('/marsintro')} />
+                        onClick={() => handleAddCharacter('Mars', '/marsintro')} />
                     </div>
                     <div id='venus-pic'>
                         <img src={VenusGifDefault} 
                         alt="Venus" 
                         className='w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] hover:cursor-pointer'
-                        onClick={() => handleCharacterClick('/venusintro')} />
+                        onClick={() => handleAddCharacter('Venus', '/venusintro')} />
                     </div>
                 </div>
          

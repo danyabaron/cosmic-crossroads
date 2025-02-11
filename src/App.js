@@ -15,17 +15,16 @@ function App() {
 
   // Create state for characters for status bar team
   const [characters, setCharacters] = useState([]);
+  
 
-  // Function to add characters to the team
+  // Function to add characters to the team (already modified in Home.js)
   const addCharacter = (character) => {
-    setCharacters((prev) => {
-      if (!prev.includes(character)) {
-        console.log("Adding character:", character);
-        return [...prev, character];
-      } else {
-        console.warn("Character already added:", character);
-        return prev; // No change if character already exists
+    setCharacters(prevCharacters => {
+      // Append the new character to the team if not already there
+      if (!prevCharacters.includes(character)) {
+        return [...prevCharacters, character];  // Add to the existing team
       }
+      return prevCharacters; // Don't add if the character is already in the team
     });
   };
   
@@ -35,7 +34,7 @@ function App() {
       <StatusBar characters={characters} />
       <div className="App flex flex-col min-h-screen min-w-screen">
         <Routes>
-          <Route path="/" element={<Home addCharacter={addCharacter} />} />
+        <Route path="/" element={<Home setCharacters={setCharacters} />} />
           <Route 
             path="/venusintro" 
             element={

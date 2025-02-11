@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import MarsGif from '../../assets/mars-art/mars-art-official.gif';
 import MarsStats from '../../assets/mars-art/mars-stats.png';
 import MarsCloudLong from '../../assets/clouds/mars-cloud-long.png';
@@ -8,6 +8,9 @@ import MarsCloudShort from '../../assets/clouds/mars-cloud-short.png';
 function MarsIntro({ addCharacter }) {
 
     const navigate = useNavigate();
+
+    const location = useLocation();
+    console.log('Location state in MarsIntro:', location.state);
 
     const handleEnterClick = () => {
         // add Mars to status bar

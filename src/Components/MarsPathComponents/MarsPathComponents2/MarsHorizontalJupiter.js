@@ -113,17 +113,6 @@ function MarsHorizontalJupiter({ setScreen }) {
                         </div>
 
 
-                            {/* <div id='mars-dialogue' className='flex flex-row w-fit h-fit mt-9'>
-                                <div id='mars-pic' className='mt-14'>
-                                    <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
-                                </div>
-                                <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                                    Well yeah. I do. Unless you had something better in mind? 
-                                </div>
-
-                            </div> */}
-
-
                     </div>
 
 
@@ -149,7 +138,7 @@ function MarsHorizontalJupiter({ setScreen }) {
 
 
                 {/* container for SECOND scroll section / dialogue */}
-                <section id="panel" className='  w-screen min-h-screen flex flex-col gap-14 '>
+                {/* <section id="panel" className='  w-screen min-h-screen flex flex-col gap-14 '>
                     
                     <div id='container-panel-jupiter' className='flex w-full h-fit pt-12 justify-between
                     gap-6 flex-col md:flex-row pl-5 pr-5'>
@@ -186,11 +175,11 @@ function MarsHorizontalJupiter({ setScreen }) {
                     </div> 
 
                     </div>
-                </section>
+                </section> */}
 
 
                 {/* container for THIRD scroll section / dialogue */}
-                <section id="panel" className=' w-screen min-h-screen flex flex-col justify-center'>
+                {/* <section id="panel" className=' w-screen min-h-screen flex flex-col justify-center'>
 
                     <div id='container-panel-mars' className='items-center flex flex-col gap-14'>
 
@@ -225,10 +214,10 @@ function MarsHorizontalJupiter({ setScreen }) {
 
                     </div>
                     
-                </section>
+                </section> */}
 
                  {/* container for FOURTH scroll section / dialogue */}
-                <section id="panel" className=' w-screen min-h-screen flex flex-col justify-center'>
+                {/* <section id="panel" className=' w-screen min-h-screen flex flex-col justify-center'>
                     <div id='container-panel-mars' className='items-center flex flex-col '>
 
 
@@ -245,10 +234,10 @@ function MarsHorizontalJupiter({ setScreen }) {
                 </div>
                         
                     
-                </section>
+                </section> */}
 
                  {/* container for FIFTH scroll section / dialogue */}
-                <section id="panel" className='  w-screen min-h-screen flex flex-col justify-center'>
+                {/* <section id="panel" className='  w-screen min-h-screen flex flex-col justify-center'>
                         
                     <div id='container-panel' className='flex flex-col items-center gap-14'>
 
@@ -276,7 +265,7 @@ function MarsHorizontalJupiter({ setScreen }) {
                             </div>
                     </div>
             </section>
-               
+                */}
                
                
                

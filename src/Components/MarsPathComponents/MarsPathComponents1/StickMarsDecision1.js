@@ -139,7 +139,7 @@ import { useGSAP } from '@gsap/react';
                                  <img
                                     key={i}
                                     ref={(el) => (asteroidRefs.current[i] = el)}
-                                    className="w-[30px]"
+                                    className="w-11"
                                     src={AsteroidAngry}
                                     alt="Angry Asteroid"
                                  />
