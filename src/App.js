@@ -10,6 +10,10 @@ import StatusBar from './Components/StatusBar';
 import Home from './Pages/Home';
 import MarsHorizontalVenus from './Components/MarsPathComponents/MarsPathComponents1/MarsHorizontalVenus';
 import MarsHorizontalJupiter from './Components/MarsPathComponents/MarsPathComponents2/MarsHorizontalJupiter';
+import MarsSoloEnding from './Components/MarsPathComponents/MarsEndings/MarsSoloEnding.js';
+import MarsVenusEnding from './Components/MarsPathComponents/MarsEndings/MarsVenusEnding.js';
+import MarsJupiterEnding from './Components/MarsPathComponents/MarsEndings/MarsJupiterEnding.js';
+import MarsJupiterVenusEnding from './Components/MarsPathComponents/MarsEndings/MarsVenusJupiterEnding.js';
 
 function App() {
 
@@ -84,9 +88,16 @@ function App() {
                 <StatusBar characters={characters} />
                 <MarsHorizontalJupiter setScreen={() => {}} addCharacter={addCharacter} />
               </>
-            // <MarsHorizontal1 setScreen={() => {}} addCharacter={addCharacter} />
+            
             } 
             />
+
+          <Route path="/marssolo" element={<MarsSoloEnding />} />
+          <Route path="/marsvenus" element={<MarsVenusEnding />} />
+          <Route path="/marsjupiter" element={<MarsJupiterEnding />} />
+          <Route path="/marsjupitervenus" element={<MarsJupiterVenusEnding />} />
+
+
         </Routes>
       </div>
     </Router>
