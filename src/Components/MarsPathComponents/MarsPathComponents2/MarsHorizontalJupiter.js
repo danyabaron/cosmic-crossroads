@@ -26,6 +26,10 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
     const navigate = useNavigate();
     const container = useRef(null);
 
+
+   
+
+
     useGSAP(() => {
         const sections = gsap.utils.toArray("section", container.current);
         const containerWidth = sections.length * 100;
@@ -47,38 +51,91 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
 
 
       // Assuming `characters` is an array that keeps track of selected planets (e.g., "Mars", "Venus", "Jupiter")
-        const handleButtonClick = (buttonText) => {
-            if (buttonText === "Stick with your Malefic") {
-            if (characters.length === 1 && characters.includes("Mars")) {
-                setScreen("mars-solo");
-                navigate("/mars-solo");
-            } else if (characters.length === 2 && characters.includes("Mars") && characters.includes("Venus")) {
-                setScreen("mars-venus");
-                navigate("/mars-venus");
-            }
-            } else if (buttonText === "Compromise with Jupiter") {
-            if (characters.length === 2 && characters.includes("Mars") && characters.includes("Jupiter")) {
-                setScreen("mars-jupiter");
-                navigate("/mars-jupiter");
-            } else if (characters.length === 3 && characters.includes("Mars") && characters.includes("Venus") && characters.includes("Jupiter")) {
-                setScreen("mars-venus-jupiter");
-                navigate("/mars-venus-jupiter");
-            }
-            }
-        };
+        // const handleButtonClick = (buttonText) => {
+        //     if (buttonText === "Stick with your Malefic") {
+        //     if (characters.length === 1 && characters.includes("Mars")) {
+        //         setScreen("mars-solo");
+        //         navigate("/mars-solo");
+        //     } else if (characters.length === 2 && characters.includes("Mars") && characters.includes("Venus")) {
+        //         setScreen("mars-venus");
+        //         navigate("/mars-venus");
+        //     }
+        //     } else if (buttonText === "Compromise with Jupiter") {
+        //     if (characters.length === 2 && characters.includes("Mars") && characters.includes("Jupiter")) {
+        //         setScreen("mars-jupiter");
+        //         navigate("/mars-jupiter");
+        //     } else if (characters.length === 3 && characters.includes("Mars") && characters.includes("Venus") && characters.includes("Jupiter")) {
+        //         setScreen("mars-venus-jupiter");
+        //         navigate("/mars-venus-jupiter");
+        //     }
+        //     }
+        // };
+
+    
+        console.log("Characters before rendering buttons:", characters);
+
+       
         
         const buttons = [
             {
             text: "Compromise with Jupiter",
             style: "bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-green-600",
             addCharacter: 'Jupiter',
+            screen: characters && characters.length === 2 && characters.includes("Mars") && characters.includes("Jupiter")
+            ? "mars-jupiter"
+            : characters && characters.length === 3 && characters.includes("Mars") && characters.includes("Venus") && characters.includes("Jupiter")
+            ? "mars-venus-jupiter"
+            : "", // Default empty string or handle it differently if needed
+
+            
+            onClick: () => {
+
+                console.log("ONCLICK: Current characters before setting screen:", characters);
+
+                if (characters.length === 2 && characters.includes("Mars") && characters.includes("Jupiter")) {
+                    setScreen("mars-jupiter");
+                    navigate("/mars-jupiter");
+                }
+                else if (characters.length === 3 && characters.includes("Mars") && characters.includes("Venus") && characters.includes("Jupiter")) {
+                    setScreen("mars-venus-jupiter");
+                    navigate("/mars-venus-jupiter");
+                }
+                else {
+                    
+                        console.warn("No matching screen found for characters:", characters);
+                }
+            }
             },
             {
             text: "Stick with your Malefic",
             style: "bg-main-black text-white px-4 py-2 rounded-md shadow-md",
             addCharacter: 'Mars',
+            screen: characters && characters.length === 1 && characters.includes("Mars")
+            ? "mars-solo"
+            : characters && characters.length === 2 && characters.includes("Mars") && characters.includes("Venus")
+            ? "mars-venus"
+            : "", // Default empty string or handle it differently if needed
+            onClick: () => {
+
+                console.log("ONCLICK mars solo or venus: Current characters before setting screen:", characters);
+                if (characters.length === 1 && characters.includes("Mars")) {
+                    setScreen("mars-solo")
+                    navigate("/mars-solo");
+                }
+                else if (characters.length === 2 && characters.includes("Mars") && characters.includes("Venus")) {
+                    setScreen("mars-venus");
+                    navigate("/mars-venus");
+                } else {
+                    console.warn("No matching screen found for characters:", characters);
+                }
             }
-        ];
+        }
+    ];
+
+
+
+        console.log("MarsHorizontalJupiter: setScreen is", setScreen);
+
 
       return (
 
@@ -313,7 +370,7 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
 
                         <div id='button-container-wrapper'>
                             <ButtonContainer 
-                                setScreen={handleButtonClick} 
+                                setScreen={setScreen} 
                                 addCharacter={addCharacter}
                                 buttons={buttons}
                                 containerStyle="custom-container-style"

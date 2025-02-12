@@ -25,6 +25,7 @@ import MarsVenusJupiterEnding from '../../Components/MarsPathComponents/MarsEndi
 import MarsSoloEnding from '../../Components/MarsPathComponents/MarsEndings/MarsSoloEnding';
 import MarsVenusEnding from '../../Components/MarsPathComponents/MarsEndings/MarsVenusEnding';
 import MarsJupiterEnding from '../../Components/MarsPathComponents/MarsEndings/MarsJupiterEnding';
+import ButtonContainer from '../../Components/ButtonContainer';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -36,8 +37,15 @@ function MarsGame({ addCharacter }) {
 
     // const [choice, setChoice] = useState(null);
     const [screen, setScreen] = useState('MarsHorizontalVenus');
-
-    console.log("(being set from MarsGame.js: Current screen:", screen); // Add this for debugging
+    const [characters, setCharacters] = useState([]);
+  
+    console.log("MarsGame.js: Current screen:", screen);
+    console.log("MarsGame.js: Current characters:", characters);
+    console.log("MarsGame.js:  AddCharacter:", addCharacter);
+  
+    const switchScreen = (newScreen) => {
+      setScreen(newScreen);
+    };
             
 
     //switch statement 
@@ -45,44 +53,41 @@ function MarsGame({ addCharacter }) {
     return (
         <div className='relative'>
             {screen === 'MarsHorizontalVenus' && (
-                <MarsHorizontalVenus setScreen={setScreen} addCharacter={addCharacter} />
+                <MarsHorizontalVenus setScreen={switchScreen} addCharacter={addCharacter} />
 
             )}
             
             {screen === 'choose-venus-1' && (
 
-                <ChooseVenusDecision1 setScreen={setScreen}/>
+                <ChooseVenusDecision1 setScreen={switchScreen}/>
             )}
 
             {screen === 'stick-mars-1' && (
-                <StickMarsDecision1 setScreen={setScreen}/>
+                <StickMarsDecision1 setScreen={switchScreen}/>
             )}
 
             {screen === 'MarsHorizontalJupiter' && (
-                <MarsHorizontalJupiter setScreen={setScreen} addCharacter={addCharacter} />
+                <MarsHorizontalJupiter setScreen={switchScreen} addCharacter={addCharacter} />
             )}
 
-            {/* {screen === 'choose-venus-2' && (
-
-                <ChooseVenusDecision2 setScreen={setScreen}/>
+            {screen === 'mars-solo' && (
+                <MarsSoloEnding setScreen={switchScreen} addCharacter={addCharacter} />
             )}
 
-            {screen === 'stick-mars-2' && (
-                <StickMarsDecision2 setScreen={setScreen}/>
-            )} */}
+            {screen === "mars-venus" && (
+                <MarsVenusEnding setScreen={switchScreen} addCharacter={addCharacter} />
+            )}
 
+            {screen === 'mars-jupiter' && (
+                <MarsJupiterEnding setScreen={switchScreen} addCharacter={addCharacter} />
+            )}
 
+            {screen === 'mars-venus-jupiter' && (
+                <MarsVenusJupiterEnding setScreen={switchScreen} addCharacter={addCharacter} />
+            )}
 
-
-
-            
-      
-        
-
-
-
-
-
+             {/* Button container for character selection */}
+            <ButtonContainer buttons={buttons} addCharacter={addCharacter} />
 
 
         </div>
@@ -90,7 +95,9 @@ function MarsGame({ addCharacter }) {
 
 
 
-    )}
+    );
+
+}
        
 
       

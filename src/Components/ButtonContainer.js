@@ -2,8 +2,11 @@ import React from 'react';
 
 
 
-function ButtonContainer({ setScreen, buttons, containerStyle = '', buttonStyle = '', addCharacter }) {
+function ButtonContainer({ setScreen, buttons = [], containerStyle = '', buttonStyle = '', addCharacter }) {
     console.log("ButtonContainer received addCharacter:", addCharacter);
+
+   
+
 
     return (
         <div id='button-container' className={`flex flex-col items-center justify-center gap-4 ${containerStyle}`}>
@@ -27,10 +30,10 @@ function ButtonContainer({ setScreen, buttons, containerStyle = '', buttonStyle 
                             console.warn("button.addCharacter is undefined for:", button.text);
                         }
 
-                        setTimeout(() => {
+                        
                             console.log("Setting screen:", button.screen);
                             setScreen(button.screen);
-                        }, 100); 
+                        
                     }}
                     className={`${button.style} ${buttonStyle}`}
                 >

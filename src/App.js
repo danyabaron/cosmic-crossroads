@@ -13,7 +13,9 @@ import MarsHorizontalJupiter from './Components/MarsPathComponents/MarsPathCompo
 import MarsSoloEnding from './Components/MarsPathComponents/MarsEndings/MarsSoloEnding.js';
 import MarsVenusEnding from './Components/MarsPathComponents/MarsEndings/MarsVenusEnding.js';
 import MarsJupiterEnding from './Components/MarsPathComponents/MarsEndings/MarsJupiterEnding.js';
-import MarsJupiterVenusEnding from './Components/MarsPathComponents/MarsEndings/MarsVenusJupiterEnding.js';
+import MarsVenusJupiterEnding from './Components/MarsPathComponents/MarsEndings/MarsVenusJupiterEnding.js';
+
+
 
 function App() {
 
@@ -31,6 +33,8 @@ function App() {
       return prevCharacters; // Don't add if the character is already in the team
     });
   };
+
+  
   
 
   return (
@@ -95,7 +99,7 @@ function App() {
           <Route path="/mars-solo" element={<MarsSoloEnding />} />
           <Route path="/mars-venus" element={<MarsVenusEnding />} />
           <Route path="/mars-jupiter" element={<MarsJupiterEnding />} />
-          <Route path="/mars-jupiter-venus" element={<MarsJupiterVenusEnding />} />
+          <Route path="/mars-venus-jupiter" element={<MarsVenusJupiterEnding />} />
 
 
         </Routes>
