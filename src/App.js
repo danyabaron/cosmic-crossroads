@@ -75,7 +75,7 @@ function App() {
             path="/mars-horizontal-venus" 
             element={
               <>
-                <StatusBar characters={characters} />
+                {/* <StatusBar characters={characters} /> */}
                 <MarsHorizontalVenus setScreen={() => {}} addCharacter={addCharacter} />
               </>
             // <MarsHorizontal1 setScreen={() => {}} addCharacter={addCharacter} />

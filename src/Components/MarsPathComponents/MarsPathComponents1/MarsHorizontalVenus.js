@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import 'locomotive-scroll/dist/locomotive-scroll.css';
+// import 'locomotive-scroll/dist/locomotive-scroll.css';
 import VenusMouthOpen from '../../../assets/venus-art/venus-mouth-open.png';
 import MarsGif from '../../../assets/mars-art/mars-art-official.gif';
 import VenusGifAnnoyed from '../../../assets/venus-art/venus-annoyed-gif.gif';
@@ -26,47 +26,52 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
 
     console.log("MarsHorizontalVenus received addCharacter:", addCharacter); // Debugging
 
+
+
     useGSAP(() => {
-        const sections = gsap.utils.toArray("#panel");
+        const sections = gsap.utils.toArray(".panel");
         const containerWidth = sections.length * 100;
     
         gsap.to(sections, {
           xPercent: -100 * (sections.length - 1),
           ease: "none",
           scrollTrigger: {
-            trigger: container.current,
+            trigger: ".container",
             pin: true,
             // pinSpacing: false,
-            scrub: 1,
+            scrub: 2,
             delay: 0.5,
             markers: true,
-            // start: "top top",
-            end: "+=100%",
+            start: "top top",
+            // end: () => "+=" + document.querySelector(".container").offsetWidth,
+            end: () => "+=" + containerWidth, 
             // Disable scrolling after decision
-            onEnter: () => decisionMade && container.current.style.pointerEvents == 'none',
+            // onEnter: () => decisionMade && container.current.style.pointerEvents == 'none',
           },
         });
+    });
+    
     
 
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".venus-panel",
-            scrub: true,
-            pin: true,
-            // pinSpacing: false,
-            start: "top right",
-            end: "+=100%",
-            markers: true,
-            onEnter: () => {
-                // Pause scrollTrigger until line animation is finished
-                tl.pause();
-            },
-            onLeaveBack: () => {
-                // Resume scrollTrigger once the animation is finished and we're leaving the section
-                tl.resume();
-            },
-          }
-        });
+    // const tl = gsap.timeline({
+    //     scrollTrigger: {
+    //         trigger: ".venus-panel",
+    //         scrub: true,
+    //         pin: true,
+    //         // pinSpacing: false,
+    //         start: "top right",
+    //         end: "+=100%",
+    //         // markers: true,
+    //         onEnter: () => {
+    //             // Pause scrollTrigger until line animation is finished
+    //             tl.pause();
+    //         },
+    //         onLeaveBack: () => {
+    //             // Resume scrollTrigger once the animation is finished and we're leaving the section
+    //             tl.resume();
+    //         },
+    //       }
+    //     });
 
           // Force recalculation of the ScrollTrigger layout
         // ScrollTrigger.refresh();  // Refresh ScrollTrigger to ensure proper layout
@@ -74,13 +79,13 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
         // return () => tl.kill();
 
         //   Animate the line from left to right
-          tl.from(".line", {
-            scaleX: 0,
-            transformOrigin: "left center",
-            ease: "none",
-          }, 0) // Start immediately
+        //   tl.from(".line", {
+        //     scaleX: 0,
+        //     transformOrigin: "left center",
+        //     ease: "none",
+        //   }, 0) // Start immediately
           
-        }, []);
+        // }, []);
 
 
 
@@ -119,28 +124,28 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
 
     return (
 
-        <div ref={container} className='bg-venus-bg-scroll w-[600%] min-h-screen flex flex-row gap-4 mt-14 bg-center overflow-x-hidden overflow-y-hidden'>
+        <div ref={container} className='container' style={{display: 'flex', flexWrap:'nowrap', height:'100vh', width: "100vw"}}>
 
-        <section id='panel' className="venus-line bg-jupiter-purple w-screen h-screen flex justify-center items-center relative">
-            <div className="overlay absolute opacity-0 inset-0 bg-transparent"></div>
+        <section id='first-panel' className="panel bg-jupiter-purple">
+            {/* <div className="overlay absolute opacity-0 inset-0 bg-transparent"></div> */}
                 panel 1
             
     
             </section>
             
-            <section id='panel' className=" bg-mars-red w-screen h-screen flex justify-center items-center relative">
-                <div className="overlay absolute opacity-0 inset-0 bg-transparent"></div>
+            <section id='second-panel' className="panel bg-mars-red">
+                {/* <div className="overlay absolute opacity-0 inset-0 bg-transparent"></div> */}
                     panel 2
 
-                    <div className='line-container w-full h-full flex flex-col gap-2 justify-center items-center'>
-                        <span className="line w-1/2 h-full p-2 m-auto relative  inline-block bg-main-black"></span>
+                    <div className='line-container'>
+                        <span className="line  bg-main-black"></span>
                     </div>
             
     
             </section>
 
-            <section id='panel' className=" bg-main-black w-screen h-screen flex justify-center items-center relative">
-                <div className="overlay absolute opacity-0 inset-0 bg-transparent"></div>
+            <section id='third-panel' className="panel bg-main-black">
+                {/* <div className="overlay absolute opacity-0 inset-0 bg-transparent"></div> */}
                 
                 panel 3
                 
