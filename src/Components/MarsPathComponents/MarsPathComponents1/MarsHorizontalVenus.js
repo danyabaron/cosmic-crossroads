@@ -18,7 +18,6 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
 
     const [decisionMade, setDecisionMade] = useState(false); // Track if decision is made
     const container = useRef(null);
-    const venusLineRef = useRef(null); // Ref for venus-line section
     const lineRef = useRef(null); // Ref for the animated line
 
     const navigate = useNavigate(); // Use navigate hook
@@ -41,7 +40,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
             // pinSpacing: false,
             scrub: 2,
             delay: 0.5,
-            markers: true,
+            // markers: true,
             start: "top top",
             // end: () => "+=" + document.querySelector(".container").offsetWidth,
             end: () => "+=" + containerWidth, 
@@ -50,6 +49,37 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
           },
         });
     });
+
+    // useGSAP(() => {
+    //     gsap.from(".line", {
+    //         scrollTrigger: {
+    //           trigger: ".line-container",
+    //           scrub: true,
+    //           pin: true,
+    //           markers: true,
+    //           start: "top left",
+    //           end: "+=100%"
+    //         },
+    //         scaleX: 0, 
+    //         transformOrigin: "left center", 
+    //         ease: "none"
+    //       });
+    // }, []);
+        
+            
+
+    //      // Animate the line element (from 0 to full width)
+    //      tl.fromTo(lineRef.current, {
+    //         scaleX: 0, // Start from 0 width
+    //         transformOrigin: "left center", // Transform origin from the left
+    //     }, {
+    //         scaleX: 1, // End at full width
+    //         duration: 3, // Duration for the smooth animation
+    //         ease: "power2.out", // Smooth easing
+    //     });
+
+    //     return () => tl.kill(); // Clean up timeline on component unmount
+    // }, []);
     
     
 
@@ -124,7 +154,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
 
     return (
 
-        <div ref={container} className='container' style={{display: 'flex', flexWrap:'nowrap', height:'100vh', width: "100vw"}}>
+        <div ref={container} className='container' style={{display: 'flex', flexWrap:'nowrap', height:'100vh', width: "100vw", paddingTop: '55px'}}>
 
         <section id='first-panel' className="panel bg-jupiter-purple">
             {/* <div className="overlay absolute opacity-0 inset-0 bg-transparent"></div> */}
@@ -133,12 +163,12 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
     
             </section>
             
-            <section id='second-panel' className="panel bg-mars-red">
+            <section id='second-panel' className="panel flex-col justify-center bg-mars-red">
                 {/* <div className="overlay absolute opacity-0 inset-0 bg-transparent"></div> */}
                     panel 2
 
-                    <div className='line-container'>
-                        <span className="line  bg-main-black"></span>
+                    <div className='line-container  h-20'>
+                        <span ref={lineRef} className="line w-[100%] h-[8px] relative inline-block mx-3 bg-white"></span>
                     </div>
             
     
