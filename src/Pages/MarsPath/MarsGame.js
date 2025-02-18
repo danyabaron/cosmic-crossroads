@@ -51,7 +51,7 @@ function MarsGame({ addCharacter }) {
     //switch statement 
     
     return (
-        <div className='relative'>
+        <>
             {screen === 'MarsHorizontalVenus' && (
                 <MarsHorizontalVenus setScreen={switchScreen} addCharacter={addCharacter} />
 
@@ -86,11 +86,11 @@ function MarsGame({ addCharacter }) {
                 <MarsVenusJupiterEnding setScreen={switchScreen} addCharacter={addCharacter} />
             )}
 
-             {/* Button container for character selection */}
-            <ButtonContainer buttons={buttons} addCharacter={addCharacter} />
+             {/* Button container for character selection
+            <ButtonContainer buttons={buttons} addCharacter={addCharacter} /> */}
 
 
-        </div>
+        </>
 
 
 

@@ -135,7 +135,7 @@ function ScrollAnimations()
                     toggleActions: "restart pause restart pause",
                     start: 'top bottom',
                     end: 'bottom top',
-                    markers: true,
+                    // markers: true,
                 },
                 onComplete: () => {
                     // Remove asteroid from view after it goes off-screen

@@ -14,6 +14,7 @@ import MarsSoloEnding from './Components/MarsPathComponents/MarsEndings/MarsSolo
 import MarsVenusEnding from './Components/MarsPathComponents/MarsEndings/MarsVenusEnding.js';
 import MarsJupiterEnding from './Components/MarsPathComponents/MarsEndings/MarsJupiterEnding.js';
 import MarsVenusJupiterEnding from './Components/MarsPathComponents/MarsEndings/MarsVenusJupiterEnding.js';
+import ScrollAnimations from './Components/ScrollAnimations.js';
 
 
 
@@ -43,6 +44,7 @@ function App() {
       <div className="App flex flex-col min-h-screen min-w-screen">
         <Routes>
         <Route path="/" element={<Home setCharacters={setCharacters} />} />
+        {/* <Route path='/' element={<ScrollAnimations />} /> */}
           <Route 
             path="/venusintro" 
             element={
@@ -82,7 +84,7 @@ function App() {
                 <StatusBar characters={characters} />
                 <MarsHorizontalVenus setScreen={() => {}} addCharacter={addCharacter} />
               </>
-            // <MarsHorizontal1 setScreen={() => {}} addCharacter={addCharacter} />
+          
             } 
             />
             <Route 
