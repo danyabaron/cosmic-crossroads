@@ -27,28 +27,28 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
 
 
 
-    useGSAP(() => {
-        const sections = gsap.utils.toArray(".panel");
-        const containerWidth = sections.length * 100;
+    // useGSAP(() => {
+    //     const sections = gsap.utils.toArray(".panel");
+    //     const containerWidth = sections.length * 100;
     
-        gsap.to(sections, {
-          xPercent: -100 * (sections.length - 1),
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".container",
-            pin: true,
-            // pinSpacing: false,
-            scrub: 2,
-            delay: 0.5,
-            // markers: true,
-            start: "top top",
-            // end: () => "+=" + document.querySelector(".container").offsetWidth,
-            end: () => "+=" + containerWidth, 
-            // Disable scrolling after decision
-            // onEnter: () => decisionMade && container.current.style.pointerEvents == 'none',
-          },
-        });
-    });
+    //     gsap.to(sections, {
+    //       xPercent: -100 * (sections.length - 1),
+    //       ease: "none",
+    //       scrollTrigger: {
+    //         trigger: ".container",
+    //         pin: true,
+    //         // pinSpacing: false,
+    //         scrub: 2,
+    //         delay: 0.5,
+    //         // markers: true,
+    //         start: "top top",
+    //         // end: () => "+=" + document.querySelector(".container").offsetWidth,
+    //         end: () => "+=" + containerWidth, 
+    //         // Disable scrolling after decision
+    //         // onEnter: () => decisionMade && container.current.style.pointerEvents == 'none',
+    //       },
+    //     });
+    // });
 
     // useGSAP(() => {
     //     gsap.from(".line", {
@@ -154,17 +154,45 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
 
     return (
 
-        <div ref={container} className='container' style={{display: 'flex', flexWrap:'nowrap', height:'100vh', width: "100vw", paddingTop: '55px'}}>
+        <div ref={container} className='container relative bg-venus-bg-scroll bg-cover min-w-screen min-h-screen'>
 
-        <section id='first-panel' className="panel bg-jupiter-purple">
-            {/* <div className="overlay absolute opacity-0 inset-0 bg-transparent"></div> */}
-                panel 1
+        {/* <section id='first-panel' className="panel">
+            
+                <div id='container-panel-mars' className='flex flex-row w-full h-fit pt-12 justify-between'>
+                    <div id='mars-dialogue' className='flex flex-row w-fit h-fit mt-9 '>
+                        <div id='mars-pic' className='mt-14'>
+                            <img className="w-[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Mars Gif"/>
+                        </div>
+                        <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                            Oof.. why is everything so bright and pink in here? We must be at Venus’ place... I wanna go home already...
+                        </div>
+                    </div>
+                <div id='mars-dialogue' className='flex flex-row w-fit h-fit mt-9'>
+                    <div id='mars-pic' className='mt-14'>
+                        <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Venus Gif"/>
+                    </div>
+                    <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                        Well yeah. I do. Unless you had something better in mind?
+                    </div>
+            </div>
+        </div>
+
+        <div id='container-panel-venus' className='flex flex-row w-full h-full '>
+            <div id='venus-dialogue' className='flex flex-row w-fit h-fit'>
+                <div id='venus-pic' className='mt-14'>
+                    <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={VenusGifAnnoyed} alt="Venus Gif"/>
+                </div>
+                <div id ='venus-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                    Ohhhhh look who it is. Mars. Heyyy Mars. Let me guess. You want to go to war?
+                </div>
+            </div>
+        </div> */}
             
     
-            </section>
+            {/* </section> */}
             
-            <section id='second-panel' className="panel flex-col justify-center bg-mars-red">
-                {/* <div className="overlay absolute opacity-0 inset-0 bg-transparent"></div> */}
+            {/* <section id='second-panel' className="panel flex-col justify-center bg-mars-red">
+          
                     panel 2
 
                     <div className='line-container  h-20'>
@@ -172,16 +200,15 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                     </div>
             
     
-            </section>
-
+            </section> */}
+{/* 
             <section id='third-panel' className="panel bg-main-black">
-                {/* <div className="overlay absolute opacity-0 inset-0 bg-transparent"></div> */}
                 
                 panel 3
                 
                 
         
-                </section>
+                </section> */}
         </div>
      
     );
@@ -219,35 +246,7 @@ export default MarsHorizontalVenus;
     {/* <section id="panel" className='w-screen m-8 flex-shrink-0 min-h-screen border-main-black border-2 flex flex-col gap-14'>
 
         yo yo yo */}
-        {/* <div id='container-panel-mars' className='flex flex-row w-full h-fit pt-12 justify-between'>
-            <div id='mars-dialogue' className='flex flex-row w-fit h-fit mt-9 '>
-                <div id='mars-pic' className='mt-14'>
-                    <img className="w-[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Mars Gif"/>
-                </div>
-                <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                    Oof.. why is everything so bright and pink in here? We must be at Venus’ place... I wanna go home already...
-                </div>
-            </div>
-            <div id='mars-dialogue' className='flex flex-row w-fit h-fit mt-9'>
-                <div id='mars-pic' className='mt-14'>
-                    <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Venus Gif"/>
-                </div>
-                <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                    Well yeah. I do. Unless you had something better in mind?
-                </div>
-            </div>
-        </div>
-
-        <div id='container-panel-venus' className='flex flex-row w-full h-full justify-center '>
-            <div id='venus-dialogue' className='flex flex-row w-fit h-fit'>
-                <div id='venus-pic' className='mt-14'>
-                    <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={VenusGifAnnoyed} alt="Venus Gif"/>
-                </div>
-                <div id ='venus-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                    Ohhhhh look who it is. Mars. Heyyy Mars. Let me guess. You want to go to war?
-                </div>
-            </div>
-        </div> */}
+        
     {/* </section> */}
     {/* w-screen h-screen flex justify-center items-center relative */}
 
