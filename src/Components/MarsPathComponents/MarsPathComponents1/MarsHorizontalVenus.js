@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 
 import VenusMouthOpen from '../../../assets/venus-art/venus-mouth-open.png';
 import MarsGif from '../../../assets/mars-art/mars-art-official.gif';
+import MarsDefaultPng from '../../../assets/mars-art/mars-art-official1.png';
 import VenusGifAnnoyed from '../../../assets/venus-art/venus-annoyed-gif.gif';
 import VenusGifDefault from '../../../assets/venus-art/venus-default-GIF.gif';
 import VenusGifMouthOpen from '../../../assets/venus-art/venus-mouth-open-gif.gif';
@@ -13,10 +14,12 @@ import AsteroidAngry from '../../../assets/asteroid-art/asteroid-angry.png';
 import AsteroidHappy from '../../../assets/asteroid-art/asteroid-happy.png';
 import YellowSparkle from '../../../assets/other-art/yellow-sparkle.png';
 import BlackSparkle from '../../../assets/other-art/black-sparkle.png';  
+import Fireball from '../../../assets/other-art/fire.gif';
 import { gsap } from "gsap";
 import { useNavigate } from 'react-router-dom';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
+import { TbLabelImportant } from 'react-icons/tb';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,6 +41,8 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
 
 
     console.log("MarsHorizontalVenus received addCharacter:", addCharacter); // Debugging
+
+    // ASTEROID POSITIONING IN SECOND PANEL ANIMATION
 
     const minDistance = 40; // Minimum distance between asteroids (adjust as needed)
     const maxRetries = 50;  // Prevent infinite loops
@@ -92,6 +97,8 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
    
 
 
+        // FIRST PANEL ANIMATION
+
 
       useGSAP(() => {
         const marsDialogs = gsap.utils.toArray(".mars-dialogue");
@@ -99,7 +106,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
     
        
     
-        // Mars Dialog Animations (slower and smoother)
+        
         marsDialogs.forEach((dialog) => {
             gsap.fromTo(dialog,
                 { x: "-100%", opacity: 0 },
@@ -119,7 +126,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
             );
         });
     
-        // Venus Dialog Animations (slower and smoother)
+        
         venusDialogs.forEach((dialog) => {
             gsap.fromTo(dialog,
                 { x: "100%", opacity: 0 },
@@ -139,89 +146,174 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
             );
         });
 
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: ".venus-line",
-                        scrub: true,
-                        pin: true,
-                        start: "top top", // Start pinning when the top of .venus-line reaches the top of the viewport
-                        end: "+=100%", // Increase this value to match the animation duration
-                        markers: true, // Debugging
-                    }
-                });
+
+        
+}, []);
+
+
+        // SECOND PANEL LINE AND ASTEROID ANIMATION
+                            
+        useGSAP(() => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".venus-line",
+                    scrub: true,
+                    pin: true,
+                    start: "top top",
+                    end: "+=100%", 
+                    markers: true, // Remove this after debugging
+                    onEnter: () => {
+                        // Change images to the "open mouth" state when entering the trigger
+                        // document.querySelector(".venus-annoyed").src = VenusMouthOpen;
+                        // document.querySelectorAll(".asteroid-angry").forEach(img => img.src = AsteroidHappy);
+                    },
+                    onLeaveBack: () => {
+                        document.querySelector(".venus-annoyed").src = VenusAnnoyedImg;
+                        document.querySelectorAll(".asteroid-angry").forEach(img => img.src = AsteroidAngry);
+                }
+            }
+            });
+        
+            // Animate the line
+            tl.from(".line", {
+                scaleX: 0,
+                transformOrigin: "left center",
+                ease: "none",
+                duration: 2,
+            }, 0);
+        
+            //  // Shake the background
+            // tl.to(".venus-line", {
+            //     x: () => gsap.utils.random(-10, 10),  // Shake horizontally
+            //     y: () => gsap.utils.random(-5, 5),    // Shake vertically
+            //     // rotation: () => gsap.utils.random(-5, 5),  // Add slight rotation
+            //     duration: 0.2,
+            //     repeat: 3,  // Repeat the shake a few times
+            //     ease: "none",
+            // }, 0); // Make sure the shake happens when the animation starts
+        
+            // Move Venus and Asteroids
+            tl.to(".venus-annoyed, .asteroid-angry", {
+                x: "50vw", 
+                ease: "power2.out",
+                duration: 2
+            }, "<");
+        
+            // Add the glow effect (this will trigger only once)
+            tl.to(".venus-annoyed, .asteroid-angry", {
+                filter: "drop-shadow(0px 0px 10px rgba(255, 215, 0, 1))",
+                duration: 0.5, 
+                ease: "power1.inOut",
+            }, 0.5);
+
+        
+            // Midway point: Change images only once
+            tl.add(() => {
+                // Change Venus' image to mouth open
+                document.querySelector(".venus-annoyed").src = VenusMouthOpen;
+        
+                // Change asteroid images to happy at the midway point
+                document.querySelectorAll(".asteroid-angry").forEach(img => img.src = AsteroidHappy);
+            }, tl.duration() / 2); // Trigger midway point
+        
+            // Optional: Add a subtle effect for Venus and asteroids after the image change
+            tl.to(".venus-annoyed, .asteroid-angry", {
+                scale: 1, // Reset scaling
+                rotation: 0, // Reset rotation
+                duration: 1,
+                ease: "power2.out",
+            }, tl.duration() / 2 + 0.5); // After the image change
+        }, []);
             
-                tl.from(".line", {
-                    scaleX: 0,
-                    transformOrigin: "left center",
-                    ease: "none",
-                    duration: 2, // Match this with the `end` value
-                }, 0); // Start immediately
 
-              
-                   // Move Venus and Asteroids across the screen with the line
-                tl.to(".venus-annoyed, .asteroid-angry", {
-                    x: "50vw", // Moves them to the middle of the screen
+
+
+        // FOURTH PANEL / MARS SHOOTING FIREBALLS ANI
+        useGSAP(() => {
+            const fireballContainer = document.getElementById("fireball-container");
+            const asteroidContainer = document.getElementById("asteroid-container");
+        
+            // Function to create and animate fireballs
+            const shootFireball = () => {
+                const fireball = document.createElement("img");
+                fireball.src = Fireball;
+                fireball.className = "fireball absolute w-[30px] h-[30px]";
+                fireball.style.left = "33%"; // Fire from Mars' position
+                fireball.style.bottom = "120px"; 
+        
+                fireballContainer.appendChild(fireball);
+        
+                gsap.to(fireball, {
+                    y: "-100vh", // Move fireball upwards
+                    duration: 1.5,
                     ease: "power2.out",
-                    duration: 2
-                }, "<"); // Sync with the line animation
-
-                // Change images at the midway point
-                tl.add(() => {
-                    // Change Venus' image when the line reaches the middle
-                    document.querySelector(".venus-annoyed").src = VenusMouthOpen;
-
-                    // Change asteroid images to happy at the midway point
-                    document.querySelectorAll(".asteroid-angry").forEach(img => img.src = AsteroidHappy);
-                }, tl.duration() / 2); // Trigger halfway through the animation
-
-
-
-
-            }, []);
-
-                    // tl.fromTo("#animation-container .line", {
-                    //     scaleX: 0,
-                    //     transformOrigin: "left center",
-                    // }, {
-                    //     scaleX: 1,
-                    //     ease: "power2.out",
-                    //     duration: 2,
-                    // });
-
-
-
-
-
-        // let tl = gsap.timeline({
-        //     scrollTrigger: {
-        //       trigger: "#mars-venus-panel1",
-        //       start: "top top",
-        //       end: "+=100%", // Adjust this to match your animation duration
-        //       pin: true, // Keeps it fixed
-        //       scrub: true, // Ensures smooth animation with scrolling
-        //       onEnter: () => console.log("Pinned!"),
-        //       onLeave: () => console.log("Unpinned!"),
-        //     }
-        //   });
-          
-        //   // Animate the line while #mars-venus-panel1 is pinned
-        //   tl.to(".line", {
-        //     scaleX: 1, // Example animation
-        //     duration: 2, 
-        //     ease: "power1.out"
-        //   });
-          
-        //   // Add a delay before unpinning to ensure smooth transition
-        //   tl.to("#mars-venus-panel1", {
-        //     opacity: 1, // Optional transition effect
-        //     duration: 1,
-        //     onComplete: () => {
-        //       ScrollTrigger.getById("#mars-venus-panel1")?.kill(); // Ensures it unpins
-        //     }
-        //   });
+                    onComplete: () => fireball.remove(), // Remove when out of bounds
+                });
+            };
         
+            // Function to spawn asteroids
+            const spawnAsteroid = () => {
+                const asteroid = document.createElement("img");
+                asteroid.src = AsteroidAngry;
+                asteroid.className = "asteroid absolute w-[50px] h-[50px]";
+                asteroid.style.left = `${Math.random() * 80 + 10}%`; // Random spawn location
+                asteroid.style.top = "-50px"; // Start from above screen
         
-    
+                asteroidContainer.appendChild(asteroid);
+        
+                gsap.to(asteroid, {
+                    y: "100vh", // Move downward
+                    duration: 3,
+                    ease: "linear",
+                    onComplete: () => asteroid.remove(), // Remove after falling
+                });
+            };
+        
+            // Collision detection function
+            const checkCollision = () => {
+                document.querySelectorAll(".fireball").forEach(fireball => {
+                    document.querySelectorAll(".asteroid").forEach(asteroid => {
+                        const fbRect = fireball.getBoundingClientRect();
+                        const astRect = asteroid.getBoundingClientRect();
+        
+                        if (
+                            fbRect.left < astRect.right &&
+                            fbRect.right > astRect.left &&
+                            fbRect.top < astRect.bottom &&
+                            fbRect.bottom > astRect.top
+                        ) {
+                            gsap.to([fireball, asteroid], {
+                                scale: 0,
+                                duration: 0.3,
+                                ease: "power1.out",
+                                onComplete: () => {
+                                    fireball.remove();
+                                    asteroid.remove();
+                                },
+                            });
+                        }
+                    });
+                });
+            };
+        
+            // Attach keydown event listener for shooting fireballs
+            const handleKeyDown = (e) => {
+                if (e.key === " ") {
+                    shootFireball();
+                }
+            };
+        
+            document.addEventListener("keydown", handleKeyDown);
+            const asteroidInterval = setInterval(spawnAsteroid, 1000); // Spawn asteroids every second
+            const collisionInterval = setInterval(checkCollision, 100); // Check for collisions every 100ms
+        
+            return () => {
+                document.removeEventListener("keydown", handleKeyDown);
+                clearInterval(asteroidInterval);
+                clearInterval(collisionInterval);
+            };
+        }, []);
+        
 
     
     
@@ -395,18 +487,24 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                 </section>
 
                 {/* container for FOURTH scroll section / dialogue */}
-                {/* <section id="panel" className='w-screen min-h-screen relative flex flex-col justify-center'>
-                    <div id='container-panel-mars' className='items-center flex flex-col'>
-                        <div id='mars-dialogue' className='flex flex-row w-fit h-fit p-5'>
-                            <div id='mars-pic' className='mt-14'>
-                                <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Mars Gif"/>
-                            </div>
-                            <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                                mars animation here
-                            </div>
-                        </div>
+                <section id="panel" className='w-screen min-h-screen relative flex flex-col justify-center'>
+                    <div className="relative w-screen h-screen overflow-hidden bg-black" id="mars-battle">
+                        {/* Mars */}
+                        <img 
+                            className="absolute bottom-10 left-[30%] w-[100px]" 
+                            id="mars" 
+                            src={MarsDefaultPng} 
+                            alt="Mars"
+                        />
+
+                        {/* Fireball container */}
+                        <div id="fireball-container" className="absolute w-full h-full"></div>
+
+                        {/* Asteroid container */}
+                        <div id="asteroid-container" className="absolute w-full h-full"></div>
                     </div>
-                </section> */}
+
+                </section>
 
                 {/* container for FIFTH scroll section / dialogue */}
                 {/* <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center'>

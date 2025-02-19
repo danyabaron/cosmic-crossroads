@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 
 
 import MarsGif from '../../../assets/mars-art/mars-art-official.gif';
-import MarsStaticImg from '../../../assets/mars-art/mars-art.png';
+import MarsStaticImg from '../../../assets/mars-art/mars-art-official1.png';
 
 import ButtonContainer from '../../ButtonContainer';
 import { gsap } from "gsap";

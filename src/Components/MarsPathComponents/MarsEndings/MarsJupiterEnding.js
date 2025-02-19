@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 
 import MarsGif from '../../../assets/mars-art/mars-art-official.gif';
-import MarsStaticImg from '../../../assets/mars-art/mars-art.png';
+import MarsStaticImg from '../../../assets/mars-art/mars-art-official1.png';
 
 import JupiterDefault from '../../../assets/jupiter-art/jupiter-art.png';
 import JupiterGif from '../../../assets/jupiter-art/jupiter-art-gif.gif';

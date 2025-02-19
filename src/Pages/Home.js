@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import VenusMouthOpen from '../assets/venus-art/venus-mouth-open.png';
 import MarsGif from '../assets/mars-art/mars-art-official.gif';
-import MarsStaticImg from '../assets/mars-art/mars-art.png';
+import MarsStaticImg from '../assets/mars-art/mars-art-official1.png';
 import VenusGifDefault from '../assets/venus-art/venus-default-GIF.gif';
 import VenusGifAnnoyed from '../assets/venus-art/venus-annoyed-gif.gif';
 import VenusGifSmirk from '../assets/venus-art/venus-smirk-gif.gif';
