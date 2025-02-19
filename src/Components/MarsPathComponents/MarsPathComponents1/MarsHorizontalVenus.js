@@ -507,7 +507,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                 </section>
 
                 {/* container for FIFTH scroll section / dialogue */}
-                {/* <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center'>
+                <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center'>
                     <div id='container-panel' className='flex flex-col items-center gap-14'>
                         <div id='venus-dialogue' className='flex flex-row w-fit h-fit self-start p-7 ml-9'>
                             <div id='venus-pic' className='mt-14'>
@@ -526,10 +526,10 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                             </div>
                         </div>
                     </div>
-                </section> */}
+                </section>
 
                 {/* container for SIXTH/FINAL scroll section / dialogue */}
-                {/* <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center pr-5'>
+                <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center pr-5'>
                     <div id='container-panel' className='flex flex-col items-center gap-14'>
                         <div id='header' className='font-header text-white font-bold'>
                             <h1>Decision Time: 15 seconds</h1>
@@ -551,7 +551,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                             />
                         </div>
                     </div>
-                </section> */}
+                </section>
             </div>
         
     );
