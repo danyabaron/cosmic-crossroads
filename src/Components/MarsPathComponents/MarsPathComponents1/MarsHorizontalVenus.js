@@ -5,13 +5,28 @@ import MarsGif from '../../../assets/mars-art/mars-art-official.gif';
 import VenusGifAnnoyed from '../../../assets/venus-art/venus-annoyed-gif.gif';
 import VenusGifDefault from '../../../assets/venus-art/venus-default-GIF.gif';
 import VenusGifMouthOpen from '../../../assets/venus-art/venus-mouth-open-gif.gif';
+import VenusAnnoyedImg from '../../../assets/venus-art/venus-annoyed.png';
+import VenusDefaultImg from '../../../assets/venus-art/venus-default.png';
 import ButtonContainer from '../../ButtonContainer';
+import AsteroidMouthOpen from '../../../assets/asteroid-art/asteroid-mouth-open.png'; 
+import AsteroidAngry from '../../../assets/asteroid-art/asteroid-angry.png';
+import AsteroidHappy from '../../../assets/asteroid-art/asteroid-happy.png';
+import YellowSparkle from '../../../assets/other-art/yellow-sparkle.png';
+import BlackSparkle from '../../../assets/other-art/black-sparkle.png';  
 import { gsap } from "gsap";
 import { useNavigate } from 'react-router-dom';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
+
+
+
+function getRandomPosition(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  
 
 function MarsHorizontalVenus({ setScreen, addCharacter }) {
 
@@ -24,6 +39,56 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
 
     console.log("MarsHorizontalVenus received addCharacter:", addCharacter); // Debugging
 
+    const minDistance = 40; // Minimum distance between asteroids (adjust as needed)
+    const maxRetries = 50;  // Prevent infinite loops
+
+    function generateAsteroidPositions(numAsteroids) {
+        let asteroids = [];
+
+        for (let i = 0; i < numAsteroids; i++) {
+            let newAsteroid;
+            let overlapping;
+            let retries = 0;
+
+            do {
+                overlapping = false;
+                newAsteroid = {
+                    top: getRandomPosition(10, 90),  // Random top position between 10 and 60
+                    left: getRandomPosition(10, 30) // Random left position between 10 and 30
+                };
+
+                // Check against all existing asteroids
+                for (let asteroid of asteroids) {
+                    let dx = newAsteroid.left - asteroid.left;
+                    let dy = newAsteroid.top - asteroid.top;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < minDistance) {
+                        overlapping = true;
+                        break;
+                    }
+                }
+
+                retries++;
+                if (retries > maxRetries) {
+                    console.warn("Max retries reached, placing asteroid anyway.");
+                    break; // Avoid infinite loop in rare cases
+                }
+
+            } while (overlapping);
+
+            asteroids.push(newAsteroid);
+        }
+
+        return asteroids;
+    }
+
+    const asteroidPositions = generateAsteroidPositions(5);
+
+      // Logging asteroid positions correctly
+        asteroidPositions.forEach((position, index) => {
+            console.log(`Asteroid ${index}: top = ${position.top}, left = ${position.left}`);
+        });
    
 
 
@@ -91,6 +156,27 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                     ease: "none",
                     duration: 2, // Match this with the `end` value
                 }, 0); // Start immediately
+
+              
+                   // Move Venus and Asteroids across the screen with the line
+                tl.to(".venus-annoyed, .asteroid-angry", {
+                    x: "50vw", // Moves them to the middle of the screen
+                    ease: "power2.out",
+                    duration: 2
+                }, "<"); // Sync with the line animation
+
+                // Change images at the midway point
+                tl.add(() => {
+                    // Change Venus' image when the line reaches the middle
+                    document.querySelector(".venus-annoyed").src = VenusMouthOpen;
+
+                    // Change asteroid images to happy at the midway point
+                    document.querySelectorAll(".asteroid-angry").forEach(img => img.src = AsteroidHappy);
+                }, tl.duration() / 2); // Trigger halfway through the animation
+
+
+
+
             }, []);
 
                     // tl.fromTo("#animation-container .line", {
@@ -226,7 +312,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                 </section>
 
                 {/* container for SECOND scroll section / dialogue */}
-                <section  id="panel" className='venus-line relative  w-full min-w-screen min-h-screen flex flex-col gap-36 justify-center items-center'>
+                <section  id="panel" className='venus-line relative  w-full min-w-screen min-h-screen flex flex-col gap-24 justify-center items-center'>
                     
                     <div id='container-panel-venus' className='flex w-full justify-between flex-col md:flex-row px-40'>
                         
@@ -238,37 +324,71 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                                 Maybe the asteroid is lonely and that’s why it’s coming over here. you need to stop asserting dominance for no reason. I probably could charm them with my beauty..
                             </div>
                         </div> 
-                        <div id='benefic-text' className='flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
+                        <div id='benefic-text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
+                        <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -right-11' loading='lazy' src={YellowSparkle}/>
                             Venus tends to take the diplomatic approach when it comes to conflict. Venus wants to do things that are going to feel goooood, and tends to shy away from things that may be uncomfortable.
                         </div>
                     
                     </div>
 
-                    <div className='line-container w-full h-8 flex flex-col gap-2 justify-center items-center' >
+                    <div className="relative top-auto left-0 w-full h-[100px] z-10">
+                            {/* Venus Annoyed Image */}
+                            <img className='venus-annoyed absolute z-10 left-0 w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]' src={VenusAnnoyedImg} alt="Venus Annoyed Image"/>
+
+                                {/* Asteroids */}
+                                {asteroidPositions.map((position, index) => (
+                                   
+                                <img
+                                    key={index}
+                                    className="asteroid-angry absolute w-[50px] h-auto max-w-full max-h-full object-contain"
+                                    src={AsteroidAngry}
+                                    alt={`Asteroid ${index}`}
+                                    style={{
+                                    top: `${position.top}%`,  // Using the random top value
+                                    left: `${position.left}%`,  // Using the random left value
+                                    
+                                    }}
+                                />
+                                ))}
+                               
+                    </div>
+
+                    <div className='line-container relative w-full h-8 flex flex-col gap-2 justify-center items-center' >
+
+                        
+
+                        {/* <img className='asteroid-angry absolute w-[40px] h-auto max-w-full max-h-full object-contain -top-10 left-40' src={AsteroidAngry} alt="Asteroid Angry Image"/> */}
                        
-                            <span className="line w-full h-2 p-2 m-auto relative inline-block bg-white"></span>
+
+                       
+                            <span className="line w-full h-2 p-2 m-auto relative inline-block z-0 bg-white"></span>
                             
                         
                     </div>
                 </section>
 
+            
+
                 {/* container for THIRD scroll section / dialogue */}
-                <section id="panel" className='w-screen min-h-screen relative flex flex-col justify-center items-center'>
+                <section id="panel" className='w-screen min-h-screen relative flex flex-col'>
                     <div id='container-panel-mars' className='items-center flex flex-col gap-14'>
-                        <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-start p-5'>
+                        <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-start relative ml-44 p-5'>
+                            
                             <div id='mars-pic' className='mt-14'>
-                                <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Mars Gif"/>
+                                <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
                             </div>
-                            <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                            <div id ='mars-text' className=' w-96 relative h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                            <img id='corner-asteroid' className='absolute w-[40px] h-auto max-w-full max-h-full object-contain -top-4 -right-3 rotate-12' loading='lazy' src={AsteroidMouthOpen}/>
                                 As a Malefic planet, you feel like you need to push people, maybe in not the best of ways. Sometimes that means that people can be uncomfortable with your energy. However, your energy pushes people to be stronger, and better. You tend to take the more aggressive approach.
                             </div>
                         </div>
-                        <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-end p-5'>
-                            <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                        <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-end mr-44 p-5'>
+                            <div id ='mars-text' className='flex w-96 h-fit relative bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-11 -left-11' loading='lazy' src={BlackSparkle}/>
                                 Waiting to take the offense side is difficult for you. You are prone to taking action immediately and channeling your inner warrior.
                             </div>
                             <div id='mars-pic' className='mt-14'>
-                                <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Venus Gif"/>
+                                <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Venus Gif"/>
                             </div>
                         </div>
                     </div>
