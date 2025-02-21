@@ -226,7 +226,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
             // Mars movement (side to side)
             
             gsap.to(marsRef.current, {
-                x: 200,
+                x: 600,
                 duration: 2,
                 repeat: -1,
                 yoyo: true,
@@ -241,52 +241,71 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
         
             // Fireball shooting animation
             let fireballTimeout;
+
+            // Function to shoot multiple fireballs
             const shootFireball = () => {
                 const marsRect = marsRef.current.getBoundingClientRect(); // Get Mars' position on screen
-        
-                const fireball = document.createElement("img");
-                fireball.src = Fireball;  // Use your fireball image
-                fireball.className = "absolute w-10 h-10";  // Adjust size as needed
-                fireball.style.left = `${marsRect.left + marsRect.width / 2 - 25}px`; // Center fireball relative to Mars
-                fireball.style.top = `${marsRect.top + marsRect.height / 2}px`;
-                fireballContainerRef.current.appendChild(fireball);
-        
-                gsap.fromTo(
-                    fireball,
-                    { x: 0, y: 0 },
-                    {
-                        x: "100vw",  // Fireball moves across screen
-                        y: "-200vh",  // Fireball goes upwards or add a diagonal movement
-                        duration: 1.5,
-                        opacity: 0,
-                        ease: "power2.out",
-                        onComplete: () => fireball.remove(), // Remove after animation
-                    }
-                );
+
+                // Number of fireballs to shoot at once
+                const fireballsToShoot = 5;  // You can adjust this number to shoot more or less fireballs
+
+                for (let i = 0; i < fireballsToShoot; i++) {
+                    // Create a new fireball element for each shot
+                    const fireball = document.createElement("img");
+                    fireball.src = Fireball;  // Use your fireball image
+                    fireball.className = "absolute w-10 h-10";  // Adjust size as needed
+                    fireball.style.left = `${marsRect.left + marsRect.width / 2 - 25}px`; // Center fireball relative to Mars
+                    fireball.style.top = `${marsRect.top + marsRect.height / 2}px`;
+                    fireballContainerRef.current.appendChild(fireball);
+
+                    // Randomize the direction for each fireball
+                    const randomX = Math.random() * 200 - 100;  // Random horizontal movement between -100 and 100
+                    const randomY = Math.random() * -400 - 200; // Random vertical movement between -200 and -600
+                    const randomDuration = Math.random() * 2 + 2; // Random duration between 2 and 4 seconds
+
+                    // Animate the fireball's movement
+                    gsap.fromTo(
+                        fireball,
+                        { x: 0, y: 0, opacity: 1 },
+                        {
+                            x: randomX,         // Fireball moves in a random horizontal direction
+                            y: randomY,         // Fireball moves in a random vertical direction
+                            duration: randomDuration, // Random duration for a slow effect
+                            opacity: 0,          // Fade out the fireball
+                            ease: "power2.out",  // Smooth easing
+                            onComplete: () => fireball.remove(), // Remove after animation completes
+                        }
+                    );
+                }
             };
-        
-            // Continuously shoot fireballs with small delay
+
+            // Function to continuously shoot multiple fireballs with a small delay
             const shootFireballsContinuously = () => {
-                fireballTimeout = setInterval(shootFireball, 500); // Shoots fireball every 500ms (adjust timing as needed)
+                fireballTimeout = setInterval(shootFireball, 1000); // Shoots multiple fireballs every 1000ms (1 second)
             };
-        
+
             // Start shooting fireballs when ScrollTrigger activates
             ScrollTrigger.create({
                 trigger: marsBattleRef.current,
                 start: "top center",
                 end: "bottom center",
-                onEnter: shootFireballsContinuously,
+                onEnter: shootFireballsContinuously, // Start shooting when ScrollTrigger enters
                 onLeaveBack: () => clearInterval(fireballTimeout),  // Stop shooting when scrolling back
-                toggleActions: "play none none none",
+                toggleActions: "play none none none", // Only play on enter
             });
-        
+
             // Create falling asteroids
             const createAsteroids = () => {
-                const asteroidCount = 5;
+                const asteroidCount = 5; // Limit the number of asteroids created at once
+                const existingAsteroids = asteroidContainerRef.current.querySelectorAll('img'); // Find existing asteroids
+        
+                // Avoid generating too many asteroids by checking existing ones
+                if (existingAsteroids.length >= 10) return; // Only allow up to 10 asteroids on screen at a time
+        
                 for (let i = 0; i < asteroidCount; i++) {
                     const asteroid = document.createElement("img");
                     asteroid.src = AsteroidAngry;  // Use actual asteroid image
-                    asteroid.className = "absolute w-10 h-10";
+                    asteroid.className = "absolute w-10 h-10 z-0";
                     asteroid.style.left = `${Math.random() * 100}vw`; // Randomize starting position
                     asteroid.style.top = `-50px`; // Start above the screen
                     asteroidContainerRef.current.appendChild(asteroid);
@@ -298,13 +317,102 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                         duration: Math.random() * 3 + 2, // Random speed
                         ease: "linear",
                         onComplete: () => {
-                            asteroid.style.top = `-50px`; // Reset asteroid to top
-                            createAsteroids(); // Recreate the asteroid
+                            asteroid.remove(); // Remove asteroid once it hits the bottom
+                            createAsteroids(); // Call to regenerate another asteroid
                         },
                     });
                 }
             };
-        
+
+            const createLightning = () => {
+                console.log("Lightning created!");
+            
+                // Ensure you have a container with id 'lightningContainer' in your HTML
+                const lightningContainer = document.getElementById("lightningContainer");
+                if (!lightningContainer) {
+                    console.warn("No lightningContainer found. Lightning won't be created.");
+                    return;
+                }
+            
+                const lightning = document.createElement("div");
+                lightning.classList.add("absolute", "top-0", "left-1/2", "w-[4px]", "h-full", "bg-white", "z-[9999]", "pointer-events-none");
+            
+                // Create a zigzag pattern for the lightning
+                const createLightningParts = () => {
+                    const parts = [];
+                    let currentTop = 0;
+            
+                    // Generate a few zigzag segments
+                    for (let i = 0; i < 5; i++) {
+                        const part = document.createElement("div");
+                        part.classList.add("absolute", "bg-white", "z-[9999]", "pointer-events-none");
+            
+                        const left = Math.random() * 20 + 40; // Randomize horizontal position
+                        const height = Math.random() * 50 + 30; // Randomize the length of each part
+                        const rotate = Math.random() * 60 - 30; // Add some rotation for the zigzag effect
+            
+                        part.style.left = `${left}%`; // Random horizontal position along the top
+                        part.style.top = `${currentTop}px`;
+                        part.style.width = "6px";
+                        part.style.height = `${height}px`;
+                        part.style.transform = `rotate(${rotate}deg)`;
+                        currentTop += height;  // Update top for next part
+            
+                        parts.push(part);
+                    }
+            
+                    return parts;
+                };
+            
+                const lightningParts = createLightningParts();
+                lightningParts.forEach(part => lightning.appendChild(part));
+                lightningContainer.appendChild(lightning);
+            
+                // Animate the lightning with GSAP
+                gsap.fromTo(lightning, {
+                    opacity: 0,
+                    scale: 0.1,
+                    rotation: Math.random() * 90 - 45, // Random initial rotation
+                    top: "-10%", // Start the lightning slightly above the section (optional)
+                }, {
+                    opacity: 1,
+                    scale: 1,
+                    rotation: 0,
+                    top: "0%", // Set the lightning to be at the top of the section
+                    duration: 0.2,
+                    ease: "power2.inOut",
+                    onComplete: () => {
+                        gsap.to(lightning, {
+                            opacity: 0,
+                            scale: 0.1,
+                            duration: 0.3,
+                            ease: "power2.out",
+                            onComplete: () => lightning.remove(),
+                        });
+                    },
+                });
+            
+                // Add background fade to black
+                gsap.to('.mars-battle', {
+                    backgroundColor: "#000000",  // Set to black
+                    duration: 0.2,
+                    ease: "power2.inOut",
+                    onComplete: () => {
+                        gsap.to('.mars-battle', {
+                            backgroundColor: "initial",  // Reverts back to white
+                            duration: 0.5,
+                            ease: "power2.out",
+                        });
+                    },
+                });
+            };
+            
+            // Trigger lightning every 5 seconds with a random delay between strikes
+            setInterval(() => {
+                createLightning(); // Create lightning every 5 seconds
+            }, Math.random() * 3000 + 2000); // Randomize the time between strikes (2-5 seconds)
+            
+            
             // Asteroid falling trigger (Continuous falling)
             ScrollTrigger.create({
                 trigger: marsBattleRef.current,
@@ -495,7 +603,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                         {/* Mars */}
                         <img 
                             ref={marsRef}  // ADD THIS
-                            className="absolute bottom-10 left-[30%] w-[100px]" 
+                            className="absolute bottom-10 left-[30%] w-[100px] z-10" 
                             id="mars" 
                             src={MarsDefaultPng} 
                             alt="Mars"
@@ -506,6 +614,8 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
 
                         {/* Asteroid container */}
                         <div ref={asteroidContainerRef} id="asteroid-container" className="absolute w-full h-full"></div>
+                        <div id="lightningContainer" className="absolute top-0 left-0 w-full h-full pointer-events-none"></div>
+
                     </div>
                    
 
