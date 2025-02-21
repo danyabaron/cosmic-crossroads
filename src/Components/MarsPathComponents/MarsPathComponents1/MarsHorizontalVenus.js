@@ -34,6 +34,8 @@ function getRandomPosition(min, max) {
 function MarsHorizontalVenus({ setScreen, addCharacter }) {
 
     const [decisionMade, setDecisionMade] = useState(false); // Track if decision is made
+    const [currentScreen, setCurrentScreen] = useState('mars'); // Assuming 'mars' is the screen where the animation happens
+
     // const container = useRef(null);
     
 
@@ -421,7 +423,11 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                 onEnter: createAsteroids,
                 onEnterBack: createAsteroids,
                 toggleActions: "play none none none", // Allows for continuous asteroid generation as you scroll up and down
+
+
             });
+
+        
         }, []);
             
     
