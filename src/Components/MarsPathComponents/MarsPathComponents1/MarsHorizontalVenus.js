@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, use } from 'react';
 
 import VenusMouthOpen from '../../../assets/venus-art/venus-mouth-open.png';
 import MarsGif from '../../../assets/mars-art/mars-art-official.gif';
@@ -42,58 +42,50 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
 
     console.log("MarsHorizontalVenus received addCharacter:", addCharacter); // Debugging
 
-    // ASTEROID POSITIONING IN SECOND PANEL ANIMATION
+    const marsRef = useRef(null);
+    const fireballContainerRef = useRef(null);
+    const marsBattleRef = useRef(null);
+    const asteroidContainerRef = useRef(null);
 
-    const minDistance = 40; // Minimum distance between asteroids (adjust as needed)
-    const maxRetries = 50;  // Prevent infinite loops
 
-    function generateAsteroidPositions(numAsteroids) {
-        let asteroids = [];
 
-        for (let i = 0; i < numAsteroids; i++) {
-            let newAsteroid;
-            let overlapping;
-            let retries = 0;
-
-            do {
-                overlapping = false;
-                newAsteroid = {
-                    top: getRandomPosition(10, 90),  // Random top position between 10 and 60
-                    left: getRandomPosition(10, 30) // Random left position between 10 and 30
-                };
-
-                // Check against all existing asteroids
-                for (let asteroid of asteroids) {
-                    let dx = newAsteroid.left - asteroid.left;
-                    let dy = newAsteroid.top - asteroid.top;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < minDistance) {
-                        overlapping = true;
-                        break;
-                    }
-                }
-
-                retries++;
-                if (retries > maxRetries) {
-                    console.warn("Max retries reached, placing asteroid anyway.");
-                    break; // Avoid infinite loop in rare cases
-                }
-
-            } while (overlapping);
-
-            asteroids.push(newAsteroid);
-        }
-
-        return asteroids;
-    }
-
-    const asteroidPositions = generateAsteroidPositions(5);
-
-      // Logging asteroid positions correctly
-        asteroidPositions.forEach((position, index) => {
-            console.log(`Asteroid ${index}: top = ${position.top}, left = ${position.left}`);
-        });
+     // ASTEROID POSITIONING IN FOURTH PANEL ANIMATION
+     const minDistance = 40;
+     const maxRetries = 50;
+ 
+     function generateAsteroidPositions(numAsteroids) {
+         let asteroids = [];
+         for (let i = 0; i < numAsteroids; i++) {
+             let newAsteroid;
+             let overlapping;
+             let retries = 0;
+             do {
+                 overlapping = false;
+                 newAsteroid = {
+                     top: getRandomPosition(10, 90),
+                     left: getRandomPosition(10, 30)
+                 };
+                 for (let asteroid of asteroids) {
+                     let dx = newAsteroid.left - asteroid.left;
+                     let dy = newAsteroid.top - asteroid.top;
+                     let distance = Math.sqrt(dx * dx + dy * dy);
+                     if (distance < minDistance) {
+                         overlapping = true;
+                         break;
+                     }
+                 }
+                 retries++;
+                 if (retries > maxRetries) {
+                     console.warn("Max retries reached, placing asteroid anyway.");
+                     break;
+                 }
+             } while (overlapping);
+             asteroids.push(newAsteroid);
+         }
+         return asteroids;
+     }
+ 
+     const asteroidPositions = generateAsteroidPositions(5);
    
 
 
@@ -229,91 +221,102 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
 
 
         // FOURTH PANEL / MARS SHOOTING FIREBALLS ANI
-        useGSAP(() => {
-            const fireballContainer = document.getElementById("fireball-container");
-            const asteroidContainer = document.getElementById("asteroid-container");
+         // FOURTH PANEL / MARS SHOOTING FIREBALLS ANI
+         useGSAP(() => {
+            // Mars movement (side to side)
+            
+            gsap.to(marsRef.current, {
+                x: 200,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "power1.inOut",
+                scrollTrigger: {
+                    trigger: marsBattleRef.current,
+                    start: "top center",
+                    end: "bottom center",
+                    toggleActions: "play none none none",
+                },
+            });
         
-            // Function to create and animate fireballs
+            // Fireball shooting animation
+            let fireballTimeout;
             const shootFireball = () => {
+                const marsRect = marsRef.current.getBoundingClientRect(); // Get Mars' position on screen
+        
                 const fireball = document.createElement("img");
-                fireball.src = Fireball;
-                fireball.className = "fireball absolute w-[30px] h-[30px]";
-                fireball.style.left = "33%"; // Fire from Mars' position
-                fireball.style.bottom = "120px"; 
+                fireball.src = Fireball;  // Use your fireball image
+                fireball.className = "absolute w-10 h-10";  // Adjust size as needed
+                fireball.style.left = `${marsRect.left + marsRect.width / 2 - 25}px`; // Center fireball relative to Mars
+                fireball.style.top = `${marsRect.top + marsRect.height / 2}px`;
+                fireballContainerRef.current.appendChild(fireball);
         
-                fireballContainer.appendChild(fireball);
-        
-                gsap.to(fireball, {
-                    y: "-100vh", // Move fireball upwards
-                    duration: 1.5,
-                    ease: "power2.out",
-                    onComplete: () => fireball.remove(), // Remove when out of bounds
-                });
+                gsap.fromTo(
+                    fireball,
+                    { x: 0, y: 0 },
+                    {
+                        x: "100vw",  // Fireball moves across screen
+                        y: "-200vh",  // Fireball goes upwards or add a diagonal movement
+                        duration: 1.5,
+                        opacity: 0,
+                        ease: "power2.out",
+                        onComplete: () => fireball.remove(), // Remove after animation
+                    }
+                );
             };
         
-            // Function to spawn asteroids
-            const spawnAsteroid = () => {
-                const asteroid = document.createElement("img");
-                asteroid.src = AsteroidAngry;
-                asteroid.className = "asteroid absolute w-[50px] h-[50px]";
-                asteroid.style.left = `${Math.random() * 80 + 10}%`; // Random spawn location
-                asteroid.style.top = "-50px"; // Start from above screen
-        
-                asteroidContainer.appendChild(asteroid);
-        
-                gsap.to(asteroid, {
-                    y: "100vh", // Move downward
-                    duration: 3,
-                    ease: "linear",
-                    onComplete: () => asteroid.remove(), // Remove after falling
-                });
+            // Continuously shoot fireballs with small delay
+            const shootFireballsContinuously = () => {
+                fireballTimeout = setInterval(shootFireball, 500); // Shoots fireball every 500ms (adjust timing as needed)
             };
         
-            // Collision detection function
-            const checkCollision = () => {
-                document.querySelectorAll(".fireball").forEach(fireball => {
-                    document.querySelectorAll(".asteroid").forEach(asteroid => {
-                        const fbRect = fireball.getBoundingClientRect();
-                        const astRect = asteroid.getBoundingClientRect();
+            // Start shooting fireballs when ScrollTrigger activates
+            ScrollTrigger.create({
+                trigger: marsBattleRef.current,
+                start: "top center",
+                end: "bottom center",
+                onEnter: shootFireballsContinuously,
+                onLeaveBack: () => clearInterval(fireballTimeout),  // Stop shooting when scrolling back
+                toggleActions: "play none none none",
+            });
         
-                        if (
-                            fbRect.left < astRect.right &&
-                            fbRect.right > astRect.left &&
-                            fbRect.top < astRect.bottom &&
-                            fbRect.bottom > astRect.top
-                        ) {
-                            gsap.to([fireball, asteroid], {
-                                scale: 0,
-                                duration: 0.3,
-                                ease: "power1.out",
-                                onComplete: () => {
-                                    fireball.remove();
-                                    asteroid.remove();
-                                },
-                            });
-                        }
+            // Create falling asteroids
+            const createAsteroids = () => {
+                const asteroidCount = 5;
+                for (let i = 0; i < asteroidCount; i++) {
+                    const asteroid = document.createElement("img");
+                    asteroid.src = AsteroidAngry;  // Use actual asteroid image
+                    asteroid.className = "absolute w-10 h-10";
+                    asteroid.style.left = `${Math.random() * 100}vw`; // Randomize starting position
+                    asteroid.style.top = `-50px`; // Start above the screen
+                    asteroidContainerRef.current.appendChild(asteroid);
+        
+                    // Continuous falling + regenerate at top once out of view
+                    gsap.to(asteroid, {
+                        y: "100vh", // Move down the screen
+                        opacity: 1,
+                        duration: Math.random() * 3 + 2, // Random speed
+                        ease: "linear",
+                        onComplete: () => {
+                            asteroid.style.top = `-50px`; // Reset asteroid to top
+                            createAsteroids(); // Recreate the asteroid
+                        },
                     });
-                });
-            };
-        
-            // Attach keydown event listener for shooting fireballs
-            const handleKeyDown = (e) => {
-                if (e.key === " ") {
-                    shootFireball();
                 }
             };
         
-            document.addEventListener("keydown", handleKeyDown);
-            const asteroidInterval = setInterval(spawnAsteroid, 1000); // Spawn asteroids every second
-            const collisionInterval = setInterval(checkCollision, 100); // Check for collisions every 100ms
-        
-            return () => {
-                document.removeEventListener("keydown", handleKeyDown);
-                clearInterval(asteroidInterval);
-                clearInterval(collisionInterval);
-            };
+            // Asteroid falling trigger (Continuous falling)
+            ScrollTrigger.create({
+                trigger: marsBattleRef.current,
+                start: "top center",
+                end: "bottom center",
+                onEnter: createAsteroids,
+                onEnterBack: createAsteroids,
+                toggleActions: "play none none none", // Allows for continuous asteroid generation as you scroll up and down
+            });
         }, []);
-        
+            
+    
 
     
     
@@ -467,7 +470,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                         <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-start relative ml-44 p-5'>
                             
                             <div id='mars-pic' className='mt-14'>
-                                <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
+                                <img id='mars' className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
                             </div>
                             <div id ='mars-text' className=' w-96 relative h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
                             <img id='corner-asteroid' className='absolute w-[40px] h-auto max-w-full max-h-full object-contain -top-4 -right-3 rotate-12' loading='lazy' src={AsteroidMouthOpen}/>
@@ -487,22 +490,24 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                 </section>
 
                 {/* container for FOURTH scroll section / dialogue */}
-                <section id="panel" className='w-screen min-h-screen relative flex flex-col justify-center'>
-                    <div className="relative w-screen h-screen overflow-hidden bg-black" id="mars-battle">
+                <section id="panel" className='mars-battle w-screen min-h-screen relative flex flex-col justify-center'>
+                    <div ref={marsBattleRef} className="relative w-screen h-screen overflow-hidden bg-black" id="mars-battle">
                         {/* Mars */}
                         <img 
+                            ref={marsRef}  // ADD THIS
                             className="absolute bottom-10 left-[30%] w-[100px]" 
                             id="mars" 
                             src={MarsDefaultPng} 
                             alt="Mars"
                         />
 
-                        {/* Fireball container */}
-                        <div id="fireball-container" className="absolute w-full h-full"></div>
+                        {/* Fireball Container */}
+                        <div ref={fireballContainerRef} id="fireball-container" className="absolute w-full h-full flex items-center"></div>
 
                         {/* Asteroid container */}
-                        <div id="asteroid-container" className="absolute w-full h-full"></div>
+                        <div ref={asteroidContainerRef} id="asteroid-container" className="absolute w-full h-full"></div>
                     </div>
+                   
 
                 </section>
 
