@@ -49,6 +49,13 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
     const marsBattleRef = useRef(null);
     const asteroidContainerRef = useRef(null);
 
+     // Declare variables outside the useGSAP callback
+     let marsAnimation;
+     let fireballTimeout;
+     let fireballScrollTrigger;
+     let asteroidScrollTrigger;
+     let lightningInterval;
+
 
 
      // ASTEROID POSITIONING IN FOURTH PANEL ANIMATION
@@ -227,7 +234,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
          useGSAP(() => {
             // Mars movement (side to side)
             
-            gsap.to(marsRef.current, {
+            marsAnimation = gsap.to(marsRef.current, {
                 x: 600,
                 duration: 2,
                 repeat: -1,
@@ -241,8 +248,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                 },
             });
         
-            // Fireball shooting animation
-            let fireballTimeout;
+         
 
             // Function to shoot multiple fireballs
             const shootFireball = () => {
@@ -287,7 +293,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
             };
 
             // Start shooting fireballs when ScrollTrigger activates
-            ScrollTrigger.create({
+            fireballScrollTrigger = ScrollTrigger.create({
                 trigger: marsBattleRef.current,
                 start: "top center",
                 end: "bottom center",
@@ -326,6 +332,19 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                 }
             };
 
+               // Asteroid falling trigger (Continuous falling)
+               asteroidScrollTrigger = ScrollTrigger.create({
+                trigger: marsBattleRef.current,
+                start: "top center",
+                end: "bottom center",
+                onEnter: createAsteroids,
+                onEnterBack: createAsteroids,
+                toggleActions: "play none none none", // Allows for continuous asteroid generation as you scroll up and down
+
+
+            });
+
+
             const createLightning = () => {
                 console.log("Lightning created!");
             
@@ -337,7 +356,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                 }
             
                 const lightning = document.createElement("div");
-                lightning.classList.add("absolute", "top-0", "left-1/2", "w-[4px]", "h-full", "bg-white", "z-[9999]", "pointer-events-none");
+                lightning.classList.add("absolute", "top-0", "left-1/2", "w-[4px]", "h-full", "bg-[#FFFF00]", "z-[9999]", "pointer-events-none");
             
                 // Create a zigzag pattern for the lightning
                 const createLightningParts = () => {
@@ -347,7 +366,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                     // Generate a few zigzag segments
                     for (let i = 0; i < 5; i++) {
                         const part = document.createElement("div");
-                        part.classList.add("absolute", "bg-white", "z-[9999]", "pointer-events-none");
+                        part.classList.add("absolute", "bg-[#FFFF00]", "z-[9999]", "pointer-events-none");
             
                         const left = Math.random() * 20 + 40; // Randomize horizontal position
                         const height = Math.random() * 50 + 30; // Randomize the length of each part
@@ -410,23 +429,22 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
             };
             
             // Trigger lightning every 5 seconds with a random delay between strikes
-            setInterval(() => {
+           lightningInterval =  setInterval(() => {
                 createLightning(); // Create lightning every 5 seconds
             }, Math.random() * 3000 + 2000); // Randomize the time between strikes (2-5 seconds)
+
+
+            return () => {
+                if (marsAnimation) marsAnimation.kill();
+                if (fireballTimeout) clearInterval(fireballTimeout);
+                if (fireballScrollTrigger) fireballScrollTrigger.kill();
+                if (asteroidScrollTrigger) asteroidScrollTrigger.kill();
+                if (lightningInterval) clearInterval(lightningInterval);
+                ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+            };
             
-            
-            // Asteroid falling trigger (Continuous falling)
-            ScrollTrigger.create({
-                trigger: marsBattleRef.current,
-                start: "top center",
-                end: "bottom center",
-                onEnter: createAsteroids,
-                onEnterBack: createAsteroids,
-                toggleActions: "play none none none", // Allows for continuous asteroid generation as you scroll up and down
-
-
-            });
-
+         
+           
         
         }, []);
             
