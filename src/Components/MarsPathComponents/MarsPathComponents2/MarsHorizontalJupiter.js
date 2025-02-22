@@ -27,26 +27,6 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
     const container = useRef(null);
 
 
-   
-
-
-    useGSAP(() => {
-        const sections = gsap.utils.toArray("section", container.current);
-        const containerWidth = sections.length * 100;
-    
-        gsap.to(sections, {
-          xPercent: -100 * (sections.length - 1),
-          ease: "none",
-          scrollTrigger: {
-            trigger: container.current,
-            pin: true,
-            scrub: 3,
-            delay: 0.5,
-            markers: true,
-            end: containerWidth * 5,
-          },
-        });
-      }, []);
 
 
 
@@ -139,7 +119,7 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
 
       return (
 
-        <div  className='bg-jupiter-bg-scroll pt-14 bg-center min-h-screen overflow-x-hidden' id='mars-path-container'>
+        <div  className='bg-jupiter-bg-scroll  w-full min-w-screen relative pt-14 bg-center overflow-x-hidden' id='mars-path-container'>
            
 
         {/* container for the jupiter-grotto portion at top left of screen */}
@@ -173,18 +153,17 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
         </div>
 
         
-        {/* HORIZONTAL SCROLL SECTION */}
-        <div ref={container}  id="scroll-container" className=' flex flex-row gap-4 w-[600%] min-h-screen flex-nowrap pt-7 pl-7 overflow-x-hidden' >
+       
 
                 {/* container for FIRST scroll section / dialogue */}
-                <section id="panel" className=' w-screen min-h-screen flex flex-col gap-14'>
+                <section id="panel" className=' w-screen min-h-screen flex flex-col justfiy-center items-center gap-14'>
 
-                    <div id='container-panel-mars' className='flex flex-row w-full h-fit pt-12 justify-between'>
+                    <div id='container-panel-mars' className='flex flex-row w-full h-fit pt-12 justify-center'>
                         
                         <div id='mars-dialogue' className='flex flex-row w-fit h-fit mt-9 '>
 
                             <div id='mars-pic' className='mt-14'>
-                                <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
+                                <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] " src={MarsGif} alt="Mars Gif"/>
                             </div>
                             <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
                                 WAR! Goddammit, war. No one ever wants to go to war with me these days. Also... why is everything so gassy in here? ...
@@ -200,7 +179,7 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
                     <div id='jupiter-dialogue' className='flex flex-row w-fit h-fit'>
 
                         <div id='jupiter-pic' className='mt-14'>
-                            <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={JupiterAnnoyedGif} alt="Jupiter Gif"/>
+                            <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] " src={JupiterAnnoyedGif} alt="Jupiter Gif"/>
                         </div>
                         <div id ='jupiter-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
                         Mars, you need to just listen to others for once. 
@@ -218,7 +197,7 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
 
 
                 {/* container for SECOND scroll section / dialogue */}
-                {/* <section id="panel" className='  w-screen min-h-screen flex flex-col gap-14 '>
+                <section id="panel" className='  w-screen min-h-screen flex flex-col gap-14 '>
                     
                     <div id='container-panel-jupiter' className='flex w-full h-fit pt-12 justify-between
                     gap-6 flex-col md:flex-row pl-5 pr-5'>
@@ -226,7 +205,7 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
                     <div id='jupiter-dialogue-2' className='flex flex-row w-fit h-fit'>
 
                         <div id='jupiter-pic' className='mt-14'>
-                            <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={JupiterGif} alt="jupiter Gif"/>
+                            <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] " src={JupiterGif} alt="jupiter Gif"/>
                         </div>
 
                         <div id ='jupiter-text' className='flex w-fit md:w-72 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
@@ -255,11 +234,11 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
                     </div> 
 
                     </div>
-                </section> */}
+                </section>
 
 
                 {/* container for THIRD scroll section / dialogue */}
-                {/* <section id="panel" className=' w-screen min-h-screen flex flex-col justify-center'>
+                <section id="panel" className=' w-screen min-h-screen flex flex-col justify-center'>
 
                     <div id='container-panel-mars' className='items-center flex flex-col gap-14'>
 
@@ -267,7 +246,7 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
                         <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-start p-5'>
 
                             <div id='mars-pic' className='mt-14'>
-                                <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
+                                <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] " src={MarsGif} alt="Mars Gif"/>
                             </div>
                             <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
                                 In traditional astrology, Mars was known as the lesser malefic planet, with Saturn being the 
@@ -287,24 +266,24 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
 
                                 
                                 <div id='mars-pic' className='mt-14'>
-                                    <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="jupiter Gif"/>
+                                    <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] " src={MarsGif} alt="jupiter Gif"/>
                                 </div>
 
                             </div>
 
                     </div>
                     
-                </section> */}
+                </section>
 
                  {/* container for FOURTH scroll section / dialogue */}
-                {/* <section id="panel" className=' w-screen min-h-screen flex flex-col justify-center'>
+                <section id="panel" className=' w-screen min-h-screen flex flex-col justify-center'>
                     <div id='container-panel-mars' className='items-center flex flex-col '>
 
 
                     <div id='mars-dialogue' className='flex flex-row w-fit h-fit  p-5'>
 
                         <div id='mars-pic' className='mt-14'>
-                            <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
+                            <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
                         </div>
                         <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
                             mars animation here
@@ -314,17 +293,17 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
                 </div>
                         
                     
-                </section> */}
+                </section>
 
                  {/* container for FIFTH scroll section / dialogue */}
-                {/* <section id="panel" className='  w-screen min-h-screen flex flex-col justify-center'>
+                <section id="panel" className='  w-screen min-h-screen flex flex-col justify-center'>
                         
                     <div id='container-panel' className='flex flex-col items-center gap-14'>
 
                             <div id='jupiter-dialogue' className='flex flex-row w-fit h-fit self-start p-7 ml-9'>
 
                                 <div id='jupiter-pic' className='mt-14'>
-                                    <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={JupiterAnnoyedGif} alt="jupiter Gif"/>
+                                    <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] " src={JupiterAnnoyedGif} alt="jupiter Gif"/>
                                 </div>
 
                                 <div id ='jupiter-text' className='flex w-fit md:w-72 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
@@ -336,7 +315,7 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
                             <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-end p-7 mr-9'>
 
                                 <div id='mars-pic' className='mt-14'>
-                                    <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
+                                    <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] " src={MarsGif} alt="Mars Gif"/>
                                 </div>
                                 <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
                                     Boys go to Jupiter to get stupider. It’s true. Which is why I should go with my plan.
@@ -345,7 +324,7 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
                             </div>
                     </div>
             </section>
-                */}
+               
                
                
                
@@ -359,8 +338,8 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
                         </div>
 
                         <div id='planet-pics' className='flex flex-row gap-5 items-center justify-center w-full h-fit'>
-                            <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={MarsGif} alt="Mars Gif"/>
-                            <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={JupiterGif} alt="Mars Gif"/>
+                            <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
+                            <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] " src={JupiterGif} alt="Mars Gif"/>
                             
                         </div>
 
@@ -384,7 +363,7 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
                 </section>
 
         </div>
-    </div>
+ 
 
 
       )
