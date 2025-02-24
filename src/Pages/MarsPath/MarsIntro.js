@@ -16,7 +16,7 @@ function MarsIntro({ addCharacter }) {
         // add Mars to status bar
         addCharacter('Mars');
         // navigate to mars game / path
-        navigate('/mars-game');
+        navigate('/mars-game/mars-horizontal-venus');
     };
 
 

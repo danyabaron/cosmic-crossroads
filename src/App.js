@@ -62,7 +62,7 @@ function App() {
               </>
             } />
           <Route 
-            path="/mars-game" 
+            path="/mars-game/:screen" 
             element={
               <>
                 <StatusBar characters={characters} />

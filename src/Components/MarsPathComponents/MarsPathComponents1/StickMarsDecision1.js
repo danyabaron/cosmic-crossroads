@@ -31,7 +31,7 @@ import { useGSAP } from '@gsap/react';
       {
           text: "WHO'S NEXT?",
           style: "mt-8 bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
-          screen: "MarsHorizontalJupiter"
+          screen: "mars-horizontal-jupiter"
       }
   ];
 

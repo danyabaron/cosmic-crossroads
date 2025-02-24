@@ -51,6 +51,56 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
         //     }
         // };
 
+         useGSAP(() => {
+                const marsDialogs = gsap.utils.toArray(".mars-dialogue");
+                const jupiterDialogs = gsap.utils.toArray(".jupiter-dialogue");
+            
+               
+            
+                
+                marsDialogs.forEach((dialog) => {
+                    gsap.fromTo(dialog,
+                        { x: "-100%", opacity: 0 },
+                        {
+                            x: "0%",
+                            opacity: 1,
+                            duration: 3, // Slower animation
+                            ease: "power2.out",
+                            scrollTrigger: {
+                                trigger: dialog,
+                                start: "top 80%",
+                                end: "top 20%",
+                                scrub: 1,  // Keeps it synced with the scroll
+                                // markers: true,  // Optional markers for debugging
+                            }
+                        }
+                    );
+                });
+            
+                
+                jupiterDialogs.forEach((dialog) => {
+                    gsap.fromTo(dialog,
+                        { x: "100%", opacity: 0 },
+                        {
+                            x: "0%",
+                            opacity: 1,
+                            duration: 3, // Slower animation
+                            ease: "power2.out",
+                            scrollTrigger: {
+                                trigger: dialog,
+                                start: "top 80%",
+                                end: "top 20%",
+                                scrub: 1,  // Keeps it synced with the scroll
+                                // markers: true,  // Optional markers for debugging
+                            }
+                        }
+                    );
+                });
+        
+        
+                
+        }, []);
+
     
         console.log("Characters before rendering buttons:", characters);
 
@@ -156,11 +206,11 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
        
 
                 {/* container for FIRST scroll section / dialogue */}
-                <section id="panel" className=' w-screen min-h-screen flex flex-col justfiy-center items-center gap-14'>
+                <section id="panel" className=' w-screen min-h-screen flex flex-col  gap-14'>
 
-                    <div id='container-panel-mars' className='flex flex-row w-full h-fit pt-12 justify-center'>
+                    <div id='container-panel-mars' className='flex flex-row w-full h-fit pt-12 justify-between'>
                         
-                        <div id='mars-dialogue' className='flex flex-row w-fit h-fit mt-9 '>
+                        <div id='' className='mars-dialogue flex flex-row w-fit h-fit mt-9 ml-12 '>
 
                             <div id='mars-pic' className='mt-14'>
                                 <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] " src={MarsGif} alt="Mars Gif"/>
@@ -175,8 +225,8 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
                     </div>
 
 
-                <div id='container-panel-jupiter' className='flex flex-row w-full h-full justify-center '>
-                    <div id='jupiter-dialogue' className='flex flex-row w-fit h-fit'>
+                <div id='container-panel-jupiter' className='flex flex-row w-full h-full justify-end '>
+                    <div id='' className='jupiter-dialogue flex flex-row w-fit h-fit mr-14'>
 
                         <div id='jupiter-pic' className='mt-14'>
                             <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] " src={JupiterAnnoyedGif} alt="Jupiter Gif"/>
