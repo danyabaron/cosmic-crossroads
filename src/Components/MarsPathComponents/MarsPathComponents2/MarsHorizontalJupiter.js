@@ -1,17 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-
-
 import MarsGif from '../../../assets/mars-art/mars-art-official.gif';
 import MarsStaticImg from '../../../assets/mars-art/mars-art-official1.png';
-
 import JupiterDefault from '../../../assets/jupiter-art/jupiter-art.png';
 import JupiterGif from '../../../assets/jupiter-art/jupiter-art-gif.gif';
 import JupiterAnnoyedGif from '../../../assets/jupiter-art/jupiter-art-annoyed-gif.gif';
 import JupiterCloudLong from '../../../assets/clouds/jupiter-cloud-long.png';
 import JupiterCloudShort from '../../../assets/clouds/jupiter-cloud-short.png';
-
+import GoldCoin from '../../../assets/other-art/asteroid-coin.png';
+import AsteroidAngry from '../../../assets/asteroid-art/asteroid-angry.png';
+import AsteroidHappy from '../../../assets/asteroid-art/asteroid-happy.png';
 import ButtonContainer from '../../ButtonContainer';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -25,7 +23,9 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
  
     const navigate = useNavigate();
     const container = useRef(null);
-
+    
+    const asteroidRefs = useRef([]);
+    const coinRefs = useRef([]);
 
 
 
@@ -51,6 +51,7 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
         //     }
         // };
 
+        // FIRST SECTION/PANEL ANIMATION
          useGSAP(() => {
                 const marsDialogs = gsap.utils.toArray(".mars-dialogue");
                 const jupiterDialogs = gsap.utils.toArray(".jupiter-dialogue");
@@ -100,6 +101,34 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
         
                 
         }, []);
+
+
+
+        // SECOND SECTION/PANEL ANIMATION
+        useGSAP(() => {
+            coinRefs.current.forEach((coin, index) => {
+                if (coin && asteroidRefs.current[index]) {
+                    gsap.fromTo(coin,
+                        { y: -50, opacity: 1, scale: 1 },
+                        {
+                            y: "+=150", // Move downward
+                            duration: 1.5,
+                            ease: "power1.inOut",
+                            onComplete: () => {
+                                // Once the coin reaches the asteroid, fade out the asteroid
+                                gsap.to(asteroidRefs.current[index], {
+                                    opacity: 0,
+                                    scale: 0.8,
+                                    duration: 1,
+                                    ease: "power2.out"
+                                });
+                            }
+                        }
+                    );
+                }
+            });
+        }, []);
+    
 
     
         console.log("Characters before rendering buttons:", characters);
@@ -247,7 +276,7 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
 
 
                 {/* container for SECOND scroll section / dialogue */}
-                <section id="panel" className='  w-screen min-h-screen flex flex-col gap-14 '>
+                <section id="panel" className=' relative w-screen min-h-screen flex flex-col gap-14 '>
                     
                     <div id='container-panel-jupiter' className='flex w-full h-fit pt-12 justify-between
                     gap-6 flex-col md:flex-row pl-5 pr-5'>
@@ -277,14 +306,44 @@ function MarsHorizontalJupiter({ characters, setScreen, addCharacter }) {
 
 
 
-                    <div className='flex flex-row justify-center items-center w-full h-fit' id='animation-container'>
-                        <div id='jupiter-animation' className='w-1/2 h-full bg-main-black opacity-40 rounded-md p-5 '>
-                        
-                            <p className='text-white'>jupiter scroll animation  event here</p>
-                    </div> 
+                    {/* Animation Section */}
+            <div className='relative h-fit w-full flex justify-center items-center' id='animation-container'>
+                
+               
+                    
+                    {/* Jupiter Static Image */}
+                    <img src={JupiterDefault} alt="Jupiter Default" className="w-[120px] md:w-[150px] absolute top-0" />
 
+                    {/* Coins Falling */}
+                    <div id='coin-animation' className='absolute top-20 flex flex-wrap justify-center gap-2'>
+                        {[...Array(5)].map((_, index) => (
+                            <img 
+                                key={index} 
+                                ref={el => coinRefs.current[index] = el} 
+                                src={GoldCoin} 
+                                alt="Coin" 
+                                className="w-[30px] opacity-0"
+                            />
+                        ))}
                     </div>
-                </section>
+
+                    {/* Asteroids */}
+                    <div id='asteroids' className="absolute bottom-0 flex flex-wrap gap-4">
+                        {[...Array(5)].map((_, index) => (
+                            <img 
+                                key={index} 
+                                ref={el => asteroidRefs.current[index] = el} 
+                                src={AsteroidAngry} 
+                                alt="Asteroid Angry" 
+                                className="w-[60px]"
+                            />
+                        ))}
+                    </div>
+                </div> 
+            
+
+                
+            </section>
 
 
                 {/* container for THIRD scroll section / dialogue */}
