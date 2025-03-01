@@ -17,7 +17,7 @@ import { useGSAP } from '@gsap/react';
 
 
 
-   function StickMarsDecision1({ setScreen }) {
+   function StickMarsDecision1({ setScreen, characters }) {
 
     //    const [screen, setScreen] = useState(null);
     const mainTextRef = useRef(null);
@@ -151,6 +151,7 @@ import { useGSAP } from '@gsap/react';
                            <ButtonContainer 
                               setScreen={setScreen} 
                               buttons={buttons}
+                              characters={characters}
                               containerStyle="custom-container-style"
                               buttonStyle="custom-button-style"
                            />

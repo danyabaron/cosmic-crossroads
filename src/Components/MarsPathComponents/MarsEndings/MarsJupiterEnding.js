@@ -16,7 +16,7 @@ import { useGSAP } from '@gsap/react';
 
 // mars and jupiter alone ending: mars + jupiter in status bar
 
-function MarsJupiterEnding({ setScreen }) {
+function MarsJupiterEnding({ characters }) {
 
     //    const [screen, setScreen] = useState(null);
 

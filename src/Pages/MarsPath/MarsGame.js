@@ -33,13 +33,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 
-function MarsGame({ addCharacter }) {
+function MarsGame({ addCharacter, characters }) {
 
-    // const [choice, setChoice] = useState(null);
-    // const [screen, setScreen] = useState('MarsHorizontalVenus');
-    const [characters, setCharacters] = useState([]);
-  
-  
   
     // const switchScreen = (newScreen) => {
     //   setScreen(newScreen);
@@ -78,7 +73,7 @@ function MarsGame({ addCharacter }) {
 
 
     return (
-        <ScreenComponent setScreen={switchScreen} addCharacter={addCharacter} />
+        <ScreenComponent setScreen={switchScreen} addCharacter={addCharacter} characters={characters} />
     );
 }
 

@@ -22,7 +22,7 @@ gsap.registerPlugin(MotionPathPlugin);
 
 
 
-   function ChooseVenusDecision1({ setScreen }) {
+   function ChooseVenusDecision1({ setScreen, characters }) {
 
       const asteroidRefs = useRef([]);
       const venusRef = useRef(null);
@@ -170,6 +170,7 @@ gsap.registerPlugin(MotionPathPlugin);
                            <ButtonContainer 
                               setScreen={setScreen} 
                               buttons={buttons}
+                              characters={characters}
                               containerStyle="custom-container-style"
                               buttonStyle="custom-button-style"
                            />

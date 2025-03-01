@@ -31,7 +31,7 @@ function getRandomPosition(min, max) {
 
   
 
-function MarsHorizontalVenus({ setScreen, addCharacter }) {
+function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
 
     const [decisionMade, setDecisionMade] = useState(false); // Track if decision is made
     const [currentScreen, setCurrentScreen] = useState('mars'); // Assuming 'mars' is the screen where the animation happens
@@ -686,6 +686,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter }) {
                                 buttons={buttons}
                                 containerStyle="custom-container-style"
                                 buttonStyle="custom-button-style"
+                                characters={characters}
                                 addCharacter={addCharacter}
                             />
                         </div>

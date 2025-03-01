@@ -29,6 +29,7 @@ function App() {
     setCharacters(prevCharacters => {
       // Append the new character to the team if not already there
       if (!prevCharacters.includes(character)) {
+        console.log("prevCharacter variable: " + prevCharacters);
         return [...prevCharacters, character];  // Add to the existing team
       }
       return prevCharacters; // Don't add if the character is already in the team
@@ -50,7 +51,7 @@ function App() {
             element={
               <>
                 <StatusBar characters={characters} />
-                <VenusIntro addCharacter={addCharacter}/>
+                <VenusIntro addCharacter={addCharacter} characters={characters}/>
               </>
             } />
           <Route 
@@ -58,7 +59,7 @@ function App() {
             element={
               <>
                 <StatusBar characters={characters} />
-                <MarsIntro addCharacter={addCharacter} />
+                <MarsIntro addCharacter={addCharacter} characters={characters} />
               </>
             } />
           <Route 
@@ -66,7 +67,7 @@ function App() {
             element={
               <>
                 <StatusBar characters={characters} />
-                <MarsGame addCharacter={addCharacter} />
+                <MarsGame addCharacter={addCharacter} characters={characters} />
               </>
             } />
           <Route 
@@ -82,7 +83,7 @@ function App() {
             element={
               <>
                 <StatusBar characters={characters} />
-                <MarsHorizontalVenus setScreen={() => {}} addCharacter={addCharacter} />
+                <MarsHorizontalVenus setScreen={() => {}} addCharacter={addCharacter}  characters={characters}/>
               </>
           
             } 
@@ -92,16 +93,39 @@ function App() {
             element={
               <>
                 <StatusBar characters={characters} />
-                <MarsHorizontalJupiter setScreen={() => {}} addCharacter={addCharacter} />
+                <MarsHorizontalJupiter setScreen={() => {}} addCharacter={addCharacter} characters={characters} />
               </>
             
             } 
             />
 
-          <Route path="/mars-solo" element={<MarsSoloEnding />} />
-          <Route path="/mars-venus" element={<MarsVenusEnding />} />
-          <Route path="/mars-jupiter" element={<MarsJupiterEnding />} />
-          <Route path="/mars-venus-jupiter" element={<MarsVenusJupiterEnding />} />
+          <Route path="/mars-solo" element={
+            <>
+              <StatusBar characters={characters} />
+              <MarsSoloEnding characters={characters} />
+            </>
+
+            } />
+          <Route path="/mars-venus" element={
+            <>
+              <StatusBar characters={characters} />
+              <MarsVenusEnding characters={characters} />
+            </>
+            
+            } />
+          <Route path="/mars-jupiter" element={
+            <>
+              <StatusBar characters={characters} />
+              <MarsJupiterEnding characters={characters} />
+            </>
+            
+            } />
+          <Route path="/mars-venus-jupiter" element={
+             <>
+             <StatusBar characters={characters} />
+             <MarsVenusJupiterEnding characters={characters} />
+           </>
+          } />
 
 
         </Routes>

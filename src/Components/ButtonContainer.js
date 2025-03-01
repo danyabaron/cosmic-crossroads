@@ -1,12 +1,8 @@
 import React from 'react';
 
-
-
-function ButtonContainer({ setScreen, buttons = [], containerStyle = '', buttonStyle = '', addCharacter }) {
+function ButtonContainer({ setScreen, buttons = [], containerStyle = '', buttonStyle = '', addCharacter, characters = [] }) {
     console.log("ButtonContainer received addCharacter:", addCharacter);
-
-   
-
+    console.log("ButtonContainer received characters:", characters);
 
     return (
         <div id='button-container' className={`flex flex-col items-center justify-center gap-4 ${containerStyle}`}>
@@ -30,10 +26,8 @@ function ButtonContainer({ setScreen, buttons = [], containerStyle = '', buttonS
                             console.warn("button.addCharacter is undefined for:", button.text);
                         }
 
-                        
-                            console.log("Setting screen:", button.screen);
-                            setScreen(button.screen);
-                        
+                        console.log("Setting screen:", button.screen);
+                        setScreen(button.screen);
                     }}
                     className={`${button.style} ${buttonStyle}`}
                 >
@@ -45,34 +39,3 @@ function ButtonContainer({ setScreen, buttons = [], containerStyle = '', buttonS
 }
 
 export default ButtonContainer;
-
-
-// function ButtonContainer({ setScreen, buttons, containerStyle = '', buttonStyle = '', addCharacter }) {
-    
-//     console.log("ButtonContainer received addCharacter:", addCharacter);
-    
-//     return (
-//         <div id='button-container' className={`flex flex-col items-center justify-center gap-4 ${containerStyle}`}>
-//             {buttons.map((button, index) => (
-//                     <button
-//                     key={index}
-//                     onClick={() => {
-//                         console.log("Button clicked");
-//                         console.log("Button object:", button);
-//                         if (addCharacter && typeof addCharacter === 'function') {
-//                             console.log("Adding character:", button.addCharacter);
-//                             addCharacter(button.addCharacter);
-//                         }
-//                         console.log("Setting screen:", button.screen);
-//                         setScreen(button.screen);
-//                     }}
-//                     className={`${button.style} ${buttonStyle}`}
-//                 >
-//                     {button.text}
-//                 </button>
-//             ))}
-//         </div>
-//     );
-// }
-
-// export default ButtonContainer;
