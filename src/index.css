@@ -21,3 +21,7 @@ body {
     @apply m-0;
     font-family: '04B_03__', sans-serif;
 }
+
+.particle-container {
+    overflow: visible !important; /* Ensure particles are not clipped */
+  }

@@ -11,6 +11,7 @@ import AsteroidMouthOpen from '../../../assets/asteroid-art/asteroid-mouth-open.
 import BlackSparkle from '../../../assets/other-art/black-sparkle.png';  
 import ButtonContainer from '../../ButtonContainer';
 import Fireball from '../../../assets/other-art/fire.gif';
+import ParticleBackground from '../../ParticleBackground';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
@@ -267,57 +268,6 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
         }, []);
     
     
-        // FIFTH SCROLL SECTION / MARS FIERY FOOTSTEP ANIMATION
-
-            useGSAP(() => {
-              const footstepsContainer = document.querySelector('#footsteps');
-          
-              if (!footstepsContainer) return; // Ensure the element exists
-          
-              const footstepCount = 5; // Number of footsteps
-              let currentPosition = 0; // Track the position of the footsteps
-          
-              // Loop through and create the fiery footsteps
-              for (let i = 0; i < footstepCount; i++) {
-                const footstep = document.createElement('img');
-
-                footstep.src = Fireball;
-                footstep.className = 'absolute w-10 h-10 z-0';
-                
-                footstep.style.top = '50%'; // Adjust this for your needs
-                footstep.style.left = `${currentPosition}px`; // Set the initial left position
-                footstep.style.backgroundImage = Fireball; // Add fire image background
-                footstepsContainer.appendChild(footstep);
-          
-                // Animate the footstep to give it a fiery effect
-                gsap.to(footstep, {
-                  scale: 0, // Footstep fades out as it shrinks
-                  opacity: 0,
-                  duration: 1.5,
-                  delay: i * 0.3, // Delay for sequential footsteps
-                  ease: 'power2.inOut',
-                  onComplete: () => footstep.remove(), // Remove footstep once animation is complete
-                });
-          
-                // Increment the position for the next footstep
-                currentPosition += 100; // Adjust this value to control the spacing between steps
-            }
-            
-            }, []); // Empty dependency array to trigger only once (on mount)
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
     
     // Update the buttons to use navigate directly instead of setScreen
     const handleDecision = (decision) => {
@@ -368,6 +318,7 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
 
     return (
         <div className='bg-jupiter-bg-scroll w-full min-w-screen relative pt-14 bg-center overflow-x-hidden' id='mars-path-container'>
+            
             {/* container for the jupiter-grotto portion at top left of screen */}
             <div className='flex flex-col w-2/3 md:w-1/2 h-fit mt-10 ml-5 gap-5' id='jupiter-grotto-container'>
                 {/* container for the top black box */}

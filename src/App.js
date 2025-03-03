@@ -15,6 +15,7 @@ import MarsVenusEnding from './Components/MarsPathComponents/MarsEndings/MarsVen
 import MarsJupiterEnding from './Components/MarsPathComponents/MarsEndings/MarsJupiterEnding.js';
 import MarsVenusJupiterEnding from './Components/MarsPathComponents/MarsEndings/MarsVenusJupiterEnding.js';
 import ScrollAnimations from './Components/ScrollAnimations.js';
+import ParticleBackground from './Components/ParticleBackground.js';
 
 
 
@@ -41,8 +42,13 @@ function App() {
 
   return (
     <Router>
+
+    <ParticleBackground />
+      
       <StatusBar characters={characters} />
-      <div className="App flex flex-col min-h-screen min-w-screen">
+      <div className="App flex flex-col min-h-screen min-w-screen ">
+
+       
         <Routes>
         <Route path="/" element={<Home setCharacters={setCharacters} />} />
         {/* <Route path='/' element={<ScrollAnimations />} /> */}
@@ -130,6 +136,9 @@ function App() {
 
         </Routes>
       </div>
+
+
+      
     </Router>
   );
 }
