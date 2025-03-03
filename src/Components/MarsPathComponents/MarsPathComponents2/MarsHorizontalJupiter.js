@@ -7,8 +7,10 @@ import JupiterAnnoyedGif from '../../../assets/jupiter-art/jupiter-art-annoyed-g
 import GoldCoin from '../../../assets/other-art/asteroid-coin.png';
 import AsteroidAngry from '../../../assets/asteroid-art/asteroid-angry.png';
 import YellowSparkle from '../../../assets/other-art/yellow-sparkle.png';
+import AsteroidMouthOpen from '../../../assets/asteroid-art/asteroid-mouth-open.png';   
 import BlackSparkle from '../../../assets/other-art/black-sparkle.png';  
 import ButtonContainer from '../../ButtonContainer';
+import Fireball from '../../../assets/other-art/fire.gif';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
@@ -265,6 +267,58 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
         }, []);
     
     
+        // FIFTH SCROLL SECTION / MARS FIERY FOOTSTEP ANIMATION
+
+            useGSAP(() => {
+              const footstepsContainer = document.querySelector('#footsteps');
+          
+              if (!footstepsContainer) return; // Ensure the element exists
+          
+              const footstepCount = 5; // Number of footsteps
+              let currentPosition = 0; // Track the position of the footsteps
+          
+              // Loop through and create the fiery footsteps
+              for (let i = 0; i < footstepCount; i++) {
+                const footstep = document.createElement('img');
+
+                footstep.src = Fireball;
+                footstep.className = 'absolute w-10 h-10 z-0';
+                
+                footstep.style.top = '50%'; // Adjust this for your needs
+                footstep.style.left = `${currentPosition}px`; // Set the initial left position
+                footstep.style.backgroundImage = Fireball; // Add fire image background
+                footstepsContainer.appendChild(footstep);
+          
+                // Animate the footstep to give it a fiery effect
+                gsap.to(footstep, {
+                  scale: 0, // Footstep fades out as it shrinks
+                  opacity: 0,
+                  duration: 1.5,
+                  delay: i * 0.3, // Delay for sequential footsteps
+                  ease: 'power2.inOut',
+                  onComplete: () => footstep.remove(), // Remove footstep once animation is complete
+                });
+          
+                // Increment the position for the next footstep
+                currentPosition += 100; // Adjust this value to control the spacing between steps
+            }
+            
+            }, []); // Empty dependency array to trigger only once (on mount)
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     // Update the buttons to use navigate directly instead of setScreen
     const handleDecision = (decision) => {
         console.log("Decision made:", decision);
@@ -370,7 +424,7 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                         </div>
                     </div>
                     <div id='benefic-text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
-                    <img id='corner-yellow-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -right-11' loading='lazy' src={YellowSparkle}/>
+                        <img id='corner-yellow-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -left-11' loading='lazy' src={YellowSparkle}/>
                         Benefic planets, such as Jupiter, tend to have an overindulgent streak. Jupiter's optimist attitude can help balance out your will to take action. However, Jupiter sometimes needs to understand that their buoyance attitude sometimes can get them in trouble.
                     </div>
                 </div>
@@ -391,16 +445,18 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
             {/* container for THIRD scroll section / dialogue */}
             <section id="panel" className='w-screen min-h-screen flex flex-col justify-center'>
                 <div id='container-panel-mars' className='items-center flex flex-col gap-14'>
-                    <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-start p-5'>
+                    <div id='' className='jupiter-dialogue flex flex-row w-fit h-fit p-5'>
                         <div id='mars-pic' className='mt-14'>
                             <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
                         </div>
-                        <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                        <div id ='mars-text' className='relative flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                        <img id='corner-asteroid' className='absolute w-12 h-auto max-w-full max-h-full object-contain -top-6 -right-5' loading='lazy' src={AsteroidMouthOpen}/>
                             In traditional astrology, Mars was known as the lesser malefic planet, with Saturn being the bigger malefic planet. Traditional astrologers associated malefic planets to represent everything that was 'bad' about being alive
                         </div>
                     </div>
-                    <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-end p-5'>
-                        <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                    <div id='' className='mars-dialogue flex flex-row w-fit h-fit p-5'>
+                        <div id ='mars-text' className='relative flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                            <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-10 -left-11' loading='lazy' src={BlackSparkle}/>
                             As a malefic planet, specifically Mars, you thrive on acting on your 'survival instinct'. Mars is what gets you out of danger, but won't play defense.
                         </div>
                         <div id='mars-pic' className='mt-14'>
@@ -411,18 +467,18 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
             </section>
 
             {/* container for FOURTH scroll section / dialogue */}
-            <section id="panel" className='w-screen min-h-screen flex flex-col justify-center'>
-                <div id='container-panel-mars' className='items-center flex flex-col '>
-                    <div id='mars-dialogue' className='flex flex-row w-fit h-fit p-5'>
+            {/* <section id="panel" className='w-screen min-h-screen flex flex-col justify-center'>
+                <div id='container-panel-mars' className='relative items-center flex flex-col '>
+                   
                         <div id='mars-pic' className='mt-14'>
                             <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
                         </div>
-                        <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                            mars animation here
+                        <div id ='footsteps' className='relative  w-full h-full flex items-center justify-center'>
+                            
                         </div>
-                    </div>
+                    
                 </div>
-            </section>
+            </section> */}
 
             {/* container for FIFTH scroll section / dialogue */}
             <section id="panel" className='w-screen min-h-screen flex flex-col justify-center'>
@@ -475,5 +531,6 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
         </div>
     );
 }
+
 
 export default MarsHorizontalJupiter;
