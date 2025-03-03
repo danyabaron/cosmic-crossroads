@@ -6,6 +6,8 @@ import JupiterGif from '../../../assets/jupiter-art/jupiter-art-gif.gif';
 import JupiterAnnoyedGif from '../../../assets/jupiter-art/jupiter-art-annoyed-gif.gif';
 import GoldCoin from '../../../assets/other-art/asteroid-coin.png';
 import AsteroidAngry from '../../../assets/asteroid-art/asteroid-angry.png';
+import YellowSparkle from '../../../assets/other-art/yellow-sparkle.png';
+import BlackSparkle from '../../../assets/other-art/black-sparkle.png';  
 import ButtonContainer from '../../ButtonContainer';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -86,6 +88,26 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
     // SECOND SECTION/PANEL ANIMATION
     useGSAP(() => {
         // Function to shoot coins at asteroids at random positions
+
+         
+                    let jupiterAnimation = gsap.to(jupiterRef.current, {
+                        y: -50,
+                        duration: 2,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "power1.inOut",
+                        scrollTrigger: {
+                            trigger: jupiterBattleRef.current,
+                            start: "top center",
+                            end: "bottom center",
+                            toggleActions: "play none none none",
+                        },
+                    });
+
+
+
+
+
         const shootCoin = () => {
             if (!coinContainerRef.current) return; // Check if ref exists
             
@@ -116,7 +138,7 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                                 x: '100vh',
                                 y: randomY,
                                 duration: 3,
-                                opacity: 0,
+                                opacity: 1,
                                 ease: 'power2.out',
                                 onComplete: () => {
                                     if (coin.parentNode) {
@@ -134,6 +156,10 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
     
         // Continuous coin shooting with a delay
         const shootCoinsContinuously = () => {
+            // Shoot coins immediately when this function is called
+            shootCoin();
+            
+            // Then set up the interval for continuous shooting
             const intervalId = setInterval(() => {
                 if (coinContainerRef.current) {
                     shootCoin();
@@ -151,99 +177,94 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
             start: 'top center',
             end: 'bottom center',
             onEnter: shootCoinsContinuously,
+            onEnterBack: shootCoinsContinuously, // Also trigger when scrolling back up
             onLeaveBack: () => {
                 intervals.current.forEach(clearAndRemoveInterval);
             },
-            toggleActions: 'play none none none',
+            toggleActions: 'play none none reverse',
         });
-    
-        // Function to create falling asteroids
-        const createAsteroids = () => {
-            if (!asteroidContainerRef.current) return; // Check if container exists
             
-            const asteroidCount = 4;
-            const existingAsteroids = asteroidContainerRef.current.querySelectorAll('img');
-    
-            // Prevent spawning too many asteroids
-            if (existingAsteroids.length >= 10) return;
-    
-            const timeoutId = setTimeout(() => {
-                if (!asteroidContainerRef.current) {
-                    clearAndRemoveTimeout(timeoutId);
-                    return;
-                }
+                const createAsteroids = () => {
+                    if (!asteroidContainerRef.current) return;
                 
-                for (let i = 0; i < asteroidCount; i++) {
-                    try {
+                    const asteroidCount = 5;
+                    const existingAsteroids = asteroidContainerRef.current.querySelectorAll('img');
+                
+                    // Prevent spawning too many asteroids
+                    if (existingAsteroids.length >= 10) return;
+                
+                    for (let i = 0; i < asteroidCount; i++) {
+                        if (!asteroidContainerRef.current) return;
+                
+                        const containerHeight = asteroidContainerRef.current.clientHeight;
+                        const randomTop = Math.random() * containerHeight;
+                
                         const asteroid = document.createElement('img');
                         asteroid.src = AsteroidAngry;
                         asteroid.className = 'absolute w-10 h-10 z-0';
-                        asteroid.style.right =  `100px`;
-                        asteroid.style.top = `${Math.random() * 100}vw`;
-                        
-                        if (asteroidContainerRef.current) {
-                            asteroidContainerRef.current.appendChild(asteroid);
-                            
-                            gsap.to(asteroid, {
-                                x: '-100vh',
-                                opacity: 1,
-                                duration: 3,
-                                ease: 'linear',
-                                onStart: () => {
-                                    gsap.to(asteroid, {
-                                        opacity: 0,
-                                        duration: Math.random() * 1 + 1,
-                                        delay: (Math.random() * 3 + 2) / 2,
-                                    });
-                                },
+                        asteroid.style.right = `0px`; // Start from right edge
+                        asteroid.style.top = `${randomTop}px`;
+                
+                        asteroidContainerRef.current.appendChild(asteroid);
+                
+                        // Ensure asteroid is added to DOM before animating
+                        requestAnimationFrame(() => {
+                            if (!asteroid.parentNode) {
+                                console.error("Asteroid not appended properly!");
+                                return;
+                            }
+                
+                            // Timeline for coordinated animations
+                            const tl = gsap.timeline({
                                 onComplete: () => {
-                                    if (asteroid.parentNode) {
-                                        asteroid.remove();
-                                    }
-                                    
-                                    // Only create new asteroids if the container still exists
-                                    if (asteroidContainerRef.current) {
-                                        const newTimeoutId = setTimeout(() => createAsteroids(), 500);
-                                        timeouts.current.push(newTimeoutId);
-                                    }
-                                },
+                                    asteroid.remove();
+                                    const timeoutId = setTimeout(() => createAsteroids(), 500);
+                                    timeouts.current.push(timeoutId);
+                                }
                             });
-                        }
-                    } catch (error) {
-                        console.error("Error creating asteroid:", error);
+                
+                            // Add asteroid movement animation
+                            tl.to(asteroid, {
+                                x: "-100vw", // Move fully off-screen
+                                duration: 3, // Animation duration
+                                ease: "linear"
+                            });
+                
+                            // Add opacity animation that starts at the halfway point
+                            tl.to(asteroid, {
+                                opacity: 0, // Fade to transparent
+                                duration: .2, // Half the duration of the movement
+                                ease: "power1.in" // Smooth easing for fade
+                            }, "-=1.5"); // Start 1.5 seconds before the main animation ends (halfway through)
+                        });
                     }
-                }
-            }, 2000);
-            
-            timeouts.current.push(timeoutId);
-        };
-    
-        // Asteroid creation trigger
-        let asteroidScrollTrigger = ScrollTrigger.create({
-            trigger: jupiterBattleRef.current,
-            start: 'top center',
-            end: 'bottom center',
-            onEnter: createAsteroids,
-            onEnterBack: createAsteroids,
-            toggleActions: 'play none none none',
-        });
-    
-        // Cleanup
-        return () => {
-            // Clear all timeouts
-            timeouts.current.forEach(clearTimeout);
-            timeouts.current = [];
-            
-            // Clear all intervals
-            intervals.current.forEach(clearInterval);
-            intervals.current = [];
-            
-            // Kill all GSAP animations and ScrollTriggers
-            gsap.killTweensOf("*");
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-        };
-    }, []);
+                };
+                
+                // Initial asteroid spawn
+                createAsteroids();
+                
+                // Scroll-triggered asteroid spawning
+                let asteroidScrollTrigger = ScrollTrigger.create({
+                    trigger: jupiterBattleRef.current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    onEnter: createAsteroids,
+                    onEnterBack: createAsteroids,
+                    
+                    toggleActions: "play none none none", // Allows for continuous asteroid generation as you scroll up and down
 
+                });
+                
+                // Cleanup function
+                return () => {
+                    // Kill all animations and scroll triggers
+                    gsap.killTweensOf("*");
+                    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+                };
+        
+        }, []);
+    
+    
     // Update the buttons to use navigate directly instead of setScreen
     const handleDecision = (decision) => {
         console.log("Decision made:", decision);
@@ -348,7 +369,8 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                             I say try to negotiate with the guy. Or maybe there's a greater purpose to all of this. Maybe the asteroid isn't even going to hit us at all.
                         </div>
                     </div>
-                    <div id='benefic-text' className='flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
+                    <div id='benefic-text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
+                    <img id='corner-yellow-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -right-11' loading='lazy' src={YellowSparkle}/>
                         Benefic planets, such as Jupiter, tend to have an overindulgent streak. Jupiter's optimist attitude can help balance out your will to take action. However, Jupiter sometimes needs to understand that their buoyance attitude sometimes can get them in trouble.
                     </div>
                 </div>
