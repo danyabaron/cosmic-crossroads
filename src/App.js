@@ -43,7 +43,7 @@ function App() {
   return (
     <Router>
 
-    <ParticleBackground />
+    {/* <ParticleBackground /> */}
       
       <StatusBar characters={characters} />
       <div className="App flex flex-col min-h-screen min-w-screen ">
