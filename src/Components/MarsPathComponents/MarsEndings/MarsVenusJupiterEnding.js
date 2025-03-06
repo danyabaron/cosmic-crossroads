@@ -11,7 +11,6 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 const MarsVenusJupiterEnding = () => {
-  const planetsRef = useRef([]);
   const bgRef = useRef(null);
   const marsRef = useRef(null);
   const jupiterRef = useRef(null);
@@ -29,96 +28,144 @@ const MarsVenusJupiterEnding = () => {
       },
     });
 
-    // Mars entry animation - swoop from top left
+    // Mars entry animation - spiral from left
     gsap.fromTo(
       marsRef.current,
       { 
         opacity: 0,
         x: "-100vw", 
-        y: "-50vh", 
-        scale: 0.5 
+        y: "0", 
+        scale: 0.2,
+        rotation: -180
       },
       {
         opacity: 1,
         motionPath: {
           path: [
-            {x: "-50vw", y: "-30vh"},
+            {x: "-80vw", y: "10vh"},
+            {x: "-60vw", y: "-20vh"},
+            {x: "-40vw", y: "15vh"},
+            {x: "-20vw", y: "-10vh"},
             {x: "0", y: "0"}
           ],
-          curviness: 1.5
+          curviness: 1.8
         },
         scale: 1,
-        duration: 2.5,
-        ease: "power2.out",
+        rotation: 360,
+        duration: 3,
+        ease: "power2.inOut",
         scrollTrigger: {
           trigger: marsRef.current.parentNode,
-          start: "top 70%",
-          toggleActions: "play none none none",
+          start: "top 80%",
+        //   start: "top bottom",
+      
+          end: "bottom 20%",
+        //   end: "bottom 20%",
+        //   scrub: true,
+          toggleActions: "play none none reverse",
         }
       }
     );
 
-    // Jupiter entry animation - swoop from bottom right
+    // Jupiter entry animation - spiral from bottom
     gsap.fromTo(
       jupiterRef.current,
       { 
         opacity: 0,
-        x: "100vw", 
-        y: "50vh", 
-        scale: 0.5 
+        x: "0", 
+        y: "100vh", 
+        scale: 0.3,
+        rotation: 180
       },
       {
         opacity: 1,
         motionPath: {
           path: [
-            {x: "50vw", y: "30vh"},
+            {x: "30vw", y: "80vh"},
+            {x: "-25vw", y: "60vh"},
+            {x: "20vw", y: "40vh"},
+            {x: "-15vw", y: "20vh"},
             {x: "0", y: "0"}
           ],
-          curviness: 1.5
+          curviness: 2
         },
         scale: 1,
-        duration: 2.5,
-        delay: 0.5,
-        ease: "power2.out",
+        rotation: -360,
+        duration: 3.5,
+        // delay: 0.3,
+        ease: "power1.inOut",
         scrollTrigger: {
           trigger: jupiterRef.current.parentNode,
-          start: "top 70%",
-          toggleActions: "play none none none",
+          start: "top 80%",
+        //   start: "top bottom",
+          end: "bottom 20%",
+        //   end: "bottom 20%",
+      
+        //   scrub: true,
+          toggleActions: "play none none reverse",
         }
       }
     );
 
-    // Venus entry animation - spiral in from top
+    // Venus entry animation - spiral from right
     gsap.fromTo(
       venusRef.current,
       { 
         opacity: 0,
-        x: "0", 
-        y: "-70vh", 
-        scale: 0.5 
+        x: "100vw", 
+        y: "-20vh", 
+        scale: 0.2,
+        rotation: 180
       },
       {
         opacity: 1,
         motionPath: {
           path: [
-            {x: "30vw", y: "-50vh"},
-            {x: "-30vw", y: "-30vh"},
-            {x: "20vw", y: "-15vh"},
+            {x: "80vw", y: "-15vh"},
+            {x: "60vw", y: "20vh"},
+            {x: "40vw", y: "-15vh"},
+            {x: "20vw", y: "10vh"},
             {x: "0", y: "0"}
           ],
           curviness: 1.5
         },
         scale: 1,
+        rotation: -360,
         duration: 3,
-        delay: 1,
-        ease: "power2.inOut",
+        // delay: 0.6,
+        ease: "power3.inOut",
         scrollTrigger: {
           trigger: venusRef.current.parentNode,
-          start: "top 70%",
-          toggleActions: "play none none none",
+        //   start: "top bottom",
+          start: "top 80%",
+          end: "bottom 20%",
+          
+        //   scrub: true,
+          toggleActions: "play none none reverse",
         }
       }
     );
+
+    // After planets are in position, make them glow and pulse
+    // const glowTimeline = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: bgRef.current,
+    //     start: "top top",
+    //     end: "+=500",
+    //     scrub: 1
+    //   }
+    // });
+
+    // // Add glow effect to each planet
+    // [marsRef.current, jupiterRef.current, venusRef.current].forEach((planet, i) => {
+    //   glowTimeline.to(planet, {
+    //     boxShadow: "0 0 20px 10px rgba(255,255,255,0.7)",
+    //     filter: "brightness(1.3)",
+    //     duration: 1,
+    //     delay: i * 0.2
+    //   }, "glow");
+    // });
+
   }, []);
 
   return (
@@ -126,15 +173,15 @@ const MarsVenusJupiterEnding = () => {
       {/* Parallax Section - Planets Enter */}
       <section className='w-full min-h-screen flex relative flex-col justify-center items-center'>
         <h1 className="text-white text-3xl mb-16 z-10">The Battle Begins...</h1>
-        <div className="relative w-full h-[300px] flex justify-center items-center">
-          {/* Planets positioned absolutely within this container */}
-          <div className="absolute" ref={marsRef}>
+        <div className="relative w-full h-[400px] flex flex-row gap-4 justify-center items-center">
+          {/* Each planet in a separate div for independent animation */}
+          <div className="" ref={marsRef}>
             <img src={MarsStaticImg} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
           </div>
-          <div className="absolute" ref={jupiterRef}>
+          <div className="" ref={jupiterRef}>
             <img src={JupiterDefault} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Jupiter" />
           </div>
-          <div className="absolute" ref={venusRef}>
+          <div className="" ref={venusRef}>
             <img src={VenusMouthOpen} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Venus" />
           </div>
         </div>
