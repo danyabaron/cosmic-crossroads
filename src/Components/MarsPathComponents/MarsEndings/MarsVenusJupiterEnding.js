@@ -186,16 +186,51 @@ const MarsVenusJupiterEnding = () => {
           </div>
         </div>
         
-        <div className="mt-16 text-white text-center max-w-2xl">
-          <p className="text-xl">The three planets unite to face the asteroid threat...</p>
-        </div>
       </section>
 
       <section className='w-full min-h-screen flex flex-col gap-8 justify-center items-center'>
-        <h2 className="text-white text-2xl">Their combined powers create a shield that protects the solar system</h2>
-        {/* Add more content here */}
+        <div id = 'mars-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
+          <h1 className="text-white text-3xl mb-16 z-10"> Mars </h1>
+          <img src={MarsStaticImg} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
+          <p className='text-white font-body m-5'>As Mars, your willingness to work with others can be low.
+            You made the practical decision to team up with your benefic friends, Venus and Jupiter.
+            Mixing your motivation to take action, combined with Jupiter and Venus' optimisim and charm,
+            you were able to come to a friendly agreement with the asteroids.
+          </p>
+        </div>
+      </section>
+
+
+
+
+      <section className='w-full min-h-screen flex flex-col gap-8 justify-center items-center'>
+        <div id = 'mars-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
+          <h1 className="text-white text-3xl mb-16 z-10"> Jupiter </h1>
+          <img src={JupiterDefault} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
+          <p className='text-white font-body m-5'>
+            Jupiter led the charge of negotiation with the asteroids. Jupiter was able to bargain some land
+            of the solar system to the asteroids, and made the asteroids laugh. 
+            Jupiter's jovial energy and humor helped a lot. Without Jupiter, the asteroids may have gotten
+            more on the defense side, but Jupiter was able to form a friendly alliance with them.
+          </p>
+        </div>
+      </section>
+
+
+
+
+
+      <section className='w-full min-h-screen flex flex-col gap-8 justify-center items-center'>
+        <div id = 'mars-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
+          <h1 className="text-white text-3xl mb-16 z-10"> Venus </h1>
+          <img src={VenusMouthOpen} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
+          <p className='text-white font-body m-5'>
+            venus text here.
+          </p>
+        </div>
       </section>
     </div>
+
   );
 };
    
