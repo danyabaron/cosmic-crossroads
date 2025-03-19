@@ -22,60 +22,46 @@ function MarsSoloEnding({ }) {
         console.log('Container Ref:', containerRef.current);
         console.log('Mars Ref:', marsRef.current);
 
-        // Animation with 2 movements
-        gsap.to(marsRef.current, {
-            motionPath: {
-                path: [
-                    { x: 200, y: 200 },  // Point 1
-                    { x: 600, y: 300 },  // Point 2
-                    { x: 300, y: 500 },  // Point 3
-                   
-                ],
-                alignOrigin: [0.5, 0.5]
-            },
-            duration: 3, // Adjust duration as needed
-            ease: "power1.inOut",
-            scrollTrigger: {
-                trigger: containerRef.current,
-                // start: "top top", // Start animation when the top of the container hits the top of the viewport
-                end: "bottom bottom", // End animation when the bottom of the container hits the bottom of the viewport
-                scrub: 1, // Smoothly sync animation with scroll position
-                pin: true,
-                markers: true // Show markers for debugging (remove in production)
-            }
-        });
-        // Animation with 2 movements
-        // gsap.to(asteroidRef.current, {
-        //     motionPath: {
-        //         path: [
-        //             { x: 200, y: 200 },  // Point 1
-        //             { x: 600, y: 300 },  // Point 2
-        //             { x: 300, y: 500 },  // Point 3
-                   
-        //         ],
-        //         alignOrigin: [0.5, 0.5]
-        //     },
-        //     duration: 3, // Adjust duration as needed
-        //     ease: "power1.inOut",
-        //     scrollTrigger: {
-        //         trigger: containerRef.current,
-        //         // start: "top top", // Start animation when the top of the container hits the top of the viewport
-        //         end: "bottom bottom", // End animation when the bottom of the container hits the bottom of the viewport
-        //         scrub: 1, // Smoothly sync animation with scroll position
-        //         pin: true,
-        //         markers: true // Show markers for debugging (remove in production)
-        //     }
-        // });
-
-
-
-
-
-
-
-
-    }, []);
-
+              // Create a timeline for the animations
+              const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: "top top", // Start animation when the top of the container hits the top of the viewport
+                    end: "bottom bottom", // End animation when the bottom of the container hits the bottom of the viewport
+                    scrub: 1, // Smoothly sync animation with scroll position
+                    pin: true, // Pin the container while the animation is running
+                    markers: true // Show markers for debugging (remove in production)
+                }
+            });
+    
+            // Add Mars animation to the timeline
+            tl.to(marsRef.current, {
+                motionPath: {
+                    path: [
+                        { x: 200, y: 200 },  // Point 1
+                        { x: 600, y: 300 },  // Point 2
+                        { x: 300, y: 500 },  // Point 3
+                    ],
+                    alignOrigin: [0.5, 0.5]
+                },
+                duration: 3, // Adjust duration as needed
+                ease: "power1.inOut"
+            });
+    
+            // Add Asteroid animation to the timeline
+            tl.to(asteroidRef.current, {
+                motionPath: {
+                    path: [
+                        { x: -200, y: 200 },  // Point 1 (opposite direction)
+                        { x: -600, y: 300 },  // Point 2 (opposite direction)
+                        { x: -300, y: 500 },  // Point 3 (opposite direction)
+                    ],
+                    alignOrigin: [0.5, 0.5]
+                },
+                duration: 3, // Adjust duration as needed
+                ease: "power1.inOut"
+            }, 0); // Start at the same time as Mars animation
+        }, []);
 
 
     return (
