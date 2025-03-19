@@ -3,6 +3,7 @@ import MarsGif from '../../../assets/mars-art/mars-art-official.gif';
 import MarsStaticImg from '../../../assets/mars-art/mars-art-official.png'; 
 import AsteroidMouthOpen from '../../../assets/asteroid-art/asteroid-mouth-open.png';
 import ButtonContainer from '../../ButtonContainer';
+import Fireball from '../../../assets/other-art/fire.gif';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
@@ -14,7 +15,6 @@ function MarsSoloEnding({ }) {
     const containerRef = useRef(null);
     const marsRef = useRef(null);
     const asteroidRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
-    const sparkleContainerRef = useRef(null); // Ref for the sparkle container
 
     const createSparkle = (x, y) => {
         const sparkle = document.createElement("div");
@@ -119,8 +119,8 @@ function MarsSoloEnding({ }) {
     }, []);
 
     return (
-        <div className="bg-default-bg bg-cover h-[300vh] min-w-screen pt-14 flex flex-col relative overflow-hidden">
-            <div ref={containerRef} className="animation-container relative w-full h-full">
+        <div className="bg-default-bg bg-cover h-fit min-w-screen pt-14 flex flex-col relative overflow-hidden">
+            <div ref={containerRef} className="animation-container relative w-full h-[300vh]">
                 {/* Sparkle Container */}
                 <div id='sparkle-container' className="absolute inset-0 pointer-events-none z-10"></div>
 
@@ -166,10 +166,25 @@ function MarsSoloEnding({ }) {
             </div>
 
             {/* Text Section */}
-            <section id='text' className='w-screen h-screen flex flex-col justify-center items-center'>
+            <section id='text' className='min-w-screen min-h-screen flex flex-col gap-12 justify-center items-center'>
                 <h1 className='text-white font-header text-3xl'>
-                    You fought alone
+                    You fought alone...
                 </h1>
+
+                <div className='flex flex-row gap-3 justify-center items-center'>
+                    <img 
+                        src={MarsStaticImg} 
+                        alt="Mars" 
+                        className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
+                    />
+                
+
+                <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
+                        {/* <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -right-11' loading='lazy' src={YellowSparkle}/> */}
+                    You chose to fight alone, how Martian of you. While you were able to defeat the asteroids, 
+                    your brute force method did not bode well with your fellow benefic planets.
+                </div>
+                </div>
             </section>
         </div>
     );
