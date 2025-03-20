@@ -8,6 +8,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+import VenusAnnoyedGif from '../../../assets/venus-art/venus-annoyed-gif.gif';
+import JupiterAnnoyedGif from '../../../assets/jupiter-art/jupiter-art-annoyed-gif.gif';
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
@@ -91,36 +93,67 @@ function MarsSoloEnding({ }) {
             }, 0); // Start at the same time as Mars animation
         });
 
-        // Text Fade-In
-        gsap.from("#text h1", {
-            opacity: 0,
-            y: 50,
-            duration: 2,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: "#text",
-                start: "top 80%",
-                end: "top 50%",
-                scrub: 1
+        // Completely reset ScrollTrigger for the header to avoid conflicts
+        ScrollTrigger.getAll().forEach(st => {
+            if (st.vars.trigger === '#fight-header' || st.vars.pin === '#fight-header') {
+                st.kill();
             }
         });
 
-        // Background Dimming
-        gsap.to(".bg-default-bg", {
-            backgroundColor: "rgba(0, 0, 0, 0.7)", // Darken with 70% opacity black
-            duration: 2,
+        // Set the header to be initially hidden but in the correct position
+        gsap.set('#fight-header', {
+            opacity: 0,
+            y: 0,
+            visibility: 'hidden',
+            position: 'fixed',
+            left: '50%',
+            top: '50%',
+            xPercent: -50,
+            yPercent: -50,
+            width: '100%',
+            maxWidth: '100%',
+            textAlign: 'center'
+        });
+
+        // Make the header appear earlier in the scroll sequence
+        gsap.to('#fight-header', {
+            opacity: 1,
+            visibility: 'visible',
+            duration: 1,
+            ease: "power2.out",
             scrollTrigger: {
-                trigger: "#text",
+                trigger: containerRef.current,
+                start: "20% center", // Make it appear much earlier - when 20% of container passes center
+                end: "40% center",   // Complete the animation quicker
+                scrub: 1,
+                markers: true,       // Keep markers for debugging
+                id: "header-appear"  // Give it an ID for easier debugging
+            }
+        });
+        
+        // Remove the previous header movement for clarity
+        // And remove the pinning which might be causing issues
+        
+        // Add a simple fade out for the header when reaching text section
+        gsap.to('#fight-header', {
+            opacity: 0,
+            y: 50,
+            scrollTrigger: {
+                trigger: '#text',
                 start: "top 80%",
                 end: "top 50%",
-                scrub: 1
+                scrub: 1,
+                markers: true,
+                id: "header-fadeout"
             }
         });
     }, []);
 
     return (
         <div className="bg-default-bg bg-cover h-fit min-w-screen pt-14 flex flex-col relative overflow-hidden">
-            <div ref={containerRef} className="animation-container relative w-full h-[300vh]">
+           
+           {/* animation container for mars and asteroids */}
+            <div ref={containerRef} className="animation-container relative w-full h-[200vh]">
                 {/* Sparkle Container */}
                 <div id='sparkle-container' className="absolute inset-0 pointer-events-none z-10"></div>
 
@@ -163,28 +196,95 @@ function MarsSoloEnding({ }) {
                         className="w-full h-full object-contain"
                     />
                 </div>
+
+               
+            </div>
+
+            {/* Simplified and fixed header with guaranteed centering */}
+            <div 
+                id='fight-header-container' 
+                className="fixed inset-0 flex items-center justify-center pointer-events-none z-50"
+                style={{ zIndex: 9999 }}
+            >
+                <h1 
+                    id='fight-header' 
+                    className="text-white font-header text-5xl
+                               font-bold tracking-wider text-center px-4"
+                    style={{
+                        textShadow: '0 0 15px rgba(255, 0, 0, 0.7), 0 0 25px rgba(255, 100, 0, 0.5)',
+                        maxWidth: '90vw'
+                    }}
+                >
+                    You fought alone...
+                </h1>
             </div>
 
             {/* Text Section */}
-            <section id='text' className='min-w-screen min-h-screen flex flex-col gap-12 justify-center items-center'>
-                <h1 className='text-white font-header text-3xl'>
-                    You fought alone...
-                </h1>
-
-                <div className='flex flex-row gap-3 justify-center items-center'>
-                    <img 
-                        src={MarsStaticImg} 
-                        alt="Mars" 
-                        className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
-                    />
+            <section id='text' className='min-w-screen min-h-screen flex flex-col gap-6 justify-center items-center'>
                 
+                
+              
 
-                <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
-                        {/* <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -right-11' loading='lazy' src={YellowSparkle}/> */}
-                    You chose to fight alone, how Martian of you. While you were able to defeat the asteroids, 
-                    your brute force method did not bode well with your fellow benefic planets.
+
+                <div id='container' className='flex flex-col justify-center items-center gap-32'>
+                        <div id='mars-container' className='flex flex-row gap-3 justify-center items-center'>
+                            <img 
+                                src={MarsGif} 
+                                alt="Mars" 
+                                className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
+                            />
+
+                            <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
+                                    {/* <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -right-11' loading='lazy' src={YellowSparkle}/> */}
+                                You chose to fight alone, how Martian of you. While you were able to defeat the asteroids, 
+                                your brute force method did not bode well with your fellow benefic planets.
+                            </div>
+
+
+
+                        </div>
+
+                        <div id='jupiter-container' className='flex flex-row gap-3 justify-center items-center'>
+                            <img 
+                                src={JupiterAnnoyedGif} 
+                                alt="Jupiter" 
+                                className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
+                            />
+
+                            <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
+                                    {/* <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -right-11' loading='lazy' src={YellowSparkle}/> */}
+                                You chose to fight alone, how Martian of you. While you were able to defeat the asteroids, 
+                                your brute force method did not bode well with your fellow benefic planets.
+                            </div>
+
+
+
+                        </div>
+                        <div id='venus-container' className='flex flex-row gap-3 justify-center items-center'>
+                            <img 
+                                src={VenusAnnoyedGif} 
+                                alt="Venus" 
+                                className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
+                            />
+
+                            <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
+                                    {/* <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -right-11' loading='lazy' src={YellowSparkle}/> */}
+                                You chose to fight alone, how Martian of you. While you were able to defeat the asteroids, 
+                                your brute force method did not bode well with your fellow benefic planets.
+                            </div>
+
+
+
+                        </div>
+
+
                 </div>
-                </div>
+
+               
+
+
+
+
             </section>
         </div>
     );
