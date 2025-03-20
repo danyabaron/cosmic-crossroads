@@ -43,10 +43,11 @@ function App() {
   return (
     <Router>
 
-    {/* <ParticleBackground /> */}
+      <div id="star-container" className="fixed z-10 top-0 left-0 w-full h-full pointer-events-none"></div>
+      <ParticleBackground />
       
       <StatusBar characters={characters} />
-      <div className="App flex flex-col min-h-screen min-w-screen ">
+      <div className="App flex flex-col min-h-screen min-w-screen z-20">
 
        
         <Routes>

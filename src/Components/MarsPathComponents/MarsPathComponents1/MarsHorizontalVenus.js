@@ -480,7 +480,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
             {/* container for the venus-grotto portion at top left of screen */}
             <div className='flex flex-col w-2/3 md:w-1/2 h-fit mt-10 ml-5 gap-5' id='venus-grotto-container'>
                 {/* container for the top black box */}
-                <div className='flex flex-col md:flex-row lg:flex-row gap-8 bg-main-black p-5 text-white rounded-md items-center' id='venus-bio-text-container'>
+                <div className='z-30 flex flex-col md:flex-row lg:flex-row gap-8 bg-main-black p-5 text-white rounded-md items-center' id='venus-bio-text-container'>
                     <div className='flex flex-col gap-4' id='venus-grotto-text'>
                         <h1 className='text-xl font-header'>Venus' Grotto</h1>
                         <p className='text-sm'> Keep scrolling to learn about Venus and what she thinks about the asteroids coming. Learn more about your benefic friend!</p>
