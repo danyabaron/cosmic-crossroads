@@ -317,7 +317,7 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
     ];
 
     return (
-        <div className='bg-jupiter-bg-scroll w-full min-w-screen relative pt-14 bg-center overflow-x-hidden' id='mars-path-container'>
+        <div className='bg-jupiter-bg-reg w-full min-w-screen relative pt-14 bg-center overflow-x-hidden' id='mars-path-container'>
             
             {/* container for the jupiter-grotto portion at top left of screen */}
             <div className='flex flex-col w-2/3 md:w-1/2 h-fit mt-10 ml-5 gap-5' id='jupiter-grotto-container'>

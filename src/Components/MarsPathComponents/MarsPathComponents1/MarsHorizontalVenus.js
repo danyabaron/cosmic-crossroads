@@ -476,7 +476,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
     ];
 
     return (
-        <div className='bg-venus-bg-scroll w-full min-w-screen relative pt-14 bg-center overflow-x-hidden ' id='mars-path-container'>
+        <div className='bg-venus-bg-reg w-full min-w-screen relative pt-14 bg-center overflow-x-hidden ' id='mars-path-container'>
             {/* container for the venus-grotto portion at top left of screen */}
             <div className='flex flex-col w-2/3 md:w-1/2 h-fit mt-10 ml-5 gap-5' id='venus-grotto-container'>
                 {/* container for the top black box */}

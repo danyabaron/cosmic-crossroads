@@ -87,11 +87,13 @@ const ParticleBackground = () => {
                   opacity: 0,
                   x: 0,
                   y: 0,
+                 
               },
               {
                   opacity: 1,
                   x: `${endX - startX}%`,
                   y: `${endY - startY}%`,
+                 
                   duration: 1,
                   ease: 'power1.out',
                   onComplete: () => {

@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import MarsIntro from './Pages/MarsPath/MarsIntro';
 import MarsGame from './Pages/MarsPath/MarsGame';
-import VenusGame from './Pages/VenusPath/VenusGame';
-import VenusIntro from './Pages/VenusPath/VenusIntro';
 import MarsEndings from './Pages/MarsPath/MarsEndings';
 import StatusBar from './Components/StatusBar';
 import Home from './Pages/Home';
@@ -41,7 +39,10 @@ function App() {
   
 
   return (
+
+    
     <Router>
+
 
       <div id="star-container" className="fixed z-10 top-0 left-0 w-full h-full pointer-events-none"></div>
       <ParticleBackground />
@@ -51,16 +52,9 @@ function App() {
 
        
         <Routes>
-        <Route path="/" element={<Home setCharacters={setCharacters} />} />
-        {/* <Route path='/' element={<ScrollAnimations />} /> */}
-          <Route 
-            path="/venusintro" 
-            element={
-              <>
-                <StatusBar characters={characters} />
-                <VenusIntro addCharacter={addCharacter} characters={characters}/>
-              </>
-            } />
+        
+        
+        
           <Route 
             path="/marsintro" 
             element={
@@ -77,14 +71,7 @@ function App() {
                 <MarsGame addCharacter={addCharacter} characters={characters} />
               </>
             } />
-          <Route 
-            path="/venus-game" 
-            element={
-              <>
-                <StatusBar characters={characters} />
-                <VenusGame addCharacter={addCharacter} />
-              </>
-            } />
+         
           <Route 
             path="/mars-horizontal-venus" 
             element={

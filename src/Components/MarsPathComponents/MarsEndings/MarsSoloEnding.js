@@ -87,7 +87,7 @@ function MarsSoloEnding({ }) {
                     const x = rect.left - containerRect.left;
                     const y = rect.top - containerRect.top;
                 
-                    console.log("Sparkle at:", x, y);
+                    // console.log("Sparkle at:", x, y);
                     createSparkle(x, y);
                 }
             }, 0); // Start at the same time as Mars animation
@@ -150,7 +150,7 @@ function MarsSoloEnding({ }) {
     }, []);
 
     return (
-        <div className="bg-default-bg bg-cover h-fit min-w-screen pt-14 flex flex-col relative overflow-hidden">
+        <div className="bg-default-bg h-fit min-w-screen pt-14 flex flex-col relative overflow-hidden">
            
            {/* animation container for mars and asteroids */}
             <div ref={containerRef} className="animation-container relative w-full h-[200vh]">

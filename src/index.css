@@ -46,4 +46,5 @@ body {
     background: linear-gradient(to right, transparent, white, transparent);
     opacity: 0;
     pointer-events: none; /* Disable hover interactions */
+    clip-path: path('M0 0 C 50 50, 100 0, 150 0'); /* Curved path */
 }
