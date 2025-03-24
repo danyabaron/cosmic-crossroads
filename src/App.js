@@ -39,10 +39,7 @@ function App() {
   
 
   return (
-
-    
     <Router>
-
 
       <div id="star-container" className="fixed z-10 top-0 left-0 w-full h-full pointer-events-none"></div>
       <ParticleBackground />
@@ -52,7 +49,7 @@ function App() {
 
        
         <Routes>
-        
+        <Route path="/" element={<Home setCharacters={setCharacters} />} />
         
         
           <Route 

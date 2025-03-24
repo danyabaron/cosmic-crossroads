@@ -31,6 +31,9 @@ body {
     pointer-events: none; /* Enable hover interactions */
 }
 
+
+
+
 .star-line {
     position: absolute;
     background: rgba(255, 255, 255, 0.3);
