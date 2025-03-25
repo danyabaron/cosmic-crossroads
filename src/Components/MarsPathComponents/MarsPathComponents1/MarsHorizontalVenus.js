@@ -197,7 +197,8 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
             tl.to(".venus-annoyed, .asteroid-angry", {
                 x: "50vw", 
                 ease: "power2.out",
-                duration: 2
+                duration: 2,
+                scale: 1, // Ensure scale remains at 1 (no shrinking)
             }, "<");
         
             // Add the glow effect (this will trigger only once)
@@ -219,7 +220,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
         
             // Optional: Add a subtle effect for Venus and asteroids after the image change
             tl.to(".venus-annoyed, .asteroid-angry", {
-                scale: 1, // Reset scaling
+                scale: 1, // Ensure scale stays at 1
                 rotation: 0, // Reset rotation
                 duration: 1,
                 ease: "power2.out",
@@ -539,58 +540,52 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                 </section>
 
                 {/* container for SECOND scroll section / dialogue */}
-                <section  id="panel" className='venus-line relative  w-full min-w-screen min-h-screen flex flex-col gap-24 justify-center items-center'>
-                    
-                    <div id='container-panel-venus' className='flex w-full justify-between flex-col md:flex-row px-40'>
+                <section id="panel" className='venus-line relative w-full min-w-screen min-h-screen flex flex-col justify-start pt-20'>
+    
+                    <div id='container-panel-venus' className='flex w-full justify-between flex-col md:flex-row px-10 md:px-40 '>
                         
-                        <div id='venus-dialogue-2' className='flex flex-row w-fit h-fit'>
+                        <div id='venus-dialogue-2' className='flex flex-row w-fit h-fit mb-8'>
                             <div id='venus-pic' className='h-fit mt-28'>
-                                <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={VenusGifDefault} alt="Venus Gif"/>
+                                <img className="w-[100px] h-auto" src={VenusGifDefault} alt="Venus Gif"/>
                             </div>
                             <div id ='venus-text' className='flex mb-14 w-fit md:w-72 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                                Maybe the asteroid is lonely and that’s why it’s coming over here. you need to stop asserting dominance for no reason. I probably could charm them with my beauty..
+                                Maybe the asteroid is lonely and that's why it's coming over here. you need to stop asserting dominance for no reason. I probably could charm them with my beauty..
                             </div>
                         </div> 
                         <div id='benefic-text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
-                        <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -right-11' loading='lazy' src={YellowSparkle}/>
+                            <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -right-11' loading='lazy' src={YellowSparkle}/>
                             Venus tends to take the diplomatic approach when it comes to conflict. Venus wants to do things that are going to feel goooood, and tends to shy away from things that may be uncomfortable.
                         </div>
                     
                     </div>
 
-                    <div className="relative top-auto left-0 w-full h-[100px] z-10">
-                            {/* Venus Annoyed Image */}
-                            <img className='venus-annoyed absolute z-10 left-0 w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]' src={VenusAnnoyedImg} alt="Venus Annoyed Image"/>
-
-                                {/* Asteroids */}
-                                {asteroidPositions.map((position, index) => (
-                                   
-                                <img
-                                    key={index}
-                                    className="asteroid-angry absolute w-[50px] h-auto max-w-full max-h-full object-contain"
-                                    src={AsteroidAngry}
-                                    alt={`Asteroid ${index}`}
-                                    style={{
-                                    top: `${position.top}%`,  // Using the random top value
-                                    left: `${position.left}%`,  // Using the random left value
-                                    
-                                    }}
-                                />
-                                ))}
-                               
+                    <div className='flex justify-center items-center mb-12 w-full'>
+                        <h1 className='font-header text-white text-2xl text-center px-4'>
+                            Scroll your mouse to see Venus use her beauty to charm the asteroids!
+                        </h1>
                     </div>
 
-                    <div className='line-container relative w-full h-8 flex flex-col gap-2 justify-center items-center' >
+                    <div id='animation-container' className="relative gap-3 w-full h-[150px] mb-10">
+                        {/* Venus Annoyed Image */}
+                        <img className='venus-annoyed absolute z-10 left-0 w-[100px] h-auto' src={VenusAnnoyedImg} alt="Venus Annoyed Image"/>
 
-                        
+                        {/* Asteroids */}
+                        {asteroidPositions.map((position, index) => (
+                            <img
+                                key={index}
+                                className="asteroid-angry absolute w-[50px] h-auto max-w-full max-h-full object-contain"
+                                src={AsteroidAngry}
+                                alt={`Asteroid ${index}`}
+                                style={{
+                                    top: `${position.top}%`,  // Using the random top value
+                                    left: `${position.left}%`,  // Using the random left value
+                                }}
+                            />
+                        ))}
+                    </div>
 
-                        {/* <img className='asteroid-angry absolute w-[40px] h-auto max-w-full max-h-full object-contain -top-10 left-40' src={AsteroidAngry} alt="Asteroid Angry Image"/> */}
-                       
-
-                       
-                            <span className="line w-full h-2 p-2 m-auto relative inline-block z-0 bg-white"></span>
-                            
-                        
+                    <div className='line-container relative w-full h-8 flex flex-col gap-2 justify-center items-center mb-10'>
+                        <span className="line w-full h-2 p-2 m-auto relative inline-block z-0 bg-white"></span>
                     </div>
                 </section>
 
@@ -615,7 +610,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                                 Waiting to take the offense side is difficult for you. You are prone to taking action immediately and channeling your inner warrior.
                             </div>
                             <div id='mars-pic' className='mt-14'>
-                                <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Venus Gif"/>
+                                <img className="w-[100px] sm:w/[60px] md:w/[80px] lg:w/[100px]" src={MarsGif} alt="Venus Gif"/>
                             </div>
                         </div>
                     </div>
@@ -627,7 +622,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                         {/* Mars */}
                         <img 
                             ref={marsRef}  // ADD THIS
-                            className="absolute bottom-10 left-[30%] w-[100px] z-10" 
+                            className="absolute bottom-10 left-[30%] w-[100px]" 
                             id="mars" 
                             src={MarsDefaultPng} 
                             alt="Mars"
@@ -646,7 +641,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                 </section>
 
                 {/* container for FIFTH scroll section / dialogue */}
-                <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center'>
+                {/* <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center'>
                     <div id='container-panel' className='flex flex-col items-center gap-14'>
                         <div id='venus-dialogue' className='flex flex-row w-fit h-fit self-start p-7 ml-9'>
                             <div id='venus-pic' className='mt-14'>
@@ -665,7 +660,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                 {/* container for SIXTH/FINAL scroll section / dialogue */}
                 <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center pr-5'>
