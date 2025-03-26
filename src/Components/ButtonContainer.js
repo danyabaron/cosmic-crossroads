@@ -27,7 +27,8 @@ function ButtonContainer({ setScreen, buttons = [], containerStyle = '', buttonS
                         }
 
                         console.log("Setting screen:", button.screen);
-                        setScreen(button.screen);
+                        // setScreen(button.screen);
+                        button.onClick();
                     }}
                     className={`${button.style} ${buttonStyle}`}
                 >

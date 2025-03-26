@@ -16,6 +16,8 @@ import MarsVenusJupiterEnding from './Components/MarsPathComponents/MarsEndings/
 import ParticleBackground from './Components/ParticleBackground.js';
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import ChooseVenusDecision1 from './Components/MarsPathComponents/MarsPathComponents1/ChooseVenusDecision1.js';
+import StickMarsDecision1 from './Components/MarsPathComponents/MarsPathComponents1/StickMarsDecision1.js';
 
 // Register the plugin with GSAP
 gsap.registerPlugin(ScrollToPlugin);
@@ -26,17 +28,7 @@ function App() {
 
       // state for characters for status bar team
       const [characters, setCharacters] = useState([]);
-      const [roundsUntilImpact, setRoundsUntilImpact] = useState(2); // state for round numbers in status bar
 
-
-      // decreases the round number in status bar
-      const advanceRound = useCallback(() => {
-        setRoundsUntilImpact(prev => {
-          if (prev <= 0) return 0; // Never go below 0
-          console.log(`Decrementing rounds from ${prev} to ${prev - 1}`);
-          return prev - 1; // Only -1 allowed
-        });
-      }, []);
 
       // Function to add characters to the team (already modified in Home.js)
       const addCharacter = (character) => {
@@ -78,10 +70,10 @@ function App() {
       return (
         <Router>
 
-          {/* <div id="star-container" className="fixed z-10 top-0 left-0 w-full h-full pointer-events-none"></div>
-          <ParticleBackground /> */}
+          <div id="star-container" className="fixed z-10 top-0 left-0 w-full h-full pointer-events-none"></div>
+          <ParticleBackground />
           
-          <StatusBar characters={characters} roundsUntilImpact={roundsUntilImpact} />
+          <StatusBar characters={characters} />
           <div className="App flex flex-col min-h-screen min-w-screen z-20">
 
           
@@ -102,7 +94,7 @@ function App() {
                 element={
                   <>
                   
-                    <MarsGame addCharacter={addCharacter} characters={characters} advanceRound={advanceRound} roundsUntilImpact={roundsUntilImpact} />
+                    <MarsGame addCharacter={addCharacter} characters={characters} />
                   </>
                 } />
             
@@ -111,7 +103,7 @@ function App() {
                 element={
                   <>
                     
-                    <MarsHorizontalVenus setScreen={() => {}} addCharacter={addCharacter}  characters={characters}/>
+                    <MarsHorizontalVenus setScreen={() => {}}  addCharacter={addCharacter}  characters={characters}/>
                   </>
               
                 } 
@@ -124,16 +116,32 @@ function App() {
                     <MarsHorizontalJupiter setScreen={() => {}} 
                     addCharacter={addCharacter} 
                     characters={characters}
-                    advanceRound={advanceRound} />
+                    />
                   </>
                 
                 } 
                 />
+                <Route path="/choose-venus-1" element={
+                <>
+                  
+                  <ChooseVenusDecision1 characters={characters} />
+                </>
+
+                } />
+                <Route path="/stick-mars-1" element={
+                <>
+                  
+                  <StickMarsDecision1 
+                    characters={characters} 
+                  />
+                </>
+
+                } />
 
               <Route path="/mars-solo-ending" element={
                 <>
                   
-                  <MarsSoloEnding characters={characters} advanceRound={advanceRound} />
+                  <MarsSoloEnding characters={characters}/>
                 </>
 
                 } />

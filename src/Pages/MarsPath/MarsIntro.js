@@ -28,7 +28,7 @@ function MarsIntro({ addCharacter }) {
 
    
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-default-bg text-white pt-14 px-6">
+        <div className="flex flex-col  items-center justify-center min-h-screen bg-default-bg text-white pt-14 px-6">
             {/* Header */}
             <h1 className="text-5xl md:text-6xl font-bold text-red-500 text-center mb-8">
                 Mars, Defender of the Solar System
@@ -67,7 +67,7 @@ function MarsIntro({ addCharacter }) {
             {/* Enter Button */}
             <button
                 onClick={handleEnterClick}
-                className="mt-10 px-6 py-3 text-white font-semibold rounded-lg shadow-lg bg-button-blue transition-transform"
+                className="mt-10 mb-12 px-6 py-3 text-white font-semibold rounded-lg shadow-lg bg-button-blue transition-transform"
             >
                 ENTER
             </button>

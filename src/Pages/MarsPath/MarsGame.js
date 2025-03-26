@@ -33,17 +33,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 
-function MarsGame({ addCharacter, characters, roundsUntilImpact, advanceRound }) {
-
-  
-
-    // variables for switching the screen state
+function MarsGame({ addCharacter, characters }) {
+    // Remove advanceRound and setRoundsUntilImpact related code
+    
     const navigate = useNavigate();
     const { screen: screenParam } = useParams();
-    const screen = screenParam || "mars-horizontal-venus"; // Default screen
-    const decrementedScreens = useRef(new Set());
-
-
+    const screen = screenParam || "mars-horizontal-venus";
+    
     const screens = {
         "mars-horizontal-venus": MarsHorizontalVenus,
         "choose-venus-1": ChooseVenusDecision1,
@@ -55,66 +51,29 @@ function MarsGame({ addCharacter, characters, roundsUntilImpact, advanceRound })
         "mars-venus-jupiter-ending": MarsVenusJupiterEnding
     };
 
-
-    // console.log("MarsGame.js: Current screen:", screen);
-    // console.log("MarsGame.js: Current characters:", characters);
-    // console.log("MarsGame.js:  AddCharacter:", addCharacter);
-    
-    // console.log("MarsGame.js: Current screen:", screen);
-
-
     const ScreenComponent = screens[screen] || MarsHorizontalVenus;
 
     const switchScreen = (newScreen) => {
-        navigate(`/mars-game/${newScreen}`); // Change the URL instead of using state
+        navigate(`/mars-game/${newScreen}`);
     };
 
-
-
-
-    const screensThatDecrement = new Set([
-        'choose-venus-1',
-        'stick-mars-1',
-        'mars-solo',
-        'mars-venus',
-        'mars-jupiter',
-        'mars-venus-jupiter',
-        
-        // Add other screens here
-      ]);
-
-
-      const lastDecrementedScreen = useRef(null);
-
-
-      //tracking the state of the round numbers by calculating which screen was last decreased using the advance round function defined in App.js
-
-    useEffect(() => {
-        if (screensThatDecrement.has(screen)) {
-
-
-          if (lastDecrementedScreen.current !== screen && roundsUntilImpact > 0) {
-            advanceRound();
-            lastDecrementedScreen.current = screen;
-            console.log(`Decremented at ${screen}. New rounds: ${roundsUntilImpact - 1}`);
-          }
-        }
-      }, [screen, advanceRound, roundsUntilImpact, screensThatDecrement]);
-
- 
-
+    // Remove all the round tracking logic
 
     return (
-        <ScreenComponent setScreen={switchScreen} roundsUntilImpact={roundsUntilImpact} advanceRound={advanceRound} addCharacter={addCharacter} characters={characters} />
+        <ScreenComponent 
+            setScreen={switchScreen}
+            addCharacter={addCharacter} 
+            characters={characters}
+        />
     );
 }
 
 export default MarsGame;
-            
 
- 
-       
 
-      
+
+
+
+
 
 

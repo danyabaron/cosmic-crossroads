@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { CiSettings } from "react-icons/ci";
 import MarsStaticImg from '../assets/mars-art/mars-art-official.png';
@@ -6,7 +7,8 @@ import VenusStaticImg from '../assets/venus-art/venus-default.png';
 import SaturnStaticImg from '../assets/saturn-art/saturn.png';
 import JupiterStaticImg from '../assets/jupiter-art/jupiter-art.png';
 
-function StatusBar({ characters, roundsUntilImpact}) {
+function StatusBar({ characters }) {
+    const location = useLocation();
     const characterImages = {
         Mars: MarsStaticImg,
         Venus: VenusStaticImg,
@@ -14,6 +16,29 @@ function StatusBar({ characters, roundsUntilImpact}) {
         Saturn: SaturnStaticImg,
     };
 
+    // Determine rounds based on current path
+    const getRoundsUntilImpact = () => {
+        const path = location.pathname.toLowerCase();
+        
+        // Ending screens - 0 rounds
+        if ( 
+            path.includes('mars-solo-ending') ||
+            path.includes('mars-venus-ending') ||
+            path.includes('mars-jupiter-ending') ||
+            path.includes('mars-venus-jupiter-ending')) {
+            return 0;
+        }
+        
+        // Decision 1 screens - 1 round
+        if (path.includes('stick-mars-1') || path.includes('choose-venus-1') || path.includes('mars-horizontal-jupiter')) {
+            return 1;
+        }
+        
+        // Default for other screens - 2 rounds
+        return 2;
+    };
+
+    const roundsUntilImpact = getRoundsUntilImpact();
     const maxTeamSize = 3; // Maximum number of team members
 
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -23,7 +48,7 @@ function StatusBar({ characters, roundsUntilImpact}) {
     const toggleHelp = () => setIsHelpOpen(!isHelpOpen);
 
     return (
-        <nav id='status-bar' className='bg-main-black text-white flex w-full h-14 fixed top-0 shadow-xl z-10'>
+        <nav id='status-bar' className='bg-main-black text-white flex w-full h-14 fixed top-0 shadow-xl z-50'>
             {/* stats */}
             <div className='max-w-screen flex items-center w-full'>
                 <div className="flex items-center p-3 space-x-2 md:space-x-6">
@@ -59,7 +84,7 @@ function StatusBar({ characters, roundsUntilImpact}) {
                 </div>
 
                 <div className="text-xs md:text-sm flex items-center space-x-1 md:space-x-2 p-3">
-                    <span>Time Until Impact: <span 
+                    <span>Time Until Impact:  <span 
                         id="time-until-impact"
                         className={`transition-all duration-300 ${
                             roundsUntilImpact <= 1 ? 'text-red-400 font-bold' : 'text-white'

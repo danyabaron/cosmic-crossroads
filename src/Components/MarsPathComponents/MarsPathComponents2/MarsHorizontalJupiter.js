@@ -330,8 +330,8 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
     ];
 
     return (
-        <div className='bg-jupiter-bg-reg w-full min-w-screen relative pt-14 bg-center overflow-x-hidden' id='mars-path-container'>
-            
+        <div className='bg-jupiter-bg-reg w-full min-w-screen relative pt-14 bg-center overflow-x-hidden z-0' id='jupiter-path-container'>
+            {/* <div className='relative z-20'> */}
             {/* container for the jupiter-grotto portion at top left of screen */}
             <div className='flex flex-col w-2/3 md:w-1/2 h-fit mt-10 ml-5 gap-5' id='jupiter-grotto-container'>
                 {/* container for the top black box */}
@@ -536,7 +536,8 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                     </div>
                 </div>
             </section>
-        </div>
+        {/* </div> */}
+    </div>
     );
 }
 
