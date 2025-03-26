@@ -339,7 +339,11 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                     <div className='flex flex-col gap-4' id='jupiter-grotto-text'>
                         <h1 className='text-xl font-header'>Jupiter's Grotto</h1>
                         <p className='text-sm'> Keep scrolling to learn about what Jupiter wants to do about the asteroids coming to us.</p>
-                        <p className='text-xs'>Traits: growth, luck, benevolence</p>
+                        <p className='text-xs'>Traits: 
+                            <span className='text-[#DA78F6]'> growth</span>,  
+                            <span className='text-[#FFE684]'> luck</span>,
+                            <span className='text-[#F59D42]'> benevolence</span>,
+                        </p>
                     </div>
                     <div className='flex flex-col items-center justify-center cursor-pointer' onClick={togglePopup} id='jupiter-bio'>
                         <h1 className='text-sm text-nowrap'>View Jupiter's Bio</h1>
@@ -371,7 +375,7 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                             <p><span className="font-bold text-[#D9CFAA]">Dignity:</span> Benefic</p>
                             <p><span className="font-bold text-[#D9CFAA]">Rules the Zodiacs:</span> Sagittarius & Pisces</p>
                             <p><span className="font-bold text-[#D9CFAA]">Representations:</span> growth, expansion, opportunities, luck, prosperity, benevolence</p>
-                            <p><span className="font-bold text-[#D9CFAA]">Color:</span> <span className='text-[#796A7F]'>Purple 
+                            <p><span className="font-bold text-[#D9CFAA]">Color:</span> <span className='text-[#DA78F6]'>Purple 
                                 </span> & <span className='text-[#D9CFAA]'>Tan</span></p>
                             <p className="mt-2">Jupiter is the student of life. They love to learn about life and strive to 
                                 earn more wisdom in this world. Jupiter likes to assume the best in people, and deals 
