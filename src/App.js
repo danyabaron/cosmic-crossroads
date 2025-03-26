@@ -70,10 +70,10 @@ function App() {
       return (
         <Router>
 
-          <div id="star-container" className="fixed z-10 top-0 left-0 w-full h-full pointer-events-none"></div>
-          <ParticleBackground />
+          {/* <div id="star-container" className="fixed z-10 top-0 left-0 w-full h-full pointer-events-none"></div>
+          <ParticleBackground /> */}
           
-          <StatusBar characters={characters} />
+          
           <div className="App flex flex-col min-h-screen min-w-screen z-20">
 
           
@@ -85,7 +85,7 @@ function App() {
                 path="/marsintro" 
                 element={
                   <>
-                    
+                    <StatusBar characters={characters} />
                     <MarsIntro addCharacter={addCharacter} characters={characters} />
                   </>
                 } />
@@ -93,7 +93,7 @@ function App() {
                 path="/mars-game/:screen" 
                 element={
                   <>
-                  
+                    <StatusBar characters={characters} />
                     <MarsGame addCharacter={addCharacter} characters={characters} />
                   </>
                 } />
@@ -102,7 +102,7 @@ function App() {
                 path="/mars-horizontal-venus" 
                 element={
                   <>
-                    
+                    <StatusBar characters={characters} />
                     <MarsHorizontalVenus setScreen={() => {}}  addCharacter={addCharacter}  characters={characters}/>
                   </>
               
@@ -112,7 +112,7 @@ function App() {
                 path="/mars-horizontal-jupiter" 
                 element={
                   <>
-                    
+                    <StatusBar characters={characters} />
                     <MarsHorizontalJupiter setScreen={() => {}} 
                     addCharacter={addCharacter} 
                     characters={characters}
@@ -123,14 +123,14 @@ function App() {
                 />
                 <Route path="/choose-venus-1" element={
                 <>
-                  
+                  <StatusBar characters={characters} />
                   <ChooseVenusDecision1 characters={characters} />
                 </>
 
                 } />
                 <Route path="/stick-mars-1" element={
                 <>
-                  
+                  <StatusBar characters={characters} />
                   <StickMarsDecision1 
                     characters={characters} 
                   />
@@ -140,28 +140,28 @@ function App() {
 
               <Route path="/mars-solo-ending" element={
                 <>
-                  
+                  <StatusBar characters={characters} />
                   <MarsSoloEnding characters={characters}/>
                 </>
 
                 } />
               <Route path="/mars-venus-ending" element={
                 <>
-                  
+                  <StatusBar characters={characters} />
                   <MarsVenusEnding characters={characters}  />
                 </>
                 
                 } />
               <Route path="/mars-jupiter-ending" element={
                 <>
-                  
+                  <StatusBar characters={characters} />
                   <MarsJupiterEnding characters={characters} />
                 </>
                 
                 } />
               <Route path="/mars-venus-jupiter-ending" element={
                 <>
-                
+                <StatusBar characters={characters} />
                 <MarsVenusJupiterEnding characters={characters} />
               </>
               } />
