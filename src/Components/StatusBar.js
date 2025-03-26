@@ -6,7 +6,7 @@ import VenusStaticImg from '../assets/venus-art/venus-default.png';
 import SaturnStaticImg from '../assets/saturn-art/saturn.png';
 import JupiterStaticImg from '../assets/jupiter-art/jupiter-art.png';
 
-function StatusBar({ characters }) {
+function StatusBar({ characters, roundsUntilImpact}) {
     const characterImages = {
         Mars: MarsStaticImg,
         Venus: VenusStaticImg,
@@ -53,7 +53,14 @@ function StatusBar({ characters }) {
                 </div>
 
                 <div className="text-xs md:text-sm flex items-center space-x-1 md:space-x-2 p-3">
-                    <span>Time Until Impact: <span id="time-until-impact">2 Rounds</span></span>
+                    <span>Time Until Impact: <span 
+                        id="time-until-impact"
+                        className={`transition-all duration-300 ${
+                            roundsUntilImpact <= 1 ? 'text-red-400 font-bold' : 'text-white'
+                        }`}
+                    >
+                        {roundsUntilImpact} Round{roundsUntilImpact !== 1 ? 's' : ''}
+                    </span></span>
                 </div>
             </div>
 

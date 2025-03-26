@@ -1,8 +1,8 @@
 import React from 'react';
 
 function ButtonContainer({ setScreen, buttons = [], containerStyle = '', buttonStyle = '', addCharacter, characters = [] }) {
-    console.log("ButtonContainer received addCharacter:", addCharacter);
-    console.log("ButtonContainer received characters:", characters);
+    // console.log("ButtonContainer received addCharacter:", addCharacter);
+    // console.log("ButtonContainer received characters:", characters);
 
     return (
         <div id='button-container' className={`flex flex-col items-center justify-center gap-4 ${containerStyle}`}>

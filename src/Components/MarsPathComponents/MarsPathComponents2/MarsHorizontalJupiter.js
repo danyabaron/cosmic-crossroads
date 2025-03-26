@@ -34,6 +34,8 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
     const timeouts = useRef([]);
     const intervals = useRef([]);
 
+    ;
+
     // Clear a timeout and remove it from the timeouts ref
     const clearAndRemoveTimeout = (timeoutId) => {
         clearTimeout(timeoutId);
@@ -284,16 +286,16 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
             
             // Determine next screen based on current team
             if (characters && characters.includes("Venus")) {
-                nextScreen = "/mars-venus-jupiter";
+                nextScreen = "/mars-venus-jupiter-ending";
             } else {
-                nextScreen = "/mars-jupiter";
+                nextScreen = "/mars-jupiter-ending";
             }
         } else {
             // Stick with Mars decision
             if (characters && characters.includes("Venus")) {
-                nextScreen = "/mars-venus";
+                nextScreen = "/mars-venus-ending";
             } else {
-                nextScreen = "/mars-solo";
+                nextScreen = "/mars-solo-ending";
             }
         }
         

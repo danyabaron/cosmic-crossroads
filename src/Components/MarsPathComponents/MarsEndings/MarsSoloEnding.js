@@ -13,7 +13,7 @@ import JupiterAnnoyedGif from '../../../assets/jupiter-art/jupiter-art-annoyed-g
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
-function MarsSoloEnding({ }) {
+function MarsSoloEnding({ advanceRound }) {
     const containerRef = useRef(null);
     const marsRef = useRef(null);
     const asteroidRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];

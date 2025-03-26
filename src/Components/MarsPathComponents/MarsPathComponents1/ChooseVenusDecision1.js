@@ -30,8 +30,10 @@ gsap.registerPlugin(MotionPathPlugin);
       const mainTextRef = useRef(null);
 
 
+ 
 
-      // SET PROPERTIES OF BACKGROUND PARTICLES
+
+     
 
 
 

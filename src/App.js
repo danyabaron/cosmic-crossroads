@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import MarsIntro from './Pages/MarsPath/MarsIntro';
@@ -19,9 +19,19 @@ import ParticleBackground from './Components/ParticleBackground.js';
 
 function App() {
 
-  // Create state for characters for status bar team
+  // state for characters for status bar team
   const [characters, setCharacters] = useState([]);
-  
+  const [roundsUntilImpact, setRoundsUntilImpact] = useState(2); // state for round numbers in status bar
+
+
+  // decreases the round number in status bar
+  const advanceRound = useCallback(() => {
+    setRoundsUntilImpact(prev => {
+      if (prev <= 0) return 0; // Never go below 0
+      console.log(`Decrementing rounds from ${prev} to ${prev - 1}`);
+      return prev - 1; // Only -1 allowed
+    });
+  }, []);
 
   // Function to add characters to the team (already modified in Home.js)
   const addCharacter = (character) => {
@@ -44,7 +54,7 @@ function App() {
       {/* <div id="star-container" className="fixed z-10 top-0 left-0 w-full h-full pointer-events-none"></div>
       <ParticleBackground /> */}
       
-      <StatusBar characters={characters} />
+      <StatusBar characters={characters} roundsUntilImpact={roundsUntilImpact} />
       <div className="App flex flex-col min-h-screen min-w-screen z-20">
 
        
@@ -56,7 +66,7 @@ function App() {
             path="/marsintro" 
             element={
               <>
-                <StatusBar characters={characters} />
+                
                 <MarsIntro addCharacter={addCharacter} characters={characters} />
               </>
             } />
@@ -64,8 +74,8 @@ function App() {
             path="/mars-game/:screen" 
             element={
               <>
-                <StatusBar characters={characters} />
-                <MarsGame addCharacter={addCharacter} characters={characters} />
+               
+                <MarsGame addCharacter={addCharacter} characters={characters} advanceRound={advanceRound} roundsUntilImpact={roundsUntilImpact} />
               </>
             } />
          
@@ -73,7 +83,7 @@ function App() {
             path="/mars-horizontal-venus" 
             element={
               <>
-                <StatusBar characters={characters} />
+                
                 <MarsHorizontalVenus setScreen={() => {}} addCharacter={addCharacter}  characters={characters}/>
               </>
           
@@ -83,37 +93,40 @@ function App() {
             path="/mars-horizontal-jupiter" 
             element={
               <>
-                <StatusBar characters={characters} />
-                <MarsHorizontalJupiter setScreen={() => {}} addCharacter={addCharacter} characters={characters} />
+                
+                <MarsHorizontalJupiter setScreen={() => {}} 
+                addCharacter={addCharacter} 
+                characters={characters}
+                advanceRound={advanceRound} />
               </>
             
             } 
             />
 
-          <Route path="/mars-solo" element={
+          <Route path="/mars-solo-ending" element={
             <>
-              <StatusBar characters={characters} />
-              <MarsSoloEnding characters={characters} />
+              
+              <MarsSoloEnding characters={characters} advanceRound={advanceRound} />
             </>
 
             } />
-          <Route path="/mars-venus" element={
+          <Route path="/mars-venus-ending" element={
             <>
-              <StatusBar characters={characters} />
-              <MarsVenusEnding characters={characters} />
+              
+              <MarsVenusEnding characters={characters}  />
             </>
             
             } />
-          <Route path="/mars-jupiter" element={
+          <Route path="/mars-jupiter-ending" element={
             <>
-              <StatusBar characters={characters} />
+              
               <MarsJupiterEnding characters={characters} />
             </>
             
             } />
-          <Route path="/mars-venus-jupiter" element={
+          <Route path="/mars-venus-jupiter-ending" element={
              <>
-             <StatusBar characters={characters} />
+             
              <MarsVenusJupiterEnding characters={characters} />
            </>
           } />

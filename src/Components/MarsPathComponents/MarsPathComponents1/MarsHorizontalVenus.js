@@ -42,7 +42,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
     const navigate = useNavigate(); // Use navigate hook
 
 
-    console.log("MarsHorizontalVenus received addCharacter:", addCharacter); // Debugging
+    // console.log("MarsHorizontalVenus received addCharacter:", addCharacter); // Debugging
 
     const marsRef = useRef(null);
     const fireballContainerRef = useRef(null);
@@ -347,7 +347,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
 
 
             const createLightning = () => {
-                console.log("Lightning created!");
+                // console.log("Lightning created!");
             
                 // Ensure you have a container with id 'lightningContainer' in your HTML
                 const lightningContainer = document.getElementById("lightningContainer");
