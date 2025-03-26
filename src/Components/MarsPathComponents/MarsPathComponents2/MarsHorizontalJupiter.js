@@ -34,7 +34,13 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
     const timeouts = useRef([]);
     const intervals = useRef([]);
 
-    ;
+    // jupiter bio popup states
+    const [modalIsOpen, setIsOpen] = useState(false);
+    
+        // Toggle the popup
+        const togglePopup = () => {
+            setIsOpen(!modalIsOpen);
+        };
 
     // Clear a timeout and remove it from the timeouts ref
     const clearAndRemoveTimeout = (timeoutId) => {
@@ -305,6 +311,11 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
         }, 100);
     };
 
+     //mount to top of page
+            useEffect(() => {
+                window.scrollTo(0, 0);
+            }, []);
+
     const buttons = [
         {
             text: "Compromise with Jupiter",
@@ -330,11 +341,50 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                         <p className='text-sm'> Keep scrolling to learn about what Jupiter wants to do about the asteroids coming to us.</p>
                         <p className='text-xs'>Traits: growth, luck, benevolence</p>
                     </div>
-                    <div className='flex flex-col items-center justify-center' id='jupiter-bio'>
+                    <div className='flex flex-col items-center justify-center cursor-pointer' onClick={togglePopup} id='jupiter-bio'>
                         <h1 className='text-sm text-nowrap'>View Jupiter's Bio</h1>
                         <img className="md:max-w-[65px] h-auto" src={JupiterDefault} alt="Jupiter Bio Image"/>
                     </div>
                 </div>
+
+                {modalIsOpen && (
+                <div className="fixed inset-0 bg-main-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div className="bg-main-black text-black p-6 rounded-lg w-96 drop-shadow-[0_10px_20px_rgba(217,207,170,0.6)] shadow-lg relative">
+                        {/* Close Button */}
+                        <button
+                            className="absolute top-2 right-3 text-lg font-bold text-white hover:text-[#D9CFAA]"
+                            onClick={togglePopup}
+                        >
+                            ✖
+                        </button>
+
+                        <div className='flex justify-center items-center flex-col gap-2 pt-5'>
+
+                            {/* Jupiter Bio Content */}
+                            <h2 className="text-xl text-white font-bold font-header">JUPITER</h2>
+
+                            <img className="w-[80px] sm:w-[60px] md:w-[80px] lg:w-[80px]" src={JupiterGif} alt="Jupiter Bio Image"/>
+                        </div>
+
+                        <div className="flex flex-col gap-2 text-left text-sm w-full mt-4 px-7 text-white">
+                            <p><span className="font-bold text-[#D9CFAA]">Planet:</span> Jupiter</p>
+                            <p><span className="font-bold text-[#D9CFAA]">Dignity:</span> Benefic</p>
+                            <p><span className="font-bold text-[#D9CFAA]">Rules the Zodiacs:</span> Sagittarius & Pisces</p>
+                            <p><span className="font-bold text-[#D9CFAA]">Representations:</span> growth, expansion, opportunities, luck, prosperity, benevolence</p>
+                            <p><span className="font-bold text-[#D9CFAA]">Color:</span> <span className='text-[#796A7F]'>Purple 
+                                </span> & <span className='text-[#D9CFAA]'>Tan</span></p>
+                            <p className="mt-2">Jupiter is the student of life. They love to learn about life and strive to 
+                                earn more wisdom in this world. Jupiter likes to assume the best in people, and deals 
+                                with conflict in a 
+                                diplomatic manner. Jupiter likes to expand energies, whether that is good or bad..</p>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+
+
+
                 {/* container for the bottom black box */}
                 <div className='bg-main-black rounded-md w-52 p-5' id='scroll-text-container'>
                     <p className='text-xs text-white'>Use your L or R arrow keys to scroll horizontally or scroll.</p>

@@ -15,7 +15,8 @@ module.exports = {
       'jupiter-purple': '#796A7F',
       'venus-pink': '#D77BBA',
       'white' : '#FFFFFF',
-      'team-gray': '#616161'
+      'team-gray': '#616161',
+      'button-blue': '#484C7D',
     },
     backgroundImage: {
       'mars-bg-reg': "url('./assets/backgrounds/mars-normal-size.png')",

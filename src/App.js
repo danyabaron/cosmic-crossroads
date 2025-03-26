@@ -12,7 +12,7 @@ import MarsSoloEnding from './Components/MarsPathComponents/MarsEndings/MarsSolo
 import MarsVenusEnding from './Components/MarsPathComponents/MarsEndings/MarsVenusEnding.js';
 import MarsJupiterEnding from './Components/MarsPathComponents/MarsEndings/MarsJupiterEnding.js';
 import MarsVenusJupiterEnding from './Components/MarsPathComponents/MarsEndings/MarsVenusJupiterEnding.js';
-import ScrollAnimations from './Components/ScrollAnimations.js';
+
 import ParticleBackground from './Components/ParticleBackground.js';
 
 

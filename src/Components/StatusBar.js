@@ -16,6 +16,12 @@ function StatusBar({ characters, roundsUntilImpact}) {
 
     const maxTeamSize = 3; // Maximum number of team members
 
+    const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+    const [isHelpOpen, setIsHelpOpen] = useState(false);
+
+    const toggleSettings = () => setIsSettingsOpen(!isSettingsOpen);
+    const toggleHelp = () => setIsHelpOpen(!isHelpOpen);
+
     return (
         <nav id='status-bar' className='bg-main-black text-white flex w-full h-14 fixed top-0 shadow-xl z-10'>
             {/* stats */}
@@ -66,9 +72,38 @@ function StatusBar({ characters, roundsUntilImpact}) {
 
             {/* icons */}
             <div className="flex items-center space-x-2 md:space-x-4 p-3">
-                <IoIosHelpCircleOutline className='text-lg md:text-2xl cursor-pointer'/>
-                <CiSettings className='text-lg md:text-2xl cursor-pointer'/>
+                <IoIosHelpCircleOutline className='text-lg md:text-2xl cursor-pointer' onClick={toggleHelp} />
+                <CiSettings className='text-lg md:text-2xl cursor-pointer' onClick={toggleSettings} />
             </div>
+
+            {/* Settings Modal */}
+            {isSettingsOpen && (
+                <div className="fixed inset-0 bg-main-black bg-opacity-70 flex justify-center items-center z-50">
+                    <div className="relative bg-main-black text-white p-6 rounded-lg w-80 drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] shadow-lg">
+                        <button className="absolute top-2 right-2 text-white" onClick={toggleSettings}>✖</button>
+                        <h2 className="text-xl font-bold font-header text-center">SETTINGS</h2>
+                        <div className="flex flex-col gap-2 mt-4">
+                            <button className="text-sm">Sound: On/Off</button>
+                            <button className="text-sm">Reset Progress</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Help Modal */}
+            {isHelpOpen && (
+                <div className="fixed inset-0 bg-main-black bg-opacity-70 flex justify-center items-center z-50">
+                    <div className="relative bg-main-black text-white p-6 rounded-lg w-80 drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] shadow-lg">
+                        <button className="absolute top-2 right-2 text-white" onClick={toggleHelp}>✖</button>
+                        <h2 className="text-xl font-bold font-header text-center">HELP</h2>
+                        <div className="flex flex-col gap-2 mt-4">
+                            <p className="text-sm">Use the arrow keys to navigate the game.</p>
+                            <p className="text-sm">Each round, you must decide whether to fight alone or team up with Venus or Jupiter.</p>
+                            <p className="text-sm">Keep an eye on the time until impact!</p>
+                        </div>
+                    </div>
+                </div>
+            )}
         </nav>
     );
 }

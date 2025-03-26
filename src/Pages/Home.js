@@ -10,21 +10,21 @@ const Home = () => {
       <h1 className="text-4xl font-bold text-white">COSMIC CROSSROADS</h1>
       <div className="flex flex-col gap-7">
         <button 
-          className="w-40 h-8 rounded-lg bg-[#484C7D] text-white relative z-10" 
+          className="w-40 h-8 rounded-lg bg-button-blue text-white relative z-10" 
           onClick={() => navigate("/marsintro")}
         >
           Start
         </button>
 
         <button 
-          className="w-40 h-8 rounded-lg bg-[#484C7D] text-white relative z-10" 
+          className="w-40 h-8 rounded-lg bg-button-blue text-white relative z-10" 
           onClick={() => setPopup("about")}
         >
           About
         </button>
 
         <button 
-          className="w-40 h-8 rounded-lg bg-[#484C7D] text-white relative z-10" 
+          className="w-40 h-8 rounded-lg bg-button-blue text-white relative z-10" 
           onClick={() => setPopup("howtoplay")}
         >
           How to Play
@@ -33,7 +33,7 @@ const Home = () => {
 
       {popup === "howtoplay" && (
         <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-70 z-30">
-          <div className="bg-[#484C7D] p-6 rounded-md shadow-md w-80 max-w-[90%] text-white">
+          <div className="bg-button-blue p-6 rounded-md shadow-md w-80 max-w-[90%] text-white">
             <h2 className="text-xl font-bold mb-4">HOW TO PLAY</h2>
             <div className="text-left space-y-3">
               <p>1. <span className="font-semibold">Scroll</span> through the story to explore.</p>

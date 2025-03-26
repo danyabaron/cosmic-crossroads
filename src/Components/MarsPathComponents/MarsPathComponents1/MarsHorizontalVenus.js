@@ -33,10 +33,14 @@ function getRandomPosition(min, max) {
 
 function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
 
-    const [decisionMade, setDecisionMade] = useState(false); // Track if decision is made
-    const [currentScreen, setCurrentScreen] = useState('mars'); // Assuming 'mars' is the screen where the animation happens
+    // venus bio popup state
+    const [modalIsOpen, setIsOpen] = useState(false);
 
-    // const container = useRef(null);
+    // Toggle the popup
+    const togglePopup = () => {
+        setIsOpen(!modalIsOpen);
+    };
+    
     
 
     const navigate = useNavigate(); // Use navigate hook
@@ -448,7 +452,12 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
            
         
         }, []);
-            
+           
+        
+        //mount to top of page
+        useEffect(() => {
+            window.scrollTo(0, 0);
+        }, []);
     
 
     
@@ -479,19 +488,58 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
     return (
         <div className='bg-venus-bg-reg w-full min-w-screen relative pt-14 bg-center overflow-x-hidden ' id='mars-path-container'>
             {/* container for the venus-grotto portion at top left of screen */}
-            <div className='flex flex-col w-2/3 md:w-1/2 h-fit mt-10 ml-5 gap-5' id='venus-grotto-container'>
+            <div className='flex flex-col w-2/3 md:w-1/2 h-fit mt-10 ml-5 gap-5 ' id='venus-grotto-container'>
                 {/* container for the top black box */}
-                <div className='z-30 flex flex-col md:flex-row lg:flex-row gap-8 bg-main-black p-5 text-white rounded-md items-center' id='venus-bio-text-container'>
+                <div className=' flex flex-col md:flex-row lg:flex-row gap-8 bg-main-black p-5 text-white rounded-md items-center' id='venus-bio-text-container'>
                     <div className='flex flex-col gap-4' id='venus-grotto-text'>
                         <h1 className='text-xl font-header'>Venus' Grotto</h1>
                         <p className='text-sm'> Keep scrolling to learn about Venus and what she thinks about the asteroids coming. Learn more about your benefic friend!</p>
-                        <p className='text-xs'>Traits: positivity, love, abundance</p>
+                        <p className='text-xs'>Traits: 
+                            <span className='text-[#D77BBA]'> positivity</span>,  
+                            <span className='text-[#CF8242]'> love</span>,
+                            <span className='text-[#A40073]'> abundance</span>,
+                        </p>
                     </div>
-                    <div className='flex flex-col items-center justify-center' id='venus-bio'>
+                    <div className='flex flex-col items-center justify-center cursor-pointer' onClick={togglePopup} id='venus-bio'>
                         <h1 className='text-sm text-nowrap'>View Venus' Bio</h1>
                         <img className="md:max-w-[65px] h-auto" src={VenusMouthOpen} alt="Venus Bio Image"/>
                     </div>
                 </div>
+
+                {/* Venus Bio Popup */}
+            {modalIsOpen && (
+                <div className="fixed inset-0 bg-main-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div className="bg-main-black text-black p-6 rounded-lg w-96 drop-shadow-[0_10px_20px_rgba(215,123,186,0.6)] shadow-lg relative">
+                        {/* Close Button */}
+                        <button
+                            className="absolute top-2 right-3 text-lg font-bold text-white hover:text-venus-pink"
+                            onClick={togglePopup}
+                        >
+                            ✖
+                        </button>
+
+                        <div className='flex justify-center items-center flex-col gap-2 pt-5'>
+
+                            {/* Venus Bio Content */}
+                            <h2 className="text-xl text-white font-bold font-header">VENUS</h2>
+
+                            <img className="w-[80px] sm:w-[60px] md:w-[80px] lg:w-[80px]" src={VenusGifMouthOpen} alt="Venus Bio Image"/>
+                        </div>
+
+                        <div className="flex flex-col gap-2 text-left text-sm w-full mt-4 px-7 text-white">
+                            <p><span className="font-bold text-[#D77BBA]">Planet:</span> Venus</p>
+                            <p><span className="font-bold text-[#D77BBA]">Dignity:</span> Benefic</p>
+                            <p><span className="font-bold text-[#D77BBA]">Rules the Zodiacs:</span> Taurus & Libra</p>
+                            <p><span className="font-bold text-[#D77BBA]">Representations:</span> beauty, love, pleasure, sensuality, harmony, romance, parties</p>
+                            <p><span className="font-bold text-[#D77BBA]">Color:</span> Pink</p>
+                            <p className="mt-2">Venus likes to throw parties and spread love and cheer. They like to adorn 
+                                themselves with lovers, friends, business acquaintances, and family. Venus likes to 
+                                solve conflict through diplomacy and harmony 
+                                and would rather indulge than restrict.</p>
+                        </div>
+                    </div>
+                </div>
+            )}
 
                 {/* container for the bottom black box */}
                 <div className='bg-main-black rounded-md w-52 p-5' id='scroll-text-container'>
