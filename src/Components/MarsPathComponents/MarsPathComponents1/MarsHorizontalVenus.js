@@ -543,7 +543,8 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
 
                 {/* container for the bottom black box */}
                 <div className='bg-main-black rounded-md w-52 p-5' id='scroll-text-container'>
-                    <p className='text-xs text-white '>Use your L or R arrow keys to scroll horizontally or scroll.</p>
+                    <p className='text-xs text-white '>Scroll down or 
+                        use your UP or DOWN arrow keys to scroll vertically.</p>
                 </div>
             </div>
 
