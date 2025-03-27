@@ -18,6 +18,8 @@ import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import ChooseVenusDecision1 from './Components/MarsPathComponents/MarsPathComponents1/ChooseVenusDecision1.js';
 import StickMarsDecision1 from './Components/MarsPathComponents/MarsPathComponents1/StickMarsDecision1.js';
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
 
 // Register the plugin with GSAP
 gsap.registerPlugin(ScrollToPlugin);
