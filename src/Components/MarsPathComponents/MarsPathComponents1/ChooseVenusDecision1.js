@@ -13,6 +13,7 @@ import AsteroidHappy from '../../../assets/asteroid-art/asteroid-happy.png';
 import ButtonContainer from '../../ButtonContainer';
 import Particles from 'react-tsparticles';
 
+
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
@@ -28,6 +29,7 @@ gsap.registerPlugin(MotionPathPlugin);
       const venusRef = useRef(null);
       const marsRef = useRef(null);
       const mainTextRef = useRef(null);
+      const navigate = useNavigate();
 
 
  
@@ -121,7 +123,10 @@ gsap.registerPlugin(MotionPathPlugin);
         {
             text: "WHO'S NEXT?",
             style: "mt-8 bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
-            screen: "mars-horizontal-jupiter"
+            screen: "mars-horizontal-jupiter",
+            onClick: () => {
+               navigate("/mars-horizontal-jupiter"); // Use navigate to go to the next route
+           }
         }
     ];
 

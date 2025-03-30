@@ -87,7 +87,7 @@ function App() {
                 path="/marsintro" 
                 element={
                   <>
-                    <StatusBar characters={characters} />
+                    {/* <StatusBar characters={characters} /> */}
                     <MarsIntro addCharacter={addCharacter} characters={characters} />
                   </>
                 } />

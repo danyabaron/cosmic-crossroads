@@ -500,9 +500,10 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                             <span className='text-[#A40073]'> abundance</span>,
                         </p>
                     </div>
-                    <div className='flex flex-col items-center justify-center cursor-pointer' onClick={togglePopup} id='venus-bio'>
+                    <div className='flex flex-col items-center justify-center
+                     cursor-pointer' onClick={togglePopup} id='venus-bio'>
                         <h1 className='text-sm text-nowrap'>View Venus' Bio</h1>
-                        <img className="md:max-w-[65px] h-auto" src={VenusMouthOpen} alt="Venus Bio Image"/>
+                        <img className="md:max-w-[65px] h-auto hover:scale-110 transition-transform duration-200 ease-in-out" src={VenusMouthOpen} alt="Venus Bio Image"/>
                     </div>
                 </div>
 
@@ -512,7 +513,8 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                     <div className="bg-main-black text-black p-6 rounded-lg w-96 drop-shadow-[0_10px_20px_rgba(215,123,186,0.6)] shadow-lg relative">
                         {/* Close Button */}
                         <button
-                            className="absolute top-2 right-3 text-lg font-bold text-white hover:text-venus-pink"
+                            className="absolute top-2 right-3 text-lg font-bold
+                            hover:scale-110 transition-transform duration-200 ease-in-out text-white hover:text-venus-pink"
                             onClick={togglePopup}
                         >
                             ✖
