@@ -181,17 +181,47 @@ const MarsVenusJupiterEnding = () => {
         );
     }
     
-    // Fade in for Venus text with dramatic side entry
+    // Enhanced fade in for Venus section with more dramatic animation
     if (venusTextRef.current) {
+        // Target the entire Venus ending section for a more comprehensive animation
+        const venusEndingSection = document.getElementById('venus-ending');
+        
+        // First animate the section container with a revealing effect
+        gsap.fromTo(
+            venusEndingSection,
+            { 
+                opacity: 0,
+                y: 50,
+                scale: 0.95
+            },
+            {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 1.2,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: venusEndingSection,
+                    start: "top 75%",
+                    end: "top 35%",
+                    toggleActions: "play none none reverse",
+                    scrub: 0.5
+                }
+            }
+        );
+        
+        // Then animate the text content with a slight delay for more interest
         gsap.fromTo(
             venusSection,
             { 
                 opacity: 0,
-                x: -150 // From left
+                x: -150, // From left
+                textShadow: "0px 0px 0px rgba(215,123,186,0)" // Start with no glow
             },
             {
                 opacity: 1,
                 x: 0,
+                textShadow: "0px 0px 10px rgba(215,123,186,0.2)", // Add a subtle Venus-colored glow
                 duration: 1.5,
                 ease: "power2.out",
                 scrollTrigger: {
@@ -203,20 +233,40 @@ const MarsVenusJupiterEnding = () => {
                 }
             }
         );
-    }
+        
+        // Add a subtle background effect to the Venus text container
+    //     gsap.fromTo(
+    //         venusTextRef.current.parentNode,
+    //         {
+    //             boxShadow: "0 0 0px rgba(215,123,186,0)"
+    //         },
+    //         {
+    //             boxShadow: "0 0 15px rgba(215,123,186,0.3)",
+    //             duration: 2,
+    //             scrollTrigger: {
+    //                 trigger: venusTextRef.current,
+    //                 start: "top 60%",
+    //                 end: "top 20%",
+    //                 scrub: 1
+    //             }
+    //         }
+    //     );
+     }
     
-    // Fade in for conclusion text with dramatic side entry
+    // Enhanced conclusion text animation
     if (conclusionTextRef.current) {
         gsap.fromTo(
             conclusionSection,
             { 
                 opacity: 0,
-                x: 150 // From right
+                y: 30,
+                scale: 0.9
             },
             {
                 opacity: 1,
-                x: 0,
-                duration: 1.5,
+                y: 0,
+                scale: 1,
+                duration: 1.8,
                 ease: "power2.out",
                 scrollTrigger: {
                     trigger: conclusionTextRef.current,
@@ -271,6 +321,33 @@ const MarsVenusJupiterEnding = () => {
         
       </section>
 
+      <section className='w-full min-h-screen flex flex-col gap-8 justify-center items-center'>
+        <div id='ending' className='flex flex-col gap-4 justify-center items-center w-full'>
+          <h1 className="text-white font-header text-3xl z-10">Good Work!</h1>
+          <div className='flex flex-row gap-4 justify-center items-center'>
+            <img src={VenusGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Venus" />
+            <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
+            <img src={JupiterGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Jupiter" />
+          </div>
+          
+          <div className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
+            <p ref={conclusionTextRef} className='text-sm text-white font-body text-center p-4'>
+              Together with your benefic friends, you combined both your strengths and weaknesses to tackle 
+              the crisis of the asteroids. The asteroids and your team of planets have formed a strong alliance and
+              it's time to party!
+              <br /><br />
+              This experience has shown you the power of collaboration. Mars' decisive action, 
+              Jupiter's diplomatic wisdom, and Venus' charm created a perfect balance that turned 
+              potential enemies into valuable allies. The solar system is now stronger than ever before.
+              <br /><br />
+              Sometimes the best approach is a balanced one - knowing when to fight and when to extend 
+              a hand in friendship. Your willingness to listen to your benefic friends has led to the 
+              best possible outcome for everyone.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className='w-full min-h-screen flex flex-col gap-3 justify-center items-center'>
         <div id='mars-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
           <h1 className="text-white font-header text-3xl z-10">Mars</h1>
@@ -315,24 +392,7 @@ const MarsVenusJupiterEnding = () => {
         </div>
       </section>
 
-      <section className='w-full min-h-screen flex flex-col gap-8 justify-center items-center'>
-        <div id='ending' className='flex flex-col gap-4 justify-center items-center w-full'>
-          <h1 className="text-white font-header text-3xl z-10">Good Work!</h1>
-          <div className='flex flex-row gap-4 justify-center items-center'>
-            <img src={VenusGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Venus" />
-            <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
-            <img src={JupiterGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Jupiter" />
-          </div>
-          
-          <div className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-            <p ref={conclusionTextRef} className='text-sm text-white font-body text-center p-4'>
-              Together with your benefic friends, you combined both your strengths and weaknesses to tackle 
-              the crisis of the asteroids. The asteroids and your team of planets have formed a strong alliance and
-              it's time to party!
-            </p>
-          </div>
-        </div>
-      </section>
+     
 
       <button 
         className="w-36 h-10 rounded-lg bg-button-blue text-white relative z-10 

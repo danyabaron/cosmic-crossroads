@@ -448,7 +448,9 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                             <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
                         </div>
                         <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                            WAR! Goddammit, war. No one ever wants to go to war with me these days. Also... why is everything so gassy in here? ...
+                            WAR! Goddammit, war. No one ever wants to go to war with me these days.
+                            <br /><br />
+                             Also... why is everything so gassy in here? ...
                         </div>
                     </div>
                 </div>
@@ -458,7 +460,9 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                             <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={JupiterAnnoyedGif} alt="Jupiter Gif"/>
                         </div>
                         <div id ='jupiter-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                            Mars, you need to just listen to others for once. Not everything needs to be filled with aggression. Also, why do you even want to fight it? Do you know what that's going to cause?
+                            Mars, you need to just listen to others for once. Not everything needs to be filled with aggression. 
+                            <br /><br />
+                            Also, why do you even want to fight the asteroids? Do you know what that's going to cause?
                         </div>
                     </div>
                 </div>
