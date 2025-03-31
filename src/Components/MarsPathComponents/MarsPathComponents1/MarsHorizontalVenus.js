@@ -124,6 +124,8 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
         const venusDialogs = gsap.utils.toArray(".venus-dialogue");
         const maleficDialog1 = gsap.utils.toArray(".malefic-dialogue1");
         const maleficDialog2 = gsap.utils.toArray(".malefic-dialogue2");
+        const maleficDialog3 = gsap.utils.toArray(".malefic-dialogue3");
+        const beyonceQuote = gsap.utils.toArray(".beyonce-quote");
 
         console.log(maleficDialog2);
 
@@ -228,6 +230,96 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
             );
         });
 
+        maleficDialog3.forEach((dialog) => {
+            gsap.fromTo(dialog,
+                { x: "-100%", opacity: 0 },
+                {
+                   
+                    x: "0%",
+                    opacity: 1,
+                    delay: 1,
+                    duration: 2, // Faster animation
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: "#malefic-text", // Target the panel
+                        start: "bottom center", // Start when the center of the panel reaches the center of viewport 
+                        // end: "bottom center", // End when bottom of panel reaches center
+                        scrub: 0.5,  // More responsive scrubbing
+                        
+                        toggleActions: "restart pause reverse pause", // Better behavior for scroll up/down
+                        markers: {
+                            startColor: "purple",
+                            endColor: "blue", 
+                            fontSize: "12px",
+                            fontWeight: "bold",
+                            id: "malefic-dialog-2"  // Custom ID for these markers
+                        }
+                    }
+                }
+            );
+        });
+
+        // Special animation for Beyoncé quote - Fixed version with continuous loop
+        const beyonceQuoteElement = document.querySelector(".beyonce-quote"); // Direct selector instead of array
+        if (beyonceQuoteElement) {
+            // Clear any existing animations
+            gsap.killTweensOf(beyonceQuoteElement);
+            
+            // Create a separate timeline for the quote animation
+            const quoteTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".malefic-dialogue3", // Target the containing div
+                    start: "top 70%", // Start earlier in the viewport
+                    end: "bottom -100%", // Make it continue even after scrolling past
+                    toggleActions: "play none none reverse", // Play on enter, reverse on leave
+                },
+                repeat: -1, // Infinite repetition
+                yoyo: false, // Don't reverse the animation, let it cycle
+            });
+            
+            // Initial state
+            gsap.set(beyonceQuoteElement, { 
+                opacity: 1,
+                scale: 1,
+                color: "#171711", // Start with white text
+                textShadow: "none"
+            });
+            
+            // Animation sequence
+            quoteTl
+                // Venus color phase
+                .to(beyonceQuoteElement, {
+                    color: "#DA78F6", // Venus purple color
+                    textShadow: "0px 0px 8px rgba(218,120,246,0.7)",
+                    fontWeight: "bold",
+                    letterSpacing: "1px",
+                    duration: 1.5,
+                    ease: "power1.inOut"
+                })
+                // Mars color phase
+                .to(beyonceQuoteElement, {
+                    color: "#F59D42", // Mars/fire color
+                    textShadow: "0px 0px 10px rgba(245,157,66,0.8)",
+                    duration: 1.5,
+                    ease: "power1.inOut"
+                })
+                // Transition back to black (neutral) - creates a clean loop
+                .to(beyonceQuoteElement, {
+                    color: "#171711",
+                    textShadow: "0px 0px 5px rgba(255,255,255,0.5)",
+                    duration: 1,
+                    ease: "power1.inOut"
+                });
+            
+            // Add a subtle pulsing effect that's independent of the color changes
+            gsap.to(beyonceQuoteElement, {
+                scale: 1.05,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+        }
       
         
 }, []);
@@ -708,7 +800,9 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                                 <img className="w-[100px] h-auto" src={VenusGifDefault} alt="Venus Gif"/>
                             </div>
                             <div id ='venus-text' className='flex mb-14 w-fit md:w-72 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                                Maybe the asteroid is lonely and that's why it's coming over here. you need to stop asserting dominance for no reason. I probably could charm them with my beauty..
+                                Maybe the asteroid is lonely and that's why it's coming over here. Mars, you need to stop asserting dominance for no reason. 
+                                
+                                I probably could charm them with my beauty..
                             </div>
                         </div> 
                         <div id='benefic-text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
@@ -760,7 +854,10 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                             </div>
                             <div id ='mars-text' className=' w-96 relative h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
                             <img id='corner-asteroid' className='absolute w-[40px] h-auto max-w-full max-h-full object-contain -top-4 -right-3 rotate-12' loading='lazy' src={AsteroidMouthOpen}/>
-                                As a Malefic planet, you feel like you need to push people, maybe in not the best of ways. Sometimes that means that people can be uncomfortable with your energy. However, your energy pushes people to be stronger, and better. You tend to take the more aggressive approach.
+                                As a Malefic planet, you feel like you need to push people, maybe in not the best of ways. 
+                                Sometimes that means that people can be uncomfortable with your energy. 
+                                <br /><br />
+                                However, your energy pushes people to be stronger, and better. You tend to take the more aggressive approach.
                             </div>
                         </div>
                         <div id='mars-dialogue' className='malefic-dialogue2 flex flex-row w-fit h-fit self-end mr-44 p-5'>
@@ -772,6 +869,17 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                                 <img className="w-[100px] sm:w/[60px] md:w/[80px] lg:w/[100px]" src={MarsGif} alt="Venus Gif"/>
                             </div>
                         </div>
+                        <div id='mars-dialogue' className='malefic-dialogue3 flex flex-col w-fit h-fit justify-center items-center p-5'>
+                            <div id='mars-text' className='flex flex-col w-96 h-fit relative bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-11 -left-11' loading='lazy' src={YellowSparkle}/>
+                                As Beyoncé once said, 
+                                <div className='text-center my-3'>
+                                    ♪ <span className='beyonce-quote  px-2 py-1 font-medium text-center'>Feel like you partied in Venus and we woke up in Mars</span> ♪
+                                </div>
+                            </div>
+                            
+                        </div>
+
                     </div>
                 </section>
 

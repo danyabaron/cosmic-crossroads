@@ -192,7 +192,9 @@ function MarsIntro({ addCharacter, characters }) {
                             <p ref={addToDialogueRefs} className='font-body text-md'> 
                                 Malefic planets! That's you. Sound familiar? Maybe not.
                                 The Malefic planets tend to bring the more challenging experiences that we may face in our life.
+                                <br /><br />
                                 The two Malefic planets in our solar system are Mars and Saturn. 
+                                <br /><br />
                                 Mars loves to fight, and Saturn loves to restrict. Go in an escape room with these two, and you'll probably be begging to get let out. Kidding...
                             </p>
                         </div>
@@ -200,7 +202,9 @@ function MarsIntro({ addCharacter, characters }) {
                         <div className='w-1/2 flex justify-center drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] shadow-2xl p-7 bg-main-black'>
                             <p ref={addToDialogueRefs} className='font-body text-md'>
                                 However, we all know life isn't so black and white. While the Malefic planets bring us challenging experiences
-                                they also can bring us rewards and growth. You'll make the Malefic planets
+                                they also can bring us rewards and growth.
+                                <br /><br />
+                                 You'll make the Malefic planets
                                 happy by accepting the challenges they bring, and learning from them.
                             </p>
                         </div>
@@ -241,8 +245,10 @@ function MarsIntro({ addCharacter, characters }) {
                                 Benefic planets! Ahhhhh the Benefic planets.
                                 Such a good time, these two. The Benefic planets love to bring life's more pleasant and positive experiences.
                                 The two Benefic planets in our solar system are Venus and Jupiter.
+                                <br /><br />
                                 Venus loves to bring pleasure & fun, and Jupiter loves to bring good fortune & abundance.
                                 Benefic planets love to have fun, as they love being adorned with life's pleasures. Isn't that so fun?
+                                <br /><br />
                                 Go to a party with these two, and you'll be partying all night long.
                             </p>
                         </div>
@@ -250,7 +256,9 @@ function MarsIntro({ addCharacter, characters }) {
                         <div className='w-1/2 flex justify-center drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] shadow-2xl p-7 bg-main-black'>
                             <p ref={addToDialogueRefs} className='font-body text-md'> 
                                 Now Benefic planets love to bring the fun, but what happens when you can 
-                                get lost in the fun? You'll make the Benefic planets happy by enjoying the pleasures they bring, but also by 
+                                get lost in the fun? 
+                                <br /><br />
+                                You'll make the Benefic planets happy by enjoying the pleasures they bring, but also by 
                                 reminding yourself that everything in moderation is key.
                             </p>
                         </div>
@@ -276,13 +284,16 @@ function MarsIntro({ addCharacter, characters }) {
                 <div className='w-1/2 flex justify-center drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] shadow-2xl p-7 bg-main-black'>
                     <p ref={addToDialogueRefs} className='font-body text-md text-white'>
                         Now that you've learned a little bit about the Benefic and Malefic planets,
-                        it's time to actually experience them. Remember that your name is Mars, and you are a Malefic planet.
+                        it's time to actually experience them. 
+                        <br /><br />
+                        Remember that your name is Mars, and you are a Malefic planet.
                     </p>
                 </div>
 
                 <div className='w-1/2 flex justify-center drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] shadow-2xl p-7 bg-main-black'>
                     <p ref={addToDialogueRefs} className='font-body text-md text-white'>
                         There's currently a group of asteroids heading straight to the solar system. 
+                        <br /><br />
                         As Mars, you must go to your fellow Benefic planets, and hear what they think we should 
                         do about the incoming asteroid attack. 
                     </p>
@@ -291,7 +302,9 @@ function MarsIntro({ addCharacter, characters }) {
                 <div className='w-1/2 flex justify-center drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] shadow-2xl p-7 bg-main-black'>
                     <p ref={addToDialogueRefs} className='font-body text-md text-white'>
                         Throughout this experience, you can decide if you want to team up with your fellow Benefic planets,
-                        or if you want to fight the asteroids solo. The choice is yours. Have fun in there! Try not to fight too much...
+                        or if you want to fight the asteroids solo. The choice is yours.
+                        <br /><br />
+                        Have fun in there! Try not to fight too much...
                     </p>
                 </div>
             </section>
@@ -299,7 +312,7 @@ function MarsIntro({ addCharacter, characters }) {
             {/* Enter Button */}
             <button
                 onClick={handleEnterClick}
-                className="mt-10 mb-12 px-6 py-3 text-white font-semibold rounded-lg shadow-lg bg-button-blue transition-transform hover:scale-105"
+                className="mt-10 mb-12 px-6 py-3 text-white drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  font-semibold rounded-lg shadow-xl bg-button-blue transition-transform hover:scale-105"
             >
                 ENTER
             </button>
