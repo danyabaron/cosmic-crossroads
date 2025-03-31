@@ -112,7 +112,7 @@ function MarsVenusEnding({ setScreen }) {
         <div className="bg-default-bg max-w-screen min-h-screen flex flex-col pt-14 justify-center items-center min-w-screen relative overflow-hidden">
              
              <section className='w-full min-h-screen flex flex-col pt-6  justify-center items-center gap-3'>
-                <h1 className="text-white font-header text-3xl mb-5 mt-5 z-10">The Battle Begins...</h1>
+                <h1 className="text-white font-header text-3xl mb-5 mt-5 z-10">The Result</h1>
 
                 
                 <div className='flex flex-row gap-3 justify-center items-center w-full'>
@@ -148,7 +148,7 @@ function MarsVenusEnding({ setScreen }) {
 
              <section className='w-full min-h-screen flex flex-col gap-3 justify-center items-center'>
                 <div id='mars-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
-                    <h1 className="text-white text-3xl mb-16 z-10"> Mars </h1>
+                    <h1 className="text-white text-3xl mb-3 z-10"> Mars </h1>
                     <div className='flex flex-row gap-3 justify-center items-center w-full'>
                         <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
                         <p ref={marsTextRef} className='text-main-black rounded-lg p-6 font-body bg-white w-1/2'>
@@ -163,7 +163,7 @@ function MarsVenusEnding({ setScreen }) {
 
              <section className='w-full min-h-screen flex flex-col gap-3 justify-center items-center'>
                 <div id='venus-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
-                    <h1 className="text-white text-3xl mb-16 z-10"> Venus </h1>
+                    <h1 className="text-white text-3xl mb-3 z-10"> Venus </h1>
                     <div className='flex flex-row gap-3 justify-center items-center w-full'>
                         <img src={VenusGifMouthOpen} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Venus" />
                         <p ref={venusTextRef} className='text-main-black rounded-lg p-6 font-body bg-white w-1/2'>
@@ -178,8 +178,9 @@ function MarsVenusEnding({ setScreen }) {
 
         <button 
          className="w-36 h-10 mb-7 rounded-lg bg-button-blue text-white relative z-10 
+         drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
           px-4 font-medium text-center flex items-center justify-center
-          hover:bg-opacity-80 shadow-lg hover:shadow-xl transition-all duration-200" 
+          shadow-lg hover:scale-105 transition duration-300 ease-in-out" 
          onClick={() => navigate("/marsintro")}
        >
          Play Again

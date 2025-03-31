@@ -336,8 +336,9 @@ const MarsVenusJupiterEnding = () => {
 
       <button 
         className="w-36 h-10 rounded-lg bg-button-blue text-white relative z-10 
+        drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
         mb-6 px-4 font-medium text-center flex items-center justify-center
-        hover:bg-opacity-80 shadow-lg hover:shadow-xl transition-all duration-200" 
+          shadow-lg hover:scale-105  transition duration-300 ease-in-out" 
         onClick={() => navigate("/marsintro")}
       >
         Play Again

@@ -205,18 +205,35 @@ function MarsSoloEnding({ advanceRound }) {
             }
         });
 
-        // Hide the header when reaching the intro text section
+        // Hide the header when reaching the intro text section - Fix here
         gsap.to('#fight-header', {
             opacity: 0,
-            y: 50,
+            y: -50, // Move up instead of down for better exit
             visibility: 'hidden',
             scrollTrigger: {
-                trigger: '#intro-text',  // Target the intro-text section
-                start: "top 90%",        // Start hiding when intro-text approaches viewport
-                end: "top 70%",          // Complete hiding before fully entering viewport
-                scrub: 0.5,              // Smooth animation tied to scroll
+                trigger: '#intro-text',  
+                start: "top bottom",    // Start hiding as soon as intro text enters viewport
+                end: "top 70%",        
+                scrub: 0.5,              
                 markers: false,
                 id: "header-fadeout"
+            },
+            onComplete: () => {
+                // Force hide the element after animation completes
+                gsap.set('#fight-header', { display: 'none' });
+            }
+        });
+        
+        // Add a cleanup function to make sure header is completely hidden when leaving the section
+        ScrollTrigger.create({
+            trigger: '#intro-text',
+            start: "top 50%",
+            onEnter: () => {
+                gsap.set('#fight-header', { 
+                    display: 'none',
+                    visibility: 'hidden',
+                    opacity: 0 
+                });
             }
         });
     }, []);
@@ -346,7 +363,8 @@ function MarsSoloEnding({ advanceRound }) {
             <button 
                 className="w-36 h-10 mb-7 rounded-lg bg-button-blue text-white relative z-10 
                 px-4 font-medium text-center flex items-center justify-center
-                hover:bg-opacity-80 shadow-lg hover:shadow-xl transition-all duration-200" 
+                drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
+                 shadow-lg hover:scale-105 transition duration-300 ease-in-out" 
                 onClick={() => navigate("/marsintro")}
             >
                 Play Again
