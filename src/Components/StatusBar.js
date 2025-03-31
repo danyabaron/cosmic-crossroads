@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { CiSettings } from "react-icons/ci";
+import { useAudio } from './AudioContext';
 import MarsStaticImg from '../assets/mars-art/mars-art-official.png';
 import VenusStaticImg from '../assets/venus-art/venus-default.png';
 import SaturnStaticImg from '../assets/saturn-art/saturn.png';
@@ -12,6 +13,7 @@ import JupiterGif from '../assets/jupiter-art/jupiter-art-gif.gif';
 
 function StatusBar({ characters }) {
     const location = useLocation();
+    const { isPlaying, toggleAudio } = useAudio();
     const characterImages = {
         Mars: MarsStaticImg,
         Venus: VenusStaticImg,
@@ -282,9 +284,60 @@ function StatusBar({ characters }) {
                         <button className="absolute top-2 right-2 text-white hover:scale-110 transition-transform 
                         duration-200 ease-in-out" onClick={toggleSettings}>✖</button>
                         <h2 className="text-xl font-bold font-header text-center">SETTINGS</h2>
-                        <div className="flex flex-col gap-2 mt-4">
-                            <button className="text-sm">Sound: On/Off</button>
-                            <button className="text-sm">Reset Progress</button>
+                        <div className="flex flex-col gap-4 mt-4">
+                            {/* Enhanced Audio Toggle Slider with clickable labels - always visible */}
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center">
+                                    <span className="text-sm mr-2">Sound:</span>
+                                    {isPlaying ? 
+                                        <span className="text-sm text-green-400">Playing</span> : 
+                                        <span className="text-sm text-gray-400">Muted</span>
+                                    }
+                                </div>
+                                <div className="flex items-center">
+                                    {/* Clickable Off label */}
+                                    <span 
+                                        className={`mr-2 text-xs font-medium cursor-pointer px-2 py-1 rounded transition-colors duration-200
+                                            ${!isPlaying 
+                                                ? 'text-white bg-mars-red font-bold' 
+                                                : 'text-gray-500 hover:text-gray-300'}`}
+                                        onClick={() => isPlaying && toggleAudio()} // Only toggle if currently playing
+                                    >
+                                        Off
+                                    </span>
+                                    
+                                    {/* Toggle slider - always visible */}
+                                    <div 
+                                        className="relative w-12 h-6 bg-mars-red rounded-full cursor-pointer transition-colors duration-300"
+                                        onClick={toggleAudio}
+                                    >
+                                        {/* The sliding circle */}
+                                        <div 
+                                            className={`absolute left-0.5 top-0.5 w-5 h-5 bg-white z-10 rounded-full transform transition-transform duration-300 ${
+                                                isPlaying ? 'translate-x-6 bg-white' : 'translate-x-0 bg-gray-400'
+                                            }`}
+                                        ></div>
+                                        {/* The background track - always visible, just changes color */}
+                                        <div 
+                                            className={`absolute inset-0 rounded-full transition-colors duration-300 ${
+                                                isPlaying ? 'bg-button-blue' : 'bg-gray-700'
+                                            }`}
+                                        ></div>
+                                    </div>
+                                    
+                                    {/* Clickable On label */}
+                                    <span 
+                                        className={`ml-2 text-xs font-medium cursor-pointer px-2 py-1 rounded transition-colors duration-200
+                                            ${isPlaying 
+                                                ? 'text-white bg-button-blue font-bold' 
+                                                : 'text-gray-500 hover:text-gray-300'}`}
+                                        onClick={() => !isPlaying && toggleAudio()} // Only toggle if currently not playing
+                                    >
+                                        On
+                                    </span>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>

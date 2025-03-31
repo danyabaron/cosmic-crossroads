@@ -21,11 +21,10 @@ import StickMarsDecision1 from './Components/MarsPathComponents/MarsPathComponen
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import ScrollToTop from './Components/ScrollToTop';
+import { AudioProvider } from './Components/AudioContext';
 
 // Register the plugin with GSAP
 gsap.registerPlugin(ScrollToPlugin);
-
-
 
 function App() {
 
@@ -67,112 +66,111 @@ function App() {
       }, []);
     
 
-  
-  
-
       return (
-        <BrowserRouter>
-          <ScrollToTop /> {/* Add this component inside BrowserRouter but before Routes */}
-          
-          <div className="App flex flex-col min-h-screen min-w-screen z-20">
+        <AudioProvider>
+          <BrowserRouter>
+            <ScrollToTop /> {/* Add this component inside BrowserRouter but before Routes */}
+            
+            <div className="App flex flex-col min-h-screen min-w-screen z-20">
 
-          
-            <Routes>
-            <Route path="/" element={<Home setCharacters={setCharacters} />} />
             
-            
-              <Route 
-                path="/marsintro" 
-                element={
-                  <>
-                    {/* <StatusBar characters={characters} /> */}
-                    <MarsIntro addCharacter={addCharacter} characters={characters} />
-                  </>
-                } />
-              <Route 
-                path="/mars-game/:screen" 
-                element={
-                  <>
-                    <StatusBar characters={characters} />
-                    <MarsGame addCharacter={addCharacter} characters={characters} />
-                  </>
-                } />
-            
-              <Route 
-                path="/mars-horizontal-venus" 
-                element={
-                  <>
-                    <StatusBar characters={characters} />
-                    <MarsHorizontalVenus setScreen={() => {}}  addCharacter={addCharacter}  characters={characters}/>
-                  </>
+              <Routes>
+              <Route path="/" element={<Home setCharacters={setCharacters} />} />
               
-                } 
-                />
+              
                 <Route 
-                path="/mars-horizontal-jupiter" 
-                element={
+                  path="/marsintro" 
+                  element={
+                    <>
+                      {/* <StatusBar characters={characters} /> */}
+                      <MarsIntro addCharacter={addCharacter} characters={characters} />
+                    </>
+                  } />
+                <Route 
+                  path="/mars-game/:screen" 
+                  element={
+                    <>
+                      <StatusBar characters={characters} />
+                      <MarsGame addCharacter={addCharacter} characters={characters} />
+                    </>
+                  } />
+              
+                <Route 
+                  path="/mars-horizontal-venus" 
+                  element={
+                    <>
+                      <StatusBar characters={characters} />
+                      <MarsHorizontalVenus setScreen={() => {}}  addCharacter={addCharacter}  characters={characters}/>
+                    </>
+                
+                  } 
+                  />
+                  <Route 
+                  path="/mars-horizontal-jupiter" 
+                  element={
+                    <>
+                      <StatusBar characters={characters} />
+                      <MarsHorizontalJupiter setScreen={() => {}} 
+                      addCharacter={addCharacter} 
+                      characters={characters}
+                      />
+                    </>
+                  
+                  } 
+                  />
+                  <Route path="/choose-venus-1" element={
                   <>
                     <StatusBar characters={characters} />
-                    <MarsHorizontalJupiter setScreen={() => {}} 
-                    addCharacter={addCharacter} 
-                    characters={characters}
+                    <ChooseVenusDecision1 characters={characters} />
+                  </>
+
+                  } />
+                  <Route path="/stick-mars-1" element={
+                  <>
+                    <StatusBar characters={characters} />
+                    <StickMarsDecision1 
+                      characters={characters} 
                     />
                   </>
-                
-                } 
-                />
-                <Route path="/choose-venus-1" element={
-                <>
+
+                  } />
+
+                <Route path="/mars-solo-ending" element={
+                  <>
+                    <StatusBar characters={characters} />
+                    <MarsSoloEnding characters={characters}/>
+                  </>
+
+                  } />
+                <Route path="/mars-venus-ending" element={
+                  <>
+                    <StatusBar characters={characters} />
+                    <MarsVenusEnding characters={characters}  />
+                  </>
+                  
+                  } />
+                <Route path="/mars-jupiter-ending" element={
+                  <>
+                    <StatusBar characters={characters} />
+                    <MarsJupiterEnding characters={characters} />
+                  </>
+                  
+                  } />
+                <Route path="/mars-venus-jupiter-ending" element={
+                  <>
                   <StatusBar characters={characters} />
-                  <ChooseVenusDecision1 characters={characters} />
+                  <MarsVenusJupiterEnding characters={characters} />
                 </>
-
-                } />
-                <Route path="/stick-mars-1" element={
-                <>
-                  <StatusBar characters={characters} />
-                  <StickMarsDecision1 
-                    characters={characters} 
-                  />
-                </>
-
                 } />
 
-              <Route path="/mars-solo-ending" element={
-                <>
-                  <StatusBar characters={characters} />
-                  <MarsSoloEnding characters={characters}/>
-                </>
 
-                } />
-              <Route path="/mars-venus-ending" element={
-                <>
-                  <StatusBar characters={characters} />
-                  <MarsVenusEnding characters={characters}  />
-                </>
-                
-                } />
-              <Route path="/mars-jupiter-ending" element={
-                <>
-                  <StatusBar characters={characters} />
-                  <MarsJupiterEnding characters={characters} />
-                </>
-                
-                } />
-              <Route path="/mars-venus-jupiter-ending" element={
-                <>
-                <StatusBar characters={characters} />
-                <MarsVenusJupiterEnding characters={characters} />
-              </>
-              } />
+              </Routes>
+            </div>
 
 
-            </Routes>
-          </div>
-
-
-          
-        </BrowserRouter>
+            
+          </BrowserRouter>
+        </AudioProvider>
       );
     }
 

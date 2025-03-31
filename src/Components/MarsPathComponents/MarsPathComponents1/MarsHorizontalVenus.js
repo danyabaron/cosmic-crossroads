@@ -108,50 +108,113 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
       useGSAP(() => {
         const marsDialogs = gsap.utils.toArray(".mars-dialogue");
         const venusDialogs = gsap.utils.toArray(".venus-dialogue");
+        const maleficDialog1 = gsap.utils.toArray(".malefic-dialogue1");
+        const maleficDialog2 = gsap.utils.toArray(".malefic-dialogue2");
+
+        console.log(maleficDialog2);
+
+
     
-       
-    
-        
         marsDialogs.forEach((dialog) => {
             gsap.fromTo(dialog,
                 { x: "-100%", opacity: 0 },
                 {
                     x: "0%",
                     opacity: 1,
-                    duration: 3, // Slower animation
+                    duration: 2, // Faster animation
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: dialog,
-                        start: "top 80%",
-                        end: "top 20%",
-                        scrub: 1,  // Keeps it synced with the scroll
-                        // markers: true,  // Optional markers for debugging
+                        start: "top 90%", // Start animation when just entering viewport
+                        end: "top 60%", // End animation sooner
+                        scrub: 0.5,  // More responsive scrubbing
+                        toggleActions: "restart pause reverse pause", // Better behavior for scroll up/down
+                        // markers: true,  // For debugging
                     }
                 }
             );
         });
     
-        
         venusDialogs.forEach((dialog) => {
             gsap.fromTo(dialog,
                 { x: "100%", opacity: 0 },
                 {
                     x: "0%",
                     opacity: 1,
-                    duration: 3, // Slower animation
+                    duration: 2, // Faster animation
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: dialog,
-                        start: "top 80%",
-                        end: "top 20%",
-                        scrub: 1,  // Keeps it synced with the scroll
-                        // markers: true,  // Optional markers for debugging
+                        start: "top 90%", // Start animation when just entering viewport
+                        end: "top 60%", // End animation sooner
+                        scrub: 0.5,  // More responsive scrubbing
+                        toggleActions: "restart pause reverse pause", // Better behavior for scroll up/down
+                        // markers: true,  // For debugging
                     }
                 }
             );
         });
 
+        maleficDialog1.forEach((dialog) => {
+            gsap.fromTo(dialog,
+                { x: "-100%", opacity: 0 },
+                {
+                    
+                    x: "0%",
+                    opacity: 1,
+                    duration: 1.5, // Faster animation
+                    delay: 0.5,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: '#malefic-text', // Target the panel
+                       
+                        start: "bottom center", // Start when the center of the panel reaches the center of viewport
+                        // end: "bottom center", // End when bottom of panel reaches center
+                        scrub: 0.5,  // More responsive scrubbing
+                        toggleActions: "restart pause reverse pause", // Better behavior for scroll up/down
+                        markers: {
+                            startColor: "green",
+                            endColor: "red",
+                            fontSize: "12px",
+                            indent: 10,
+                            fontWeight: "bold",
+                            id: "malefic-dialog-1"  // Custom ID for these markers
+                        }
+                    }
+                }
+            );
+        });
 
+        maleficDialog2.forEach((dialog) => {
+            gsap.fromTo(dialog,
+                { x: "100%", opacity: 0 },
+                {
+                   
+                    x: "0%",
+                    opacity: 1,
+                    delay: 1,
+                    duration: 2, // Faster animation
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: "#malefic-text", // Target the panel
+                        start: "bottom center", // Start when the center of the panel reaches the center of viewport 
+                        // end: "bottom center", // End when bottom of panel reaches center
+                        scrub: 0.5,  // More responsive scrubbing
+                        
+                        toggleActions: "restart pause reverse pause", // Better behavior for scroll up/down
+                        markers: {
+                            startColor: "purple",
+                            endColor: "blue", 
+                            fontSize: "12px",
+                            fontWeight: "bold",
+                            id: "malefic-dialog-2"  // Custom ID for these markers
+                        }
+                    }
+                }
+            );
+        });
+
+      
         
 }, []);
 
@@ -643,9 +706,9 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
             
 
                 {/* container for THIRD scroll section / dialogue */}
-                <section id="panel" className='w-screen min-h-screen relative flex flex-col'>
-                    <div id='container-panel-mars' className='items-center flex flex-col gap-14'>
-                        <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-start relative ml-44 p-5'>
+                <section id="panel" className='malefic-text w-screen min-h-screen relative mt-6 flex flex-col'>
+                    <div id='malefic-text' className='items-center flex flex-col gap-14'>
+                        <div id='mars-dialogue' className='malefic-dialogue1 flex flex-row w-fit h-fit self-start relative ml-44 p-5'>
                             
                             <div id='mars-pic' className='mt-14'>
                                 <img id='mars' className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
@@ -655,7 +718,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                                 As a Malefic planet, you feel like you need to push people, maybe in not the best of ways. Sometimes that means that people can be uncomfortable with your energy. However, your energy pushes people to be stronger, and better. You tend to take the more aggressive approach.
                             </div>
                         </div>
-                        <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-end mr-44 p-5'>
+                        <div id='mars-dialogue' className='malefic-dialogue2 flex flex-row w-fit h-fit self-end mr-44 p-5'>
                             <div id ='mars-text' className='flex w-96 h-fit relative bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
                                 <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-11 -left-11' loading='lazy' src={BlackSparkle}/>
                                 Waiting to take the offense side is difficult for you. You are prone to taking action immediately and channeling your inner warrior.
@@ -669,6 +732,14 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
 
                 {/* container for FOURTH scroll section / dialogue */}
                 <section id="panel" className='mars-battle w-screen min-h-screen relative flex flex-col justify-center'>
+                    
+                    {/* Mars Battle Header - positioned above the animation container */}
+                    <div className="absolute top-10 w-full z-10 text-center">
+                        <h1 className='text-2xl font-header text-white px-4 py-2 bg-black bg-opacity-50 rounded-md inline-block'>
+                            Mars Shows His Power!
+                        </h1>
+                    </div>
+                    
                     <div ref={marsBattleRef} className="relative w-screen h-screen overflow-hidden bg-black" id="mars-battle">
                         {/* Mars */}
                         <img 
@@ -690,28 +761,6 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                    
 
                 </section>
-
-                {/* container for FIFTH scroll section / dialogue */}
-                {/* <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center'>
-                    <div id='container-panel' className='flex flex-col items-center gap-14'>
-                        <div id='venus-dialogue' className='flex flex-row w-fit h-fit self-start p-7 ml-9'>
-                            <div id='venus-pic' className='mt-14'>
-                                <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={VenusGifDefault} alt="Venus Gif"/>
-                            </div>
-                            <div id ='venus-text' className='flex w-fit md:w-72 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                                Mars, we need to make these asteroids feel GOOD! With my beauty.. of course.
-                            </div>
-                        </div> 
-                        <div id='mars-dialogue' className='flex flex-row w-fit h-fit self-end p-7 mr-9'>
-                            <div id='mars-pic' className='mt-14'>
-                                <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Mars Gif"/>
-                            </div>
-                            <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                                mars animation here
-                            </div>
-                        </div>
-                    </div>
-                </section> */}
 
                 {/* container for SIXTH/FINAL scroll section / dialogue */}
                 <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center pr-5'>
