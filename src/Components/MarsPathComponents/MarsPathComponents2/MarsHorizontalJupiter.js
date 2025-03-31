@@ -319,12 +319,12 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
     const buttons = [
         {
             text: "Compromise with Jupiter",
-            style: "bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-green-600",
+            style: "bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
             onClick: () => handleDecision('jupiter')
         },
         {
             text: "Stick with your Malefic",
-            style: "bg-main-black text-white px-4 py-2 rounded-md shadow-md",
+            style: "bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
             onClick: () => handleDecision('mars')
         }
     ];
@@ -514,8 +514,8 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
             {/* container for SIXTH/FINAL scroll section / dialogue */}
             <section id="panel" className='w-screen min-h-screen flex flex-col justify-center pr-5'>
                 <div id='container-panel' className='flex flex-col items-center gap-14'>
-                    <div id='header' className='font-header text-white font-bold'>
-                        <h1>Decision Time: 15 seconds</h1>
+                    <div id='header' className='font-header text-xl text-white font-bold'>
+                        <h1>Decision Time!</h1>
                     </div>
                     <div id='planet-pics' className='flex flex-row gap-5 items-center justify-center w-full h-fit'>
                         <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
