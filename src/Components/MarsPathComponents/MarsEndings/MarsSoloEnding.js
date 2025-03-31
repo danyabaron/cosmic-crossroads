@@ -12,8 +12,6 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import VenusAnnoyedGif from '../../../assets/venus-art/venus-annoyed-gif.gif';
 import JupiterAnnoyedGif from '../../../assets/jupiter-art/jupiter-art-annoyed-gif.gif';
 
-
-
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 function MarsSoloEnding({ advanceRound }) {
@@ -21,6 +19,18 @@ function MarsSoloEnding({ advanceRound }) {
     const marsRef = useRef(null);
     const asteroidRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
     const navigate = useNavigate();
+
+    const paragraphRefs = useRef([]);
+    const jupiterTextRef = useRef(null);
+    const venusTextRef = useRef(null);
+
+    paragraphRefs.current = [];
+
+    const addToParagraphRefs = (el) => {
+        if (el && !paragraphRefs.current.includes(el)) {
+            paragraphRefs.current.push(el);
+        }
+    };
 
     const createSparkle = (x, y) => {
         const sparkle = document.createElement("div");
@@ -31,80 +41,140 @@ function MarsSoloEnding({ advanceRound }) {
 
         gsap.to(sparkle, {
             opacity: 0,
-            // scale: 1.5,
             duration: 1,
             onComplete: () => sparkle.remove(),
         });
     };
 
-    useGSAP(() => {
-        console.log('Container Ref:', containerRef.current);
-        console.log('Mars Ref:', marsRef.current);
-        asteroidRefs.forEach((ref, index) => console.log(`Asteroid ${index + 1} Ref:`, ref.current));
+    useEffect(() => {
+        window.scrollTo(0, 0);
 
-        // Create a timeline for the animations
+        // Animate intro text divs from alternating sides with dramatic timing
+        paragraphRefs.current.forEach((element, index) => {
+            const startX = index % 2 === 0 ? -150 : 150; // Alternate between left and right
+            
+            gsap.fromTo(element.parentNode, // Target the parent div containing the paragraph
+                { 
+                    opacity: 0,
+                    x: startX,
+                },
+                { 
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.5, // Longer duration for more dramatic effect
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: element.parentNode,
+                        start: "top 75%", // Start animation when element is further down in viewport
+                        end: "top 35%", // End animation when element is higher in viewport
+                        toggleActions: "play reverse restart reverse",
+                        scrub: 0.8, // Smoother scrubbing with more delay
+                    }
+                }
+            );
+        });
+
+        // Fade in for Jupiter text with more dramatic timing
+        if (jupiterTextRef.current) {
+            gsap.fromTo(jupiterTextRef.current.parentNode, 
+                { 
+                    opacity: 0,
+                    x: -80 // Increased distance
+                },
+                { 
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.5,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: jupiterTextRef.current,
+                        start: "top 80%",
+                        end: "top 40%", // Longer animation window
+                        toggleActions: "play reverse restart reverse",
+                        scrub: 0.8
+                    }
+                }
+            );
+        }
+        
+        // Fade in for Venus text with more dramatic timing
+        if (venusTextRef.current) {
+            gsap.fromTo(venusTextRef.current.parentNode, 
+                { 
+                    opacity: 0,
+                    x: 80 // From opposite side for visual variety
+                },
+                { 
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.5,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: venusTextRef.current,
+                        start: "top 80%",
+                        end: "top 40%", // Longer animation window
+                        toggleActions: "play reverse restart reverse",
+                        scrub: 0.8
+                    }
+                }
+            );
+        }
+    }, []);
+
+    useGSAP(() => {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: containerRef.current,
-                start: "top top", // Start animation when the top of the container hits the top of the viewport
-                end: "bottom bottom", // End animation when the bottom of the container hits the bottom of the viewport
-                scrub: 1, // Smoothly sync animation with scroll position
-                pin: true, // Pin the container while the animation is running
-                markers: true // Show markers for debugging (remove in production)
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1,
+                pin: true,
+                markers: true
             }
         });
 
-        // Add Mars animation to the timeline
         tl.to(marsRef.current, {
             motionPath: {
                 path: [
-                    { x: 200, y: 200 },  // Point 1
-                    { x: 600, y: 300 },  // Point 2
-                    { x: 300, y: 500 },  // Point 3
+                    { x: 200, y: 200 },
+                    { x: 600, y: 300 },
+                    { x: 300, y: 500 },
                 ],
                 alignOrigin: [0.5, 0.5]
             },
-            duration: 3, // Adjust duration as needed
+            duration: 3,
             ease: "power1.inOut"
         });
 
-        // Add Asteroid animation to the timeline
         asteroidRefs.forEach((asteroidRef) => {
             tl.to(asteroidRef.current, {
                 motionPath: {
                     path: [
-                        { x: -200, y: 200 },  // Point 1 (opposite direction)
-                        { x: -600, y: 300 },  // Point 2 (opposite direction)
-                        { x: -300, y: 500 },  // Point 3 (opposite direction)
+                        { x: -200, y: 200 },
+                        { x: -600, y: 300 },
+                        { x: -300, y: 500 },
                     ],
                     alignOrigin: [0.5, 0.5]
                 },
-                rotation: 360, // Rotate 360 degrees
-                duration: 3, // Adjust duration as needed
+                rotation: 360,
+                duration: 3,
                 ease: "power1.inOut",
                 onUpdate: () => {
-                    // Get the asteroid's position using GSAP's getProperty
                     const rect = asteroidRef.current.getBoundingClientRect();
                     const containerRect = containerRef.current.getBoundingClientRect();
-                    
-                    // Calculate position relative to the container
                     const x = rect.left - containerRect.left;
                     const y = rect.top - containerRect.top;
-                
-                    // console.log("Sparkle at:", x, y);
                     createSparkle(x, y);
                 }
-            }, 0); // Start at the same time as Mars animation
+            }, 0);
         });
 
-        // Completely reset ScrollTrigger for the header to avoid conflicts
         ScrollTrigger.getAll().forEach(st => {
             if (st.vars.trigger === '#fight-header' || st.vars.pin === '#fight-header') {
                 st.kill();
             }
         });
 
-        // Set the header to be initially hidden but in the correct position
         gsap.set('#fight-header', {
             opacity: 0,
             y: 0,
@@ -119,7 +189,7 @@ function MarsSoloEnding({ advanceRound }) {
             textAlign: 'center'
         });
 
-        // Make the header appear earlier in the scroll sequence
+        // Show the header when scrolling through animation section
         gsap.to('#fight-header', {
             opacity: 1,
             visibility: 'visible',
@@ -127,27 +197,25 @@ function MarsSoloEnding({ advanceRound }) {
             ease: "power2.out",
             scrollTrigger: {
                 trigger: containerRef.current,
-                start: "20% center", // Make it appear much earlier - when 20% of container passes center
-                end: "40% center",   // Complete the animation quicker
+                start: "20% center",
+                end: "40% center",
                 scrub: 1,
-                markers: true,       // Keep markers for debugging
-                id: "header-appear"  // Give it an ID for easier debugging
+                markers: false,
+                id: "header-appear"
             }
         });
-        
-        // Remove the previous header movement for clarity
-        // And remove the pinning which might be causing issues
-        
-        // Add a simple fade out for the header when reaching text section
+
+        // Hide the header when reaching the intro text section
         gsap.to('#fight-header', {
             opacity: 0,
             y: 50,
+            visibility: 'hidden',
             scrollTrigger: {
-                trigger: '#text',
-                start: "top 80%",
-                end: "top 50%",
-                scrub: 1,
-                markers: true,
+                trigger: '#intro-text',  // Target the intro-text section
+                start: "top 90%",        // Start hiding when intro-text approaches viewport
+                end: "top 70%",          // Complete hiding before fully entering viewport
+                scrub: 0.5,              // Smooth animation tied to scroll
+                markers: false,
                 id: "header-fadeout"
             }
         });
@@ -155,13 +223,9 @@ function MarsSoloEnding({ advanceRound }) {
 
     return (
         <div className="bg-default-bg h-fit min-w-screen pt-14 flex flex-col justify-center items-center relative overflow-hidden">
-           
-           {/* animation container for mars and asteroids */}
             <div ref={containerRef} className="animation-container relative w-full h-[200vh]">
-                {/* Sparkle Container */}
                 <div id='sparkle-container' className="absolute inset-0 pointer-events-none z-10"></div>
 
-                {/* Mars Container */}
                 <div ref={marsRef} className="absolute w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] 
                 top-10 left-10">
                     <img 
@@ -171,7 +235,6 @@ function MarsSoloEnding({ advanceRound }) {
                     />
                 </div>
 
-                {/* Asteroids Container */}
                 <div ref={asteroidRefs[0]} className="absolute w-11 top-10 right-10">
                     <img 
                         src={AsteroidMouthOpen} 
@@ -200,11 +263,8 @@ function MarsSoloEnding({ advanceRound }) {
                         className="w-full h-full object-contain"
                     />
                 </div>
-
-               
             </div>
 
-            {/* Simplified and fixed header with guaranteed centering */}
             <div 
                 id='fight-header-container' 
                 className="fixed inset-0 flex items-center justify-center pointer-events-none z-50"
@@ -223,109 +283,76 @@ function MarsSoloEnding({ advanceRound }) {
                 </h1>
             </div>
 
-            {/* Text Section */}
-            <section id='text' className='min-w-screen min-h-screen flex flex-col gap-6 justify-center items-center'>
+            <section className='flex flex-col gap-6 mb-7 w-screen min-h-screen justify-center items-center'>
+                <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
                 
-                
-              
-
-
-                <div id='container' className='flex flex-col justify-center items-center gap-32'>
-                        <div id='mars-container' className='flex flex-row gap-3 justify-center items-center'>
-                            <img 
-                                src={MarsGif} 
-                                alt="Mars" 
-                                className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
-                            />
-
-                            <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
-                                    {/* <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -right-11' loading='lazy' src={YellowSparkle}/> */}
-                                You chose to fight alone, how Martian of you. While you were able to defeat the asteroids, 
-                                your brute force method did not bode well with your fellow benefic planets.
-                            </div>
-
-
-
-                        </div>
-
-                        <div id='jupiter-container' className='flex flex-row gap-3 justify-center items-center'>
-                            <img 
-                                src={JupiterAnnoyedGif} 
-                                alt="Jupiter" 
-                                className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
-                            />
-
-                            <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
-                                    {/* <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -right-11' loading='lazy' src={YellowSparkle}/> */}
-                                You chose to fight alone, how Martian of you. While you were able to defeat the asteroids, 
-                                your brute force method did not bode well with your fellow benefic planets.
-                            </div>
-
-
-
-                        </div>
-                        <div id='venus-container' className='flex flex-row gap-3 justify-center items-center'>
-                            <img 
-                                src={VenusAnnoyedGif} 
-                                alt="Venus" 
-                                className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
-                            />
-
-                            <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
-                                    {/* <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -right-11' loading='lazy' src={YellowSparkle}/> */}
-                                You chose to fight alone, how Martian of you. While you were able to defeat the asteroids, 
-                                your brute force method did not bode well with your fellow benefic planets.
-                            </div>
-
-
-
-                        </div>
-
-                        <section id='asteroids' className='flex flex-col gap-3 mb-7 justify-center items-center'>
-                                <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
-                                
-                                <img 
-                                src={AsteroidMouthOpen} 
-                                alt="Asteroid" 
-                                className="w-7 h-7 object-contain"
-                            />
-
-                            <p className='w-1/2 text-white font-body text-xs md:text-sm'>
-                                The asteroids, seeing your aggressive approach, were not pleased. They felt that you did not
-                                value their existence and were only interested in using them for your own gain.
-                                As a result, they became hostile and vowed to never trust you again.
-                                This has led to a rift between you and the asteroids, and they have become your enemies.    
-
-                                While you were able to defeat them this time, they will always be a thorn in your side. Your benefic planets
-                                are also disappointed in you for not trying to negotiate with the asteroids. They feel that you have let them down,
-                                and they are no longer willing to help you in your future endeavors.
-                            </p>
-                        </section>
-
-
+                <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
+                    <p ref={addToParagraphRefs} className=' text-white font-body text-xs md:text-sm'>
+                        The asteroids, seeing your aggressive approach, were not pleased. They felt that you did not
+                        value their existence and were only interested in using them for your own gain.
+                        As a result, they became hostile and vowed to never trust you again.
+                        This has led to a rift between you and the asteroids, and they have become your enemies.    
+                    </p>
                 </div>
 
-               
-
-
-
-            
-
+                <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
+                    <p ref={addToParagraphRefs} className=' text-white font-body text-xs md:text-sm'>
+                        While you were able to defeat them this time, they will always be a thorn in your side. Your benefic planets
+                        are also disappointed in you for not trying to negotiate with the asteroids. They feel that you have let them down,
+                        and they are no longer willing to help you in your future endeavors.
+                    </p>
+                </div>
             </section>
-            
+
+            <div id='container' className='flex min-h-screen w-screen flex-col justify-center items-center gap-8'>
+                <div id='jupiter-container' className='flex flex-row gap-3 justify-center items-center'>
+                    <img 
+                        src={JupiterAnnoyedGif} 
+                        alt="Jupiter" 
+                        className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
+                    />
+
+                    <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
+                        <p ref={jupiterTextRef}>
+                            Mars, I expected better from you. As the 
+                            guardian of wisdom and expansion, I've always taught 
+                            that diplomacy brings greater rewards than brute force. 
+                            Did you even try to understand their perspective? Every 
+                            conflict has potential for growth, but you've only 
+                            created more division. This impulsiveness of yours will limit your cosmic influence.
+                        </p>
+                    </div>
+                </div>
+                
+                <div id='venus-container' className='flex flex-row gap-3 justify-center items-center'>
+                    <img 
+                        src={VenusAnnoyedGif} 
+                        alt="Venus" 
+                        className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
+                    />
+
+                    <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
+                        <p ref={venusTextRef}>
+                            Oh Mars, always rushing into battle without a second thought! Harmony and connection 
+                            are what truly strengthen the cosmos. Did it ever occur 
+                            to you that those asteroids might have become valuable allies? 
+                            Instead, you've made enemies where you could have made friends. Next time, 
+                            try using your heart instead of your sword. Relationships matter more than victories.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             <button 
-                  className="w-32 h-8 rounded-lg bg-button-blue text-white relative z-10 
-                  m-10 hover:bg-opacity-80" 
-                  onClick={() => navigate("/marsintro")}
-                >
-                  Play Again
-                </button>
-
-      
-
+                className="w-36 h-10 mb-7 rounded-lg bg-button-blue text-white relative z-10 
+                px-4 font-medium text-center flex items-center justify-center
+                hover:bg-opacity-80 shadow-lg hover:shadow-xl transition-all duration-200" 
+                onClick={() => navigate("/marsintro")}
+            >
+                Play Again
+            </button>
         </div>
     );
 }
 
-  
 export default MarsSoloEnding;

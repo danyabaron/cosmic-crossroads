@@ -13,43 +13,154 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
 
-
+// Register plugins
+gsap.registerPlugin(ScrollTrigger);
 
 // mars and jupiter alone ending: mars + jupiter in status bar
 
 function MarsJupiterEnding({ characters }) {
 
     const navigate = useNavigate();
+    const introTextRefs = useRef([]);
+    const marsTextRef = useRef(null);
+    const jupiterTextRef = useRef(null);
+    
+    // Reset refs array
+    introTextRefs.current = [];
+    
+    // Add to refs array function
+    const addToIntroRefs = (el) => {
+        if (el && !introTextRefs.current.includes(el)) {
+            introTextRefs.current.push(el);
+        }
+    };
 
-         return (
-            <div className="bg-default-bg max-w-screen min-h-screen flex flex-col justify-center items-center min-w-screen relative overflow-hidden">
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        
+        // Animate intro text divs from alternating sides with dramatic timing
+        introTextRefs.current.forEach((element, index) => {
+            const startX = index % 2 === 0 ? -150 : 150; // Alternate between left and right
+            
+            gsap.fromTo(element.parentNode, // Target the parent div containing the paragraph
+                { 
+                    opacity: 0,
+                    x: startX,
+                },
+                { 
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.5, // Longer duration for more dramatic effect
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: element.parentNode,
+                        start: "top 75%", // Start animation when element is further down in viewport
+                        end: "top 35%", // End animation when element is higher in viewport
+                        toggleActions: "play reverse restart reverse",
+                        scrub: 0.8, // Smoother scrubbing with more delay
+                    }
+                }
+            );
+        });
+        
+        // Fade in for Mars section with more dramatic timing
+        if (marsTextRef.current) {
+            gsap.fromTo(marsTextRef.current.parentNode, 
+                { 
+                    opacity: 0,
+                    x: -80 // From left
+                },
+                { 
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.5,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: marsTextRef.current,
+                        start: "top 80%",
+                        end: "top 40%", // Longer animation window
+                        toggleActions: "play reverse restart reverse",
+                        scrub: 0.8
+                    }
+                }
+            );
+        }
+        
+        // Fade in for Jupiter section with more dramatic timing
+        if (jupiterTextRef.current) {
+            gsap.fromTo(jupiterTextRef.current.parentNode, 
+                { 
+                    opacity: 0,
+                    x: 80 // From right
+                },
+                { 
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.5,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: jupiterTextRef.current,
+                        start: "top 80%",
+                        end: "top 40%", // Longer animation window
+                        toggleActions: "play reverse restart reverse",
+                        scrub: 0.8
+                    }
+                }
+            );
+        }
+    }, []);
+
+    return (
+        <div className="bg-default-bg max-w-screen min-h-screen pt-14 flex flex-col justify-center items-center min-w-screen relative overflow-hidden">
                  
-            <section className='w-full min-h-screen flex flex-col justify-center items-center gap-3'>
+            <section className='w-full min-h-screen flex flex-col  pt-6 justify-center items-center gap-3'>
                <div className='flex flex-row gap-3 justify-center items-center w-full'>
                    <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
                    <img src={JupiterGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Jupiter" />
                </div>
 
-               <div id='intro-text' className='bg-main-black w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-                   <p className='text-white font-body text-center p-4'>
+               <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
+                   
+                   <p ref={addToIntroRefs} className='text-white font-body  text-sm text-center p-4'>
                        You chose to team up with Jupiter! Together, Mars and 
                        Jupiter create a powerful yet contrasting alliance. Mars, 
                        a traditional malefic planet, brings its fiery aggression, 
                        drive, and combat skill, while Jupiter, a benefic force, contributes 
                        wisdom, optimism, and expansive thinking. 
-                       
-                       Mars' determination and assertiveness complement Jupiter's strategic vision and ability to see the bigger picture. However, the absence of Venus—the other benefic planet—means you lack diplomatic 
-                       finesse and charm that could have helped establish a more peaceful resolution. Without Venus' harmonizing influence, your approach to the asteroid threat relies more heavily on force and authority, making it challenging to gain the complete trust of all asteroid factions. Some asteroids remain suspicious of your intentions, creating potential for future conflict even as you successfully deflect the immediate danger to the solar system.
+                     
+                     </p>
+                </div>
+                <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
+                   
+                     <p ref={addToIntroRefs} className='text-white font-body text-sm text-center p-4'>
+                       Mars' determination and assertiveness complement Jupiter's strategic 
+                       vision and ability to see the bigger picture. 
+                       However, the absence of Venus—the other benefic planet—means you lack diplomatic 
+                       finesse and charm that could have helped establish a more peaceful resolution. 
                    </p>
-               </div>
+                </div>
+
+                <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
+                   
+                     <p ref={addToIntroRefs} className='text-white font-body text-sm text-center p-4'>
+                        Without Venus' harmonizing influence, 
+                        your approach to the asteroid threat relies 
+                        more heavily on force and authority, making it 
+                        challenging to gain the complete trust of all 
+                       the asteroids. Some asteroids remain suspicious of your
+                        intentions, creating potential for future conflict 
+                        even as you successfully deflect the immediate danger to the solar system.
+                   </p>
+                </div>
+               
             </section>
 
             <section className='w-full min-h-screen flex flex-col gap-3 justify-center items-center'>
                <div id='mars-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
-                   <h1 className="text-white text-3xl mb-16 z-10"> Mars </h1>
+                   <h1 className="text-white font-header text-3xl mb-16 z-10"> Mars </h1>
                    <div className='flex flex-row gap-3 justify-center items-center w-full'>
                        <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
-                       <p className='text-main-black rounded-lg p-6 font-body bg-white w-1/2'>
+                       <p ref={marsTextRef} className='text-main-black rounded-lg p-6 font-body bg-white w-1/2'>
                            As Mars, your assertiveness and willingness to take action were crucial in forming this alliance. 
                            However, your malefic nature can sometimes lead to impulsive decisions, which Jupiter's wisdom helps balance. 
                            Together, you were able to rally the solar system's forces against the asteroid threat.
@@ -60,10 +171,10 @@ function MarsJupiterEnding({ characters }) {
 
            <section className='w-full min-h-screen flex flex-col gap-3 justify-center items-center'>
                <div id='jupiter-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
-                   <h1 className="text-white text-3xl mb-16 z-10"> Jupiter </h1>
+                   <h1 className="text-white font-header text-3xl mb-16 z-10"> Jupiter </h1>
                    <div className='flex flex-row gap-3 justify-center items-center w-full'>
                        <img src={JupiterGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Jupiter" />
-                       <p className='text-main-black rounded-lg p-6 font-body bg-white w-1/2'>
+                       <p ref={jupiterTextRef} className='text-main-black rounded-lg p-6 font-body bg-white w-1/2'>
                            Jupiter's benefic qualities of optimism and expansion were instrumental in forming a united front. 
                            However, without Venus' charm and diplomacy, the asteroids were not fully convinced of the alliance's sincerity. 
                            This lack of Venus' influence left some asteroids feeling excluded, which could lead to future challenges.
@@ -73,8 +184,9 @@ function MarsJupiterEnding({ characters }) {
            </section>
 
            <button 
-             className="w-32 h-8 mb-7 rounded-lg bg-button-blue text-white relative z-10 
-              hover:bg-opacity-80" 
+             className="w-36 h-10 mb-7 rounded-lg bg-button-blue text-white relative z-10 
+              px-4 font-medium text-center flex items-center justify-center
+              hover:bg-opacity-80 shadow-lg hover:shadow-xl transition-all duration-200" 
              onClick={() => navigate("/marsintro")}
            >
              Play Again
