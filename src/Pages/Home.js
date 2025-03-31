@@ -7,31 +7,42 @@ const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-main-black w-screen h-screen flex flex-col gap-6 justify-center items-center relative">
-    
-          <img src={TitleArt} alt="Cosmic Crossroads" className="w-96 rounded-lg mb-6" />
+      <div className="bg-main-black min-w-screen h-screen flex 
+      overflow-hidden flex-col p-4 justify-center items-center relative">
+          <div className="flex flex-col justify-center items-center w-fit max-h-full gap-2">
+              <img src={TitleArt} alt="Cosmic Crossroads" className="w-72 sm:w-80 md:w-96 rounded-lg mb-3" />
 
-          <div className="flex flex-col gap-7">
-            <button 
-              className="w-40 h-8 rounded-lg bg-button-blue text-white relative z-10" 
-              onClick={() => navigate("/marsintro")}
-            >
-              Start
-            </button>
+              <div className='text-center flex flex-col gap-1 justify-center items-center'>
+                <h1 className="text-white font-header text-xl sm:text-2xl md:text-3xl font-bold mb-1 text-center relative z-10">
+                    Cosmic Crossroads: An Interactive Story about Astrology
+                </h1>
+                <h2 className="text-white font-header text-xs sm:text-sm md:text-md font-bold mb-2 text-center relative z-10 max-w-md">
+                    STEP INTO THE STARS AND CHOOSE YOUR DESTINY
+                </h2>
+              </div>
+                
+              <div className="flex flex-col gap-4">
+                <button 
+                  className="w-32 h-8 rounded-lg bg-button-blue text-white relative z-10 hover:bg-opacity-80" 
+                  onClick={() => navigate("/marsintro")}
+                >
+                  Start
+                </button>
 
-            <button 
-              className="w-40 h-8 rounded-lg bg-button-blue text-white relative z-10" 
-              onClick={() => setPopup("about")}
-            >
-              About
-            </button>
+                <button 
+                  className="w-32 h-8 rounded-lg bg-button-blue text-white relative z-10 hover:bg-opacity-80" 
+                  onClick={() => setPopup("about")}
+                >
+                  About
+                </button>
 
-            <button 
-              className="w-40 h-8 rounded-lg bg-button-blue text-white relative z-10" 
-              onClick={() => setPopup("howtoplay")}
-            >
-              How to Play
-            </button>
+                <button 
+                  className="w-32 h-8 rounded-lg bg-button-blue text-white relative z-10 hover:bg-opacity-80" 
+                  onClick={() => setPopup("howtoplay")}
+                >
+                  How to Play
+                </button>
+              </div>
           </div>
 
           {popup === "howtoplay" && (
@@ -72,8 +83,6 @@ const Home = () => {
           )}
 
       </div>
-    
-   
   );
 };
 

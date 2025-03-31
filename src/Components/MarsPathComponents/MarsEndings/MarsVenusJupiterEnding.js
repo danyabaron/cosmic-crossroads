@@ -1,7 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MarsStaticImg from '../../../assets/mars-art/mars-art-official1.png';
 import JupiterDefault from '../../../assets/jupiter-art/jupiter-art.png';
 import VenusMouthOpen from '../../../assets/venus-art/venus-mouth-open.png';
+import MarsGif from '../../../assets/mars-art/mars-art-official.gif';
+import JupiterGif from '../../../assets/jupiter-art/jupiter-art-gif.gif';
+import VenusGif from '../../../assets/venus-art/venus-mouth-open-gif.gif';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
@@ -15,6 +19,12 @@ const MarsVenusJupiterEnding = () => {
   const marsRef = useRef(null);
   const jupiterRef = useRef(null);
   const venusRef = useRef(null);
+  const navigate = useNavigate(); 
+  
+  // Add useEffect to scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useGSAP(() => {
     // Background transition as story unfolds
@@ -57,11 +67,7 @@ const MarsVenusJupiterEnding = () => {
         scrollTrigger: {
           trigger: marsRef.current.parentNode,
           start: "top 80%",
-        //   start: "top bottom",
-      
           end: "bottom 20%",
-        //   end: "bottom 20%",
-        //   scrub: true,
           toggleActions: "play none none reverse",
         }
       }
@@ -92,16 +98,11 @@ const MarsVenusJupiterEnding = () => {
         scale: 1,
         rotation: -360,
         duration: 3.5,
-        // delay: 0.3,
         ease: "power1.inOut",
         scrollTrigger: {
           trigger: jupiterRef.current.parentNode,
           start: "top 80%",
-        //   start: "top bottom",
           end: "bottom 20%",
-        //   end: "bottom 20%",
-      
-        //   scrub: true,
           toggleActions: "play none none reverse",
         }
       }
@@ -132,44 +133,19 @@ const MarsVenusJupiterEnding = () => {
         scale: 1,
         rotation: -360,
         duration: 3,
-        // delay: 0.6,
         ease: "power3.inOut",
         scrollTrigger: {
           trigger: venusRef.current.parentNode,
-        //   start: "top bottom",
           start: "top 80%",
           end: "bottom 20%",
-          
-        //   scrub: true,
           toggleActions: "play none none reverse",
         }
       }
     );
-
-    // After planets are in position, make them glow and pulse
-    // const glowTimeline = gsap.timeline({
-    //   scrollTrigger: {
-    //     trigger: bgRef.current,
-    //     start: "top top",
-    //     end: "+=500",
-    //     scrub: 1
-    //   }
-    // });
-
-    // // Add glow effect to each planet
-    // [marsRef.current, jupiterRef.current, venusRef.current].forEach((planet, i) => {
-    //   glowTimeline.to(planet, {
-    //     boxShadow: "0 0 20px 10px rgba(255,255,255,0.7)",
-    //     filter: "brightness(1.3)",
-    //     duration: 1,
-    //     delay: i * 0.2
-    //   }, "glow");
-    // });
-
   }, []);
 
   return (
-    <div ref={bgRef} className="bg-default-bg w-full flex flex-col justify-center items-center min-w-screen relative pt-14 bg-cover overflow-hidden">
+    <div ref={bgRef} className="bg-default-bg flex flex-col justify-center items-center min-w-screen relative pt-14 overflow-hidden">
       {/* Parallax Section - Planets Enter */}
       <section className='w-full min-h-screen flex relative flex-col justify-center items-center'>
         <h1 className="text-white text-3xl mb-16 z-10">The Battle Begins...</h1>
@@ -188,11 +164,11 @@ const MarsVenusJupiterEnding = () => {
         
       </section>
 
-      <section className='w-full min-h-screen flex flex-col gap-8 justify-center items-center'>
+      <section className='w-full min-h-screen flex flex-col gap-3 justify-center items-center'>
         <div id = 'mars-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
           <h1 className="text-white text-3xl mb-16 z-10"> Mars </h1>
-          <img src={MarsStaticImg} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
-          <p className='text-white font-body m-5'>As Mars, your willingness to work with others can be low.
+          <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
+          <p className='text-white font-body w-1/2'>As Mars, your willingness to work with others can be low.
             You made the practical decision to team up with your benefic friends, Venus and Jupiter.
             Mixing your motivation to take action, combined with Jupiter and Venus' optimisim and charm,
             you were able to come to a friendly agreement with the asteroids.
@@ -200,14 +176,11 @@ const MarsVenusJupiterEnding = () => {
         </div>
       </section>
 
-
-
-
-      <section className='w-full min-h-screen flex flex-col gap-8 justify-center items-center'>
+      <section className='w-full min-h-screen flex flex-col gap-2 justify-center items-center'>
         <div id = 'mars-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
           <h1 className="text-white text-3xl mb-16 z-10"> Jupiter </h1>
-          <img src={JupiterDefault} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
-          <p className='text-white font-body m-5'>
+          <img src={JupiterGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
+          <p className='text-white font-body w-1/2'>
             Jupiter led the charge of negotiation with the asteroids. Jupiter was able to bargain some land
             of the solar system to the asteroids, and made the asteroids laugh. 
             Jupiter's jovial energy and humor helped a lot. Without Jupiter, the asteroids may have gotten
@@ -216,21 +189,47 @@ const MarsVenusJupiterEnding = () => {
         </div>
       </section>
 
-
-
-
-
       <section className='w-full min-h-screen flex flex-col gap-8 justify-center items-center'>
         <div id = 'mars-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
           <h1 className="text-white text-3xl mb-16 z-10"> Venus </h1>
-          <img src={VenusMouthOpen} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
-          <p className='text-white font-body m-5'>
-            venus text here.
+          <img src={VenusGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
+          <p className='text-white font-body w-1/2'>
+            Venus offered to have a party for the asteroids, to celebrate the new alliance. Venus is known for her charm and beauty,
+            and she was able to use her diplomatic skills to make the asteroids feel welcome and included. Without Venus, 
+            the asteroids may have felt unwelcomed and unappreciated.
           </p>
         </div>
       </section>
-    </div>
 
+      <section className='w-full min-h-screen flex flex-col gap-8 justify-center items-center'>
+        <div id = 'ending' className='flex flex-col gap-4 justify-center items-center w-full'>
+          <h1 className="text-white text-3xl mb-16 z-10"> Good Work! </h1>
+
+          <div className='flex flex-row gap-4 justify-center items-center'>
+            <img src={VenusGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Venus" />
+            <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
+            <img src={JupiterGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Jupiter" />
+
+          </div>
+          
+          
+          <p className='text-white font-body w-1/2'>
+            Together with your benefic friends, you combined both your strengths and weaknesses to tackle 
+            the crisis of the asteroids. The asteroids and your team of planets have formed a strong alliance and
+            it's time to party!
+          </p>
+        </div>
+      </section>
+
+      <button 
+                  className="w-32 h-8 rounded-lg bg-button-blue text-white relative z-10 
+                  mb-6 hover:bg-opacity-80" 
+                  onClick={() => navigate("/marsintro")}
+                >
+                  Play Again
+                </button>
+
+    </div>
   );
 };
    

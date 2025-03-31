@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import MarsIntro from './Pages/MarsPath/MarsIntro';
 import MarsGame from './Pages/MarsPath/MarsGame';
@@ -20,6 +20,7 @@ import ChooseVenusDecision1 from './Components/MarsPathComponents/MarsPathCompon
 import StickMarsDecision1 from './Components/MarsPathComponents/MarsPathComponents1/StickMarsDecision1.js';
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
+import ScrollToTop from './Components/ScrollToTop';
 
 // Register the plugin with GSAP
 gsap.registerPlugin(ScrollToPlugin);
@@ -70,11 +71,8 @@ function App() {
   
 
       return (
-        <Router>
-
-          {/* <div id="star-container" className="fixed z-10 top-0 left-0 w-full h-full pointer-events-none"></div>
-          <ParticleBackground /> */}
-          
+        <BrowserRouter>
+          <ScrollToTop /> {/* Add this component inside BrowserRouter but before Routes */}
           
           <div className="App flex flex-col min-h-screen min-w-screen z-20">
 
@@ -174,7 +172,7 @@ function App() {
 
 
           
-        </Router>
+        </BrowserRouter>
       );
     }
 

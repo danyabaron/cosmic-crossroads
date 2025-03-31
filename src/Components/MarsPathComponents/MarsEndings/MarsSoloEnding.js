@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MarsGif from '../../../assets/mars-art/mars-art-official.gif';
 import MarsStaticImg from '../../../assets/mars-art/mars-art-official.png'; 
 import AsteroidMouthOpen from '../../../assets/asteroid-art/asteroid-mouth-open.png';
@@ -11,12 +12,15 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import VenusAnnoyedGif from '../../../assets/venus-art/venus-annoyed-gif.gif';
 import JupiterAnnoyedGif from '../../../assets/jupiter-art/jupiter-art-annoyed-gif.gif';
 
+
+
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 function MarsSoloEnding({ advanceRound }) {
     const containerRef = useRef(null);
     const marsRef = useRef(null);
     const asteroidRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+    const navigate = useNavigate();
 
     const createSparkle = (x, y) => {
         const sparkle = document.createElement("div");
@@ -150,7 +154,7 @@ function MarsSoloEnding({ advanceRound }) {
     }, []);
 
     return (
-        <div className="bg-default-bg h-fit min-w-screen pt-14 flex flex-col relative overflow-hidden">
+        <div className="bg-default-bg h-fit min-w-screen pt-14 flex flex-col justify-center items-center relative overflow-hidden">
            
            {/* animation container for mars and asteroids */}
             <div ref={containerRef} className="animation-container relative w-full h-[200vh]">
@@ -277,6 +281,27 @@ function MarsSoloEnding({ advanceRound }) {
 
                         </div>
 
+                        <section id='asteroids' className='flex flex-col gap-3 mb-7 justify-center items-center'>
+                                <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
+                                
+                                <img 
+                                src={AsteroidMouthOpen} 
+                                alt="Asteroid" 
+                                className="w-7 h-7 object-contain"
+                            />
+
+                            <p className='w-1/2 text-white font-body text-xs md:text-sm'>
+                                The asteroids, seeing your aggressive approach, were not pleased. They felt that you did not
+                                value their existence and were only interested in using them for your own gain.
+                                As a result, they became hostile and vowed to never trust you again.
+                                This has led to a rift between you and the asteroids, and they have become your enemies.    
+
+                                While you were able to defeat them this time, they will always be a thorn in your side. Your benefic planets
+                                are also disappointed in you for not trying to negotiate with the asteroids. They feel that you have let them down,
+                                and they are no longer willing to help you in your future endeavors.
+                            </p>
+                        </section>
+
 
                 </div>
 
@@ -284,8 +309,20 @@ function MarsSoloEnding({ advanceRound }) {
 
 
 
+            
 
             </section>
+            
+            <button 
+                  className="w-32 h-8 rounded-lg bg-button-blue text-white relative z-10 
+                  m-10 hover:bg-opacity-80" 
+                  onClick={() => navigate("/marsintro")}
+                >
+                  Play Again
+                </button>
+
+      
+
         </div>
     );
 }
