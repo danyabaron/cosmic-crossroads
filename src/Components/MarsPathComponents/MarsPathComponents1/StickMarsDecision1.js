@@ -11,6 +11,7 @@ import VenusGifMouthOpen from '../../../assets/venus-art/venus-mouth-open-gif.gi
 import AsteroidAngry from '../../../assets/asteroid-art/asteroid-angry.png';    
 import ButtonContainer from '../../ButtonContainer';
 
+
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';

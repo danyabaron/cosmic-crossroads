@@ -11,6 +11,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import StarBackground from '../../../Components/StarBackground.js';
+import ThemeMusic2 from '../../../assets/other-art/theme-music2.wav';
+import { useAudio } from '../../../Components/AudioContext';
 
 // Register plugins
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
@@ -20,7 +22,9 @@ function MarsVenusJupiterEnding({ characters }) {
   const marsRef = useRef(null);
   const jupiterRef = useRef(null);
   const venusRef = useRef(null);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const soundRef = useRef(null); // Reference to the audio element
+  const { pauseAudio, resumeAudio } = useAudio();
   
   // Text content refs
   const marsTextRef = useRef(null);
@@ -31,6 +35,16 @@ function MarsVenusJupiterEnding({ characters }) {
   // Add useEffect to scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Pause the global audio
+    pauseAudio();
+    
+    // Create and play background music
+    const sound = new Audio(ThemeMusic2);
+    sound.loop = true;
+    sound.volume = 0.4; // Set volume to 40%
+    soundRef.current = sound;
+    sound.play().catch(e => console.log("Audio play failed:", e));
     
     // Immediate planet animations that don't depend on scroll
     const animatePlanetsImmediately = () => {
@@ -279,7 +293,17 @@ function MarsVenusJupiterEnding({ characters }) {
             }
         );
     }
-  }, []);
+
+    return () => {
+      // Clean up audio when component unmounts
+      if (soundRef.current) {
+          soundRef.current.pause();
+          soundRef.current.currentTime = 0;
+      }
+      // Resume global audio when leaving this component
+      resumeAudio();
+    };
+  }, [pauseAudio, resumeAudio]);
 
   useGSAP(() => {
     // Background transition as story unfolds

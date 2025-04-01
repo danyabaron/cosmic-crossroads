@@ -14,6 +14,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
 import StarBackground from '../../../Components/StarBackground.js';
+import ThemeMusic2 from '../../../assets/other-art/theme-music2.wav';
+import { useAudio } from '../../../Components/AudioContext';
 
 // mars + venus ending - user ended with mars and venus on team: mars + venus in status bar
 
@@ -23,6 +25,8 @@ function MarsVenusEnding({ characters }) {
     const paragraphRefs = useRef([]);
     const marsTextRef = useRef(null);
     const venusTextRef = useRef(null);
+    const soundRef = useRef(null); // Reference to the audio element
+    const { pauseAudio, resumeAudio } = useAudio();
 
     // Reset paragraph refs array
     paragraphRefs.current = [];
@@ -36,6 +40,16 @@ function MarsVenusEnding({ characters }) {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        
+        // Pause the global audio
+        pauseAudio();
+        
+        // Create and play background music
+        const sound = new Audio(ThemeMusic2);
+        sound.loop = true;
+        sound.volume = 0.4; // Set volume to 40%
+        soundRef.current = sound;
+        sound.play().catch(e => console.log("Audio play failed:", e));
         
         // Animate intro text divs from alternating sides with more dramatic timing
         paragraphRefs.current.forEach((element, index) => {
@@ -107,7 +121,17 @@ function MarsVenusEnding({ characters }) {
                 }
             );
         }
-    }, []);
+
+        return () => {
+            // Clean up audio when component unmounts
+            if (soundRef.current) {
+                soundRef.current.pause();
+                soundRef.current.currentTime = 0;
+            }
+            // Resume global audio when leaving this component
+            resumeAudio();
+        };
+    }, [pauseAudio, resumeAudio]);
 
     return (
         <div className='relative min-h-screen w-full overflow-hidden'>

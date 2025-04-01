@@ -21,6 +21,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
 import StarBackground from '../../../Components/StarBackground.js';
 import ShootSound from '../../../assets/other-art/mars-shoot.mp3'; // Import the sound file for shooting fireballs
+import { useAudio } from '../../../Components/AudioContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,6 +44,8 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
     const marsBattleRef = useRef(null);
     const asteroidContainerRef = useRef(null);
     const soundRef = useRef(null); // Reference to the audio element
+
+    const { pauseAudio, resumeAudio } = useAudio();
 
     let marsAnimation;
     let fireballTimeout;
@@ -300,52 +303,60 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
         // Create audio element for the sound effect
         const sound = new Audio(ShootSound);
         sound.loop = true;
-        sound.volume = 0.5; // Set volume to 50%
+        sound.volume = 0.2; // Lower volume to mix better with theme music
         soundRef.current = sound;
 
-        marsAnimation = gsap.to(marsRef.current, {
-            x: 600,
-            duration: 2,
-            repeat: -1,
-            yoyo: true,
-            ease: "power1.inOut",
-            scrollTrigger: {
-                trigger: marsBattleRef.current,
-                start: "top center",
-                end: "bottom center",
-                toggleActions: "play none none none",
-            },
-        });
+        // Only animate Mars if the reference exists
+        if (marsRef.current) {
+            marsAnimation = gsap.to(marsRef.current, {
+                x: 600,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "power1.inOut",
+                scrollTrigger: {
+                    trigger: marsBattleRef.current,
+                    start: "top center",
+                    end: "bottom center",
+                    toggleActions: "play none none none",
+                },
+            });
+        }
 
         const shootFireball = () => {
-            const marsRect = marsRef.current.getBoundingClientRect();
+            if (!marsRef.current || !fireballContainerRef.current) return; // Guard against null references
+            
+            try {
+                const marsRect = marsRef.current.getBoundingClientRect();
+                const fireballsToShoot = 5;
 
-            const fireballsToShoot = 5;
+                for (let i = 0; i < fireballsToShoot; i++) {
+                    const fireball = document.createElement("img");
+                    fireball.src = Fireball;
+                    fireball.className = "absolute w-10 h-10";
+                    fireball.style.left = `${marsRect.left + marsRect.width / 2 - 25}px`;
+                    fireball.style.top = `${marsRect.top + marsRect.height / 2}px`;
+                    fireballContainerRef.current.appendChild(fireball);
 
-            for (let i = 0; i < fireballsToShoot; i++) {
-                const fireball = document.createElement("img");
-                fireball.src = Fireball;
-                fireball.className = "absolute w-10 h-10";
-                fireball.style.left = `${marsRect.left + marsRect.width / 2 - 25}px`;
-                fireball.style.top = `${marsRect.top + marsRect.height / 2}px`;
-                fireballContainerRef.current.appendChild(fireball);
+                    const randomX = Math.random() * 200 - 100;
+                    const randomY = Math.random() * -400 - 200;
+                    const randomDuration = Math.random() * 2 + 2;
 
-                const randomX = Math.random() * 200 - 100;
-                const randomY = Math.random() * -400 - 200;
-                const randomDuration = Math.random() * 2 + 2;
-
-                gsap.fromTo(
-                    fireball,
-                    { x: 0, y: 0, opacity: 1 },
-                    {
-                        x: randomX,
-                        y: randomY,
-                        duration: randomDuration,
-                        opacity: 0,
-                        ease: "power2.out",
-                        onComplete: () => fireball.remove(),
-                    }
-                );
+                    gsap.fromTo(
+                        fireball,
+                        { x: 0, y: 0, opacity: 1 },
+                        {
+                            x: randomX,
+                            y: randomY,
+                            duration: randomDuration,
+                            opacity: 0,
+                            ease: "power2.out",
+                            onComplete: () => fireball.remove(),
+                        }
+                    );
+                }
+            } catch (error) {
+                console.error("Error in shootFireball:", error);
             }
         };
 
@@ -353,33 +364,40 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
             fireballTimeout = setInterval(shootFireball, 1000);
         };
 
-        fireballScrollTrigger = ScrollTrigger.create({
-            trigger: marsBattleRef.current,
-            start: "top center",
-            end: "bottom center",
-            onEnter: () => {
-                shootFireballsContinuously();
-                // Start playing sound when entering the section
-                soundRef.current.play().catch(e => console.log("Audio play failed:", e));
-            },
-            onLeaveBack: () => {
-                clearInterval(fireballTimeout);
-                // Stop sound when scrolling back up out of the section
-                soundRef.current.pause();
-                soundRef.current.currentTime = 0;
-            },
-            onLeave: () => {
-                // Stop sound when scrolling down past the section
-                soundRef.current.pause();
-                soundRef.current.currentTime = 0;
-            },
-            onEnterBack: () => {
-                // Resume sound when scrolling back into the section from below
-                shootFireballsContinuously();
-                soundRef.current.play().catch(e => console.log("Audio play failed:", e));
-            },
-            toggleActions: "play none none none",
-        });
+        // Create ScrollTrigger only if marsBattleRef exists
+        if (marsBattleRef.current) {
+            fireballScrollTrigger = ScrollTrigger.create({
+                trigger: marsBattleRef.current,
+                start: "top center",
+                end: "bottom center",
+                onEnter: () => {
+                    shootFireballsContinuously();
+                    // Don't pause the global audio - just play the shooting sound
+                    if (soundRef.current) soundRef.current.play().catch(e => console.log("Audio play failed:", e));
+                },
+                onLeaveBack: () => {
+                    if (fireballTimeout) clearInterval(fireballTimeout);
+                    // Stop shooting sound without affecting global audio
+                    if (soundRef.current) {
+                        soundRef.current.pause();
+                        soundRef.current.currentTime = 0;
+                    }
+                },
+                onLeave: () => {
+                    // Stop shooting sound without affecting global audio
+                    if (soundRef.current) {
+                        soundRef.current.pause();
+                        soundRef.current.currentTime = 0;
+                    }
+                },
+                onEnterBack: () => {
+                    // Start shooting sound without affecting global audio
+                    shootFireballsContinuously();
+                    if (soundRef.current) soundRef.current.play().catch(e => console.log("Audio play failed:", e));
+                },
+                toggleActions: "play none none none",
+            });
+        }
 
         const createAsteroids = () => {
             const asteroidCount = 5;

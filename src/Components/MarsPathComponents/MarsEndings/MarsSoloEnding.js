@@ -12,6 +12,8 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import VenusAnnoyedGif from '../../../assets/venus-art/venus-annoyed-gif.gif';
 import JupiterAnnoyedGif from '../../../assets/jupiter-art/jupiter-art-annoyed-gif.gif';
 import StarBackground from '../../../Components/StarBackground.js';
+import ThemeMusic2 from '../../../assets/other-art/theme-music2.wav';
+import { useAudio } from '../../../Components/AudioContext';
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
@@ -20,6 +22,7 @@ function MarsSoloEnding({ advanceRound }) {
     const marsRef = useRef(null);
     const asteroidRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
     const navigate = useNavigate();
+    const soundRef = useRef(null); // Reference to the audio element
 
     const paragraphRefs = useRef([]);
     const jupiterTextRef = useRef(null);
@@ -34,11 +37,14 @@ function MarsSoloEnding({ advanceRound }) {
     };
 
     const createSparkle = (x, y) => {
+        const sparkleContainer = document.getElementById("sparkle-container");
+        if (!sparkleContainer) return; // Guard against null container
+        
         const sparkle = document.createElement("div");
         sparkle.className = "absolute z-50 overflow-visible w-[7px] h-[7px] bg-[#fc7014] rounded-full";
         sparkle.style.left = `${x}px`;
         sparkle.style.top = `${y}px`;
-        document.getElementById("sparkle-container").appendChild(sparkle);
+        sparkleContainer.appendChild(sparkle);
 
         gsap.to(sparkle, {
             opacity: 0,
@@ -47,8 +53,20 @@ function MarsSoloEnding({ advanceRound }) {
         });
     };
 
+    const { pauseAudio, resumeAudio } = useAudio();
+
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        // Pause the global audio
+        pauseAudio();
+
+        // Create and play background music
+        const sound = new Audio(ThemeMusic2);
+        sound.loop = true;
+        sound.volume = 0.4; // Set volume to 40%
+        soundRef.current = sound;
+        sound.play().catch(e => console.log("Audio play failed:", e));
 
         // Animate intro text divs from alternating sides with dramatic timing
         paragraphRefs.current.forEach((element, index) => {
@@ -120,9 +138,22 @@ function MarsSoloEnding({ advanceRound }) {
                 }
             );
         }
-    }, []);
+
+        return () => {
+            // Clean up audio when component unmounts
+            if (soundRef.current) {
+                soundRef.current.pause();
+                soundRef.current.currentTime = 0;
+            }
+            // Resume global audio when leaving this component
+            resumeAudio();
+        };
+    }, [pauseAudio, resumeAudio]);
 
     useGSAP(() => {
+        // Only create the timeline if the container ref exists
+        if (!containerRef.current) return;
+        
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: containerRef.current,
@@ -134,40 +165,53 @@ function MarsSoloEnding({ advanceRound }) {
             }
         });
 
-        tl.to(marsRef.current, {
-            motionPath: {
-                path: [
-                    { x: 200, y: 200 },
-                    { x: 600, y: 300 },
-                    { x: 300, y: 500 },
-                ],
-                alignOrigin: [0.5, 0.5]
-            },
-            duration: 3,
-            ease: "power1.inOut"
-        });
-
-        asteroidRefs.forEach((asteroidRef) => {
-            tl.to(asteroidRef.current, {
+        // Check if mars ref exists
+        if (marsRef.current) {
+            tl.to(marsRef.current, {
                 motionPath: {
                     path: [
-                        { x: -200, y: 200 },
-                        { x: -600, y: 300 },
-                        { x: -300, y: 500 },
+                        { x: 200, y: 200 },
+                        { x: 600, y: 300 },
+                        { x: 300, y: 500 },
                     ],
                     alignOrigin: [0.5, 0.5]
                 },
-                rotation: 360,
                 duration: 3,
-                ease: "power1.inOut",
-                onUpdate: () => {
-                    const rect = asteroidRef.current.getBoundingClientRect();
-                    const containerRect = containerRef.current.getBoundingClientRect();
-                    const x = rect.left - containerRect.left;
-                    const y = rect.top - containerRect.top;
-                    createSparkle(x, y);
-                }
-            }, 0);
+                ease: "power1.inOut"
+            });
+        }
+
+        // Loop through asteroid refs safely
+        asteroidRefs.forEach((asteroidRef) => {
+            if (asteroidRef.current) {
+                tl.to(asteroidRef.current, {
+                    motionPath: {
+                        path: [
+                            { x: -200, y: 200 },
+                            { x: -600, y: 300 },
+                            { x: -300, y: 500 },
+                        ],
+                        alignOrigin: [0.5, 0.5]
+                    },
+                    rotation: 360,
+                    duration: 3,
+                    ease: "power1.inOut",
+                    onUpdate: () => {
+                        // Guard clauses to prevent null reference errors
+                        if (!asteroidRef.current || !containerRef.current) return;
+                        
+                        try {
+                            const rect = asteroidRef.current.getBoundingClientRect();
+                            const containerRect = containerRef.current.getBoundingClientRect();
+                            const x = rect.left - containerRect.left;
+                            const y = rect.top - containerRect.top;
+                            createSparkle(x, y);
+                        } catch (error) {
+                            console.error("Error in sparkle animation:", error);
+                        }
+                    }
+                }, 0);
+            }
         });
 
         ScrollTrigger.getAll().forEach(st => {

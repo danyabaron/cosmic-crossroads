@@ -1,64 +1,56 @@
-import React, { createContext, useState, useContext, useEffect, useRef } from 'react';
-import ThemeMusic from '../assets/other-art/theme-music.wav' // Update this path to match your file structure
+import React, { createContext, useContext, useState, useRef, useEffect } from 'react';
+import ThemeMusic from '../assets/other-art/theme-music.wav'; // Path to your theme music file
 
 const AudioContext = createContext();
 
-export const useAudio = () => useContext(AudioContext);
-
-export const AudioProvider = ({ children }) => {
+export function AudioProvider({ children }) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(new Audio(ThemeMusic));
-  
+  const audioRef = useRef(null);
+
   useEffect(() => {
-    const audio = audioRef.current;
+    // Create audio element
+    const audio = new Audio(ThemeMusic);
     audio.loop = true;
-    
-    // Cleanup function
+    audio.volume = 0.2;
+    audioRef.current = audio;
+
+    // Clean up on unmount
     return () => {
-      audio.pause();
-      audio.currentTime = 0;
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
     };
   }, []);
 
   const playAudio = () => {
-    const audio = audioRef.current;
-    
-    if (!isPlaying) {
-      // Fix for mobile devices that require user interaction
-      const playPromise = audio.play();
-      
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlaying(true);
-          })
-          .catch(error => {
-            console.error("Audio playback failed:", error);
-          });
-      }
+    if (audioRef.current && !isPlaying) {
+      audioRef.current.play().catch(e => console.log("Audio play failed:", e));
+      setIsPlaying(true);
     }
   };
 
   const pauseAudio = () => {
-    const audio = audioRef.current;
-    
-    if (isPlaying) {
-      audio.pause();
+    if (audioRef.current && isPlaying) {
+      audioRef.current.pause();
       setIsPlaying(false);
     }
   };
 
-  const toggleAudio = () => {
-    if (isPlaying) {
-      pauseAudio();
-    } else {
-      playAudio();
+  const resumeAudio = () => {
+    if (audioRef.current && !isPlaying) {
+      audioRef.current.play().catch(e => console.log("Audio play failed:", e));
+      setIsPlaying(true);
     }
   };
 
   return (
-    <AudioContext.Provider value={{ isPlaying, playAudio, pauseAudio, toggleAudio }}>
+    <AudioContext.Provider value={{ isPlaying, playAudio, pauseAudio, resumeAudio }}>
       {children}
     </AudioContext.Provider>
   );
-};
+}
+
+export function useAudio() {
+  return useContext(AudioContext);
+}
