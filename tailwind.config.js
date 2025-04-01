@@ -53,6 +53,8 @@ module.exports = {
       animation: {
         'fiery-pulse': 'fieryPulse 1.5s infinite ease-in-out',
         'fire-trail': 'moveTrail 2s linear infinite, fadeOut 2s linear infinite',
+        'twinkle': 'starTwinkle 3s ease-in-out infinite alternate',
+        'shootingStar': 'shootStar 6s linear infinite',
       },
       keyframes: {
         fieryPulse: {
@@ -74,6 +76,21 @@ module.exports = {
           '0%': { opacity: 1 },
           '100%': { opacity: 0 },
         },
+        starTwinkle: {
+          '0%, 100%': {
+            opacity: '0.4',
+            transform: 'scale(0.8)',
+          },
+          '50%': {
+            opacity: '1',
+            transform: 'scale(1.1)',
+          },
+        },
+        shootStar: {
+          '0%': { transform: 'translateX(0) translateY(0)', opacity: 1 },
+          '100%': { transform: 'translateX(150vw) translateY(-100vh)', opacity: 0 },
+        },
+
       },
     },
   },

@@ -11,6 +11,7 @@ import { useGSAP } from '@gsap/react';
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import VenusAnnoyedGif from '../../../assets/venus-art/venus-annoyed-gif.gif';
 import JupiterAnnoyedGif from '../../../assets/jupiter-art/jupiter-art-annoyed-gif.gif';
+import StarBackground from '../../../Components/StarBackground.js';
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
@@ -239,136 +240,145 @@ function MarsSoloEnding({ advanceRound }) {
     }, []);
 
     return (
-        <div className="bg-default-bg bg-contain h-fit min-w-screen pt-14 flex flex-col justify-center items-center relative overflow-hidden">
-            <div ref={containerRef} className="animation-container relative w-full h-[200vh]">
-                <div id='sparkle-container' className="absolute inset-0 pointer-events-none z-10"></div>
+        <div className='relative min-h-screen w-full overflow-hidden'>
+            {/* Star background */}
+            <StarBackground />
+            
+            {/* Background with proper z-index */}
+            <div className="absolute inset-0 bg-mars-bg-reg bg-center bg-opacity-90 z-[5]"></div>
+            
+            {/* Main content with higher z-index */}
+            <div className="relative w-full min-w-screen pt-14 overflow-x-hidden flex flex-col justify-center items-center z-[20]">
+                <div ref={containerRef} className="animation-container relative w-full h-[200vh]">
+                    <div id='sparkle-container' className="absolute inset-0 pointer-events-none z-10"></div>
 
-                <div ref={marsRef} className="absolute w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] 
-                top-10 left-10">
-                    <img 
-                        src={MarsStaticImg} 
-                        alt="Mars" 
-                        className="w-full h-full object-contain"
-                    />
+                    <div ref={marsRef} className="absolute w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] 
+                    top-10 left-10">
+                        <img 
+                            src={MarsStaticImg} 
+                            alt="Mars" 
+                            className="w-full h-full object-contain"
+                        />
+                    </div>
+
+                    <div ref={asteroidRefs[0]} className="absolute w-11 top-10 right-10">
+                        <img 
+                            src={AsteroidMouthOpen} 
+                            alt="Asteroid" 
+                            className="w-full h-full object-contain"
+                        />
+                    </div>
+                    <div ref={asteroidRefs[1]} className="absolute w-11 top-20 right-20">
+                        <img 
+                            src={AsteroidMouthOpen} 
+                            alt="Asteroid" 
+                            className="w-full h-full object-contain"
+                        />
+                    </div>
+                    <div ref={asteroidRefs[2]} className="absolute w-11 top-32 right-10">
+                        <img 
+                            src={AsteroidMouthOpen} 
+                            alt="Asteroid" 
+                            className="w-full h-full object-contain"
+                        />
+                    </div>
+                    <div ref={asteroidRefs[3]} className="absolute w-11 top-48 right-20">
+                        <img 
+                            src={AsteroidMouthOpen} 
+                            alt="Asteroid" 
+                            className="w-full h-full object-contain"
+                        />
+                    </div>
                 </div>
 
-                <div ref={asteroidRefs[0]} className="absolute w-11 top-10 right-10">
-                    <img 
-                        src={AsteroidMouthOpen} 
-                        alt="Asteroid" 
-                        className="w-full h-full object-contain"
-                    />
-                </div>
-                <div ref={asteroidRefs[1]} className="absolute w-11 top-20 right-20">
-                    <img 
-                        src={AsteroidMouthOpen} 
-                        alt="Asteroid" 
-                        className="w-full h-full object-contain"
-                    />
-                </div>
-                <div ref={asteroidRefs[2]} className="absolute w-11 top-32 right-10">
-                    <img 
-                        src={AsteroidMouthOpen} 
-                        alt="Asteroid" 
-                        className="w-full h-full object-contain"
-                    />
-                </div>
-                <div ref={asteroidRefs[3]} className="absolute w-11 top-48 right-20">
-                    <img 
-                        src={AsteroidMouthOpen} 
-                        alt="Asteroid" 
-                        className="w-full h-full object-contain"
-                    />
-                </div>
-            </div>
-
-            <div 
-                id='fight-header-container' 
-                className="fixed inset-0 flex items-center justify-center pointer-events-none z-50"
-                style={{ zIndex: 9999 }}
-            >
-                <h1 
-                    id='fight-header' 
-                    className="text-white font-header text-5xl
-                               font-bold tracking-wider text-center px-4"
-                    style={{
-                        textShadow: '0 0 15px rgba(255, 0, 0, 0.7), 0 0 25px rgba(255, 100, 0, 0.5)',
-                        maxWidth: '90vw'
-                    }}
+                <div 
+                    id='fight-header-container' 
+                    className="fixed inset-0 flex items-center justify-center pointer-events-none z-50"
+                    style={{ zIndex: 9999 }}
                 >
-                    You fought alone...
-                </h1>
-            </div>
-
-            <section className='flex flex-col gap-6 mb-7 w-screen min-h-screen justify-center items-center'>
-                <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
-                
-                <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-                    <p ref={addToParagraphRefs} className=' text-white font-body text-xs md:text-sm'>
-                        The asteroids, seeing your aggressive approach, were not pleased. They felt that you did not
-                        value their existence and were only interested in using them for your own gain.
-                        As a result, they became hostile and vowed to never trust you again.
-                        This has led to a rift between you and the asteroids, and they have become your enemies.    
-                    </p>
+                    <h1 
+                        id='fight-header' 
+                        className="text-white font-header text-5xl
+                                font-bold tracking-wider text-center px-4"
+                        style={{
+                            textShadow: '0 0 15px rgba(255, 0, 0, 0.7), 0 0 25px rgba(255, 100, 0, 0.5)',
+                            maxWidth: '90vw'
+                        }}
+                    >
+                        You fought alone...
+                    </h1>
                 </div>
 
-                <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-                    <p ref={addToParagraphRefs} className=' text-white font-body text-xs md:text-sm'>
-                        While you were able to defeat them this time, they will always be a thorn in your side. Your benefic planets
-                        are also disappointed in you for not trying to negotiate with the asteroids. They feel that you have let them down,
-                        and they are no longer willing to help you in your future endeavors.
-                    </p>
-                </div>
-            </section>
-
-            <div id='container' className='flex min-h-screen w-screen flex-col justify-center items-center gap-8'>
-                <div id='jupiter-container' className='flex flex-row gap-3 justify-center items-center'>
-                    <img 
-                        src={JupiterAnnoyedGif} 
-                        alt="Jupiter" 
-                        className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
-                    />
-
-                    <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
-                        <p ref={jupiterTextRef}>
-                            Mars, I expected better from you. As the 
-                            guardian of wisdom and expansion, I've always taught 
-                            that diplomacy brings greater rewards than brute force. 
-                            Did you even try to understand their perspective? Every 
-                            conflict has potential for growth, but you've only 
-                            created more division. This impulsiveness of yours will limit your cosmic influence.
+                <section className='flex flex-col gap-6 mb-7 w-screen min-h-screen justify-center items-center'>
+                    <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
+                    
+                    <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
+                        <p ref={addToParagraphRefs} className=' text-white font-body text-xs md:text-sm'>
+                            The asteroids, seeing your aggressive approach, were not pleased. They felt that you did not
+                            value their existence and were only interested in using them for your own gain.
+                            As a result, they became hostile and vowed to never trust you again.
+                            This has led to a rift between you and the asteroids, and they have become your enemies.    
                         </p>
                     </div>
-                </div>
-                
-                <div id='venus-container' className='flex flex-row gap-3 justify-center items-center'>
-                    <img 
-                        src={VenusAnnoyedGif} 
-                        alt="Venus" 
-                        className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
-                    />
 
-                    <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
-                        <p ref={venusTextRef}>
-                            Oh Mars, always rushing into battle without a second thought! Harmony and connection 
-                            are what truly strengthen the cosmos. Did it ever occur 
-                            to you that those asteroids might have become valuable allies? 
-                            Instead, you've made enemies where you could have made friends. Next time, 
-                            try using your heart instead of your sword. Relationships matter more than victories.
+                    <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
+                        <p ref={addToParagraphRefs} className=' text-white font-body text-xs md:text-sm'>
+                            While you were able to defeat them this time, they will always be a thorn in your side. Your benefic planets
+                            are also disappointed in you for not trying to negotiate with the asteroids. They feel that you have let them down,
+                            and they are no longer willing to help you in your future endeavors.
                         </p>
                     </div>
-                </div>
-            </div>
+                </section>
 
-            <button 
-                className="w-36 h-10 mb-7 rounded-lg bg-button-blue text-white relative z-10 
-                px-4 font-medium text-center flex items-center justify-center
-                drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
-                 shadow-lg hover:scale-105 transition duration-300 ease-in-out" 
-                onClick={() => navigate("/marsintro")}
-            >
-                Play Again
-            </button>
+                <div id='container' className='flex min-h-screen w-screen flex-col justify-center items-center gap-8'>
+                    <div id='jupiter-container' className='flex flex-row gap-3 justify-center items-center'>
+                        <img 
+                            src={JupiterAnnoyedGif} 
+                            alt="Jupiter" 
+                            className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
+                        />
+
+                        <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
+                            <p ref={jupiterTextRef}>
+                                Mars, I expected better from you. As the 
+                                guardian of wisdom and expansion, I've always taught 
+                                that diplomacy brings greater rewards than brute force. 
+                                Did you even try to understand their perspective? Every 
+                                conflict has potential for growth, but you've only 
+                                created more division. This impulsiveness of yours will limit your cosmic influence.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div id='venus-container' className='flex flex-row gap-3 justify-center items-center'>
+                        <img 
+                            src={VenusAnnoyedGif} 
+                            alt="Venus" 
+                            className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
+                        />
+
+                        <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
+                            <p ref={venusTextRef}>
+                                Oh Mars, always rushing into battle without a second thought! Harmony and connection 
+                                are what truly strengthen the cosmos. Did it ever occur 
+                                to you that those asteroids might have become valuable allies? 
+                                Instead, you've made enemies where you could have made friends. Next time, 
+                                try using your heart instead of your sword. Relationships matter more than victories.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <button 
+                    className="w-36 h-10 mb-12 rounded-lg bg-button-blue text-white relative z-10 
+                    px-4 font-medium text-center flex items-center justify-center
+                    drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
+                    shadow-lg hover:scale-105 transition duration-300 ease-in-out" 
+                    onClick={() => navigate("/marsintro")}
+                >
+                    Play Again
+                </button>
+            </div>
         </div>
     );
 }

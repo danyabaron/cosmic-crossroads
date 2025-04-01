@@ -10,11 +10,12 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+import StarBackground from '../../../Components/StarBackground.js';
 
 // Register plugins
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
-const MarsVenusJupiterEnding = () => {
+function MarsVenusJupiterEnding({ characters }) {
   const bgRef = useRef(null);
   const marsRef = useRef(null);
   const jupiterRef = useRef(null);
@@ -296,117 +297,131 @@ const MarsVenusJupiterEnding = () => {
   }, []);
 
   return (
-    <div ref={bgRef} className="bg-default-bg bg-contain  flex flex-col justify-center items-center min-w-screen 
-    relative pt-14 overflow-hidden">
+    <div className='relative min-h-screen w-full overflow-hidden'>
+      {/* Star background */}
+      <StarBackground />
       
+      {/* Background with proper z-index */}
+      <div className="absolute inset-0 bg-default-bg bg-center bg-opacity-90 z-[5]"></div>
       
-      {/* Parallax Section - Planets Enter */}
-      <section className='w-full min-h-screen flex relative flex-col pt-6 justify-center items-center'>
-        <h1 className="text-white font-header text-3xl mb-16 z-10">The Battle Begins...</h1>
+      {/* Main content with higher z-index */}
+      <div className="relative w-full min-w-screen flex flex-col justify-center items-center pt-14 overflow-x-hidden z-[20]">
+        {/* Parallax Section - Planets Enter */}
+        <section className='w-full min-h-screen flex relative flex-col pt-6 justify-center items-center'>
+          <h1 className="text-white font-header text-3xl mb-16 z-10">The Battle Begins...</h1>
 
-        <h2 className="text-white font-header text-md mb-8 z-10">
-          Assume your position! Wait for it ...
-        </h2>
-        <div className="relative w-full h-[400px] flex flex-row gap-4 justify-center items-center">
-          {/* Each planet in a separate div for independent animation */}
-          <div className="" ref={marsRef}>
-            <img src={MarsStaticImg} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
-          </div>
-          <div className="" ref={jupiterRef}>
-            <img src={JupiterDefault} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Jupiter" />
-          </div>
-          <div className="" ref={venusRef}>
-            <img src={VenusMouthOpen} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Venus" />
-          </div>
-        </div>
-        
-      </section>
-
-      <section className='w-full min-h-screen flex flex-col gap-8 justify-center items-center'>
-        <div id='ending' className='flex flex-col gap-4 justify-center items-center w-full'>
-          <h1 className="text-white font-header text-3xl z-10">Good Work!</h1>
-          <div className='flex flex-row gap-4 justify-center items-center'>
-            <img src={VenusGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Venus" />
-            <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
-            <img src={JupiterGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Jupiter" />
+          <h2 className="text-white font-header text-md mb-8 z-10">
+            Assume your position! Wait for it ...
+          </h2>
+          <div className="relative w-full h-[400px] flex flex-row gap-4 justify-center items-center">
+            {/* Each planet in a separate div for independent animation */}
+            <div className="" ref={marsRef}>
+              <img src={MarsStaticImg} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
+            </div>
+            <div className="" ref={jupiterRef}>
+              <img src={JupiterDefault} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Jupiter" />
+            </div>
+            <div className="" ref={venusRef}>
+              <img src={VenusMouthOpen} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Venus" />
+            </div>
           </div>
           
-          <div className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-            <p ref={conclusionTextRef} className='text-sm text-white font-body text-center p-4'>
-              Together with your benefic friends, you combined both your strengths and weaknesses to tackle 
-              the crisis of the asteroids. The asteroids and your team of planets have formed a strong alliance and
-              it's time to party!
-              <br /><br />
-              This experience has shown you the power of collaboration. Mars' decisive action, 
-              Jupiter's diplomatic wisdom, and Venus' charm created a perfect balance that turned 
-              potential enemies into valuable allies. The solar system is now stronger than ever before.
-              <br /><br />
-              Sometimes the best approach is a balanced one - knowing when to fight and when to extend 
-              a hand in friendship. Your willingness to listen to your benefic friends has led to the 
-              best possible outcome for everyone.
-            </p>
+        </section>
+
+        <section className='w-full min-h-screen flex flex-col gap-8 justify-center items-center'>
+          <div id='ending' className='flex flex-col gap-8 justify-center items-center w-full'>
+            <h1 className="text-white font-header text-3xl z-10">Good Work!</h1>
+            <div className='flex flex-row gap-4 justify-center items-center'>
+              <img src={VenusGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Venus" />
+              <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
+              <img src={JupiterGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Jupiter" />
+            </div>
+            
+            <div className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
+              <p ref={conclusionTextRef} className='text-sm text-white font-body text-center p-4'>
+                Together with your benefic friends, you combined both your strengths and weaknesses to tackle 
+                the crisis of the asteroids. The asteroids and your team of planets have formed a strong alliance and
+                it's time to party!
+              
+                
+              </p>
+            </div>
+
+            <div className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
+              <p ref={conclusionTextRef} className='text-sm text-white font-body text-center p-4'>
+                This experience has shown you the power of collaboration. Mars' decisive action, 
+                Jupiter's diplomatic wisdom, and Venus' charm created a perfect balance that turned 
+                potential enemies into valuable allies. The solar system is now stronger than ever before.
+              </p>
+            </div>
+
+
+            <div className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
+              <p ref={conclusionTextRef} className='text-sm text-white font-body text-center p-4'>
+                Sometimes the best approach is a balanced one - knowing when to fight and when to extend 
+                a hand in friendship. Your willingness to listen to your benefic friends has led to the 
+                best possible outcome for everyone.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className='w-full min-h-screen flex flex-col gap-3 justify-center items-center'>
-        <div id='mars-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
-          <h1 className="text-white font-header text-3xl z-10">Mars</h1>
-          <div className='flex flex-row gap-3 justify-center items-center w-full'>
-            <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
-            <p ref={marsTextRef} className='text-main-black rounded-lg p-6 font-body bg-white w-1/2'>
-              As Mars, your willingness to work with others can be low.
-              You made the practical decision to team up with your benefic friends, Venus and Jupiter.
-              Mixing your motivation to take action, combined with Jupiter and Venus' optimisim and charm,
-              you were able to come to a friendly agreement with the asteroids.
-            </p>
+        <section className='w-full min-h-screen flex flex-col gap-3 justify-center items-center'>
+          <div id='mars-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
+            <h1 className="text-white font-header text-3xl z-10">Mars</h1>
+            <div className='flex flex-row gap-3 justify-center items-center w-full'>
+              <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
+              <p ref={marsTextRef} className='text-main-black rounded-lg p-6 font-body bg-white w-1/2'>
+                As Mars, your willingness to work with others can be low.
+                You made the practical decision to team up with your benefic friends, Venus and Jupiter.
+                Mixing your motivation to take action, combined with Jupiter and Venus' optimisim and charm,
+                you were able to come to a friendly agreement with the asteroids.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className='w-full min-h-screen flex flex-col gap-2 justify-center items-center'>
-        <div id='jupiter-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
-          <h1 className="text-white text-3xl font-header z-10">Jupiter</h1>
-          <div className='flex flex-row gap-3 justify-center items-center w-full'>
-            <img src={JupiterGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Jupiter" />
-            <p ref={jupiterTextRef} className='text-main-black rounded-lg p-6 font-body bg-white w-1/2'>
-              Jupiter led the charge of negotiation with the asteroids. Jupiter was able to bargain some land
-              of the solar system to the asteroids, and made the asteroids laugh. 
-              Jupiter's jovial energy and humor helped a lot. Without Jupiter, the asteroids may have gotten
-              more on the defense side, but Jupiter was able to form a friendly alliance with them.
-            </p>
+        <section className='w-full min-h-screen flex flex-col gap-2 justify-center items-center'>
+          <div id='jupiter-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
+            <h1 className="text-white text-3xl font-header z-10">Jupiter</h1>
+            <div className='flex flex-row gap-3 justify-center items-center w-full'>
+              <img src={JupiterGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Jupiter" />
+              <p ref={jupiterTextRef} className='text-main-black rounded-lg p-6 font-body bg-white w-1/2'>
+                Jupiter led the charge of negotiation with the asteroids. Jupiter was able to bargain some land
+                of the solar system to the asteroids, and made the asteroids laugh. 
+                Jupiter's jovial energy and humor helped a lot. Without Jupiter, the asteroids may have gotten
+                more on the defense side, but Jupiter was able to form a friendly alliance with them.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className='w-full min-h-screen flex flex-col gap-8 justify-center items-center'>
-        <div id='venus-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
-          <h1 className="text-white font-header text-3xl z-10">Venus</h1>
-          <div className='flex flex-row gap-3 justify-center items-center w-full'>
-            <img src={VenusGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Venus" />
-            <p ref={venusTextRef} className='text-main-black rounded-lg p-6 font-body bg-white w-1/2'>
-              Venus offered to have a party for the asteroids, to celebrate the new alliance. Venus is known for her charm and beauty,
-              and she was able to use her diplomatic skills to make the asteroids feel welcome and included. Without Venus, 
-              the asteroids may have felt unwelcomed and unappreciated.
-            </p>
+        <section className='w-full min-h-screen flex flex-col gap-8 justify-center items-center'>
+          <div id='venus-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
+            <h1 className="text-white font-header text-3xl z-10">Venus</h1>
+            <div className='flex flex-row gap-3 justify-center items-center w-full'>
+              <img src={VenusGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Venus" />
+              <p ref={venusTextRef} className='text-main-black rounded-lg p-6 font-body bg-white w-1/2'>
+                Venus offered to have a party for the asteroids, to celebrate the new alliance. Venus is known for her charm and beauty,
+                and she was able to use her diplomatic skills to make the asteroids feel welcome and included. Without Venus, 
+                the asteroids may have felt unwelcomed and unappreciated.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-     
-
-      <button 
-        className="w-36 h-10 rounded-lg bg-button-blue text-white relative z-10 
-        drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
-        mb-6 px-4 font-medium text-center flex items-center justify-center
-          shadow-lg hover:scale-105  transition duration-300 ease-in-out" 
-        onClick={() => navigate("/marsintro")}
-      >
-        Play Again
-      </button>
-
+        <button 
+          className="w-36 h-10 rounded-lg bg-button-blue text-white relative z-10 
+          drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
+          mb-12 px-4 font-medium text-center flex items-center justify-center
+            shadow-lg hover:scale-105  transition duration-300 ease-in-out" 
+          onClick={() => navigate("/marsintro")}
+        >
+          Play Again
+        </button>
+      </div>
     </div>
   );
-};
-   
+}
+
 export default MarsVenusJupiterEnding;

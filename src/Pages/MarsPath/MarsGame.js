@@ -26,6 +26,7 @@ import MarsSoloEnding from '../../Components/MarsPathComponents/MarsEndings/Mars
 import MarsVenusEnding from '../../Components/MarsPathComponents/MarsEndings/MarsVenusEnding';
 import MarsJupiterEnding from '../../Components/MarsPathComponents/MarsEndings/MarsJupiterEnding';
 import ButtonContainer from '../../Components/ButtonContainer';
+import StarBackground from '../../Components/StarBackground.js';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -60,11 +61,22 @@ function MarsGame({ addCharacter, characters }) {
     // Remove all the round tracking logic
 
     return (
-        <ScreenComponent 
-            setScreen={switchScreen}
-            addCharacter={addCharacter} 
-            characters={characters}
-        />
+        <div className='relative min-h-screen w-full overflow-hidden'>
+            {/* Star background */}
+            <StarBackground />
+            
+            {/* Background with proper z-index */}
+            <div className="absolute inset-0 bg-mars-bg-reg bg-center bg-opacity-90 z-[5]"></div>
+            
+            {/* Main content with higher z-index */}
+            <div className="relative w-full min-w-screen pt-14 overflow-x-hidden z-[20]">
+                <ScreenComponent 
+                    setScreen={switchScreen}
+                    addCharacter={addCharacter} 
+                    characters={characters}
+                />
+            </div>
+        </div>
     );
 }
 

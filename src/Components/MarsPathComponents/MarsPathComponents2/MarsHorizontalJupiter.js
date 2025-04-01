@@ -11,7 +11,8 @@ import AsteroidMouthOpen from '../../../assets/asteroid-art/asteroid-mouth-open.
 import BlackSparkle from '../../../assets/other-art/black-sparkle.png';  
 import ButtonContainer from '../../ButtonContainer';
 import Fireball from '../../../assets/other-art/fire.gif';
-import ParticleBackground from '../../ParticleBackground';
+import StarBackground from '../../../Components/StarBackground.js';
+
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
@@ -134,12 +135,6 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                 }
             );
         });
-
-
-
-
-
-
     }, []);
 
     // SECOND SECTION/PANEL ANIMATION
@@ -376,214 +371,219 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
     ];
 
     return (
-        <div className='bg-jupiter-bg-reg w-full min-w-screen relative pt-14 bg-center overflow-x-hidden z-0' id='jupiter-path-container'>
-            {/* <div className='relative z-20'> */}
-            {/* container for the jupiter-grotto portion at top left of screen */}
-            <div className='flex flex-col w-2/3 md:w-1/2 h-fit mt-10 ml-5 gap-5' id='jupiter-grotto-container'>
-                {/* container for the top black box */}
-                <div className='flex flex-col md:flex-row lg:flex-row gap-8 bg-main-black p-5 text-white rounded-md items-center' id='jupiter-bio-text-container'>
-                    <div className='flex flex-col gap-4' id='jupiter-grotto-text'>
-                        <h1 className='text-xl font-header'>Jupiter's Grotto</h1>
-                        <p className='text-sm'> Keep scrolling to learn about what Jupiter wants to do about the asteroids coming to us.</p>
-                        <p className='text-xs'>Traits: 
-                            <span className='text-[#DA78F6]'> growth</span>,  
-                            <span className='text-[#FFE684]'> luck</span>,
-                            <span className='text-[#F59D42]'> benevolence</span>,
-                        </p>
+        <div className='relative min-h-screen w-full overflow-hidden'>
+            {/* Star background */}
+            <StarBackground />
+            
+            {/* Background with proper z-index */}
+            <div className="absolute inset-0 bg-jupiter-bg-reg bg-center bg-opacity-90 z-[5]"></div>
+            
+            {/* Main content with higher z-index */}
+            <div className="relative w-full min-w-screen pt-14 overflow-x-hidden z-[20]">
+                {/* container for the jupiter-grotto portion at top left of screen */}
+                <div className='flex flex-col w-2/3 md:w-1/2 h-fit mt-10 ml-5 gap-5' id='jupiter-grotto-container'>
+                    {/* container for the top black box */}
+                    <div className='flex flex-col md:flex-row lg:flex-row gap-8 bg-main-black p-5 text-white rounded-md items-center' id='jupiter-bio-text-container'>
+                        <div className='flex flex-col gap-4' id='jupiter-grotto-text'>
+                            <h1 className='text-xl font-header'>Jupiter's Grotto</h1>
+                            <p className='text-sm'> Keep scrolling to learn about what Jupiter wants to do about the asteroids coming to us.</p>
+                            <p className='text-xs'>Traits: 
+                                <span className='text-[#DA78F6]'> growth</span>,  
+                                <span className='text-[#FFE684]'> luck</span>,
+                                <span className='text-[#F59D42]'> benevolence</span>,
+                            </p>
+                        </div>
+                        <div className='flex flex-col items-center justify-center cursor-pointer' onClick={togglePopup} id='jupiter-bio'>
+                            <h1 className='text-sm text-nowrap'>View Jupiter's Bio</h1>
+                            <img className="md:max-w-[65px] h-auto hover:scale-110 transition-transform duration-200 ease-in-out" src={JupiterDefault} alt="Jupiter Bio Image"/>
+                        </div>
                     </div>
-                    <div className='flex flex-col items-center justify-center cursor-pointer' onClick={togglePopup} id='jupiter-bio'>
-                        <h1 className='text-sm text-nowrap'>View Jupiter's Bio</h1>
-                        <img className="md:max-w-[65px] h-auto hover:scale-110 transition-transform duration-200 ease-in-out" src={JupiterDefault} alt="Jupiter Bio Image"/>
-                    </div>
-                </div>
 
-                {modalIsOpen && (
-                <div className="fixed inset-0 bg-main-black bg-opacity-50 flex justify-center items-center z-50 pt-16">
-                    <div className="bg-main-black text-black p-6 rounded-lg w-96 max-w-[90vw] my-4 
-                    overflow-hidden drop-shadow-[0_10px_20px_rgba(217,207,170,0.6)] shadow-lg relative">
-                        {/* Close Button */}
-                        <button
-                            className="absolute top-2 right-3 text-lg font-bold
-                            hover:scale-110 transition-transform duration-200 ease-in-out text-white hover:text-[#D9CFAA]"
-                            onClick={togglePopup}
-                        >
-                            ✖
-                        </button>
-
-                        <div className='flex justify-center items-center flex-col gap-2 pt-5'>
-                            {/* Jupiter Bio Content */}
-                            <h2 className="text-xl text-white font-bold font-header">JUPITER</h2>
-                            <img className="w-[80px] sm:w-[60px] md:w-[80px] lg:w-[80px]" src={JupiterGif} alt="Jupiter Bio Image"/>
-                        </div>
-
-                        <div className="flex flex-col gap-2 text-left text-sm w-full mt-4 px-2 md:px-5 text-white">
-                            <p><span className="font-bold text-[#D9CFAA]">Planet:</span> Jupiter</p>
-                            <p><span className="font-bold text-[#D9CFAA]">Dignity:</span> Benefic</p>
-                            <p><span className="font-bold text-[#D9CFAA]">Rules the Zodiacs:</span> Sagittarius & Pisces</p>
-                            <p className="break-words"><span className="font-bold text-[#D9CFAA]">Representations:</span> growth, expansion, opportunities, luck, prosperity, benevolence</p>
-                            <p><span className="font-bold text-[#D9CFAA]">Color:</span> <span className='text-[#DA78F6]'>Purple</span> & <span className='text-[#D9CFAA]'>Tan</span></p>
-                            <p className="mt-2 mb-2">Jupiter is the student of life. They love to learn about life and strive to 
-                                earn more wisdom in this world. Jupiter likes to assume the best in people, and deals 
-                                with conflict in a diplomatic manner. Jupiter likes to expand energies, whether that is good or bad.</p>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-
-
-
-                {/* container for the bottom black box */}
-                <div className='bg-main-black rounded-md w-52 p-5' id='scroll-text-container'>
-                    <p className='text-sm text-white'>Scroll down or 
-                    use your UP or DOWN arrow keys to scroll vertically.</p>
-                </div>
-            </div>
-
-            {/* container for FIRST scroll section / dialogue */}
-            <section id="panel" className='w-screen min-h-screen flex flex-col gap-14'>
-                <div id='container-panel-mars' className='flex flex-row w-full h-fit pt-12 justify-center'>
-                    <div id='' className='mars-dialogue flex flex-row w-fit h-fit mt-9 ml-12 '>
-                        <div id='mars-pic' className='mt-14'>
-                            <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
-                        </div>
-                        <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                            WAR! Goddammit, war. No one ever wants to go to war with me these days.
-                            <br /><br />
-                             Also... why is everything so gassy in here? ...
-                        </div>
-                    </div>
-                </div>
-                <div id='container-panel-jupiter' className='flex flex-row w-full h-full justify-center'>
-                    <div id='' className='jupiter-dialogue flex flex-row w-fit h-fit mr-14'>
-                        <div id='jupiter-pic' className='mt-14'>
-                            <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={JupiterAnnoyedGif} alt="Jupiter Gif"/>
-                        </div>
-                        <div id ='jupiter-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                            Mars, you need to just listen to others for once. Not everything needs to be filled with aggression. 
-                            <br /><br />
-                            Also, why do you even want to fight the asteroids? Do you know what that's going to cause?
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* container for SECOND scroll section / dialogue */}
-            <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center gap-14'>
-                <div id='container-panel-jupiter' className='flex w-full h-fit pt-12 justify-between gap-6 flex-col md:flex-row pl-5 pr-5'>
-                    <div id='jupiter-dialogue-2' className='flex flex-row w-fit h-fit'>
-                        <div id='jupiter-pic' className='mt-14'>
-                            <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={JupiterGif} alt="jupiter Gif"/>
-                        </div>
-                        <div id ='jupiter-text' className='flex w-fit md:w-72 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                            I say try to negotiate with the guy. Or maybe there's a greater purpose to all of this. Maybe the asteroid isn't even going to hit us at all.
-                        </div>
-                    </div>
-                    <div id='benefic-text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
-                        <img id='corner-yellow-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -left-11' loading='lazy' src={YellowSparkle}/>
-                        Benefic planets, such as Jupiter, tend to have an overindulgent streak. Jupiter's optimist attitude can help balance out your will to take action. However, Jupiter sometimes needs to understand that their buoyance attitude sometimes can get them in trouble.
-                    </div>
-                </div>
-
-                {/* Animation Section */}
-                <div ref={jupiterBattleRef} className='relative w-screen h-[300px] justify-center overflow-hidden bg-black' id='animation-container'>
-                    {/* Jupiter Static Image */}
-                    <img ref={jupiterRef} src={JupiterDefault} alt="Jupiter Default" className="absolute bottom-20 left-3 w-[100px] z-10" />
-                    <div ref={coinContainerRef} className='absolute w-full h-full flex items-center' id='coin-container'>
-                        {/* Coins Falling */}
-                    </div>
-                    {/* Asteroids */}
-                    <div ref={asteroidContainerRef} id='asteroid-container' className="absolute w-full h-full">
-                    </div>
-                </div>
-            </section>
-
-            {/* container for THIRD scroll section / dialogue */}
-            <section id="panel" className='w-screen min-h-screen flex flex-col justify-center'>
-                <div id='container-panel-mars' className='items-center flex flex-col gap-14'>
-                    <div id='' className='jupiter-dialogue flex flex-row w-fit h-fit p-5'>
-                        <div id='mars-pic' className='mt-14'>
-                            <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
-                        </div>
-                        <div id ='mars-text' className='relative flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                        <img id='corner-asteroid' className='absolute w-12 h-auto max-w-full max-h-full object-contain -top-6 -right-5' loading='lazy' src={AsteroidMouthOpen}/>
-                            In traditional astrology, Mars was known as the lesser malefic planet, 
-                            with Saturn being the bigger malefic planet. 
-                            <br /><br />
-                            Traditional astrologers associated malefic planets to 
-                            represent everything that was 'bad' about being alive.
-                        </div>
-                    </div>
-                    <div id='' className='mars-dialogue flex flex-row w-fit h-fit p-5'>
-                        <div id ='mars-text' className='relative flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                            <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-10 -left-11' loading='lazy' src={BlackSparkle}/>
-                            As a malefic planet, specifically Mars, you thrive on acting on your 'survival instinct'. Mars is what gets you out of danger, but won't play defense.
-                        </div>
-                        <div id='mars-pic' className='mt-14'>
-                            <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="jupiter Gif"/>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-           
-
-            {/* container for FOURTH scroll section / dialogue */}
-            <section id="panel" className='last-dialogue w-screen min-h-screen flex flex-col justify-center'>
-                <div id='container-panel' className='flex flex-col items-center gap-14'>
-                    <div id='' className='jupiter-dialogue2 flex flex-row w-fit h-fit self-start p-7 ml-9'>
-                        <div id='jupiter-pic' className='mt-14'>
-                            <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={JupiterAnnoyedGif} alt="jupiter Gif"/>
-                        </div>
-                        <div id ='jupiter-text' className='flex w-fit md:w-72 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                            I don't think fighting is the answer! I wish you would just listen to me for once.
-                            <br /><br />
-                            And what happens when your 
-                            'action' backfires? You can't just punch your way through everything, Mars.
-                        </div>
-                    </div>
-                    <div id='' className='mars-dialogue2 flex flex-row w-fit h-fit self-end p-7 mr-9'>
-                        <div id='mars-pic' className='mt-14'>
-                            <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
-                        </div>
-                        <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
-                            Boys go to Jupiter to get stupider. It's true. Which is why I should go with my plan.
-                            <br /><br />
-                            Thinking is for Mercury. Action is for me. And right now, action is what we need.  
-                            
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* container for SIXTH/FINAL scroll section / dialogue */}
-            <section id="panel" className='w-screen min-h-screen flex flex-col justify-center pr-5'>
-                <div id='container-panel' className='flex flex-col items-center gap-14'>
-                    <div id='header' className='font-header text-xl text-white font-bold'>
-                        <h1>Decision Time!</h1>
-                    </div>
-                    <div id='planet-pics' className='flex flex-row gap-5 items-center justify-center w-full h-fit'>
-                        <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
-                        <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={JupiterGif} alt="Jupiter Gif"/>
-                    </div>
-                    <div id='decision-text' className='flex w-1/3 h-fit bg-white text-main-black rounded-md shadow-md font-body text-wrap p-5 text-xs md:text-sm'>
-                        It's up to you to decide if you want to compromise with Jupiter, or fight the asteroids in the way that you want to. The decision is yours.
-                    </div>
-                    <div id='button-container-wrapper' className='flex flex-col items-center justify-center gap-4'>
-                        {buttons.map((button, index) => (
+                    {modalIsOpen && (
+                    <div className="fixed inset-0 bg-main-black bg-opacity-50 flex justify-center items-center z-50 pt-16">
+                        <div className="bg-main-black text-black p-6 rounded-lg w-96 max-w-[90vw] my-4 
+                        overflow-hidden drop-shadow-[0_10px_20px_rgba(217,207,170,0.6)] shadow-lg relative">
+                            {/* Close Button */}
                             <button
-                                key={index}
-                                onClick={button.onClick}
-                                className={button.style}
+                                className="absolute top-2 right-3 text-lg font-bold
+                                hover:scale-110 transition-transform duration-200 ease-in-out text-white hover:text-[#D9CFAA]"
+                                onClick={togglePopup}
                             >
-                                {button.text}
+                                ✖
                             </button>
-                        ))}
+
+                            <div className='flex justify-center items-center flex-col gap-2 pt-5'>
+                                {/* Jupiter Bio Content */}
+                                <h2 className="text-xl text-white font-bold font-header">JUPITER</h2>
+                                <img className="w-[80px] sm:w-[60px] md:w-[80px] lg:w-[80px]" src={JupiterGif} alt="Jupiter Bio Image"/>
+                            </div>
+
+                            <div className="flex flex-col gap-2 text-left text-sm w-full mt-4 px-2 md:px-5 text-white">
+                                <p><span className="font-bold text-[#D9CFAA]">Planet:</span> Jupiter</p>
+                                <p><span className="font-bold text-[#D9CFAA]">Dignity:</span> Benefic</p>
+                                <p><span className="font-bold text-[#D9CFAA]">Rules the Zodiacs:</span> Sagittarius & Pisces</p>
+                                <p className="break-words"><span className="font-bold text-[#D9CFAA]">Representations:</span> growth, expansion, opportunities, luck, prosperity, benevolence</p>
+                                <p><span className="font-bold text-[#D9CFAA]">Color:</span> <span className='text-[#DA78F6]'>Purple</span> & <span className='text-[#D9CFAA]'>Tan</span></p>
+                                <p className="mt-2 mb-2">Jupiter is the student of life. They love to learn about life and strive to 
+                                    earn more wisdom in this world. Jupiter likes to assume the best in people, and deals 
+                                    with conflict in a diplomatic manner. Jupiter likes to expand energies, whether that is good or bad.</p>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+
+
+
+                    {/* container for the bottom black box */}
+                    <div className='bg-main-black rounded-md w-52 p-5' id='scroll-text-container'>
+                        <p className='text-sm text-white'>Scroll down or 
+                        use your UP or DOWN arrow keys to scroll vertically.</p>
                     </div>
                 </div>
-            </section>
-       
-    </div>
+
+                {/* container for FIRST scroll section / dialogue */}
+                <section id="panel" className='w-screen min-h-screen flex flex-col gap-14'>
+                    <div id='container-panel-mars' className='flex flex-row w-full h-fit pt-12 justify-center'>
+                        <div id='' className='mars-dialogue flex flex-row w-fit h-fit mt-9 ml-12 '>
+                            <div id='mars-pic' className='mt-14'>
+                                <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
+                            </div>
+                            <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                WAR! Goddammit, war. No one ever wants to go to war with me these days.
+                                <br /><br />
+                                 Also... why is everything so gassy in here? ...
+                            </div>
+                        </div>
+                    </div>
+                    <div id='container-panel-jupiter' className='flex flex-row w-full h-full justify-center'>
+                        <div id='' className='jupiter-dialogue flex flex-row w-fit h-fit mr-14'>
+                            <div id='jupiter-pic' className='mt-14'>
+                                <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={JupiterAnnoyedGif} alt="Jupiter Gif"/>
+                            </div>
+                            <div id ='jupiter-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                Mars, you need to just listen to others for once. Not everything needs to be filled with aggression. 
+                                <br /><br />
+                                Also, why do you even want to fight the asteroids? Do you know what that's going to cause?
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* container for SECOND scroll section / dialogue */}
+                <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center gap-14'>
+                    <div id='container-panel-jupiter' className='flex w-full h-fit pt-12 justify-between gap-6 flex-col md:flex-row pl-5 pr-5'>
+                        <div id='jupiter-dialogue-2' className='flex flex-row w-fit h-fit'>
+                            <div id='jupiter-pic' className='mt-14'>
+                                <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={JupiterGif} alt="jupiter Gif"/>
+                            </div>
+                            <div id ='jupiter-text' className='flex w-fit md:w-72 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                I say try to negotiate with the guy. Or maybe there's a greater purpose to all of this. Maybe the asteroid isn't even going to hit us at all.
+                            </div>
+                        </div>
+                        <div id='benefic-text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
+                            <img id='corner-yellow-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -left-11' loading='lazy' src={YellowSparkle}/>
+                            Benefic planets, such as Jupiter, tend to have an overindulgent streak. Jupiter's optimist attitude can help balance out your will to take action. However, Jupiter sometimes needs to understand that their buoyance attitude sometimes can get them in trouble.
+                        </div>
+                    </div>
+                    
+
+                    {/* Animation Section */}
+                    <div ref={jupiterBattleRef} className='relative w-screen h-[300px] justify-center overflow-hidden bg-black' id='animation-container'>
+                        {/* Jupiter Static Image */}
+                        <img ref={jupiterRef} src={JupiterDefault} alt="Jupiter Default" className="absolute bottom-20 left-3 w-[100px] z-10" />
+                        <div ref={coinContainerRef} className='absolute w-full h-full flex items-center' id='coin-container'>
+                            {/* Coins Falling */}
+                        </div>
+                        {/* Asteroids */}
+                        <div ref={asteroidContainerRef} id='asteroid-container' className="absolute w-full h-full">
+                        </div>
+                    </div>
+                </section>
+
+                {/* container for THIRD scroll section / dialogue */}
+                <section id="panel" className='w-screen min-h-screen flex flex-col justify-center'>
+                    <div id='container-panel-mars' className='items-center flex flex-col gap-14'>
+                        <div id='' className='jupiter-dialogue flex flex-row w-fit h-fit p-5'>
+                            <div id='mars-pic' className='mt-14'>
+                                <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
+                            </div>
+                            <div id ='mars-text' className='relative flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                            <img id='corner-asteroid' className='absolute w-12 h-auto max-w-full max-h-full object-contain -top-6 -right-5' loading='lazy' src={AsteroidMouthOpen}/>
+                                In traditional astrology, Mars was known as the lesser malefic planet, 
+                                with Saturn being the bigger malefic planet. 
+                                <br /><br />
+                                Traditional astrologers associated malefic planets to 
+                                represent everything that was 'bad' about being alive.
+                            </div>
+                        </div>
+                        <div id='' className='mars-dialogue flex flex-row w-fit h-fit p-5'>
+                            <div id ='mars-text' className='relative flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-10 -left-11' loading='lazy' src={BlackSparkle}/>
+                                As a malefic planet, specifically Mars, you thrive on acting on your 'survival instinct'. Mars is what gets you out of danger, but won't play defense.
+                            </div>
+                            <div id='mars-pic' className='mt-14'>
+                                <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="jupiter Gif"/>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* container for FOURTH scroll section / dialogue */}
+                <section id="panel" className='last-dialogue w-screen min-h-screen flex flex-col justify-center'>
+                    <div id='container-panel' className='flex flex-col items-center gap-14'>
+                        <div id='' className='jupiter-dialogue2 flex flex-row w-fit h-fit self-start p-7 ml-9'>
+                            <div id='jupiter-pic' className='mt-14'>
+                                <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={JupiterAnnoyedGif} alt="jupiter Gif"/>
+                            </div>
+                            <div id ='jupiter-text' className='flex w-fit md:w-72 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                I don't think fighting is the answer! I wish you would just listen to me for once.
+                                <br /><br />
+                                And what happens when your 
+                                'action' backfires? You can't just punch your way through everything, Mars.
+                            </div>
+                        </div>
+                        <div id='' className='mars-dialogue2 flex flex-row w-fit h-fit self-end p-7 mr-9'>
+                            <div id='mars-pic' className='mt-14'>
+                                <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
+                            </div>
+                            <div id ='mars-text' className='flex w-96 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                Boys go to Jupiter to get stupider. It's true. Which is why I should go with my plan.
+                                <br /><br />
+                                Thinking is for Mercury. Action is for me. And right now, action is what we need.  
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* container for SIXTH/FINAL scroll section / dialogue */}
+                <section id="panel" className='w-screen min-h-screen flex flex-col justify-center pr-5'>
+                    <div id='container-panel' className='flex flex-col items-center gap-14'>
+                        <div id='header' className='font-header text-xl text-white font-bold'>
+                            <h1>Decision Time!</h1>
+                        </div>
+                        <div id='planet-pics' className='flex flex-row gap-5 items-center justify-center w-full h-fit'>
+                            <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
+                            <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={JupiterGif} alt="Jupiter Gif"/>
+                        </div>
+                        <div id='decision-text' className='flex w-1/3 h-fit bg-white text-main-black rounded-md shadow-md font-body text-wrap p-5 text-xs md:text-sm'>
+                            It's up to you to decide if you want to compromise with Jupiter, or fight the asteroids in the way that you want to. The decision is yours.
+                        </div>
+                        <div id='button-container-wrapper' className='flex flex-col items-center justify-center gap-4'>
+                            {buttons.map((button, index) => (
+                                <button
+                                    key={index}
+                                    onClick={button.onClick}
+                                    className={button.style}
+                                >
+                                    {button.text}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
     );
 }
 

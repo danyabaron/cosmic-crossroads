@@ -11,7 +11,7 @@ import VenusGifSmirk from '../../../assets/venus-art/venus-smirk-gif.gif';
 import VenusGifMouthOpen from '../../../assets/venus-art/venus-mouth-open-gif.gif';
 import AsteroidHappy from '../../../assets/asteroid-art/asteroid-happy.png';
 import ButtonContainer from '../../ButtonContainer';
-import Particles from 'react-tsparticles';
+
 
 
 import { gsap } from "gsap";
