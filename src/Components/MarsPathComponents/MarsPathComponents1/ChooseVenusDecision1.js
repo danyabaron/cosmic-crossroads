@@ -11,6 +11,9 @@ import VenusGifSmirk from '../../../assets/venus-art/venus-smirk-gif.gif';
 import VenusGifMouthOpen from '../../../assets/venus-art/venus-mouth-open-gif.gif';
 import AsteroidHappy from '../../../assets/asteroid-art/asteroid-happy.png';
 import ButtonContainer from '../../ButtonContainer';
+import ThemeMusic2 from '../../../assets/other-art/theme-music2.wav';
+import { useAudio } from '../../../Components/AudioContext';
+import StarBackground from '../../../Components/StarBackground.js'; // Import the StarBackground component
 
 
 
@@ -31,14 +34,37 @@ gsap.registerPlugin(MotionPathPlugin);
       const marsRef = useRef(null);
       const mainTextRef = useRef(null);
       const navigate = useNavigate();
+      const soundRef = useRef(null); // Reference to the audio element
 
 
  
-
+       const { pauseAudio, resumeAudio } = useAudio();
 
      
+         useEffect(() => {
+               window.scrollTo(0, 0);
 
+               // Pause the global audio
+               pauseAudio();
 
+               // Create and play background music
+               const sound = new Audio(ThemeMusic2);
+               sound.loop = true;
+               sound.volume = 0.4; // Set volume to 40%
+               soundRef.current = sound;
+               sound.play().catch(e => console.log("Audio play failed:", e));
+
+               return () => {
+                  // Clean up audio when component unmounts
+                  if (soundRef.current) {
+                      soundRef.current.pause();
+                      soundRef.current.currentTime = 0;
+                  }
+                  // Resume global audio when leaving this component
+                  resumeAudio();
+              };
+          }, [pauseAudio, resumeAudio]);
+      
 
       // CREATE SPARKLE EFFECT FOR ASTEROID ANIMATION
       const createSparkle = (x, y) => {
@@ -132,9 +158,15 @@ gsap.registerPlugin(MotionPathPlugin);
     ];
 
          return (
-             
+            <div className='relative min-h-screen w-full overflow-hidden'>
+                {/* Star background */}
+                  <StarBackground />
+                  
+                  {/* Background with proper z-index */}
+                  <div className="absolute inset-0 bg-venus-bg-reg bg-center z-[5]"></div>
+            
                    
-                    <div className="bg-venus-bg-reg pt-14 bg-center min-h-screen overflow-x-hidden flex flex-col justify-center items-center">
+                    <div className=" pt-14 bg-center min-h-screen overflow-x-hidden flex flex-col justify-center items-center z-[50]">
                         {/* Particles background */}
                    
 
@@ -185,6 +217,7 @@ gsap.registerPlugin(MotionPathPlugin);
 
                         </div>
                         
+                    </div>
                     </div>
 
                     );

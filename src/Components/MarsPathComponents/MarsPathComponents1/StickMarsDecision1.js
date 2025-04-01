@@ -10,6 +10,8 @@ import VenusGifSmirk from '../../../assets/venus-art/venus-smirk-gif.gif';
 import VenusGifMouthOpen from '../../../assets/venus-art/venus-mouth-open-gif.gif';
 import AsteroidAngry from '../../../assets/asteroid-art/asteroid-angry.png';    
 import ButtonContainer from '../../ButtonContainer';
+import ThemeMusic2 from '../../../assets/other-art/theme-music2.wav';
+import { useAudio } from '../../../Components/AudioContext';
 
 
 import { gsap } from "gsap";
@@ -27,6 +29,7 @@ function StickMarsDecision1({ setScreen, characters }) {
     const marsRef = useRef(null);
     const glowRef = useRef(null);
     const asteroidRefs = useRef([]);
+     const soundRef = useRef(null); // Reference to the audio element
 
     const buttons = [
       {
@@ -38,6 +41,37 @@ function StickMarsDecision1({ setScreen, characters }) {
           }
       }
     ];
+
+
+
+
+
+     const { pauseAudio, resumeAudio } = useAudio();
+    
+         
+             useEffect(() => {
+                   window.scrollTo(0, 0);
+    
+                   // Pause the global audio
+                   pauseAudio();
+    
+                   // Create and play background music
+                   const sound = new Audio(ThemeMusic2);
+                   sound.loop = true;
+                   sound.volume = 0.4; // Set volume to 40%
+                   soundRef.current = sound;
+                   sound.play().catch(e => console.log("Audio play failed:", e));
+    
+                   return () => {
+                      // Clean up audio when component unmounts
+                      if (soundRef.current) {
+                          soundRef.current.pause();
+                          soundRef.current.currentTime = 0;
+                      }
+                      // Resume global audio when leaving this component
+                      resumeAudio();
+                  };
+              }, [pauseAudio, resumeAudio]);
 
     useGSAP(() => {
         
