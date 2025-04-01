@@ -20,6 +20,7 @@ import { useNavigate } from 'react-router-dom';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
 import StarBackground from '../../../Components/StarBackground.js';
+import ShootSound from '../../../assets/other-art/mars-shoot.mp3'; // Import the sound file for shooting fireballs
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,6 +42,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
     const fireballContainerRef = useRef(null);
     const marsBattleRef = useRef(null);
     const asteroidContainerRef = useRef(null);
+    const soundRef = useRef(null); // Reference to the audio element
 
     let marsAnimation;
     let fireballTimeout;
@@ -295,6 +297,12 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
     }, []);
 
     useGSAP(() => {
+        // Create audio element for the sound effect
+        const sound = new Audio(ShootSound);
+        sound.loop = true;
+        sound.volume = 0.5; // Set volume to 50%
+        soundRef.current = sound;
+
         marsAnimation = gsap.to(marsRef.current, {
             x: 600,
             duration: 2,
@@ -349,8 +357,27 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
             trigger: marsBattleRef.current,
             start: "top center",
             end: "bottom center",
-            onEnter: shootFireballsContinuously,
-            onLeaveBack: () => clearInterval(fireballTimeout),
+            onEnter: () => {
+                shootFireballsContinuously();
+                // Start playing sound when entering the section
+                soundRef.current.play().catch(e => console.log("Audio play failed:", e));
+            },
+            onLeaveBack: () => {
+                clearInterval(fireballTimeout);
+                // Stop sound when scrolling back up out of the section
+                soundRef.current.pause();
+                soundRef.current.currentTime = 0;
+            },
+            onLeave: () => {
+                // Stop sound when scrolling down past the section
+                soundRef.current.pause();
+                soundRef.current.currentTime = 0;
+            },
+            onEnterBack: () => {
+                // Resume sound when scrolling back into the section from below
+                shootFireballsContinuously();
+                soundRef.current.play().catch(e => console.log("Audio play failed:", e));
+            },
             toggleActions: "play none none none",
         });
 
@@ -476,6 +503,13 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
             if (fireballScrollTrigger) fireballScrollTrigger.kill();
             if (asteroidScrollTrigger) asteroidScrollTrigger.kill();
             if (lightningInterval) clearInterval(lightningInterval);
+            
+            // Clean up audio
+            if (soundRef.current) {
+                soundRef.current.pause();
+                soundRef.current.currentTime = 0;
+            }
+            
             ScrollTrigger.getAll().forEach(trigger => trigger.kill());
         };
     }, []);
@@ -487,7 +521,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
     const buttons = [
         {
             text: "Compromise with Venus",
-            style: "bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-green-600",
+            style: "bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
             screen: "choose-venus-1",
             addCharacter: "Venus",
             onClick: () => {
@@ -496,7 +530,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
         },
         {
             text: "Stick with your Malefic",
-            style: "bg-main-black text-white px-4 py-2 rounded-md shadow-md",
+            style: "bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
             screen: "stick-mars-1",
             addCharacter: "Mars",
             onClick: () => {
@@ -703,8 +737,8 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
 
                 <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center pr-5'>
                     <div id='container-panel' className='flex flex-col items-center gap-14'>
-                        <div id='header' className='font-header text-white font-bold'>
-                            <h1>Decision Time: 15 seconds</h1>
+                        <div id='header' className='font-header text-white text-xl font-bold'>
+                            <h1>Decision Time!</h1>
                         </div>
                         <div id='planet-pics' className='flex flex-row gap-5 items-center justify-center w-full h-fit'>
                             <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Mars Gif"/>
