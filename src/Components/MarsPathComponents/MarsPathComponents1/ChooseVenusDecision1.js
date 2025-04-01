@@ -149,7 +149,7 @@ gsap.registerPlugin(MotionPathPlugin);
       const buttons = [
         {
             text: "WHO'S NEXT?",
-            style: "mt-8 bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
+            style: "mt-8 bg-main-black text-white px-4 py-2 rounded-md drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
             screen: "mars-horizontal-jupiter",
             onClick: () => {
                navigate("/mars-horizontal-jupiter"); // Use navigate to go to the next route
@@ -166,12 +166,12 @@ gsap.registerPlugin(MotionPathPlugin);
                   <div className="absolute inset-0 bg-venus-bg-reg bg-center z-[5]"></div>
             
                    
-                    <div className=" pt-14 bg-center min-h-screen overflow-x-hidden flex flex-col justify-center items-center z-[50]">
+                    <div className=" pt-14 bg-center min-h-screen overflow-x-hidden flex flex-col justify-center items-center ">
                         {/* Particles background */}
                    
 
                            {/* MAIN TEXT WITH FADE IN EFFECT */}
-                        <div ref={mainTextRef} id='main-text' className='absolute left-0 flex flex-row w-fit h-fit top-20 px-6'>
+                        <div ref={mainTextRef} id='main-text' className='absolute left-0 flex flex-row w-fit h-fit top-36 px-6 z-[50]'>
                                     <div id='venus-pic' className='mt-14'>
                                        <img className="w-[80px]" src={VenusGifMouthOpen} alt="Venus Gif"/>
                                     </div>
@@ -184,13 +184,13 @@ gsap.registerPlugin(MotionPathPlugin);
 
 
                            {/* CONTAINER FOR MARS AND VENUS IMAGERY */}
-                           <div id='mars-venus-container' className="relative flex justify-center items-center gap-5 ">
+                           <div id='mars-venus-container' className="relative flex justify-center items-center gap-5 z-[50] ">
                               <img ref={venusRef} className="w-[80px]" src={VenusGifMouthOpen} alt="Venus" />
                               <img ref={marsRef} className="w-[80px]" src={MarsGif} alt="Mars" />
                            </div>
 
                            {/* ASTEROID CONTAINER */}
-                           <div className="flex justify-center items-center">
+                           <div className="flex justify-center items-center z-[50]">
 
                                {/* Sparkle Container */}
                               <div id="sparkle-container" className="absolute w-full h-full top-0 left-0 pointer-events-none"></div>
@@ -206,7 +206,7 @@ gsap.registerPlugin(MotionPathPlugin);
                            </div>
                           
 
-                        <div id='button-div' className='absolute right-20 bottom-32'>
+                        <div id='button-div' className='absolute right-20 bottom-32 z-[50]'>
                            <ButtonContainer 
                               setScreen={setScreen} 
                               buttons={buttons}
