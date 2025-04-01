@@ -39,6 +39,8 @@ export function AudioProvider({ children }) {
 
   const resumeAudio = () => {
     if (audioRef.current && !isPlaying) {
+      // Reset the audio to the beginning of the file
+      audioRef.current.currentTime = 0;
       audioRef.current.play().catch(e => console.log("Audio play failed:", e));
       setIsPlaying(true);
     }

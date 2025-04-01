@@ -17,7 +17,7 @@ import { useAudio } from '../../../Components/AudioContext';
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
-function MarsSoloEnding({ advanceRound }) {
+function MarsSoloEnding({ characters, resetCharacters }) {
     const containerRef = useRef(null);
     const marsRef = useRef(null);
     const asteroidRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
@@ -283,6 +283,14 @@ function MarsSoloEnding({ advanceRound }) {
         });
     }, []);
 
+    // Function to handle play again
+    const handlePlayAgain = () => {
+        // Reset characters in status bar
+        resetCharacters();
+        // Navigate to Mars intro
+        navigate("/marsintro");
+    };
+
     return (
         <div className='relative min-h-screen w-full overflow-hidden'>
             {/* Star background */}
@@ -418,7 +426,7 @@ function MarsSoloEnding({ advanceRound }) {
                     px-4 font-medium text-center flex items-center justify-center
                     drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
                     shadow-lg hover:scale-105 transition duration-300 ease-in-out" 
-                    onClick={() => navigate("/marsintro")}
+                    onClick={handlePlayAgain}
                 >
                     Play Again
                 </button>

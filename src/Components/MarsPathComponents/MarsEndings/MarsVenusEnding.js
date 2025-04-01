@@ -19,7 +19,7 @@ import { useAudio } from '../../../Components/AudioContext';
 
 // mars + venus ending - user ended with mars and venus on team: mars + venus in status bar
 
-function MarsVenusEnding({ characters }) {
+function MarsVenusEnding({ characters, resetCharacters }) {
 
     const navigate = useNavigate();
     const paragraphRefs = useRef([]);
@@ -133,6 +133,14 @@ function MarsVenusEnding({ characters }) {
         };
     }, [pauseAudio, resumeAudio]);
 
+    // Function to handle play again
+    const handlePlayAgain = () => {
+        // Reset characters in status bar
+        resetCharacters();
+        // Navigate to Mars intro
+        navigate("/marsintro");
+    };
+
     return (
         <div className='relative min-h-screen w-full overflow-hidden'>
             {/* Star background */}
@@ -214,7 +222,7 @@ function MarsVenusEnding({ characters }) {
                 drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
                 px-4 font-medium text-center flex items-center justify-center
                 shadow-lg hover:scale-105 transition duration-300 ease-in-out" 
-                onClick={() => navigate("/marsintro")}
+                onClick={handlePlayAgain}
             >
                 Play Again
             </button>

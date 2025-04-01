@@ -17,7 +17,7 @@ import { useAudio } from '../../../Components/AudioContext';
 // Register plugins
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
-function MarsVenusJupiterEnding({ characters }) {
+function MarsVenusJupiterEnding({ characters, resetCharacters }) {
   const bgRef = useRef(null);
   const marsRef = useRef(null);
   const jupiterRef = useRef(null);
@@ -320,6 +320,13 @@ function MarsVenusJupiterEnding({ characters }) {
     // Remove or comment out the scroll-based planet animations since we're now handling them in useEffect
   }, []);
 
+  const handlePlayAgain = () => {
+    // Reset characters in status bar
+    resetCharacters();
+    // Navigate to Mars intro
+    navigate("/marsintro");
+  };
+
   return (
     <div className='relative min-h-screen w-full overflow-hidden'>
       {/* Star background */}
@@ -439,7 +446,7 @@ function MarsVenusJupiterEnding({ characters }) {
           drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
           mb-12 px-4 font-medium text-center flex items-center justify-center
             shadow-lg hover:scale-105  transition duration-300 ease-in-out" 
-          onClick={() => navigate("/marsintro")}
+          onClick={handlePlayAgain}
         >
           Play Again
         </button>

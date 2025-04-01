@@ -45,6 +45,11 @@ function App() {
         });
       };
 
+      // Function to reset characters (clear the status bar)
+      const resetCharacters = useCallback(() => {
+        setCharacters([]);
+      }, []);
+
       // keyboard functionality so user can use up and down arrows to navigate
       useEffect(() => {
         const handleKeyDown = (e) => {
@@ -140,28 +145,28 @@ function App() {
                     <Route path="/mars-solo-ending" element={
                       <>
                         <StatusBar characters={characters} />
-                        <MarsSoloEnding characters={characters}/>
+                        <MarsSoloEnding characters={characters} resetCharacters={resetCharacters} />
                       </>
 
                       } />
                     <Route path="/mars-venus-ending" element={
                       <>
                         <StatusBar characters={characters} />
-                        <MarsVenusEnding characters={characters}  />
+                        <MarsVenusEnding characters={characters} resetCharacters={resetCharacters} />
                       </>
                       
                       } />
                     <Route path="/mars-jupiter-ending" element={
                       <>
                         <StatusBar characters={characters} />
-                        <MarsJupiterEnding characters={characters} />
+                        <MarsJupiterEnding characters={characters} resetCharacters={resetCharacters} />
                       </>
                       
                       } />
                     <Route path="/mars-venus-jupiter-ending" element={
                       <>
                       <StatusBar characters={characters} />
-                      <MarsVenusJupiterEnding characters={characters} />
+                      <MarsVenusJupiterEnding characters={characters} resetCharacters={resetCharacters} />
                     </>
                     } />
 
