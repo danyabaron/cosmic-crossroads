@@ -109,7 +109,8 @@ function MarsVenusEnding({ setScreen }) {
     }, []);
 
     return (
-        <div className="bg-default-bg max-w-screen min-h-screen flex flex-col pt-14 justify-center items-center min-w-screen relative overflow-hidden">
+        <div className="bg-default-bg bg-contain max-w-screen 
+        min-h-screen flex flex-col pt-14 justify-center items-center min-w-screen relative overflow-hidden">
              
              <section className='w-full min-h-screen flex flex-col pt-6  justify-center items-center gap-3'>
                 <h1 className="text-white font-header text-3xl mb-5 mt-5 z-10">The Result</h1>

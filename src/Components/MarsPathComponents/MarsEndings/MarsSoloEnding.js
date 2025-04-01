@@ -239,7 +239,7 @@ function MarsSoloEnding({ advanceRound }) {
     }, []);
 
     return (
-        <div className="bg-default-bg h-fit min-w-screen pt-14 flex flex-col justify-center items-center relative overflow-hidden">
+        <div className="bg-default-bg bg-contain h-fit min-w-screen pt-14 flex flex-col justify-center items-center relative overflow-hidden">
             <div ref={containerRef} className="animation-container relative w-full h-[200vh]">
                 <div id='sparkle-container' className="absolute inset-0 pointer-events-none z-10"></div>
 

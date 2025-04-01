@@ -98,9 +98,7 @@ function MarsIntro({ addCharacter, characters }) {
                     backgroundColor: "rgba(189,53,8,0.3)",
                     boxShadow: "0 0 20px rgba(255,50,50,0.5)",
                     duration: 2,
-                    ease: "power2.out",
-                    yoyo: true,
-                    repeat: 1
+                    ease: "power2.out"
                 }
             );
         }
@@ -142,7 +140,7 @@ function MarsIntro({ addCharacter, characters }) {
     };
 
     return (
-        <div className="flex flex-col gap-8 items-center justify-center min-h-screen bg-default-bg text-white pt-14 px-6">
+        <div className="flex flex-col gap-8 items-center min-w-screen justify-center min-h-screen bg-default-bg bg-contain  text-white pt-14 px-6">
             {/* Header */}
             <h1 className="text-4xl font-header text-center mt-6 mb-8">
                 Welcome to Cosmic Crossroads

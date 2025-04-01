@@ -296,7 +296,8 @@ const MarsVenusJupiterEnding = () => {
   }, []);
 
   return (
-    <div ref={bgRef} className="bg-default-bg flex flex-col justify-center items-center min-w-screen relative pt-14 overflow-hidden">
+    <div ref={bgRef} className="bg-default-bg bg-contain  flex flex-col justify-center items-center min-w-screen 
+    relative pt-14 overflow-hidden">
       
       
       {/* Parallax Section - Planets Enter */}
