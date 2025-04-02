@@ -81,7 +81,7 @@ function App() {
             
               <div className="App flex flex-col min-h-screen min-w-screen " >
                 <Routes>
-                  <Route path="/cosmic-crossroads" element={<Home setCharacters={setCharacters} />} />
+                  <Route path="/" element={<Home setCharacters={setCharacters} />} />
                   
                   
                     <Route 
