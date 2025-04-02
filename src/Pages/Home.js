@@ -63,8 +63,16 @@ const Home = () => {
         </div>
 
         {popup === "howtoplay" && (
-          <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-70 z-30">
-            <div className="bg-button-blue p-6 rounded-md shadow-md w-80 max-w-[90%] text-white">
+          <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-main-black bg-opacity-80 z-30">
+            <div className="bg-button-blue p-6 rounded-md shadow-md w-80 max-w-[90%] text-white relative
+                  drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">
+              <button 
+                className="absolute top-2 right-3 text-white text-xl font-bold 
+                hover:scale-110 transition-transform duration-200 ease-in-out"
+                onClick={() => setPopup(null)}
+              >
+                ✖
+              </button>
               <h2 className="text-xl font-bold mb-4">HOW TO PLAY</h2>
               <div className="text-left space-y-3">
                 <p>1. <span className="font-semibold">Scroll</span> through the story to explore.</p>
@@ -72,29 +80,35 @@ const Home = () => {
                 <p>3. <span className="font-semibold">Your decisions</span> will shape the story's outcome.</p>
                 <p>4. <span className="font-semibold">No time limits</span> - play at your own pace.</p>
               </div>
-              <button 
-                className="mt-6 px-4 py-1 bg-[#6D74B0] rounded-lg hover:bg-[#5A6096]"
-                onClick={() => setPopup(null)}
-              >
-                Got It!
-              </button>
             </div>
           </div>
         )}
 
         {popup === "about" && (
-          <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-70 z-30">
-            <div className="bg-[#484C7D] p-6 rounded-md shadow-md w-80 max-w-[90%] text-white">
-              <h2 className="text-xl font-bold mb-4">ABOUT</h2>
-              <p className="mb-3">Cosmic Crossroads is an interactive adventure that blends astronomy with storytelling.</p>
-              <p className="mb-3">Navigate the solar system as different planets, each with unique personalities and abilities.</p>
-              <p>Your choices will determine the fate of the cosmos!</p>
+          <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-main-black bg-opacity-80 z-30">
+            <div className="bg-[#484C7D] p-6 rounded-md shadow-md w-80 max-w-[90%] text-white relative
+                  drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">
               <button 
-                className="mt-6 px-4 py-1 bg-[#6D74B0] rounded-lg hover:bg-[#5A6096]"
+                className="absolute top-2 right-3 text-white text-xl 
+                font-bold hover:scale-110 transition-transform duration-200 ease-in-out"
                 onClick={() => setPopup(null)}
               >
-                Close
+                ✖
               </button>
+              <h2 className="text-xl font-bold mb-4">ABOUT</h2>
+              <p className="mb-3 text-sm">Cosmic Crossroads is an interactive adventure that blends astronomy with storytelling.</p>
+              <p className="mb-3 text-sm">Navigate the solar system and learn about the malefic and benefic planets, each with unique personalities and abilities.</p>
+              <p className="mb-3 text-sm">Your choices will determine the fate of the cosmos!</p>
+
+              <h3 className='font-header mb-3 text-md font-bold text-white text-center'>
+                Credits:
+              </h3>
+              <p className="mb-3 text-sm"> Design, Development, Pixel Art by <a href='https://danyabaron.com/' target="_blank" rel="noopener noreferrer" className="underline
+               hover:text-[#A0A6E1]"> Danya Baron</a></p>
+              <p className="mb-3 text-sm"> Music: <a href="https://wowsound.itch.io/space-bobble-music-pack" target="_blank" rel="noopener noreferrer" className="underline
+               hover:text-[#A0A6E1]">Space Bobble Music Pack</a></p>
+               <p className="mb-3 text-sm"> Space Backgrounds: <a href="https://deep-fold.itch.io/space-background-generator" target="_blank" rel="noopener noreferrer" className="underline
+               hover:text-[#A0A6E1]">Deep-Fold Pixel Space Background Generator</a></p>
             </div>
           </div>
         )}
