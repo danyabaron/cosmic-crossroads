@@ -369,17 +369,15 @@ function MarsVenusJupiterEnding({ characters, resetCharacters }) {
             </div>
             
             <div className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-              <p ref={conclusionTextRef} className='text-sm text-white font-body text-center p-4'>
+              <p ref={conclusionTextRef} className='text-sm text-white font-header text-center p-4'>
                 Together with your benefic friends, you combined both your strengths and weaknesses to tackle 
                 the crisis of the asteroids. The asteroids and your team of planets have formed a strong alliance and
                 it's time to party!
-              
-                
               </p>
             </div>
 
             <div className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-              <p ref={conclusionTextRef} className='text-sm text-white font-body text-center p-4'>
+              <p ref={conclusionTextRef} className='text-sm text-white font-header text-center p-4'>
                 This experience has shown you the power of collaboration. Mars' decisive action, 
                 Jupiter's diplomatic wisdom, and Venus' charm created a perfect balance that turned 
                 potential enemies into valuable allies. The solar system is now stronger than ever before.
@@ -388,7 +386,7 @@ function MarsVenusJupiterEnding({ characters, resetCharacters }) {
 
 
             <div className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-              <p ref={conclusionTextRef} className='text-sm text-white font-body text-center p-4'>
+              <p ref={conclusionTextRef} className='text-sm text-white font-header text-center p-4'>
                 Sometimes the best approach is a balanced one - knowing when to fight and when to extend 
                 a hand in friendship. Your willingness to listen to your benefic friends has led to the 
                 best possible outcome for everyone.
@@ -402,7 +400,7 @@ function MarsVenusJupiterEnding({ characters, resetCharacters }) {
             <h1 className="text-white font-header text-3xl z-10">Mars</h1>
             <div className='flex flex-row gap-3 justify-center items-center w-full'>
               <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
-              <p ref={marsTextRef} className='text-main-black rounded-lg p-6 font-body bg-white w-1/2'>
+              <p ref={marsTextRef} className='text-main-black rounded-lg p-6 font-header bg-white w-1/2'>
                 As Mars, your willingness to work with others can be low.
                 You made the practical decision to team up with your benefic friends, Venus and Jupiter.
                 Mixing your motivation to take action, combined with Jupiter and Venus' optimisim and charm,
@@ -417,7 +415,7 @@ function MarsVenusJupiterEnding({ characters, resetCharacters }) {
             <h1 className="text-white text-3xl font-header z-10">Jupiter</h1>
             <div className='flex flex-row gap-3 justify-center items-center w-full'>
               <img src={JupiterGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Jupiter" />
-              <p ref={jupiterTextRef} className='text-main-black rounded-lg p-6 font-body bg-white w-1/2'>
+              <p ref={jupiterTextRef} className='text-main-black rounded-lg p-6 font-header bg-white w-1/2'>
                 Jupiter led the charge of negotiation with the asteroids. Jupiter was able to bargain some land
                 of the solar system to the asteroids, and made the asteroids laugh. 
                 Jupiter's jovial energy and humor helped a lot. Without Jupiter, the asteroids may have gotten
@@ -432,7 +430,7 @@ function MarsVenusJupiterEnding({ characters, resetCharacters }) {
             <h1 className="text-white font-header text-3xl z-10">Venus</h1>
             <div className='flex flex-row gap-3 justify-center items-center w-full'>
               <img src={VenusGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Venus" />
-              <p ref={venusTextRef} className='text-main-black rounded-lg p-6 font-body bg-white w-1/2'>
+              <p ref={venusTextRef} className='text-main-black rounded-lg p-6 font-header bg-white w-1/2'>
                 Venus offered to have a party for the asteroids, to celebrate the new alliance. Venus is known for her charm and beauty,
                 and she was able to use her diplomatic skills to make the asteroids feel welcome and included. Without Venus, 
                 the asteroids may have felt unwelcomed and unappreciated.
@@ -442,7 +440,7 @@ function MarsVenusJupiterEnding({ characters, resetCharacters }) {
         </section>
 
         <button 
-          className="w-36 h-10 rounded-lg bg-button-blue text-white relative z-10 
+          className="w-36 h-10 rounded-lg font-header bg-button-blue text-white relative z-10 
           drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
           mb-12 px-4 font-medium text-center flex items-center justify-center
             shadow-lg hover:scale-105  transition duration-300 ease-in-out" 

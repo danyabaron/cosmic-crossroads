@@ -161,7 +161,7 @@ function MarsSoloEnding({ characters, resetCharacters }) {
                 end: "bottom bottom",
                 scrub: 1,
                 pin: true,
-                markers: true
+                // markers: true
             }
         });
 
@@ -245,7 +245,7 @@ function MarsSoloEnding({ characters, resetCharacters }) {
                 start: "20% center",
                 end: "40% center",
                 scrub: 1,
-                markers: false,
+                // markers: false,
                 id: "header-appear"
             }
         });
@@ -260,7 +260,7 @@ function MarsSoloEnding({ characters, resetCharacters }) {
                 start: "top bottom",    // Start hiding as soon as intro text enters viewport
                 end: "top 70%",        
                 scrub: 0.5,              
-                markers: false,
+                // markers: false,
                 id: "header-fadeout"
             },
             onComplete: () => {
@@ -365,7 +365,7 @@ function MarsSoloEnding({ characters, resetCharacters }) {
                     <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
                     
                     <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-                        <p ref={addToParagraphRefs} className=' text-white font-body text-xs md:text-sm'>
+                        <p ref={addToParagraphRefs} className=' text-white font-header text-xs md:text-sm'>
                             The asteroids, seeing your aggressive approach, were not pleased. They felt that you did not
                             value their existence and were only interested in using them for your own gain.
                             As a result, they became hostile and vowed to never trust you again.
@@ -374,7 +374,7 @@ function MarsSoloEnding({ characters, resetCharacters }) {
                     </div>
 
                     <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-                        <p ref={addToParagraphRefs} className=' text-white font-body text-xs md:text-sm'>
+                        <p ref={addToParagraphRefs} className=' text-white font-header text-xs md:text-sm'>
                             While you were able to defeat them this time, they will always be a thorn in your side. Your benefic planets
                             are also disappointed in you for not trying to negotiate with the asteroids. They feel that you have let them down,
                             and they are no longer willing to help you in your future endeavors.
@@ -390,7 +390,7 @@ function MarsSoloEnding({ characters, resetCharacters }) {
                             className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
                         />
 
-                        <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
+                        <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-header text-wrap p-5 mr-8 text-xs md:text-sm'>
                             <p ref={jupiterTextRef}>
                                 Mars, I expected better from you. As the 
                                 guardian of wisdom and expansion, I've always taught 
@@ -409,7 +409,7 @@ function MarsSoloEnding({ characters, resetCharacters }) {
                             className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
                         />
 
-                        <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
+                        <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-header text-wrap p-5 mr-8 text-xs md:text-sm'>
                             <p ref={venusTextRef}>
                                 Oh Mars, always rushing into battle without a second thought! Harmony and connection 
                                 are what truly strengthen the cosmos. Did it ever occur 
@@ -422,7 +422,7 @@ function MarsSoloEnding({ characters, resetCharacters }) {
                 </div>
 
                 <button 
-                    className="w-36 h-10 mb-12 rounded-lg bg-button-blue text-white relative z-10 
+                    className="w-36 font-header h-10 mb-12 rounded-lg bg-button-blue text-white relative z-10 
                     px-4 font-medium text-center flex items-center justify-center
                     drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
                     shadow-lg hover:scale-105 transition duration-300 ease-in-out" 

@@ -69,7 +69,7 @@ gsap.registerPlugin(MotionPathPlugin);
                                     <div id='venus-pic' className='mt-14'>
                                        <img className="w-[100px]  sm:w-[100px]  md:w-[100px]  lg:w-[150px] " src={VenusGifMouthOpen} alt="Venus Gif"/>
                                     </div>
-                                    <div id ='venus-text' className='flex w-1/3 h-fit bg-main-black rounded-md text-white font-body text-wrap p-5 text-xs md:text-sm'>
+                                    <div id ='venus-text' className='flex w-1/3 h-fit bg-main-black rounded-md text-white font-header text-wrap p-5 text-xs md:text-sm'>
                                     You decided to stick to compromise your Malefic energy with Venus'
                                     benefic energy! Together. you can move forward as a team to solve this crisis.
                                     </div>

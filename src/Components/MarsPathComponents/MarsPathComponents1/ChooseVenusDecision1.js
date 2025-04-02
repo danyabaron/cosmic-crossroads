@@ -148,8 +148,8 @@ gsap.registerPlugin(MotionPathPlugin);
 
       const buttons = [
         {
-            text: "WHO'S NEXT?",
-            style: "mt-8 bg-main-black text-white px-4 py-2 rounded-md drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
+            text: "WHAT'S NEXT?",
+            style: "mt-8 bg-main-black text-white font-header px-4 py-2 rounded-md drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
             screen: "mars-horizontal-jupiter",
             onClick: () => {
                navigate("/mars-horizontal-jupiter"); // Use navigate to go to the next route
@@ -171,11 +171,11 @@ gsap.registerPlugin(MotionPathPlugin);
                    
 
                            {/* MAIN TEXT WITH FADE IN EFFECT */}
-                        <div ref={mainTextRef} id='main-text' className='absolute left-0 flex flex-row w-fit h-fit top-36 px-6 z-[50]'>
+                        <div ref={mainTextRef} id='main-text' className='absolute left-0 flex flex-row w-fit h-fit top-36 px-6 z-[40]'>
                                     <div id='venus-pic' className='mt-14'>
                                        <img className="w-[80px]" src={VenusGifMouthOpen} alt="Venus Gif"/>
                                     </div>
-                                    <div id ='venus-text' className='flex w-1/3 h-fit bg-main-black rounded-md text-white font-body text-wrap p-5 text-xs md:text-sm'>
+                                    <div id ='venus-text' className='flex w-1/3 h-fit bg-main-black rounded-md text-white font-header text-wrap p-5 text-xs md:text-sm'>
                                     You decided to compromise your Malefic energy with Venus'
                                     benefic energy! Together. you can move forward as a team to solve this crisis.
                                     </div>
@@ -184,13 +184,13 @@ gsap.registerPlugin(MotionPathPlugin);
 
 
                            {/* CONTAINER FOR MARS AND VENUS IMAGERY */}
-                           <div id='mars-venus-container' className="relative flex justify-center items-center gap-5 z-[50] ">
+                           <div id='mars-venus-container' className="relative flex justify-center items-center gap-5 z-[40] ">
                               <img ref={venusRef} className="w-[80px]" src={VenusGifMouthOpen} alt="Venus" />
                               <img ref={marsRef} className="w-[80px]" src={MarsGif} alt="Mars" />
                            </div>
 
                            {/* ASTEROID CONTAINER */}
-                           <div className="flex justify-center items-center z-[50]">
+                           <div className="flex justify-center items-center z-[30]">
 
                                {/* Sparkle Container */}
                               <div id="sparkle-container" className="absolute w-full h-full top-0 left-0 pointer-events-none"></div>

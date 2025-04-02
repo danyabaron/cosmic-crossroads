@@ -34,8 +34,8 @@ function StickMarsDecision1({ setScreen, characters }) {
 
     const buttons = [
       {
-          text: "WHO'S NEXT?",
-          style: "mt-8 bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] ",
+          text: "WHAT'S NEXT?",
+          style: "mt-8 font-header bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] ",
           screen: "mars-horizontal-jupiter",
           onClick: () => {
               navigate("/mars-horizontal-jupiter"); // Use navigate to go to the next route
@@ -151,18 +151,18 @@ function StickMarsDecision1({ setScreen, characters }) {
 
         <div className=" pt-14 bg-center min-h-screen overflow-x-hidden flex flex-col justify-center items-center ">
             {/* MAIN TEXT WITH FADE IN EFFECT */}
-            <div ref={mainTextRef} id='main-text' className='absolute  left-0 flex flex-row w-fit h-fit top-36 px-6 z-[50]'>
+            <div ref={mainTextRef} id='main-text' className='absolute  left-0 flex flex-row w-fit h-fit top-36 px-6 z-[40]'>
                 <div id='venus-pic' className='mt-14'>
                     <img className="w-[80px]" src={VenusGifAnnoyed} alt="Venus Gif"/>
                 </div>
-                <div id ='venus-text' className='flex w-1/3 h-fit bg-main-black rounded-md text-white font-body text-wrap p-5 text-xs md:text-sm'>
+                <div id ='venus-text' className='flex w-1/3 h-fit bg-main-black rounded-md text-white font-header text-wrap p-5 text-xs md:text-sm'>
                     You decided to stick to your Martian gut and channel your Malefic traits! You’re going to choose to fight the asteroids back. 
                     As a result, Venus is not on your team. You’re riding solo... for now ...
                 </div>
             </div>
 
             {/* CONTAINER FOR MARS AND VENUS IMAGERY */}
-            <div id='mars-img-container' className="relative flex justify-center items-center gap-5 z-[50]">
+            <div id='mars-img-container' className="relative flex justify-center items-center gap-5 z-[40]">
                 {/* Mars Glowing Effect */}
                 <div ref={glowRef} 
                 className="absolute flex justify-center items-center w-[90px] 

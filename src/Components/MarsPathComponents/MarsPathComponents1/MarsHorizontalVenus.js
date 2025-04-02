@@ -539,7 +539,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
     const buttons = [
         {
             text: "Compromise with Venus",
-            style: "bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
+            style: "bg-main-black text-white font-header px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
             screen: "choose-venus-1",
             addCharacter: "Venus",
             onClick: () => {
@@ -548,7 +548,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
         },
         {
             text: "Stick with your Malefic",
-            style: "bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
+            style: "bg-main-black font-header text-white px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
             screen: "stick-mars-1",
             addCharacter: "Mars",
             onClick: () => {
@@ -571,16 +571,16 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                     <div className=' flex flex-col md:flex-row lg:flex-row gap-8 bg-main-black p-5 text-white rounded-md items-center' id='venus-bio-text-container'>
                         <div className='flex flex-col gap-4' id='venus-grotto-text'>
                             <h1 className='text-xl font-header'>Venus' Grotto</h1>
-                            <p className='text-sm'> Keep scrolling to learn about Venus and what she thinks about the asteroids coming. Learn more about your benefic friend!</p>
-                            <p className='text-xs'>Traits: 
-                                <span className='text-[#D77BBA]'> positivity</span>,  
-                                <span className='text-[#CF8242]'> love</span>,
-                                <span className='text-[#A40073]'> abundance</span>,
+                            <p className='text-sm font-header'> Keep scrolling to learn about Venus and what she thinks about the asteroids coming. Learn more about your benefic friend!</p>
+                            <p className='text-xs font-header'>Traits: 
+                                <span className='text-[#D77BBA] font-header'> positivity</span>,  
+                                <span className='text-[#CF8242] font-header'> love</span>,
+                                <span className='text-[#A40073] font-header'> abundance</span>,
                             </p>
                         </div>
                         <div className='flex flex-col items-center justify-center
                         cursor-pointer' onClick={togglePopup} id='venus-bio'>
-                            <h1 className='text-sm text-nowrap'>View Venus' Bio</h1>
+                            <h1 className='text-sm text-nowrap font-header font-bold'>View Venus' Bio</h1>
                             <img className="md:max-w-[65px] h-auto hover:scale-110 transition-transform duration-200 ease-in-out" src={VenusMouthOpen} alt="Venus Bio Image"/>
                         </div>
                     </div>
@@ -618,7 +618,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                     )}
 
                     <div className='bg-main-black rounded-md w-52 p-5' id='scroll-text-container'>
-                        <p className='text-xs text-white '>Scroll down or 
+                        <p className='text-xs text-white font-header '>Scroll down or 
                             use your UP or DOWN arrow keys to scroll vertically.</p>
                     </div>
                 </div>
@@ -629,7 +629,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                             <div id='mars-pic' className='mt-14'>
                                 <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
                             </div>
-                            <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                            <div id ='mars-text' className='flex w-64 h-fit bg-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
                                 Oof.. why is everything so bright and pink in here? We must be at Venus’ place... I wanna go home already...
                             </div>
                         </div>
@@ -639,7 +639,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                                 <div id='venus-pic' className='mt-14'>
                                     <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={VenusGifAnnoyed} alt="Venus Gif"/>
                                 </div>
-                                <div id ='venus-text' className='flex w-64 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                                <div id ='venus-text' className='flex w-64 h-fit bg-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
                                     Ohhhhh look who it is. Mars. Heyyy Mars. Let me guess. You want to go to war?
                                 </div>
                             </div>
@@ -649,7 +649,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                             <div id='mars-pic' className='mt-14'>
                                 <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Venus Gif"/>
                             </div>
-                            <div id ='mars-text' className='flex max-w-64 h-fit bg-white rounded-md font-body break-words p-5 text-xs md:text-sm'>
+                            <div id ='mars-text' className='flex max-w-64 h-fit bg-white rounded-md font-header break-words p-5 text-xs md:text-sm'>
                                 Well yeah. I do. Unless you had something better in mind?
                             </div>
                         </div>
@@ -662,11 +662,11 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                             <div id='venus-pic' className='h-fit mt-28'>
                                 <img className="w-[100px] h-auto" src={VenusGifDefault} alt="Venus Gif"/>
                             </div>
-                            <div id ='venus-text' className='flex mb-14 w-fit md:w-72 h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                            <div id ='venus-text' className='flex mb-14 w-fit md:w-72 h-fit bg-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
                                 Maybe the asteroid is lonely and that's why it's coming over here. you need to stop asserting dominance for no reason. I probably could charm them with my beauty..
                             </div>
                         </div> 
-                        <div id='benefic-text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-body text-wrap p-5 mr-8 text-xs md:text-sm'>
+                        <div id='benefic-text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-header text-wrap p-5 mr-8 text-xs md:text-sm'>
                             <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -right-11' loading='lazy' src={YellowSparkle}/>
                             Venus tends to take the diplomatic approach when it comes to conflict. Venus wants to do things that are going to feel goooood, and tends to shy away from things that may be uncomfortable.
                         </div>
@@ -705,7 +705,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                             <div id='mars-pic' className='mt-14'>
                                 <img id='mars' className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
                             </div>
-                            <div id ='mars-text' className=' w-96 relative h-fit bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                            <div id ='mars-text' className=' w-96 relative h-fit bg-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
                             <img id='corner-asteroid' className='absolute w-[40px] h-auto max-w-full max-h-full object-contain -top-4 -right-3 rotate-12' loading='lazy' src={AsteroidMouthOpen}/>
                                 As a Malefic planet, you feel like you need to push people, maybe in not the best of ways. 
                                 Sometimes that means that people can be uncomfortable with your energy. 
@@ -714,7 +714,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                             </div>
                         </div>
                         <div id='mars-dialogue' className='malefic-dialogue2 flex flex-row w-fit h-fit self-end mr-44 p-5'>
-                            <div id ='mars-text' className='flex w-96 h-fit relative bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                            <div id ='mars-text' className='flex w-96 h-fit relative bg-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
                                 <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-11 -left-11' loading='lazy' src={BlackSparkle}/>
                                 Waiting to take the offense side is difficult for you. You are prone to taking action immediately and channeling your inner warrior.
                             </div>
@@ -723,7 +723,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                             </div>
                         </div>
                         <div id='mars-dialogue' className='malefic-dialogue3 flex flex-col w-fit h-fit justify-center items-center p-5'>
-                            <div id='mars-text' className='flex flex-col w-96 h-fit relative bg-white rounded-md font-body text-wrap p-5 text-xs md:text-sm'>
+                            <div id='mars-text' className='flex flex-col w-96 h-fit relative bg-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
                                 <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-11 -left-11' loading='lazy' src={YellowSparkle}/>
                                 As Beyoncé once said, 
                                 <div className='justify-center text-center my-3'>
@@ -763,7 +763,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                             <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Mars Gif"/>
                             <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={VenusGifMouthOpen} alt="Mars Gif"/>
                         </div>
-                        <div id='decision-text' className='flex w-1/3 h-fit bg-white text-main-black rounded-md shadow-md font-body text-wrap p-5 text-xs md:text-sm'>
+                        <div id='decision-text' className='flex w-1/3 h-fit bg-white text-main-black rounded-md shadow-md font-header text-wrap p-5 text-xs md:text-sm'>
                             It’s up to you to decide if you want to compromise with Venus, or fight the asteroids in the way that you want to. The decision is yours.
                         </div>
                         <div id='button-container-wrapper'>

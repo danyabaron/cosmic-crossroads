@@ -85,15 +85,15 @@ function StatusBar({ characters }) {
                             ✖
                         </button>
 
-                        <div className='flex  p-5 justify-center bg-main-black items-center flex-col gap-2 pt-5'>
+                        <div className='flex  z-[50] p-5 justify-center bg-main-black items-center flex-col gap-2 pt-5'>
                         <h2 className="text-xl text-center text-white font-bold font-header">VENUS</h2>
                         <img className="items-center w-[80px] sm:w-[60px] md:w-[80px] lg:w-[80px]" src={VenusGif} alt="Venus Bio Image"/>
-                        <div className="flex flex-col gap-2 text-left text-sm w-full mt-4 px-7 text-white">
-                            <p><span className="font-bold text-[#D77BBA]">Planet:</span> Venus</p>
-                            <p><span className="font-bold text-[#D77BBA]">Dignity:</span> Benefic</p>
-                            <p><span className="font-bold text-[#D77BBA]">Rules the Zodiacs:</span> Taurus & Libra</p>
-                            <p><span className="font-bold text-[#D77BBA]">Color:</span> Pink</p>
-                            <p className="mt-2">Venus likes to throw parties and spread love and cheer. They like to adorn 
+                        <div className="flex flex-col gap-2 text-left text-sm w-full mt-4 px-2 md:px-5 text-white">
+                            <p className='font-header'><span className="font-bold text-[#D77BBA] font-header">Planet:</span> Venus</p>
+                            <p className='font-header'><span className="font-bold text-[#D77BBA] font-header">Dignity:</span> Benefic</p>
+                            <p className='font-header'><span className="font-bold text-[#D77BBA] font-header">Rules the Zodiacs:</span> Taurus & Libra</p>
+                            <p className='font-header'><span className="font-bold text-[#D77BBA] font-header">Color:</span> Pink</p>
+                            <p className="mt-2 font-header">Venus likes to throw parties and spread love and cheer. They like to adorn 
                                 themselves with lovers, friends, business acquaintances, and family. Venus likes to 
                                 solve conflict through diplomacy and harmony 
                                 and would rather indulge than restrict.</p>
@@ -117,20 +117,20 @@ function StatusBar({ characters }) {
                         </button>
 
                             {/* Jupiter Bio Content */}
-                            <div className='flex  p-5 justify-center bg-main-black items-center flex-col gap-2 pt-5'>
+                            <div className='flex z-[50]  p-5 justify-center bg-main-black items-center flex-col gap-2 pt-5'>
                             <h2 className="text-xl text-white font-bold font-header">JUPITER</h2>
 
                             <img className="w-[80px] sm:w-[60px] md:w-[80px] lg:w-[80px]" src={JupiterGif} alt="Jupiter Bio Image"/>
                         
 
                         <div className="flex flex-col gap-2 text-left text-sm w-full mt-4 px-7 text-white">
-                            <p><span className="font-bold text-[#D9CFAA]">Planet:</span> Jupiter</p>
-                            <p><span className="font-bold text-[#D9CFAA]">Dignity:</span> Benefic</p>
-                            <p><span className="font-bold text-[#D9CFAA]">Rules the Zodiacs:</span> Sagittarius & Pisces</p>
-                            <p><span className="font-bold text-[#D9CFAA]">Representations:</span> growth, expansion, opportunities, luck, prosperity, benevolence</p>
-                            <p><span className="font-bold text-[#D9CFAA]">Color:</span> <span className='text-[#DA78F6]'>Purple 
-                                </span> & <span className='text-[#D9CFAA]'>Tan</span></p>
-                            <p className="mt-2">Jupiter is the student of life. They love to learn about life and strive to 
+                            <p className='font-header'><span className="font-bold text-[#D9CFAA] font-header">Planet:</span> Jupiter</p>
+                            <p className='font-header'><span className="font-bold text-[#D9CFAA] font-header">Dignity:</span> Benefic</p>
+                            <p className='font-header'><span className="font-bold text-[#D9CFAA] font-header">Rules the Zodiacs:</span> Sagittarius & Pisces</p>
+                            <p className='font-header'><span className="font-bold text-[#D9CFAA] font-header">Representations:</span> growth, expansion, opportunities, luck, prosperity, benevolence</p>
+                            <p className='font-header'><span className="font-bold text-[#D9CFAA] font-header">Color:</span> <span className='text-[#DA78F6]'>Purple 
+                                </span> & <span className='text-[#D9CFAA] font-header'>Tan</span></p>
+                            <p className="mt-2 font-header">Jupiter is the student of life. They love to learn about life and strive to 
                                 earn more wisdom in this world. Jupiter likes to assume the best in people, and deals 
                                 with conflict in a 
                                 diplomatic manner. Jupiter likes to expand energies, whether that is good or bad..</p>
@@ -155,7 +155,7 @@ function StatusBar({ characters }) {
                         </button>
                         
                         {/* Modal Content   */}
-                        <div className='flex  p-5 justify-center bg-main-black items-center flex-col gap-2 pt-5'>
+                        <div className='flex z-[50]  p-5 justify-center bg-main-black items-center flex-col gap-2 pt-5'>
 
                             {/* Jupiter Bio Content */}
                             <h2 className="text-xl text-white font-bold font-header">MARS</h2>
@@ -164,13 +164,13 @@ function StatusBar({ characters }) {
                         
 
                         <div className="flex flex-col gap-2 text-left text-sm w-full mt-4 px-7 text-white">
-                            <p><span className="font-bold text-mars-red">Planet:</span> Mars</p>
-                            <p><span className="font-bold text-mars-red">Dignity:</span> Malefic</p>
-                            <p><span className="font-bold text-mars-red">Rules the Zodiacs: </span>Aries & Scorpio</p>
-                            <p><span className="font-bold text-mars-red">Representations:</span> aggression, war, sex, conflict, power, action, desire</p>
-                            <p><span className="font-bold text-mars-red">Color:</span> <span className='text-mars-red'>Red 
+                            <p className='font-header'><span className="font-bold text-mars-red font-header">Planet:</span> Mars</p>
+                            <p className='font-header'><span className="font-bold text-mars-red font-header">Dignity:</span> Malefic</p>
+                            <p className='font-header'><span className="font-bold text-mars-red font-header">Rules the Zodiacs: </span>Aries & Scorpio</p>
+                            <p className='font-header'><span className="font-bold text-mars-red font-header">Representations:</span> aggression, war, sex, conflict, power, action, desire</p>
+                            <p className='font-header'><span className="font-bold text-mars-red font-header">Color:</span> <span className='text-mars-red'>Red 
                                 </span></p>
-                            <p className="mt-2">Mars takes a head on approach to situations like these. 
+                            <p className="mt-2 font-header">Mars takes a head on approach to situations like these. 
                                 They thrive on taking action and thinks first before thinking. Some would 
                                 say that Mars is the energy you feel when you need to fight for something you want. 
                             </p>
@@ -198,13 +198,13 @@ function StatusBar({ characters }) {
             {/* stats */}
             <div className='max-w-screen flex items-center w-full'>
                 <div className="flex items-center p-3 space-x-2 md:space-x-6">
-                    <div id="character-text" className="text-xs md:text-sm">
+                    <div id="character-text" className="text-xs font-header md:text-sm">
                         <span>Current Character: <span id="current-character">Mars</span></span>
                     </div>
                 </div>
 
                 <div className="flex items-center space-x-1 md:space-x-2 p-3">
-                    <span className="text-xs md:text-sm">Your Team: </span>
+                    <span className="text-xs md:text-sm font-header">Your Team: </span>
                     <div className="flex justify-evenly items-center gap-2">
                         {/* Map through characters and render them */}
                         {Array.from({ length: maxTeamSize }).map((_, index) => {
@@ -230,7 +230,7 @@ function StatusBar({ characters }) {
 
                                     {/* Show character name on hover ONLY if character exists */}
                                     {hoveredCharacter === character && character && (
-                                        <span className="absolute left-1/2 transform -translate-x-1/2 bottom-[-40px] text-xs text-white bg-main-black
+                                        <span className="absolute left-1/2 transform font-header -translate-x-1/2 bottom-[-40px] text-xs text-white bg-main-black
                                              px-2 py-1 rounded opacity-100 z-100 transition-opacity duration-300">
                                             {character}
                                         </span>
@@ -252,10 +252,10 @@ function StatusBar({ characters }) {
                     </div>
                 )}
 
-                <div className="text-xs md:text-sm flex items-center space-x-1 md:space-x-2 p-3">
+                <div className="text-xs md:text-sm font-header flex items-center space-x-1 md:space-x-2 p-3">
                     <span>Time Until Impact:  <span 
                         id="time-until-impact"
-                        className={`transition-all duration-300 ${
+                        className={`transition-all duration-300 font-header ${
                             roundsUntilImpact <= 1 ? 'text-red-400 font-bold' : 'text-white'
                         }`}
                     >
@@ -269,7 +269,7 @@ function StatusBar({ characters }) {
                 <div className="group relative">
                     <IoIosHelpCircleOutline className="text-lg md:text-2xl cursor-pointer
                     hover:scale-110 transition-transform duration-200 ease-in-out" onClick={toggleHelp} />
-                    <span className="absolute left-1/2 transform -translate-x-1/2 bottom-[-40px] z-10 text-xs text-white bg-main-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="absolute left-1/2 transform font-header -translate-x-1/2 bottom-[-40px] z-10 text-xs text-white bg-main-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         Help
                     </span>
                 </div>
@@ -277,7 +277,7 @@ function StatusBar({ characters }) {
                 <div className="group relative">
                     <CiSettings className="text-lg md:text-2xl cursor-pointer
                     hover:scale-110 transition-transform duration-200 ease-in-out" onClick={toggleSettings} />
-                    <span className="absolute left-1/2 transform -translate-x-1/2 bottom-[-40px] z-10 text-xs text-white bg-main-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="absolute font-header left-1/2 transform -translate-x-1/2 bottom-[-40px] z-10 text-xs text-white bg-main-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         Settings
                     </span>
                 </div>
@@ -294,16 +294,16 @@ function StatusBar({ characters }) {
                             {/* Enhanced Audio Toggle Slider with clickable labels - always visible */}
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center">
-                                    <span className="text-sm mr-2">Sound:</span>
+                                    <span className="text-sm font-header mr-2">Sound:</span>
                                     {isPlaying ? 
-                                        <span className="text-sm text-green-400">Playing</span> : 
-                                        <span className="text-sm text-gray-400">Muted</span>
+                                        <span className="text-sm font-header text-green-400">Playing</span> : 
+                                        <span className="text-sm font-header text-gray-400">Muted</span>
                                     }
                                 </div>
                                 <div className="flex items-center">
                                     {/* Clickable Off label */}
                                     <span 
-                                        className={`mr-2 text-xs font-medium cursor-pointer px-2 py-1 rounded transition-colors duration-200
+                                        className={`mr-2 text-xs font-header font-medium cursor-pointer px-2 py-1 rounded transition-colors duration-200
                                             ${!isPlaying 
                                                 ? 'text-white bg-mars-red font-bold' 
                                                 : 'text-gray-500 hover:text-gray-300'}`}
@@ -333,7 +333,7 @@ function StatusBar({ characters }) {
                                     
                                     {/* Clickable On label */}
                                     <span 
-                                        className={`ml-2 text-xs font-medium cursor-pointer px-2 py-1 rounded transition-colors duration-200
+                                        className={`ml-2 text-xs font-medium font-header cursor-pointer px-2 py-1 rounded transition-colors duration-200
                                             ${isPlaying 
                                                 ? 'text-white bg-button-blue font-bold' 
                                                 : 'text-gray-500 hover:text-gray-300'}`}
@@ -357,9 +357,9 @@ function StatusBar({ characters }) {
                          text-white" onClick={toggleHelp}>✖</button>
                         <h2 className="text-xl font-bold font-header text-center">HELP</h2>
                         <div className="flex flex-col gap-2 mt-4">
-                            <p className="text-sm">Use the arrow keys to navigate the game.</p>
-                            <p className="text-sm">Each round, you must decide whether to fight alone or team up with Venus or Jupiter.</p>
-                            <p className="text-sm">Keep an eye on the time until impact!</p>
+                            <p className="text-sm font-header">Use the arrow keys to navigate the game.</p>
+                            <p className="text-sm font-header">Each round, you must decide whether to fight alone or team up with Venus or Jupiter.</p>
+                            <p className="text-sm font-header">Keep an eye on the time until impact!</p>
                         </div>
                     </div>
                 </div>
