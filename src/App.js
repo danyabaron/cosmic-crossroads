@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import MarsIntro from './Pages/MarsPath/MarsIntro';
 import MarsGame from './Pages/MarsPath/MarsGame';
@@ -12,7 +12,6 @@ import MarsSoloEnding from './Components/MarsPathComponents/MarsEndings/MarsSolo
 import MarsVenusEnding from './Components/MarsPathComponents/MarsEndings/MarsVenusEnding.js';
 import MarsJupiterEnding from './Components/MarsPathComponents/MarsEndings/MarsJupiterEnding.js';
 import MarsVenusJupiterEnding from './Components/MarsPathComponents/MarsEndings/MarsVenusJupiterEnding.js';
-
 
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
@@ -76,7 +75,7 @@ function App() {
         <AudioProvider>
         
             {/* <StarBackground /> */}
-            <BrowserRouter>
+            <HashRouter basename="/cosmic-crossroads">
               <ScrollToTop />
 
             
@@ -173,7 +172,7 @@ function App() {
 
                 </Routes>
               </div>
-            </BrowserRouter>
+            </HashRouter>
          
         </AudioProvider>
       );

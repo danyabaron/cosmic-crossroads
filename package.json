@@ -2,6 +2,7 @@
   "name": "cosmic-crossroads",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://danyabaron.github.io/cosmic-crossroads/",
   "dependencies": {
     "@gsap/react": "^2.1.1",
     "@tsparticles/engine": "^3.8.1",
