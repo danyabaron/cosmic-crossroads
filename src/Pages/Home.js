@@ -31,7 +31,7 @@ const Home = () => {
             
           <div className="flex flex-col gap-1">
             <button 
-              className="w-36 h-10 rounded-lg bg-button-blue text-white relative z-10 
+              className="w-36 h-10 rounded-lg font-header bg-button-blue text-white relative z-10 
               drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
               mb-6 px-4 font-medium text-center flex items-center justify-center
                 shadow-lg hover:scale-105  transition duration-300 ease-in-out" 
@@ -41,7 +41,7 @@ const Home = () => {
             </button>
 
             <button 
-              className="w-36 h-10 rounded-lg bg-button-blue text-white relative z-10 
+              className="w-36 h-10 rounded-lg font-header bg-button-blue text-white relative z-10 
               drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
               mb-6 px-4 font-medium text-center flex items-center justify-center
                 shadow-lg hover:scale-105  transition duration-300 ease-in-out" 
@@ -51,7 +51,7 @@ const Home = () => {
             </button>
 
             <button 
-              className="w-36 h-10 rounded-lg bg-button-blue text-white relative z-10 
+              className="w-36 h-10 rounded-lg font-header bg-button-blue text-white relative z-10 
               drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
               mb-6 px-4 font-medium text-center flex items-center justify-center
                 shadow-lg hover:scale-105  transition duration-300 ease-in-out" 
@@ -67,18 +67,18 @@ const Home = () => {
             <div className="bg-button-blue p-6 rounded-md shadow-md w-80 max-w-[90%] text-white relative
                   drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">
               <button 
-                className="absolute top-2 right-3 text-white text-xl font-bold 
+                className="absolute top-2 right-3 text-white  text-xl font-bold 
                 hover:scale-110 transition-transform duration-200 ease-in-out"
                 onClick={() => setPopup(null)}
               >
                 ✖
               </button>
-              <h2 className="text-xl font-bold mb-4">HOW TO PLAY</h2>
+              <h2 className="text-xl font-bold font-header mb-4">HOW TO PLAY</h2>
               <div className="text-left space-y-3">
-                <p>1. <span className="font-semibold">Scroll</span> through the story to explore.</p>
-                <p>2. <span className="font-semibold">Click choices</span> to interact with the environment.</p>
-                <p>3. <span className="font-semibold">Your decisions</span> will shape the story's outcome.</p>
-                <p>4. <span className="font-semibold">No time limits</span> - play at your own pace.</p>
+                <p className='font-header'>1. <span className="font-semibold font-header">Scroll</span> through the story to explore.</p>
+                <p className='font-header'>2. <span className="font-semibold font-header">Click choices</span> to interact with the environment.</p>
+                <p className='font-header'>3. <span className="font-semibold font-header">Your decisions</span> will shape the story's outcome.</p>
+                <p className='font-header'>4. <span className="font-semibold font-header">No time limits</span> - play at your own pace.</p>
               </div>
             </div>
           </div>
@@ -95,19 +95,19 @@ const Home = () => {
               >
                 ✖
               </button>
-              <h2 className="text-xl font-bold mb-4">ABOUT</h2>
-              <p className="mb-3 text-sm">Cosmic Crossroads is an interactive adventure that blends astronomy with storytelling.</p>
-              <p className="mb-3 text-sm">Navigate the solar system and learn about the malefic and benefic planets, each with unique personalities and abilities.</p>
-              <p className="mb-3 text-sm">Your choices will determine the fate of the cosmos!</p>
+              <h2 className="text-xl font-header font-bold mb-4">ABOUT</h2>
+              <p className="mb-3 text-sm font-header">Cosmic Crossroads is an interactive adventure that blends astronomy with storytelling.</p>
+              <p className="mb-3 text-sm font-header">Navigate the solar system and learn about the malefic and benefic planets, each with unique personalities and abilities.</p>
+              <p className="mb-3 text-sm font-header">Your choices will determine the fate of the cosmos!</p>
 
-              <h3 className='font-header mb-3 text-md font-bold text-white text-center'>
+              <h3 className='font-header mb-3  text-md font-bold text-white text-center'>
                 Credits:
               </h3>
-              <p className="mb-3 text-sm"> Design, Development, Pixel Art by <a href='https://danyabaron.com/' target="_blank" rel="noopener noreferrer" className="underline
+              <p className="mb-3 text-sm font-header"> Design, Development, Pixel Art by <a href='https://danyabaron.com/' target="_blank" rel="noopener noreferrer" className="underline
                hover:text-[#A0A6E1]"> Danya Baron</a></p>
-              <p className="mb-3 text-sm"> Music: <a href="https://wowsound.itch.io/space-bobble-music-pack" target="_blank" rel="noopener noreferrer" className="underline
+              <p className="mb-3 text-sm font-header"> Music: <a href="https://wowsound.itch.io/space-bobble-music-pack" target="_blank" rel="noopener noreferrer" className="underline
                hover:text-[#A0A6E1]">Space Bobble Music Pack</a></p>
-               <p className="mb-3 text-sm"> Space Backgrounds: <a href="https://deep-fold.itch.io/space-background-generator" target="_blank" rel="noopener noreferrer" className="underline
+               <p className="mb-3 text-sm font-header"> Space Backgrounds: <a href="https://deep-fold.itch.io/space-background-generator" target="_blank" rel="noopener noreferrer" className="underline
                hover:text-[#A0A6E1]">Deep-Fold Pixel Space Background Generator</a></p>
             </div>
           </div>
