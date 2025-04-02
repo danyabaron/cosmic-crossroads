@@ -75,13 +75,13 @@ function App() {
         <AudioProvider>
         
             {/* <StarBackground /> */}
-            <HashRouter basename="/cosmic-crossroads">
+            <HashRouter>
               <ScrollToTop />
 
             
               <div className="App flex flex-col min-h-screen min-w-screen " >
                 <Routes>
-                  <Route path="/" element={<Home setCharacters={setCharacters} />} />
+                  <Route path="/cosmic-crossroads" element={<Home setCharacters={setCharacters} />} />
                   
                   
                     <Route 
