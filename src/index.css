@@ -21,3 +21,33 @@ body {
     @apply m-0;
     font-family: '04B_03__', sans-serif;
 }
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    opacity: 0.8;
+    pointer-events: none; /* Enable hover interactions */
+}
+
+
+
+
+.star-line {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    height: 1px;
+    transform-origin: 0% 0%;
+    pointer-events: none; /* Disable hover interactions */
+}
+
+.shooting-star {
+    position: absolute;
+    width: 100px; /* Length of the shooting star */
+    height: 2px; /* Thickness of the shooting star */
+    background: linear-gradient(to right, transparent, white, transparent);
+    opacity: 0;
+    pointer-events: none; /* Disable hover interactions */
+    clip-path: path('M0 0 C 50 50, 100 0, 150 0'); /* Curved path */
+}

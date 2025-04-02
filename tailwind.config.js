@@ -15,7 +15,8 @@ module.exports = {
       'jupiter-purple': '#796A7F',
       'venus-pink': '#D77BBA',
       'white' : '#FFFFFF',
-      'team-gray': '#616161'
+      'team-gray': '#616161',
+      'button-blue': '#484C7D',
     },
     backgroundImage: {
       'mars-bg-reg': "url('./assets/backgrounds/mars-normal-size.png')",
@@ -25,7 +26,8 @@ module.exports = {
       'jupiter-bg-reg': "url('./assets/backgrounds/jupiter-normal-size.png')",
       'jupiter-bg-scroll': "url('./assets/backgrounds/jupiter-background-official.png')",
       'saturn-bg-reg': "url('./assets/backgrounds/saturn-normal-size.png')",
-      'saturn-bg-scroll': "url('./assets/backgrounds/saturn-background-official.png')"
+      'saturn-bg-scroll': "url('./assets/backgrounds/saturn-background-official.png')",
+      'default-bg': "url('./assets/backgrounds/default-background.png')",
 
 
     },
@@ -46,6 +48,49 @@ module.exports = {
         "4xl": "2.25rem",
         "5xl": "3rem",
         "6xl": "4rem",
+      },
+
+      animation: {
+        'fiery-pulse': 'fieryPulse 1.5s infinite ease-in-out',
+        'fire-trail': 'moveTrail 2s linear infinite, fadeOut 2s linear infinite',
+        'twinkle': 'starTwinkle 3s ease-in-out infinite alternate',
+        'shootingStar': 'shootStar 6s linear infinite',
+      },
+      keyframes: {
+        fieryPulse: {
+          '0%': {
+                boxShadow: '0 0 15px #C25811, 0 0 30px #C25811', // Glow with #C25811 color
+                },
+          '50%': {
+            boxShadow: '0 0 25px #C25811, 0 0 50px #C25811', // Intensified glow
+          },
+          '100%': {
+            boxShadow: '0 0 15px #C25811, 0 0 30px #C25811', // Glow with #C25811 color
+          },
+        },
+        moveTrail: {
+          '0%': { transform: 'translateX(0)', opacity: 1 },
+          '100%': { transform: 'translateX(100vw)', opacity: 0 },
+        },
+        fadeOut: {
+          '0%': { opacity: 1 },
+          '100%': { opacity: 0 },
+        },
+        starTwinkle: {
+          '0%, 100%': {
+            opacity: '0.4',
+            transform: 'scale(0.8)',
+          },
+          '50%': {
+            opacity: '1',
+            transform: 'scale(1.1)',
+          },
+        },
+        shootStar: {
+          '0%': { transform: 'translateX(0) translateY(0)', opacity: 1 },
+          '100%': { transform: 'translateX(150vw) translateY(-100vh)', opacity: 0 },
+        },
+
       },
     },
   },

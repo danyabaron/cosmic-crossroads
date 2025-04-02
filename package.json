@@ -4,9 +4,11 @@
   "private": true,
   "dependencies": {
     "@gsap/react": "^2.1.1",
+    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.8.1",
     "cra-template": "1.2.0",
     "gsap": "^3.12.5",
-    "locomotive-scroll": "^4.1.4",
     "motion": "^11.14.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
