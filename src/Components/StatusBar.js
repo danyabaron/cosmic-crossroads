@@ -13,7 +13,7 @@ import JupiterGif from '../assets/jupiter-art/jupiter-art-gif.gif';
 
 function StatusBar({ characters }) {
     const location = useLocation();
-    const { isPlaying, toggleAudio } = useAudio();
+    const { isPlaying, playAudio, pauseAudio } = useAudio();
     const characterImages = {
         Mars: MarsStaticImg,
         Venus: VenusStaticImg,
@@ -56,7 +56,13 @@ function StatusBar({ characters }) {
     const [selectedCharacter, setSelectedCharacter] = useState(null);
     const [hoveredCharacter, setHoveredCharacter] = useState(null);
 
-
+    const toggleAudio = () => {
+        if (isPlaying) {
+            pauseAudio();
+        } else {
+            playAudio();
+        }
+    };
 
     const openCharacterModal = (character) => {
         setSelectedCharacter(character);

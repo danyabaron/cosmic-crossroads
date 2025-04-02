@@ -12,6 +12,7 @@ import BlackSparkle from '../../../assets/other-art/black-sparkle.png';
 import ButtonContainer from '../../ButtonContainer';
 import Fireball from '../../../assets/other-art/fire.gif';
 import StarBackground from '../../../Components/StarBackground.js';
+import CoinSound from '../../../assets/other-art/coin-sound.mp3';
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -31,6 +32,9 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
     const asteroidRefs = useRef([]);
     const coinRefs = useRef([]);
     
+    // Audio ref for coin sound
+    const coinSoundRef = useRef(new Audio(CoinSound));
+    
     // Store timeouts and intervals in refs so they can be cleared properly
     const timeouts = useRef([]);
     const intervals = useRef([]);
@@ -38,10 +42,10 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
     // jupiter bio popup states
     const [modalIsOpen, setIsOpen] = useState(false);
     
-        // Toggle the popup
-        const togglePopup = () => {
-            setIsOpen(!modalIsOpen);
-        };
+    // Toggle the popup
+    const togglePopup = () => {
+        setIsOpen(!modalIsOpen);
+    };
 
     // Clear a timeout and remove it from the timeouts ref
     const clearAndRemoveTimeout = (timeoutId) => {
@@ -54,6 +58,21 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
         clearInterval(intervalId);
         intervals.current = intervals.current.filter(id => id !== intervalId);
     };
+
+    // Setup the coin sound
+    useEffect(() => {
+        const audio = coinSoundRef.current;
+        
+        // Set audio to loop
+        audio.loop = true;
+        audio.volume = 0.5; // Adjust volume as needed
+        
+        return () => {
+            // Cleanup: pause and reset audio when component unmounts
+            audio.pause();
+            audio.currentTime = 0;
+        };
+    }, []);
 
     // FIRST SECTION/PANEL ANIMATION
     useGSAP(() => {
@@ -156,9 +175,26 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                         },
                     });
 
-
-
-
+        // Create a scroll trigger for the coin sound
+        let soundScrollTrigger = ScrollTrigger.create({
+            trigger: jupiterBattleRef.current,
+            start: 'top center',
+            end: 'bottom center',
+            onEnter: () => {
+                coinSoundRef.current.play();
+            },
+            onLeave: () => {
+                coinSoundRef.current.pause();
+                coinSoundRef.current.currentTime = 0;
+            },
+            onEnterBack: () => {
+                coinSoundRef.current.play();
+            },
+            onLeaveBack: () => {
+                coinSoundRef.current.pause();
+                coinSoundRef.current.currentTime = 0;
+            },
+        });
 
         const shootCoin = () => {
             if (!coinContainerRef.current) return; // Check if ref exists
@@ -312,6 +348,12 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                     // Kill all animations and scroll triggers
                     gsap.killTweensOf("*");
                     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+                    
+                    // Stop the sound
+                    if (coinSoundRef.current) {
+                        coinSoundRef.current.pause();
+                        coinSoundRef.current.currentTime = 0;
+                    }
                 };
         
         }, []);

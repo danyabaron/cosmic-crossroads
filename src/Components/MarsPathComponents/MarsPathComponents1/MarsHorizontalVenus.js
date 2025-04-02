@@ -587,7 +587,8 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
 
                     {modalIsOpen && (
                         <div className="fixed inset-0 bg-main-black bg-opacity-50 flex justify-center items-center z-50">
-                            <div className="bg-main-black text-black p-6 rounded-lg w-96 drop-shadow-[0_10px_20px_rgba(215,123,186,0.6)] shadow-lg relative">
+                            <div className="bg-main-black text-black p-6 rounded-lg w-96 max-w-[90%] mt-16 mb-9 md:mt-20 
+                                drop-shadow-[0_10px_20px_rgba(215,123,186,0.6)] shadow-lg relative">
                                 <button
                                     className="absolute top-2 right-3 text-lg font-bold
                                     hover:scale-110 transition-transform duration-200 ease-in-out text-white hover:text-venus-pink"
