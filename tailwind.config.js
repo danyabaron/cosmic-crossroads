@@ -33,7 +33,11 @@ module.exports = {
     },
     fontFamily: {
       body: ['04B_03__'],
-      header: ['Pixellari', 'sans-serif']
+      header: ['Pixellari', 'sans-serif'],
+      narrow: ['Arial Narrow', 'sans-serif'], 
+      arial: ['Arial', 'sans-serif'], // Fallback for Arial in case Pixellari fails to load
+      techno: ['Handjet', 'sans-serif'], 
+    
 
     },
     extend: {
