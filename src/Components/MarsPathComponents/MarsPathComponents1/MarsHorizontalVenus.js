@@ -540,7 +540,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
     const buttons = [
         {
             text: "Stick with your Malefic",
-            style: "bg-main-black font-header text-white px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
+            style: "bg-main-black font-header text-white px-4 py-2 rounded-md drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
             screen: "stick-mars-1",
             addCharacter: "Mars",
             onClick: () => {
@@ -549,7 +549,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
         },
         {
             text: "Compromise with Venus",
-            style: "bg-main-black text-white font-header px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
+            style: "bg-main-black text-white font-header px-4 py-2 rounded-md drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
             screen: "choose-venus-1",
             addCharacter: "Venus",
             onClick: () => {
@@ -714,7 +714,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                             <div id ='mars-text' className=' w-96 relative h-fit bg-main-black rounded-md font-header text-white text-wrap p-5 text-xs md:text-sm'>
                                 <h1 className='text-center text-lg text-white font-header font-bold mb-3 '>Malefic Fact:</h1>
                                     
-                                    <img id='corner-asteroid' className='absolute w-[40px] h-auto max-w-full max-h-full object-contain -top-4 -right-3 rotate-12' loading='lazy' src={AsteroidMouthOpen}/>
+                                    <img id='corner-asteroid' className='absolute w-[40px] h-auto max-w-full max-h-full object-contain -top-4 -right-3 rotate-12 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]' loading='lazy' src={AsteroidMouthOpen}/>
                                         As a Malefic planet, you feel like you need to push people, maybe in not the best of ways. 
                                         Sometimes that means that people can be uncomfortable with your energy. 
                                         <br /><br />

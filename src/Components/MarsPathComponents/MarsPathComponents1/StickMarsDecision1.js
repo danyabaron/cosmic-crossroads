@@ -35,7 +35,7 @@ function StickMarsDecision1({ setScreen, characters }) {
     const buttons = [
       {
           text: "WHAT'S NEXT?",
-          style: "mt-8 font-header bg-main-black text-white px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] ",
+          style: "mt-8 font-header bg-main-black text-white px-4 py-2 rounded-md drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] ",
           screen: "mars-horizontal-jupiter",
           onClick: () => {
               navigate("/mars-horizontal-jupiter"); // Use navigate to go to the next route

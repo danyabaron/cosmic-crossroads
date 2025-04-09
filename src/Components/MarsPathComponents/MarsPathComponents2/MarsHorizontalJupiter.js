@@ -13,6 +13,7 @@ import ButtonContainer from '../../ButtonContainer';
 import Fireball from '../../../assets/other-art/fire.gif';
 import StarBackground from '../../../Components/StarBackground.js';
 import CoinSound from '../../../assets/other-art/coin-sound.mp3';
+import SaturnPNG from '../../../assets/saturn-art/saturn-mouth-open.png';
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -495,15 +496,16 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
 
     const buttons = [
         {
-            text: "Compromise with Jupiter",
-            style: "bg-main-black text-white font-header px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
-            onClick: () => handleDecision('jupiter')
+            text: "Stick with your Malefic",
+            style: "bg-main-black text-white font-header px-4 py-2 rounded-md drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
+            onClick: () => handleDecision('mars')
         },
         {
-            text: "Stick with your Malefic",
-            style: "bg-main-black text-white font-header px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
-            onClick: () => handleDecision('mars')
-        }
+            text: "Compromise with Jupiter",
+            style: "bg-main-black text-white font-header px-4 py-2 rounded-md drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
+            onClick: () => handleDecision('jupiter')
+        },
+       
     ];
 
     return (
@@ -658,8 +660,10 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                             <div id='mars-pic' className='mt-14'>
                                 <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
                             </div>
-                            <div id ='mars-text' className='relative flex w-96 h-fit bg-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
-                            <img id='corner-asteroid' className='absolute w-12 h-auto max-w-full max-h-full object-contain -top-6 -right-5' loading='lazy' src={AsteroidMouthOpen}/>
+                            <div id ='mars-text' className='relative flex flex-col w-96 h-fit bg-main-black text-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
+                            <h1 className='text-center text-lg text-white font-header font-bold mb-3 '>Malefic Fact:</h1>
+                            <img id='corner-saturn' className='absolute w-28 h-auto max-w-full max-h-full object-contain -top-6 -right-8 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={SaturnPNG}/>
+                            <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -bottom-11 -left-11 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] animate-pulse' loading='lazy' src={BlackSparkle}/>
                                 In traditional astrology, Mars was known as the lesser malefic planet, 
                                 with Saturn being the bigger malefic planet. 
                                 <br /><br />
@@ -668,8 +672,10 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                             </div>
                         </div>
                         <div id='' className='mars-dialogue flex flex-row w-fit h-fit p-5'>
-                            <div id ='mars-text' className='relative flex w-96 h-fit bg-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
-                                <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-10 -left-11' loading='lazy' src={BlackSparkle}/>
+                            <div id ='mars-text' className='relative flex flex-col w-96 h-fit bg-main-black text-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
+                                <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-10 -left-11 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] animate-pulse' loading='lazy' src={BlackSparkle}/>
+                                
+                                <h1 className='text-center text-lg text-white font-header font-bold mb-3 '>Mars Fact:</h1>
                                 As a malefic planet, specifically Mars, you thrive on acting on your 'survival instinct'. Mars is what gets you out of danger, but won't play defense.
                             </div>
                             <div id='mars-pic' className='mt-14'>
