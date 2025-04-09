@@ -32,7 +32,7 @@ const Home = () => {
           <div className="flex flex-col gap-1">
             <button 
               className="w-36 h-10 rounded-lg font-header bg-button-blue text-white relative z-10 
-              drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
+               drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] 
               mb-6 px-4 font-medium text-center flex items-center justify-center
                 shadow-lg hover:scale-105  transition duration-300 ease-in-out" 
               onClick={() => navigate("/marsintro")}
@@ -42,7 +42,7 @@ const Home = () => {
 
             <button 
               className="w-36 h-10 rounded-lg font-header bg-button-blue text-white relative z-10 
-              drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
+               drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] 
               mb-6 px-4 font-medium text-center flex items-center justify-center
                 shadow-lg hover:scale-105  transition duration-300 ease-in-out" 
               onClick={() => setPopup("about")}
@@ -52,7 +52,7 @@ const Home = () => {
 
             <button 
               className="w-36 h-10 rounded-lg font-header bg-button-blue text-white relative z-10 
-              drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
+               drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] 
               mb-6 px-4 font-medium text-center flex items-center justify-center
                 shadow-lg hover:scale-105  transition duration-300 ease-in-out" 
               onClick={() => setPopup("howtoplay")}
