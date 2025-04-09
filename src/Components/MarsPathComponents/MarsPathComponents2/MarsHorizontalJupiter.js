@@ -714,10 +714,12 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
 
                 {/* container for SIXTH/FINAL scroll section / dialogue */}
                 <section id="panel" className='w-screen min-h-screen flex flex-col justify-center pr-5'>
-                    <div id='container-panel' className='flex flex-col items-center gap-14'>
-                        <div id='header' className='font-header text-xl text-white font-bold'>
-                            <h1>Decision Time!</h1>
-                        </div>
+                    <div id='container-panel' className='flex flex-col items-center gap-8'>
+                        <div id='decision-header' className='flex bg-main-black flex-col h-full w-fit justify-center drop-shadow-[0_0_15px_#ffff00] items-center relative z-[15] p-3 rounded-md shadow-lg'>
+                                <h1 className="text-center font-header max-w-lg text-white text-xl">
+                                    Decision Time!
+                                </h1>
+                            </div>
                         <div id='planet-pics' className='flex flex-row gap-5 items-center justify-center w-full h-fit'>
                             <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
                             <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={JupiterGif} alt="Jupiter Gif"/>

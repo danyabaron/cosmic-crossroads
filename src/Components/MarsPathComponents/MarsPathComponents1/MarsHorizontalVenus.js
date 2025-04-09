@@ -766,9 +766,11 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                 </section>
 
                 <section id="panel" className='relative w-screen min-h-screen flex flex-col justify-center pr-5'>
-                    <div id='container-panel' className='flex flex-col items-center gap-14'>
-                        <div id='header' className='font-header text-white text-xl font-bold'>
-                            <h1>Decision Time!</h1>
+                    <div id='container-panel' className='flex flex-col items-center gap-8'>
+                        <div id='decision-header' className='flex bg-main-black flex-col h-full w-fit justify-center drop-shadow-[0_0_15px_#ffff00] items-center relative z-[15] p-3 rounded-md shadow-lg'>
+                            <h1 className="text-center font-header max-w-lg text-white text-xl">
+                                Decision Time!
+                            </h1>
                         </div>
                         <div id='planet-pics' className='flex flex-row gap-5 items-center justify-center w-full h-fit'>
                             <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Mars Gif"/>
@@ -777,7 +779,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                         <div id='decision-text' className='flex w-1/3 h-fit bg-white text-main-black rounded-md shadow-md font-header text-wrap p-5 text-xs md:text-sm'>
                             It’s up to you to decide if you want to compromise with Venus, or fight the asteroids in the way that you want to. The decision is yours.
                         </div>
-                        <div id='button-container-wrapper'>
+                        <div id='button-container-wrapper' >
                             <ButtonContainer 
                                 setScreen={setScreen} 
                                 buttons={buttons}

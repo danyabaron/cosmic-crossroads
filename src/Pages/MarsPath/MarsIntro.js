@@ -193,7 +193,7 @@ function MarsIntro({ addCharacter, characters }) {
 
 
                 <div id='scroll-header' className='flex bg-main-black flex-col h-full mb-8 w-fit justify-center drop-shadow-[0_0_15px_#ffff00] items-center relative z-[15] p-6 rounded-md shadow-lg'>
-                    <h1 ref={addToDialogueRefs} className="text-center font-header max-w-lg text-white text-2xl">
+                    <h1 className="text-center font-header max-w-lg text-white text-2xl">
                         Keep Scrolling to Learn More!
                     </h1>
                 </div>
