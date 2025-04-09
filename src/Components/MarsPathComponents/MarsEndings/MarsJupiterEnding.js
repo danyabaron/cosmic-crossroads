@@ -149,7 +149,7 @@ function MarsJupiterEnding({ characters, resetCharacters }) {
             <StarBackground />
             
             {/* Background with proper z-index */}
-            <div className="absolute inset-0 bg-jupiter-bg-reg bg-center bg-opacity-90 z-[5]"></div>
+            <div className="absolute inset-0 bg-default-bg bg-center bg-opacity-90 z-[5]"></div>
             
             {/* Main content with higher z-index */}
             <div className="relative w-full min-w-screen pt-14 overflow-x-hidden flex flex-col justify-center items-center z-[20]">
@@ -161,7 +161,7 @@ function MarsJupiterEnding({ characters, resetCharacters }) {
                     </div>
 
                     <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-                        <p ref={addToIntroRefs} className='text-white font-header text-sm text-center p-4'>
+                        <p ref={addToIntroRefs} className='text-white text-md text-center p-4'>
                             You chose to team up with Jupiter! Together, Mars and 
                             Jupiter create a powerful yet contrasting alliance. Mars, 
                             a traditional malefic planet, brings its fiery aggression, 
@@ -170,7 +170,7 @@ function MarsJupiterEnding({ characters, resetCharacters }) {
                         </p>
                     </div>
                     <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-                        <p ref={addToIntroRefs} className='text-white font-header text-sm text-center p-4'>
+                        <p ref={addToIntroRefs} className='text-white text-md text-center p-4'>
                             Mars' determination and assertiveness complement Jupiter's strategic 
                             vision and ability to see the bigger picture. 
                             However, the absence of Venus—the other benefic planet—means you lack diplomatic 
@@ -179,7 +179,7 @@ function MarsJupiterEnding({ characters, resetCharacters }) {
                     </div>
 
                     <div id='intro-text' className='bg-main-black mb-12 drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-                        <p ref={addToIntroRefs} className='text-white font-header text-sm text-center p-4'>
+                        <p ref={addToIntroRefs} className='text-white text-md text-center p-4'>
                             Without Venus' harmonizing influence, 
                             your approach to the asteroid threat relies 
                             more heavily on force and authority, making it 
@@ -196,7 +196,7 @@ function MarsJupiterEnding({ characters, resetCharacters }) {
                         <h1 className="text-white font-header text-3xl z-10"> Mars </h1>
                         <div className='flex flex-row gap-3 justify-center items-center w-full'>
                             <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
-                            <p ref={marsTextRef} className='text-main-black rounded-lg p-6 font-header bg-white w-1/2'>
+                            <p ref={marsTextRef} className='text-main-black rounded-lg p-6 text-md bg-white w-1/2'>
                                 As Mars, your assertiveness and willingness to take action were crucial in forming this alliance. 
                                 However, your malefic nature can sometimes lead to impulsive decisions, which Jupiter's wisdom helps balance. 
                                 Together, you were able to rally the solar system's forces against the asteroid threat.
@@ -210,7 +210,7 @@ function MarsJupiterEnding({ characters, resetCharacters }) {
                         <h1 className="text-white font-header text-3xl z-10"> Jupiter </h1>
                         <div className='flex flex-row gap-3 justify-center items-center w-full'>
                             <img src={JupiterGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Jupiter" />
-                            <p ref={jupiterTextRef} className='text-main-black rounded-lg p-6 font-header bg-white w-1/2'>
+                            <p ref={jupiterTextRef} className='text-main-black rounded-lg p-6 text-md bg-white w-1/2'>
                                 Jupiter's benefic qualities of optimism and expansion were instrumental in forming a united front. 
                                 However, without Venus' charm and diplomacy, the asteroids were not fully convinced of the alliance's sincerity. 
                                 This lack of Venus' influence left some asteroids feeling excluded, which could lead to future challenges.

@@ -147,7 +147,7 @@ function MarsVenusEnding({ characters, resetCharacters }) {
             <StarBackground />
             
             {/* Background with proper z-index */}
-            <div className="absolute inset-0 bg-venus-bg-reg bg-center bg-opacity-90 z-[5]"></div>
+            <div className="absolute inset-0 bg-default-bg bg-center bg-opacity-90 z-[5]"></div>
             
             {/* Main content with higher z-index */}
             <div className="relative w-full min-w-screen pt-14 overflow-x-hidden
@@ -162,7 +162,7 @@ function MarsVenusEnding({ characters, resetCharacters }) {
                     </div>
 
                     <div className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-                        <p ref={addToParagraphRefs} className='text-white text-sm font-header text-center p-4'>
+                        <p ref={addToParagraphRefs} className='text-white text-md text-center p-4'>
                                 You chose to team up with Venus! Together, your combined strengths of action and diplomacy created a powerful alliance. 
                                 Mars, with your traditional malefic qualities of boldness and drive, you brought the energy and determination needed to 
                                 face the asteroid crisis head-on. 
@@ -170,7 +170,7 @@ function MarsVenusEnding({ characters, resetCharacters }) {
                     </div>
 
                     <div className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-                        <p ref={addToParagraphRefs} className='text-white text-sm font-header text-center p-4'>
+                        <p ref={addToParagraphRefs} className='text-white text-md  text-center p-4'>
                                 Venus, with her benefic qualities of charm and diplomacy, softened your 
                                 approach and helped you negotiate a peaceful resolution with the asteroids. 
                                 However, by not choosing Jupiter, the planet of expansion and wisdom, 
@@ -178,7 +178,7 @@ function MarsVenusEnding({ characters, resetCharacters }) {
                         </p>
                     </div>
                     <div className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-                        <p ref={addToParagraphRefs} className='text-white text-sm font-header text-center p-4'>
+                        <p ref={addToParagraphRefs} className='text-white text-md text-center p-4'>
                             While your alliance with Venus was strong, the absence of Jupiter's influence meant that some long-term solutions to the 
                             solar system's challenges might have been overlooked. 
                             Nevertheless, your teamwork with Venus set a shining example of how action and diplomacy can work hand in hand to create harmony in the galaxy.
@@ -187,12 +187,12 @@ function MarsVenusEnding({ characters, resetCharacters }) {
                     </div>
                 </section>
 
-                <section className='w-full min-h-screen flex flex-col gap-3 justify-center items-center'>
+                <section className='w-full min-h-screen flex flex-col gap-3 justify-center  items-center'>
                     <div id='mars-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
                         <h1 className="text-white font-header text-3xl mb-3 z-10"> Mars </h1>
                         <div className='flex flex-row gap-3 justify-center items-center w-full'>
                             <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
-                            <p ref={marsTextRef} className='text-main-black rounded-lg text-md p-6 font-header bg-white w-1/2'>
+                            <p ref={marsTextRef} className='text-main-black rounded-lg text-md p-6  bg-white w-1/2'>
                                 As Mars, your natural inclination for action and decisiveness played a key role in addressing the asteroid crisis. 
                                 Your willingness to team up with Venus showcased your ability to adapt and collaborate, even when it wasn't your first instinct. 
                                 Together, you and Venus were able to create a peaceful resolution, proving that even the most action-oriented forces 
@@ -202,12 +202,12 @@ function MarsVenusEnding({ characters, resetCharacters }) {
                     </div>
                 </section>
 
-                <section className='w-full min-h-screen flex flex-col gap-3 justify-center items-center'>
+                <section className='w-full min-h-screen flex flex-col gap-3 justify-center  items-center'>
                     <div id='venus-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
                         <h1 className="text-white font-header text-3xl mb-3 z-10"> Venus </h1>
                         <div className='flex flex-row gap-3 justify-center items-center w-full'>
                             <img src={VenusGifMouthOpen} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Venus" />
-                            <p ref={venusTextRef} className='text-main-black rounded-lg p-6 text-md font-header bg-white w-1/2'>
+                            <p ref={venusTextRef} className='text-main-black rounded-lg p-6 text-md  bg-white w-1/2'>
                                 Venus brought her charm and grace to the forefront, using her benefic qualities to foster understanding and unity. 
                                 She even suggested hosting a celebratory gathering for the asteroids to solidify the new alliance. 
                                 Without Venus, the asteroids might have felt alienated or undervalued, but her diplomatic skills ensured they felt welcomed and appreciated. 

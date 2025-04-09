@@ -365,7 +365,7 @@ function MarsSoloEnding({ characters, resetCharacters }) {
                     <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
                     
                     <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-                        <p ref={addToParagraphRefs} className=' text-white font-header text-xs md:text-sm'>
+                        <p ref={addToParagraphRefs} className=' text-white  text-md'>
                             The asteroids, seeing your aggressive approach, were not pleased. They felt that you did not
                             value their existence and were only interested in using them for your own gain.
                             As a result, they became hostile and vowed to never trust you again.
@@ -374,7 +374,7 @@ function MarsSoloEnding({ characters, resetCharacters }) {
                     </div>
 
                     <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-                        <p ref={addToParagraphRefs} className=' text-white font-header text-xs md:text-sm'>
+                        <p ref={addToParagraphRefs} className=' text-white text-md'>
                             While you were able to defeat them this time, they will always be a thorn in your side. Your benefic planets
                             are also disappointed in you for not trying to negotiate with the asteroids. They feel that you have let them down,
                             and they are no longer willing to help you in your future endeavors.
@@ -390,11 +390,12 @@ function MarsSoloEnding({ characters, resetCharacters }) {
                             className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
                         />
 
-                        <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-header text-wrap p-5 mr-8 text-xs md:text-sm'>
+                        <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md  text-wrap p-5 mr-8 text-md'>
                             <p ref={jupiterTextRef}>
                                 Mars, I expected better from you. As the 
                                 guardian of wisdom and expansion, I've always taught 
                                 that diplomacy brings greater rewards than brute force. 
+                                <br /><br />
                                 Did you even try to understand their perspective? Every 
                                 conflict has potential for growth, but you've only 
                                 created more division. This impulsiveness of yours will limit your cosmic influence.
@@ -409,11 +410,12 @@ function MarsSoloEnding({ characters, resetCharacters }) {
                             className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
                         />
 
-                        <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-header text-wrap p-5 mr-8 text-xs md:text-sm'>
+                        <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md  text-wrap p-5 mr-8 text-md'>
                             <p ref={venusTextRef}>
                                 Oh Mars, always rushing into battle without a second thought! Harmony and connection 
                                 are what truly strengthen the cosmos. Did it ever occur 
                                 to you that those asteroids might have become valuable allies? 
+                                <br /><br />
                                 Instead, you've made enemies where you could have made friends. Next time, 
                                 try using your heart instead of your sword. Relationships matter more than victories.
                             </p>

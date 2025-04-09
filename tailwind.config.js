@@ -37,6 +37,10 @@ module.exports = {
       narrow: ['Arial Narrow', 'sans-serif'], 
       arial: ['Arial', 'sans-serif'], // Fallback for Arial in case Pixellari fails to load
       techno: ['Handjet', 'sans-serif'], 
+      ttneueReg: ['TT Neue Regular', 'sans-serif'],
+      ttneueMedium: ['TT Neue Medium', 'sans-serif'],
+      ttneueBold: ['TT Neue Bold', 'sans-serif'],
+      ttneueLight: ['TT Neue Light', 'sans-serif'],
     
 
     },

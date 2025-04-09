@@ -13,7 +13,6 @@ import ButtonContainer from '../../ButtonContainer';
 import Fireball from '../../../assets/other-art/fire.gif';
 import StarBackground from '../../../Components/StarBackground.js';
 import CoinSound from '../../../assets/other-art/coin-sound.mp3';
-import SaturnPNG from '../../../assets/saturn-art/saturn-mouth-open.png';
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -273,185 +272,91 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
             toggleActions: 'play none none reverse',
         });
             
-        const createAsteroids = () => {
-            if (!asteroidContainerRef.current) return;
-        
-            const asteroidCount = 5;
-            const existingAsteroids = asteroidContainerRef.current.querySelectorAll('img');
-        
-            // Prevent spawning too many asteroids
-            if (existingAsteroids.length >= 10) return;
-        
-            for (let i = 0; i < asteroidCount; i++) {
-                if (!asteroidContainerRef.current) return;
-        
-                const containerHeight = asteroidContainerRef.current.clientHeight;
-                const randomTop = Math.random() * containerHeight;
-        
-                const asteroid = document.createElement('img');
-                asteroid.src = AsteroidAngry;
-                asteroid.className = 'absolute w-10 h-10 z-0';
-                asteroid.style.right = `0px`; // Start from right edge
-                asteroid.style.top = `${randomTop}px`;
-                asteroid.dataset.state = 'moving'; // Track asteroid state
-        
-                asteroidContainerRef.current.appendChild(asteroid);
-        
-                // Ensure asteroid is added to DOM before animating
-                requestAnimationFrame(() => {
-                    if (!asteroid.parentNode) {
-                        console.error("Asteroid not appended properly!");
-                        return;
+                const createAsteroids = () => {
+                    if (!asteroidContainerRef.current) return;
+                
+                    const asteroidCount = 5;
+                    const existingAsteroids = asteroidContainerRef.current.querySelectorAll('img');
+                
+                    // Prevent spawning too many asteroids
+                    if (existingAsteroids.length >= 10) return;
+                
+                    for (let i = 0; i < asteroidCount; i++) {
+                        if (!asteroidContainerRef.current) return;
+                
+                        const containerHeight = asteroidContainerRef.current.clientHeight;
+                        const randomTop = Math.random() * containerHeight;
+                
+                        const asteroid = document.createElement('img');
+                        asteroid.src = AsteroidAngry;
+                        asteroid.className = 'absolute w-10 h-10 z-0';
+                        asteroid.style.right = `0px`; // Start from right edge
+                        asteroid.style.top = `${randomTop}px`;
+                
+                        asteroidContainerRef.current.appendChild(asteroid);
+                
+                        // Ensure asteroid is added to DOM before animating
+                        requestAnimationFrame(() => {
+                            if (!asteroid.parentNode) {
+                                console.error("Asteroid not appended properly!");
+                                return;
+                            }
+                
+                            // Timeline for coordinated animations
+                            const tl = gsap.timeline({
+                                onComplete: () => {
+                                    asteroid.remove();
+                                    const timeoutId = setTimeout(() => createAsteroids(), 500);
+                                    timeouts.current.push(timeoutId);
+                                }
+                            });
+                
+                            // Add asteroid movement animation
+                            tl.to(asteroid, {
+                                x: "-100vw", // Move fully off-screen
+                                duration: 3, // Animation duration
+                                ease: "linear"
+                            });
+                
+                            // Add opacity animation that starts at the halfway point
+                            tl.to(asteroid, {
+                                opacity: 0, // Fade to transparent
+                                duration: .2, // Half the duration of the movement
+                                ease: "power1.in" // Smooth easing for fade
+                            }, "-=1.5"); // Start 1.5 seconds before the main animation ends (halfway through)
+                        });
                     }
-        
-                    // Create a function to handle the dramatic return animation
-                    const performDramaticReturn = (asteroidElement, hasCollided = false) => {
-                        // Create a new timeline for return animation
-                        const dramaTl = gsap.timeline({
-                            onComplete: () => {
-                                if (asteroidElement.parentNode) {
-                                    asteroidElement.remove();
-                                }
-                                // Only spawn new asteroids if this was removed properly
-                                const timeoutId = setTimeout(() => createAsteroids(), 500);
-                                timeouts.current.push(timeoutId);
-                            }
-                        });
-                        
-                        if (hasCollided) {
-                            // 1. Stop and shake
-                            dramaTl.to(asteroidElement, {
-                                x: "-=10", // Small shake backward
-                                duration: 0.1,
-                                ease: "power2.out"
-                            });
-                        }
-                        
-                        // 2. Dramatic spin and fly back
-                        dramaTl.to(asteroidElement, {
-                            rotation: 1080, // Multiple spins (3 full rotations)
-                            x: "100vw", // Fly off to the right (back where it came from)
-                            y: hasCollided ? "-=100" : "-=50", // Fly upward slightly (more if collided)
-                            scale: 0.5, // Shrink as it flies away
-                            duration: hasCollided ? 1.5 : 1, // Faster if not collided
-                            ease: "power3.in",
-                            opacity: 0 // Fade out
-                        });
-                        
-                        return dramaTl;
-                    };
-        
-                    // Timeline for initial movement animation
-                    const tl = gsap.timeline({
-                        onComplete: () => {
-                            // If we reached the end of the animation without collision,
-                            // perform return animation anyway
-                            if (asteroid.dataset.state !== 'colliding' && asteroid.parentNode) {
-                                asteroid.dataset.state = 'returning';
-                                performDramaticReturn(asteroid, false);
-                            }
-                        }
-                    });
-        
-                    // Add asteroid movement animation
-                    tl.to(asteroid, {
-                        x: "-50vw", // Move halfway across the screen
-                        duration: 2, // Animation duration
-                        ease: "linear",
-                        onUpdate: () => {
-                            // Check for coin collisions
-                            if (asteroid.dataset.state !== 'moving') return;
-                            
-                            const asteroidRect = asteroid.getBoundingClientRect();
-                            const coins = coinContainerRef.current?.querySelectorAll('img') || [];
-                            
-                            coins.forEach(coin => {
-                                if (asteroid.dataset.state !== 'moving') return;
-                                
-                                const coinRect = coin.getBoundingClientRect();
-                                
-                                // Simple collision detection
-                                if (!(asteroidRect.right < coinRect.left || 
-                                    asteroidRect.left > coinRect.right || 
-                                    asteroidRect.bottom < coinRect.top || 
-                                    asteroidRect.top > coinRect.bottom)) {
-                                        
-                                    // Collision detected!
-                                    asteroid.dataset.state = 'colliding';
-                                    tl.kill(); // Stop the current animation
-                                    
-                                    // Create collision effect
-                                    const flash = document.createElement('div');
-                                    flash.className = 'absolute bg-white rounded-full z-20';
-                                    flash.style.width = '30px';
-                                    flash.style.height = '30px';
-                                    flash.style.left = `${coinRect.left}px`;
-                                    flash.style.top = `${coinRect.top}px`;
-                                    
-                                    const effectsContainer = document.getElementById('collision-effects');
-                                    if (effectsContainer) effectsContainer.appendChild(flash);
-                                    
-                                    // Flash animation
-                                    gsap.to(flash, {
-                                        opacity: 0,
-                                        scale: 2,
-                                        duration: 0.3,
-                                        onComplete: () => {
-                                            if (flash.parentNode) flash.remove();
-                                        }
-                                    });
-                                    
-                                    // Perform collision-based return animation
-                                    performDramaticReturn(asteroid, true);
-                                    
-                                    // Remove the coin
-                                    if (coin.parentNode) {
-                                        gsap.to(coin, {
-                                            opacity: 0,
-                                            scale: 0.5,
-                                            duration: 0.3,
-                                            onComplete: () => {
-                                                if (coin.parentNode) coin.remove();
-                                            }
-                                        });
-                                    }
-                                }
-                            });
-                        }
-                    });
+                };
+                
+                // Initial asteroid spawn
+                createAsteroids();
+                
+                // Scroll-triggered asteroid spawning
+                let asteroidScrollTrigger = ScrollTrigger.create({
+                    trigger: jupiterBattleRef.current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    onEnter: createAsteroids,
+                    onEnterBack: createAsteroids,
+                    
+                    toggleActions: "play none none none", // Allows for continuous asteroid generation as you scroll up and down
+
                 });
-            }
-        };
+                
+                // Cleanup function
+                return () => {
+                    // Kill all animations and scroll triggers
+                    gsap.killTweensOf("*");
+                    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+                    
+                    // Stop the sound
+                    if (coinSoundRef.current) {
+                        coinSoundRef.current.pause();
+                        coinSoundRef.current.currentTime = 0;
+                    }
+                };
         
-        // Initial asteroid spawn
-        createAsteroids();
-        
-        // Scroll-triggered asteroid spawning
-        let asteroidScrollTrigger = ScrollTrigger.create({
-            trigger: jupiterBattleRef.current,
-            start: 'top center',
-            end: 'bottom center',
-            onEnter: createAsteroids,
-            onEnterBack: createAsteroids,
-            
-            toggleActions: "play none none none", // Allows for continuous asteroid generation as you scroll up and down
-
-        });
-        
-        // Cleanup function
-        return () => {
-            // Kill all animations and scroll triggers
-            gsap.killTweensOf("*");
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-            
-            // Stop the sound
-            if (coinSoundRef.current) {
-                coinSoundRef.current.pause();
-                coinSoundRef.current.currentTime = 0;
-            }
-        };
-
-    }, []);
+        }, []);
     
     
     
@@ -496,16 +401,15 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
 
     const buttons = [
         {
-            text: "Stick with your Malefic",
-            style: "bg-main-black text-white font-header px-4 py-2 rounded-md drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
-            onClick: () => handleDecision('mars')
-        },
-        {
             text: "Compromise with Jupiter",
-            style: "bg-main-black text-white font-header px-4 py-2 rounded-md drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
+            style: "bg-main-black text-white font-header px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
             onClick: () => handleDecision('jupiter')
         },
-       
+        {
+            text: "Stick with your Malefic",
+            style: "bg-main-black text-white font-header px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
+            onClick: () => handleDecision('mars')
+        }
     ];
 
     return (
@@ -644,11 +548,6 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                         </div>
                         {/* Asteroids */}
                         <div ref={asteroidContainerRef} id='asteroid-container' className="absolute w-full h-full">
-                            {/* Asteroids will appear here */}
-                        </div>
-                        {/* Collision Effects Container */}
-                        <div id='collision-effects' className="absolute w-full h-full">
-                            {/* Collision effects will be added here */}
                         </div>
                     </div>
                 </section>
@@ -660,10 +559,8 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                             <div id='mars-pic' className='mt-14'>
                                 <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
                             </div>
-                            <div id ='mars-text' className='relative flex flex-col w-96 h-fit bg-main-black text-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
-                            <h1 className='text-center text-lg text-white font-header font-bold mb-3 '>Malefic Fact:</h1>
-                            <img id='corner-saturn' className='absolute w-28 h-auto max-w-full max-h-full object-contain -top-6 -right-8 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={SaturnPNG}/>
-                            <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -bottom-11 -left-11 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] animate-pulse' loading='lazy' src={BlackSparkle}/>
+                            <div id ='mars-text' className='relative flex w-96 h-fit bg-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
+                            <img id='corner-asteroid' className='absolute w-12 h-auto max-w-full max-h-full object-contain -top-6 -right-5' loading='lazy' src={AsteroidMouthOpen}/>
                                 In traditional astrology, Mars was known as the lesser malefic planet, 
                                 with Saturn being the bigger malefic planet. 
                                 <br /><br />
@@ -672,10 +569,8 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                             </div>
                         </div>
                         <div id='' className='mars-dialogue flex flex-row w-fit h-fit p-5'>
-                            <div id ='mars-text' className='relative flex flex-col w-96 h-fit bg-main-black text-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
-                                <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-10 -left-11 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] animate-pulse' loading='lazy' src={BlackSparkle}/>
-                                
-                                <h1 className='text-center text-lg text-white font-header font-bold mb-3 '>Mars Fact:</h1>
+                            <div id ='mars-text' className='relative flex w-96 h-fit bg-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
+                                <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-10 -left-11' loading='lazy' src={BlackSparkle}/>
                                 As a malefic planet, specifically Mars, you thrive on acting on your 'survival instinct'. Mars is what gets you out of danger, but won't play defense.
                             </div>
                             <div id='mars-pic' className='mt-14'>
@@ -714,12 +609,10 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
 
                 {/* container for SIXTH/FINAL scroll section / dialogue */}
                 <section id="panel" className='w-screen min-h-screen flex flex-col justify-center pr-5'>
-                    <div id='container-panel' className='flex flex-col items-center gap-8'>
-                        <div id='decision-header' className='flex bg-main-black flex-col h-full w-fit justify-center drop-shadow-[0_0_15px_#ffff00] items-center relative z-[15] p-3 rounded-md shadow-lg'>
-                                <h1 className="text-center font-header max-w-lg text-white text-xl">
-                                    Decision Time!
-                                </h1>
-                            </div>
+                    <div id='container-panel' className='flex flex-col items-center gap-14'>
+                        <div id='header' className='font-header text-xl text-white font-bold'>
+                            <h1>Decision Time!</h1>
+                        </div>
                         <div id='planet-pics' className='flex flex-row gap-5 items-center justify-center w-full h-fit'>
                             <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
                             <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={JupiterGif} alt="Jupiter Gif"/>

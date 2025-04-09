@@ -149,7 +149,7 @@ gsap.registerPlugin(MotionPathPlugin);
       const buttons = [
         {
             text: "WHAT'S NEXT?",
-            style: "mt-8 bg-main-black text-white font-header px-4 py-2 rounded-md drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]  hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
+            style: " bg-main-black text-white font-header px-4 py-2 rounded-md drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]  hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
             screen: "mars-horizontal-jupiter",
             onClick: () => {
                navigate("/mars-horizontal-jupiter"); // Use navigate to go to the next route
@@ -157,7 +157,7 @@ gsap.registerPlugin(MotionPathPlugin);
         },
         {
          text: "GO BACK",
-         style: "mt-8 bg-main-black text-white font-header px-4 py-2 rounded-md drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]  hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
+         style: "mt-10 bg-main-black text-white text-sm font-header px-4 py-2 rounded-md drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]  hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
          onClick: () => {
              // Remove Venus from the team before going back
              if (removeCharacter) {
@@ -182,11 +182,11 @@ gsap.registerPlugin(MotionPathPlugin);
                    
 
                            {/* MAIN TEXT WITH FADE IN EFFECT */}
-                        <div ref={mainTextRef} id='main-text' className='absolute left-0 flex flex-row w-fit h-fit top-36 px-6 z-[40]'>
+                        <div ref={mainTextRef} id='main-text' className='absolute left-0 flex flex-row w-fit h-fit top-24 px-6 z-[40]'>
                                     <div id='venus-pic' className='mt-14'>
                                        <img className="w-[80px]" src={VenusGifMouthOpen} alt="Venus Gif"/>
                                     </div>
-                                    <div id ='venus-text' className='flex w-1/3 h-fit bg-main-black rounded-md text-white font-header text-wrap p-5 text-xs md:text-sm'>
+                                    <div id ='venus-text' className='flex w-1/3 h-fit bg-main-black rounded-md text-white  text-wrap p-5 text-xs md:text-sm'>
                                     You decided to compromise your Malefic energy with Venus'
                                     benefic energy! Together. you can move forward as a team to solve this crisis.
                                     </div>
@@ -217,7 +217,7 @@ gsap.registerPlugin(MotionPathPlugin);
                            </div>
                           
 
-                        <div id='button-div' className='absolute right-20 bottom-32 z-[50]'>
+                        <div id='button-div' className='absolute right-20 bottom-10 z-[50]'>
                            <ButtonContainer 
                               setScreen={setScreen} 
                               buttons={buttons}
