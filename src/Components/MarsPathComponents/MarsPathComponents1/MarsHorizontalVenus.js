@@ -22,6 +22,7 @@ import { useGSAP } from '@gsap/react';
 import StarBackground from '../../../Components/StarBackground.js';
 import ShootSound from '../../../assets/other-art/mars-shoot.mp3'; // Import the sound file for shooting fireballs
 import { useAudio } from '../../../Components/AudioContext';
+import BeyoncePNG from '../../../assets/other-art/beyonce.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -147,7 +148,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: '#malefic-text',
-                        start: "bottom center",
+                        start: "top center",
                         scrub: 0.5,
                         toggleActions: "restart pause reverse pause",
                     }
@@ -166,7 +167,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: "#malefic-text",
-                        start: "bottom center",
+                        start: "top center",
                         scrub: 0.5,
                         toggleActions: "restart pause reverse pause",
                     }
@@ -185,7 +186,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: "#malefic-text",
-                        start: "bottom center",
+                        start: "top center",
                         scrub: 0.5,
                         toggleActions: "restart pause reverse pause",
                     }
@@ -231,7 +232,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                     ease: "power1.inOut"
                 })
                 .to(beyonceQuoteElement, {
-                    color: "#171711",
+                    color: "#FFFFFF",
                     textShadow: "0px 0px 5px rgba(255,255,255,0.5)",
                     duration: 1,
                     ease: "power1.inOut"
@@ -538,6 +539,15 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
 
     const buttons = [
         {
+            text: "Stick with your Malefic",
+            style: "bg-main-black font-header text-white px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
+            screen: "stick-mars-1",
+            addCharacter: "Mars",
+            onClick: () => {
+                navigate("/stick-mars-1");
+            }
+        },
+        {
             text: "Compromise with Venus",
             style: "bg-main-black text-white font-header px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
             screen: "choose-venus-1",
@@ -546,15 +556,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                 navigate("/choose-venus-1");
             }
         },
-        {
-            text: "Stick with your Malefic",
-            style: "bg-main-black font-header text-white px-4 py-2 rounded-md shadow-md hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
-            screen: "stick-mars-1",
-            addCharacter: "Mars",
-            onClick: () => {
-                navigate("/stick-mars-1");
-            }
-        }
+       
     ];
 
     return (
@@ -666,8 +668,12 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                                 Maybe the asteroid is lonely and that's why it's coming over here. you need to stop asserting dominance for no reason. I probably could charm them with my beauty..
                             </div>
                         </div> 
-                        <div id='benefic-text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-header text-wrap p-5 mr-8 text-xs md:text-sm'>
-                            <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -right-11' loading='lazy' src={YellowSparkle}/>
+                        <div id='benefic-text' className='relative flex flex-col gap-2 w-fit md:w-96 h-fit
+                         bg-main-black rounded-md font-header text-white text-wrap p-5 mr-8 text-xs md:text-sm'>
+                            
+                            <img id='corner-yellow-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -right-11 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] animate-pulse' loading='lazy' src={YellowSparkle}/>
+                            <img id='corner-yellow-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -bottom-8 -left-11 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] animate-pulse ' loading='lazy' src={YellowSparkle}/>
+                            <h1 className='text-center text-lg text-white font-header font-bold'>Benefic Fact:</h1>
                             Venus tends to take the diplomatic approach when it comes to conflict. Venus wants to do things that are going to feel goooood, and tends to shy away from things that may be uncomfortable.
                         </div>
                     </div>
@@ -705,26 +711,31 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                             <div id='mars-pic' className='mt-14'>
                                 <img id='mars' className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Mars Gif"/>
                             </div>
-                            <div id ='mars-text' className=' w-96 relative h-fit bg-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
-                            <img id='corner-asteroid' className='absolute w-[40px] h-auto max-w-full max-h-full object-contain -top-4 -right-3 rotate-12' loading='lazy' src={AsteroidMouthOpen}/>
-                                As a Malefic planet, you feel like you need to push people, maybe in not the best of ways. 
-                                Sometimes that means that people can be uncomfortable with your energy. 
-                                <br /><br />
-                                However, your energy pushes people to be stronger, and better. You tend to take the more aggressive approach.
+                            <div id ='mars-text' className=' w-96 relative h-fit bg-main-black rounded-md font-header text-white text-wrap p-5 text-xs md:text-sm'>
+                                <h1 className='text-center text-lg text-white font-header font-bold mb-3 '>Malefic Fact:</h1>
+                                    
+                                    <img id='corner-asteroid' className='absolute w-[40px] h-auto max-w-full max-h-full object-contain -top-4 -right-3 rotate-12' loading='lazy' src={AsteroidMouthOpen}/>
+                                        As a Malefic planet, you feel like you need to push people, maybe in not the best of ways. 
+                                        Sometimes that means that people can be uncomfortable with your energy. 
+                                        <br /><br />
+                                        However, your energy pushes people to be stronger, and better. You tend to take the more aggressive approach.
                             </div>
                         </div>
                         <div id='mars-dialogue' className='malefic-dialogue2 flex flex-row w-fit h-fit self-end mr-44 p-5'>
-                            <div id ='mars-text' className='flex w-96 h-fit relative bg-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
-                                <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-11 -left-11' loading='lazy' src={BlackSparkle}/>
+                            <div id ='mars-text' className='flex flex-col w-96 h-fit relative bg-main-black text-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
+                                <h1 className='text-center text-lg text-white font-header font-bold mb-3 '>Mars Fact:</h1>
+                                <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-11 -left-11 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] animate-pulse ' loading='lazy' src={BlackSparkle}/>
+                                <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -bottom-11 -right-11 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] animate-pulse ' loading='lazy' src={BlackSparkle}/>
                                 Waiting to take the offense side is difficult for you. You are prone to taking action immediately and channeling your inner warrior.
                             </div>
                             <div id='mars-pic' className='mt-14'>
-                                <img className="w-[100px] sm:w/[60px] md:w/[80px] lg:w/[100px]" src={MarsGif} alt="Venus Gif"/>
+                                <img className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" src={MarsGif} alt="Venus Gif"/>
                             </div>
                         </div>
                         <div id='mars-dialogue' className='malefic-dialogue3 flex flex-col w-fit h-fit justify-center items-center p-5'>
-                            <div id='mars-text' className='flex flex-col w-96 h-fit relative bg-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
-                                <img id='corner-black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-11 -left-11' loading='lazy' src={YellowSparkle}/>
+                            <div id='mars-text' className='flex flex-col w-96 h-fit relative bg-main-black text-white rounded-md font-header text-wrap p-5 text-xs md:text-sm'>
+                                <img id='corner-yellow-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-11 -left-11 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] animate-pulse' loading='lazy' alt='Yellow Sparkle' src={YellowSparkle}/>
+                                <img id='beyonce-img' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-11 -right-11 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={BeyoncePNG}/>
                                 As Beyoncé once said, 
                                 <div className='justify-center text-center my-3'>
                                     ♪ <span className='beyonce-quote px-2 py-1 font-medium text-center'>Feel like you partied in Venus and we woke up in Mars</span> ♪
