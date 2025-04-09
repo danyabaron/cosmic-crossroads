@@ -21,7 +21,7 @@ import { useGSAP } from '@gsap/react';
 
 
 
-function StickMarsDecision1({ setScreen, characters }) {
+function StickMarsDecision1({ setScreen, characters, removeCharacter }) {
 
     // Add navigation hook
     const navigate = useNavigate();
@@ -39,6 +39,14 @@ function StickMarsDecision1({ setScreen, characters }) {
           screen: "mars-horizontal-jupiter",
           onClick: () => {
               navigate("/mars-horizontal-jupiter"); // Use navigate to go to the next route
+          }
+      },
+      {
+          text: "GO BACK",
+          style: "mt-8 font-header bg-main-black text-white px-4 py-2 rounded-md drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] ",
+          onClick: () => {
+              // No character to remove as user didn't add anyone to the team in this route
+              navigate("/mars-horizontal-venus"); // Navigate back to the choice screen
           }
       }
     ];

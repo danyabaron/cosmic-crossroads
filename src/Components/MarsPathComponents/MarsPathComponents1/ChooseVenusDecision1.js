@@ -27,7 +27,7 @@ gsap.registerPlugin(MotionPathPlugin);
 
 
 
-   function ChooseVenusDecision1({ setScreen, characters }) {
+   function ChooseVenusDecision1({ setScreen, characters, removeCharacter }) {
 
       const asteroidRefs = useRef([]);
       const venusRef = useRef(null);
@@ -154,7 +154,18 @@ gsap.registerPlugin(MotionPathPlugin);
             onClick: () => {
                navigate("/mars-horizontal-jupiter"); // Use navigate to go to the next route
            }
-        }
+        },
+        {
+         text: "GO BACK",
+         style: "mt-8 bg-main-black text-white font-header px-4 py-2 rounded-md drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]  hover:bg-main-black hover:scale-105 transition duration-300 ease-in-out",
+         onClick: () => {
+             // Remove Venus from the team before going back
+             if (removeCharacter) {
+                 removeCharacter('Venus');
+             }
+             navigate("/mars-horizontal-venus"); // Navigate back to the choice screen
+         }
+     }
     ];
 
          return (
