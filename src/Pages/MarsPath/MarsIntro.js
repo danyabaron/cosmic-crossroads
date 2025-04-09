@@ -184,10 +184,18 @@ function MarsIntro({ addCharacter, characters }) {
                 <div className="flex flex-row items-center bg-mars-bg-reg 
                 shadow-md drop-shadow-[0_0_10px_rgba(189,53,8,0.8)] rounded-md p-6 mb-8 relative z-[15]">
                     <img src={MarsGif} alt="Mars" className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" />
-                    <p ref={addToDialogueRefs} id='intro' className="text-center font-techno max-w-lg text-white text-md">
+                    <p ref={addToDialogueRefs} id='intro' className="text-center font-header max-w-lg text-white text-md">
                         Your name is Mars. As a Malefic warrior, you are known for your initative, action, strength and power.
                         The zodiac signs that you rule are: Aries & Scorpio. 
                     </p>
+                   
+                </div>
+
+
+                <div id='scroll-header' className='flex bg-main-black flex-col h-full mb-8 w-fit justify-center drop-shadow-[0_0_15px_#ffff00] items-center relative z-[15] p-6 rounded-md shadow-lg'>
+                    <h1 ref={addToDialogueRefs} className="text-center font-header max-w-lg text-white text-2xl">
+                        Keep Scrolling to Learn More!
+                    </h1>
                 </div>
 
                 <section id='malefic' className='flex flex-col items-center justify-center relative z-[15]'>
