@@ -14,8 +14,6 @@ import StarBackground from '../../../Components/StarBackground.js';
 import ThemeMusic2 from '../../../assets/other-art/theme-music2.wav';
 import { useAudio } from '../../../Components/AudioContext';
 import AsteroidMouthOpen from '../../../assets/asteroid-art/asteroid-mouth-open.png';
-import YellowSparkle from '../../../assets/other-art/yellow-sparkle.png';
-import BlackSparkle from '../../../assets/other-art/black-sparkle.png';
 
 // Register plugins
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
@@ -409,14 +407,14 @@ function MarsVenusJupiterEnding({ characters, resetCharacters }) {
           </div>
         </section>
 
-        <section className='w-full min-h-[80vh] flex flex-col justify-center items-center'>
-          <div id='mars-ending' className='flex flex-col gap-14 justify-center items-center w-full'>
-            <h1 className="text-white font-header mt-6 text-3xl z-10">Mars</h1>
-            <div className='flex relative flex-row gap-3 justify-center drop-shadow-[0_15px_20px_rgba(189,53,8,0.6)]  items-center w-full'>
+        <section className='w-full min-h-screen flex flex-col gap-3 justify-center items-center'>
+          <div id='mars-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
+            <h1 className="text-white font-header text-3xl z-10">Mars</h1>
+            <div className='flex relative flex-row gap-3 justify-center items-center w-full'>
+            <img id='corner-asteroid' className='absolute w-12 h-auto max-w-full max-h-full object-contain -bottom-6 -left-5 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] animate-pulse ' loading='lazy' src={AsteroidMouthOpen}/>
               <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
-              <p ref={marsTextRef} className='text-white text-center text-md rounded-lg p-6 bg-main-black w-1/3 relative'>
-                <img id='corner-asteroid' className='absolute w-12 h-auto max-w-full max-h-full object-contain -top-6 -right-5 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={AsteroidMouthOpen}/>
-                <img id='black-sparkle' className='absolute  w-[100px] h-auto max-w-full max-h-full object-contain  -bottom-10 -left-10 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={BlackSparkle}/>
+              <p ref={marsTextRef} className='text-white text-md rounded-lg p-6  bg-main-black w-1/3'>
+              
                 As Mars, your willingness to work with others can be low.
                 You made the practical decision to team up with your benefic friends, Venus and Jupiter.
                 <br></br>
@@ -428,21 +426,14 @@ function MarsVenusJupiterEnding({ characters, resetCharacters }) {
           </div>
         </section>
 
-        <section className='w-full  min-h-[80vh] flex flex-col gap-2 justify-center items-center'>
-         
-          <div id='jupiter-ending' className='flex flex-col gap-14 justify-center items-center w-full'>
+        <section className='w-full min-h-screen flex flex-col gap-2 justify-center items-center'>
+          <div id='jupiter-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
             <h1 className="text-white text-3xl font-header z-10">Jupiter</h1>
-            
-            
-            <div className='flex flex-row relative gap-3 justify-center items-center  drop-shadow-[0_10px_20px_rgba(217,207,170,0.6)] w-full'>
+            <div className='flex flex-row gap-3 justify-center items-center w-full'>
               <img src={JupiterGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Jupiter" />
-              <p ref={jupiterTextRef} className='text-white text-center text-md rounded-lg p-6 relative bg-main-black w-1/3'>
-              <img id='corner-asteroid' className='absolute w-12 h-auto max-w-full max-h-full object-contain -top-6 -right-5 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={AsteroidMouthOpen}/>
-                <img id='yellow-sparkle' className='absolute  w-[100px] h-auto max-w-full max-h-full object-contain  -bottom-10 -left-10 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={YellowSparkle}/>
+              <p ref={jupiterTextRef} className='text-main-black text-md rounded-lg p-6  bg-white w-1/2'>
                 Jupiter led the charge of negotiation with the asteroids. Jupiter was able to bargain some land
                 of the solar system to the asteroids, and made the asteroids laugh. 
-                <br></br>
-                <br></br>
                 Jupiter's jovial energy and humor helped a lot. Without Jupiter, the asteroids may have gotten
                 more on the defense side, but Jupiter was able to form a friendly alliance with them.
               </p>
@@ -450,24 +441,14 @@ function MarsVenusJupiterEnding({ characters, resetCharacters }) {
           </div>
         </section>
 
-        <section className='w-full min-h-[80vh] flex flex-col gap-8 justify-center items-center'>
+        <section className='w-full min-h-screen flex flex-col gap-8 justify-center items-center'>
           <div id='venus-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
             <h1 className="text-white font-header text-3xl z-10">Venus</h1>
-
-
-            <div className='flex flex-row relative gap-3 justify-center items-center w-full drop-shadow-[0_10px_20px_rgba(215,123,186,0.6)]'>
+            <div className='flex flex-row gap-3 justify-center items-center w-full'>
               <img src={VenusGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Venus" />
-              <p ref={venusTextRef} className='text-white text-center bg-main-black relative rounded-lg p-6 text-md w-1/3'>
-              <img id='yellow-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-6 -right-9 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={YellowSparkle}/>
-              <img id='yellow-sparkle' className='absolute  w-12 h-auto max-w-full max-h-full object-contain  -bottom-7 -left-7 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={AsteroidMouthOpen}/>
-                Venus offered to have a party for the asteroids, to celebrate the new alliance. 
-                <br></br>
-                <br></br>
-                Venus is known for her charm and beauty,
-                and she was able to use her diplomatic skills to make the asteroids feel welcome and included. 
-                <br></br>
-                <br></br>
-                Without Venus, 
+              <p ref={venusTextRef} className='text-main-black rounded-lg p-6 text-md  bg-white w-1/2'>
+                Venus offered to have a party for the asteroids, to celebrate the new alliance. Venus is known for her charm and beauty,
+                and she was able to use her diplomatic skills to make the asteroids feel welcome and included. Without Venus, 
                 the asteroids may have felt unwelcomed and unappreciated.
               </p>
             </div>

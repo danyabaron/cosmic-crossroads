@@ -364,56 +364,67 @@ function MarsSoloEnding({ characters, resetCharacters }) {
                 <section className='flex flex-col gap-6 mb-7 w-screen min-h-screen justify-center items-center'>
                     <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
                     
-                    <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
+                    <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] text-center  w-1/3 flex justify-center items-center rounded-md p-6 shadow-xl'>
                         <p ref={addToParagraphRefs} className=' text-white  text-md'>
                             The asteroids, seeing your aggressive approach, were not pleased. They felt that you did not
                             value their existence and were only interested in using them for your own gain.
+                            <br /><br />
+
                             As a result, they became hostile and vowed to never trust you again.
                             This has led to a rift between you and the asteroids, and they have become your enemies.    
                         </p>
                     </div>
 
-                    <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
+                    <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] text-center w-1/3 flex justify-center items-center rounded-md p-6 shadow-xl'>
                         <p ref={addToParagraphRefs} className=' text-white text-md'>
                             While you were able to defeat them this time, they will always be a thorn in your side. Your benefic planets
-                            are also disappointed in you for not trying to negotiate with the asteroids. They feel that you have let them down,
+                            are also disappointed in you for not trying to negotiate with the asteroids. 
+                            <br /><br />
+                            They feel that you have let them down,
                             and they are no longer willing to help you in your future endeavors.
                         </p>
                     </div>
                 </section>
 
-                <div id='container' className='flex min-h-screen w-screen flex-col justify-center items-center gap-8'>
-                    <div id='jupiter-container' className='flex flex-row gap-3 justify-center items-center'>
+                <div id='container' className='flex min-h-screen w-screen flex-col justify-center items-center gap-14'>
+                    <div id='jupiter-container' className='flex flex-col gap-3 justify-center items-center'>
+                         <h1 className="text-white font-header mt-6 text-3xl z-10">Jupiter</h1>
+
                         <img 
                             src={JupiterAnnoyedGif} 
                             alt="Jupiter" 
                             className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
                         />
 
-                        <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md  text-wrap p-5 mr-8 text-md'>
+                        <div id='text' className='relative flex w-fit text-white md:w-96 h-fit bg-main-black rounded-md text-center  text-wrap p-5 text-md'>
                             <p ref={jupiterTextRef}>
                                 Mars, I expected better from you. As the 
                                 guardian of wisdom and expansion, I've always taught 
                                 that diplomacy brings greater rewards than brute force. 
                                 <br /><br />
-                                Did you even try to understand their perspective? Every 
+                                Did you even try to understand their perspective? 
+                                <br /><br />
+                                Every 
                                 conflict has potential for growth, but you've only 
                                 created more division. This impulsiveness of yours will limit your cosmic influence.
                             </p>
                         </div>
                     </div>
                     
-                    <div id='venus-container' className='flex flex-row gap-3 justify-center items-center'>
+                    <div id='venus-container' className='flex flex-col gap-3 justify-center text-center items-center'>
+                        <h1 className="text-white font-header mt-6 text-3xl z-10">Venus</h1>
                         <img 
                             src={VenusAnnoyedGif} 
                             alt="Venus" 
                             className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
                         />
 
-                        <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md  text-wrap p-5 mr-8 text-md'>
+                        <div id='text' className='relative flex w-fit md:w-96 h-fit bg-main-black text-white rounded-md  text-wrap p-5 text-md'>
                             <p ref={venusTextRef}>
                                 Oh Mars, always rushing into battle without a second thought! Harmony and connection 
-                                are what truly strengthen the cosmos. Did it ever occur 
+                                are what truly strengthen the cosmos. 
+                                <br /><br />
+                                Did it ever occur 
                                 to you that those asteroids might have become valuable allies? 
                                 <br /><br />
                                 Instead, you've made enemies where you could have made friends. Next time, 
@@ -424,7 +435,7 @@ function MarsSoloEnding({ characters, resetCharacters }) {
                 </div>
 
                 <button 
-                    className="w-36 font-header h-10 mb-12 rounded-lg bg-button-blue text-white relative z-10 
+                    className="w-36 mt-28 font-header h-10 mb-12 rounded-lg bg-button-blue text-white relative z-10 
                     px-4 font-medium text-center flex items-center justify-center
                     drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
                     shadow-lg hover:scale-105 transition duration-300 ease-in-out" 
