@@ -94,7 +94,10 @@ function StatusBar({ characters }) {
                             <p className=''><span className="font-bold text-[#D77BBA] ">Rules the Zodiacs:</span> Taurus & Libra</p>
                             <p className=''><span className="font-bold text-[#D77BBA] ">Color:</span> Pink</p>
                             <p className="mt-2">Venus likes to throw parties and spread love and cheer. They like to adorn 
-                                themselves with lovers, friends, business acquaintances, and family. Venus likes to 
+                                themselves with lovers, friends, business acquaintances, and family. 
+                                <br></br>
+                                <br></br>
+                                Venus likes to 
                                 solve conflict through diplomacy and harmony 
                                 and would rather indulge than restrict.</p>
                         </div>
@@ -131,7 +134,10 @@ function StatusBar({ characters }) {
                             <p className=''><span className="font-bold text-[#D9CFAA] ">Color:</span> <span className='text-[#DA78F6]'>Purple 
                                 </span> & <span className='text-[#D9CFAA] '>Tan</span></p>
                             <p className="mt-2">Jupiter is the student of life. They love to learn about life and strive to 
-                                earn more wisdom in this world. Jupiter likes to assume the best in people, and deals 
+                                earn more wisdom in this world. 
+                                <br></br>
+                                <br></br>
+                                Jupiter likes to assume the best in people, and deals 
                                 with conflict in a 
                                 diplomatic manner. Jupiter likes to expand energies, whether that is good or bad..</p>
                         </div>
@@ -171,7 +177,10 @@ function StatusBar({ characters }) {
                             <p className=''><span className="font-bold text-mars-red ">Color:</span> <span className='text-mars-red'>Red 
                                 </span></p>
                             <p className="mt-2 ">Mars takes a head on approach to situations like these. 
-                                They thrive on taking action and thinks first before thinking. Some would 
+                                They thrive on taking action and thinks first before thinking. 
+                                <br></br>
+                                <br></br>
+                                Some would 
                                 say that Mars is the energy you feel when you need to fight for something you want. 
                             </p>
                         </div>

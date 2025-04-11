@@ -569,7 +569,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
             
             {/* Main content with higher z-index */}
             <div className="relative w-full pt-14 min-w-screen overflow-x-hidden z-[20]">
-                <div className='flex flex-col w-2/3 md:w-1/2 h-fit ml-5 gap-5 ' id='venus-grotto-container'>
+                <div className='flex flex-col w-1/3 md:w-1/3 h-fit ml-5 gap-5 ' id='venus-grotto-container'>
                     <div className=' flex flex-col md:flex-row lg:flex-row gap-8 bg-main-black p-5 text-white rounded-md items-center' id='venus-bio-text-container'>
                         <div className='flex flex-col gap-4' id='venus-grotto-text'>
                             <h1 className='text-xl font-header'>Venus' Grotto</h1>
@@ -604,14 +604,17 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                                     <img className="w-[80px] sm:w-[60px] md:w-[80px] lg:w-[80px]" src={VenusGifMouthOpen} alt="Venus Bio Image"/>
                                 </div>
 
-                                <div className="flex flex-col gap-2 text-left text-sm w-full mt-4 px-7 text-white">
+                                <div className="flex flex-col gap-2  text-sm w-full mt-4 px-7 text-white">
                                     <p><span className="font-bold font-ttneueMedium text-[#D77BBA]">Planet:</span> Venus</p>
                                     <p><span className="font-bold text-[#D77BBA] font-ttneueMedium">Dignity:</span> Benefic</p>
                                     <p><span className="font-bold text-[#D77BBA] font-ttneueMedium">Rules the Zodiacs:</span> Taurus & Libra</p>
                                     <p><span className="font-bold text-[#D77BBA] font-ttneueMedium">Representations:</span> beauty, love, pleasure, sensuality, harmony, romance, parties</p>
                                     <p><span className="font-bold text-[#D77BBA] font-ttneueMedium">Color:</span> Pink</p>
                                     <p className="mt-2">Venus likes to throw parties and spread love and cheer. They like to adorn 
-                                        themselves with lovers, friends, business acquaintances, and family. Venus likes to 
+                                        themselves with lovers, friends, business acquaintances, and family. 
+                                        <br></br>
+                                        <br></br>
+                                        Venus likes to 
                                         solve conflict through diplomacy and harmony 
                                         and would rather indulge than restrict.</p>
                                 </div>
@@ -620,7 +623,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                     )}
 
                     <div className='bg-main-black rounded-md w-52 p-5' id='scroll-text-container'>
-                        <p className='text-xs text-white font-ttneueMedium '>Scroll down or 
+                        <p className='text-sm text-white font-ttneueMedium '>Scroll down or 
                             use your UP or DOWN arrow keys to scroll vertically.</p>
                     </div>
                 </div>
@@ -659,6 +662,8 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                 </section>
 
                 <section id="panel" className='venus-line relative w-full min-w-screen min-h-screen flex flex-col justify-start pt-20'>
+                    
+                    
                     <div id='container-panel-venus' className='flex w-full justify-between flex-col md:flex-row px-10 md:px-40 '>
                         <div id='venus-dialogue-2' className='flex flex-row w-fit h-fit mb-8'>
                             <div id='venus-pic' className='h-fit mt-28'>
@@ -776,7 +781,7 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                             <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Mars Gif"/>
                             <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={VenusGifMouthOpen} alt="Mars Gif"/>
                         </div>
-                        <div id='decision-text' className='flex w-1/3 h-fit bg-white text-main-black rounded-md shadow-md  text-wrap p-5 text-xs md:text-sm'>
+                        <div id='decision-text' className='flex w-1/3 h-fit bg-white text-main-black rounded-md shadow-md  text-wrap p-5 text-md '>
                             It’s up to you to decide if you want to compromise with Venus, or fight the asteroids in the way that you want to. The decision is yours.
                         </div>
                         <div id='button-container-wrapper' >

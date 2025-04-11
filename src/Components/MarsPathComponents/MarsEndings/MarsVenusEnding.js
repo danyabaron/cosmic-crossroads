@@ -147,7 +147,7 @@ function MarsVenusEnding({ characters, resetCharacters }) {
             <StarBackground />
             
             {/* Background with proper z-index */}
-            <div className="absolute inset-0 bg-default-bg bg-center bg-opacity-90 z-[5]"></div>
+            <div className="absolute inset-0 bg-default-bg bg-contain bg-opacity-90 z-[5]"></div>
             
             {/* Main content with higher z-index */}
             <div className="relative w-full min-w-screen pt-14 overflow-x-hidden
