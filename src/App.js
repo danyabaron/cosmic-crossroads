@@ -44,6 +44,13 @@ function App() {
         });
       };
 
+      // Function to remove a specific character from the team
+      const removeCharacter = useCallback((character) => {
+        setCharacters(prevCharacters => 
+          prevCharacters.filter(c => c !== character)
+        );
+      }, []);
+
       // Function to reset characters (clear the status bar)
       const resetCharacters = useCallback(() => {
         setCharacters([]);
@@ -127,7 +134,10 @@ function App() {
                       <Route path="/choose-venus-1" element={
                       <>
                         <StatusBar characters={characters} />
-                        <ChooseVenusDecision1 characters={characters} />
+                        <ChooseVenusDecision1 
+                          characters={characters}
+                          removeCharacter={removeCharacter}
+                        />
                       </>
 
                       } />
@@ -136,6 +146,7 @@ function App() {
                         <StatusBar characters={characters} />
                         <StickMarsDecision1 
                           characters={characters} 
+                          removeCharacter={removeCharacter} 
                         />
                       </>
 

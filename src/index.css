@@ -17,9 +17,36 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'TT Neue Regular';
+    src: url('/public/fonts/TT-Rounds/tt-rounds-regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TT Neue Bold';
+    src: url('/public/fonts/TT-Rounds/tt-rounds-bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TT Neue Light';
+    src: url('/public/fonts/TT-Rounds/tt-rounds-light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TT Neue Medium';
+    src: url('/public/fonts/TT-Rounds/tt-rounds-medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
 body {
-    @apply m-0;
-    font-family: '04B_03__', sans-serif;
+    @apply m-0 font-ttneueMedium;  /* Apply TT Neue Regular font to body */
 }
 
 .star {

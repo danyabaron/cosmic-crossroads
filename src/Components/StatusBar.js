@@ -89,12 +89,15 @@ function StatusBar({ characters }) {
                         <h2 className="text-xl text-center text-white font-bold font-header">VENUS</h2>
                         <img className="items-center w-[80px] sm:w-[60px] md:w-[80px] lg:w-[80px]" src={VenusGif} alt="Venus Bio Image"/>
                         <div className="flex flex-col gap-2 text-left text-sm w-full mt-4 px-2 md:px-5 text-white">
-                            <p className='font-header'><span className="font-bold text-[#D77BBA] font-header">Planet:</span> Venus</p>
-                            <p className='font-header'><span className="font-bold text-[#D77BBA] font-header">Dignity:</span> Benefic</p>
-                            <p className='font-header'><span className="font-bold text-[#D77BBA] font-header">Rules the Zodiacs:</span> Taurus & Libra</p>
-                            <p className='font-header'><span className="font-bold text-[#D77BBA] font-header">Color:</span> Pink</p>
-                            <p className="mt-2 font-header">Venus likes to throw parties and spread love and cheer. They like to adorn 
-                                themselves with lovers, friends, business acquaintances, and family. Venus likes to 
+                            <p className=''><span className="font-bold text-[#D77BBA] ">Planet:</span> Venus</p>
+                            <p className=''><span className="font-bold text-[#D77BBA] ">Dignity:</span> Benefic</p>
+                            <p className=''><span className="font-bold text-[#D77BBA] ">Rules the Zodiacs:</span> Taurus & Libra</p>
+                            <p className=''><span className="font-bold text-[#D77BBA] ">Color:</span> Pink</p>
+                            <p className="mt-2">Venus likes to throw parties and spread love and cheer. They like to adorn 
+                                themselves with lovers, friends, business acquaintances, and family. 
+                                <br></br>
+                                <br></br>
+                                Venus likes to 
                                 solve conflict through diplomacy and harmony 
                                 and would rather indulge than restrict.</p>
                         </div>
@@ -124,14 +127,17 @@ function StatusBar({ characters }) {
                         
 
                         <div className="flex flex-col gap-2 text-left text-sm w-full mt-4 px-7 text-white">
-                            <p className='font-header'><span className="font-bold text-[#D9CFAA] font-header">Planet:</span> Jupiter</p>
-                            <p className='font-header'><span className="font-bold text-[#D9CFAA] font-header">Dignity:</span> Benefic</p>
-                            <p className='font-header'><span className="font-bold text-[#D9CFAA] font-header">Rules the Zodiacs:</span> Sagittarius & Pisces</p>
-                            <p className='font-header'><span className="font-bold text-[#D9CFAA] font-header">Representations:</span> growth, expansion, opportunities, luck, prosperity, benevolence</p>
-                            <p className='font-header'><span className="font-bold text-[#D9CFAA] font-header">Color:</span> <span className='text-[#DA78F6]'>Purple 
-                                </span> & <span className='text-[#D9CFAA] font-header'>Tan</span></p>
-                            <p className="mt-2 font-header">Jupiter is the student of life. They love to learn about life and strive to 
-                                earn more wisdom in this world. Jupiter likes to assume the best in people, and deals 
+                            <p className=''><span className="font-bold text-[#D9CFAA] ">Planet:</span> Jupiter</p>
+                            <p className=''><span className="font-bold text-[#D9CFAA] ">Dignity:</span> Benefic</p>
+                            <p className='font-header'><span className="font-bold text-[#D9CFAA] ">Rules the Zodiacs:</span> Sagittarius & Pisces</p>
+                            <p className=''><span className="font-bold text-[#D9CFAA] ">Representations:</span> growth, expansion, opportunities, luck, prosperity, benevolence</p>
+                            <p className=''><span className="font-bold text-[#D9CFAA] ">Color:</span> <span className='text-[#DA78F6]'>Purple 
+                                </span> & <span className='text-[#D9CFAA] '>Tan</span></p>
+                            <p className="mt-2">Jupiter is the student of life. They love to learn about life and strive to 
+                                earn more wisdom in this world. 
+                                <br></br>
+                                <br></br>
+                                Jupiter likes to assume the best in people, and deals 
                                 with conflict in a 
                                 diplomatic manner. Jupiter likes to expand energies, whether that is good or bad..</p>
                         </div>
@@ -164,14 +170,17 @@ function StatusBar({ characters }) {
                         
 
                         <div className="flex flex-col gap-2 text-left text-sm w-full mt-4 px-7 text-white">
-                            <p className='font-header'><span className="font-bold text-mars-red font-header">Planet:</span> Mars</p>
-                            <p className='font-header'><span className="font-bold text-mars-red font-header">Dignity:</span> Malefic</p>
-                            <p className='font-header'><span className="font-bold text-mars-red font-header">Rules the Zodiacs: </span>Aries & Scorpio</p>
-                            <p className='font-header'><span className="font-bold text-mars-red font-header">Representations:</span> aggression, war, sex, conflict, power, action, desire</p>
-                            <p className='font-header'><span className="font-bold text-mars-red font-header">Color:</span> <span className='text-mars-red'>Red 
+                            <p className=''><span className="font-bold text-mars-red ">Planet:</span> Mars</p>
+                            <p className='r'><span className="font-bold text-mars-red ">Dignity:</span> Malefic</p>
+                            <p className=''><span className="font-bold text-mars-red ">Rules the Zodiacs: </span>Aries & Scorpio</p>
+                            <p className=''><span className="font-bold text-mars-red ">Representations:</span> aggression, war, sex, conflict, power, action, desire</p>
+                            <p className=''><span className="font-bold text-mars-red ">Color:</span> <span className='text-mars-red'>Red 
                                 </span></p>
-                            <p className="mt-2 font-header">Mars takes a head on approach to situations like these. 
-                                They thrive on taking action and thinks first before thinking. Some would 
+                            <p className="mt-2 ">Mars takes a head on approach to situations like these. 
+                                They thrive on taking action and thinks first before thinking. 
+                                <br></br>
+                                <br></br>
+                                Some would 
                                 say that Mars is the energy you feel when you need to fight for something you want. 
                             </p>
                         </div>
@@ -294,16 +303,16 @@ function StatusBar({ characters }) {
                             {/* Enhanced Audio Toggle Slider with clickable labels - always visible */}
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center">
-                                    <span className="text-sm font-header mr-2">Sound:</span>
+                                    <span className="text-sm  mr-2">Sound:</span>
                                     {isPlaying ? 
-                                        <span className="text-sm font-header text-green-400">Playing</span> : 
-                                        <span className="text-sm font-header text-gray-400">Muted</span>
+                                        <span className="text-sm r text-green-400">Playing</span> : 
+                                        <span className="text-sm  text-gray-400">Muted</span>
                                     }
                                 </div>
                                 <div className="flex items-center">
                                     {/* Clickable Off label */}
                                     <span 
-                                        className={`mr-2 text-xs font-header font-medium cursor-pointer px-2 py-1 rounded transition-colors duration-200
+                                        className={`mr-2 text-xs  font-medium cursor-pointer px-2 py-1 rounded transition-colors duration-200
                                             ${!isPlaying 
                                                 ? 'text-white bg-mars-red font-bold' 
                                                 : 'text-gray-500 hover:text-gray-300'}`}
@@ -333,7 +342,7 @@ function StatusBar({ characters }) {
                                     
                                     {/* Clickable On label */}
                                     <span 
-                                        className={`ml-2 text-xs font-medium font-header cursor-pointer px-2 py-1 rounded transition-colors duration-200
+                                        className={`ml-2 text-xs font-medium  cursor-pointer px-2 py-1 rounded transition-colors duration-200
                                             ${isPlaying 
                                                 ? 'text-white bg-button-blue font-bold' 
                                                 : 'text-gray-500 hover:text-gray-300'}`}
@@ -357,9 +366,9 @@ function StatusBar({ characters }) {
                          text-white" onClick={toggleHelp}>✖</button>
                         <h2 className="text-xl font-bold font-header text-center">HELP</h2>
                         <div className="flex flex-col gap-2 mt-4">
-                            <p className="text-sm font-header">Use the arrow keys to navigate the game.</p>
-                            <p className="text-sm font-header">Each round, you must decide whether to fight alone or team up with Venus or Jupiter.</p>
-                            <p className="text-sm font-header">Keep an eye on the time until impact!</p>
+                            <p className="text-sm ">Use the arrow keys to navigate the game.</p>
+                            <p className="text-sm ">Each round, you must decide whether to fight alone or team up with Venus or Jupiter.</p>
+                            <p className="text-sm ">Keep an eye on the time until impact!</p>
                         </div>
                     </div>
                 </div>

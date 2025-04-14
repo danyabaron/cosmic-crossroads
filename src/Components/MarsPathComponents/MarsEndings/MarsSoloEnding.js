@@ -15,6 +15,9 @@ import StarBackground from '../../../Components/StarBackground.js';
 import ThemeMusic2 from '../../../assets/other-art/theme-music2.wav';
 import { useAudio } from '../../../Components/AudioContext';
 
+import YellowSparkle from '../../../assets/other-art/yellow-sparkle.png';
+import BlackSparkle from '../../../assets/other-art/black-sparkle.png';
+
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 function MarsSoloEnding({ characters, resetCharacters }) {
@@ -297,7 +300,7 @@ function MarsSoloEnding({ characters, resetCharacters }) {
             <StarBackground />
             
             {/* Background with proper z-index */}
-            <div className="absolute inset-0 bg-mars-bg-reg bg-center  z-[5]"></div>
+            <div className="absolute inset-0 bg-default-bg bg-contain  z-[5]"></div>
             
             {/* Main content with higher z-index */}
             <div className="relative w-full min-w-screen pt-14 overflow-x-hidden flex flex-col justify-center items-center z-[20]">
@@ -362,58 +365,80 @@ function MarsSoloEnding({ characters, resetCharacters }) {
                 </div>
 
                 <section className='flex flex-col gap-6 mb-7 w-screen min-h-screen justify-center items-center'>
+                <h1 className="text-white font-header text-3xl z-10"> Mars </h1>
                     <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
                     
-                    <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-                        <p ref={addToParagraphRefs} className=' text-white font-header text-xs md:text-sm'>
+                    <div id='intro-text' className='bg-main-black drop-shadow-[0_15px_20px_rgba(189,53,8,0.6)] text-center relative w-1/3 flex justify-center items-center rounded-md p-6 shadow-xl'>
+                        <p ref={addToParagraphRefs} className=' text-white relative text-md'>
+                        <img id='corner-asteroid' className='absolute w-12 h-auto max-w-full max-h-full object-contain -top-12 -right-8 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={AsteroidMouthOpen}/>
+                        <img id='black-sparkle' className='absolute  w-[100px] h-auto max-w-full max-h-full object-contain  -bottom-16 -left-16 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={BlackSparkle}/>
                             The asteroids, seeing your aggressive approach, were not pleased. They felt that you did not
                             value their existence and were only interested in using them for your own gain.
+                            <br /><br />
+
                             As a result, they became hostile and vowed to never trust you again.
                             This has led to a rift between you and the asteroids, and they have become your enemies.    
                         </p>
                     </div>
 
-                    <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
-                        <p ref={addToParagraphRefs} className=' text-white font-header text-xs md:text-sm'>
+                    <div id='intro-text' className='bg-main-black drop-shadow-[0_15px_20px_rgba(189,53,8,0.6)] relative text-center w-1/3 flex justify-center items-center rounded-md p-6 shadow-xl'>
+                        <p ref={addToParagraphRefs} className='relative  text-white text-md'>
+                        <img id='black-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -bottom-16 -right-16 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={BlackSparkle}/>
+                        <img id='corner-asteroid' className='absolute  w-12 h-auto max-w-full max-h-full object-contain  -top-8 -left-10 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={AsteroidMouthOpen}/>
                             While you were able to defeat them this time, they will always be a thorn in your side. Your benefic planets
-                            are also disappointed in you for not trying to negotiate with the asteroids. They feel that you have let them down,
+                            are also disappointed in you for not trying to negotiate with the asteroids. 
+                            <br /><br />
+                            They feel that you have let them down,
                             and they are no longer willing to help you in your future endeavors.
                         </p>
                     </div>
                 </section>
 
-                <div id='container' className='flex min-h-screen w-screen flex-col justify-center items-center gap-8'>
-                    <div id='jupiter-container' className='flex flex-row gap-3 justify-center items-center'>
+                <div id='container' className='flex min-h-[80vh] w-screen flex-col justify-center items-center gap-14'>
+                    <div id='jupiter-container' className='flex flex-col gap-3 justify-center items-center'>
+                         <h1 className="text-white font-header mt-6 text-3xl z-10">Jupiter</h1>
+
                         <img 
                             src={JupiterAnnoyedGif} 
                             alt="Jupiter" 
                             className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
                         />
 
-                        <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-header text-wrap p-5 mr-8 text-xs md:text-sm'>
-                            <p ref={jupiterTextRef}>
+                        <div id='text' className='relative flex w-1/3 text-white md:w-96 h-fit bg-main-black rounded-md text-center drop-shadow-[0_10px_20px_rgba(217,207,170,0.6)]  text-wrap p-5 text-md'>
+                            <p ref={jupiterTextRef} className='relative '>
+                            <img id='corner-asteroid' className='absolute  w-12 h-auto max-w-full max-h-full object-contain  -top-8 -left-10 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={AsteroidMouthOpen}/>
+                            <img id='yellow-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -bottom-16 -right-16 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={YellowSparkle}/>
                                 Mars, I expected better from you. As the 
                                 guardian of wisdom and expansion, I've always taught 
                                 that diplomacy brings greater rewards than brute force. 
-                                Did you even try to understand their perspective? Every 
+                                <br /><br />
+                                Did you even try to understand their perspective? 
+                                <br /><br />
+                                Every 
                                 conflict has potential for growth, but you've only 
                                 created more division. This impulsiveness of yours will limit your cosmic influence.
                             </p>
                         </div>
                     </div>
                     
-                    <div id='venus-container' className='flex flex-row gap-3 justify-center items-center'>
+                    <div id='venus-container' className='flex min-h-[80vh] flex-col gap-3 justify-center text-center items-center'>
+                        <h1 className="text-white font-header mt-6 text-3xl z-10">Venus</h1>
                         <img 
                             src={VenusAnnoyedGif} 
                             alt="Venus" 
                             className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px] object-contain"
                         />
 
-                        <div id='text' className='relative flex w-fit md:w-96 h-fit bg-white rounded-md font-header text-wrap p-5 mr-8 text-xs md:text-sm'>
-                            <p ref={venusTextRef}>
+                        <div id='text' className='relative flex w-fit md:w-96 h-fit bg-main-black text-white drop-shadow-[0_10px_20px_rgba(215,123,186,0.6)]  rounded-md  text-wrap p-5 text-md'>
+                            <p ref={venusTextRef} className='relative'>
+                            <img id='yellow-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -bottom-14 -right-16 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={YellowSparkle}/>
+                            <img id='yellow-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-14 -left-16 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={YellowSparkle}/>
                                 Oh Mars, always rushing into battle without a second thought! Harmony and connection 
-                                are what truly strengthen the cosmos. Did it ever occur 
+                                are what truly strengthen the cosmos. 
+                                <br /><br />
+                                Did it ever occur 
                                 to you that those asteroids might have become valuable allies? 
+                                <br /><br />
                                 Instead, you've made enemies where you could have made friends. Next time, 
                                 try using your heart instead of your sword. Relationships matter more than victories.
                             </p>
@@ -422,7 +447,7 @@ function MarsSoloEnding({ characters, resetCharacters }) {
                 </div>
 
                 <button 
-                    className="w-36 font-header h-10 mb-12 rounded-lg bg-button-blue text-white relative z-10 
+                    className="w-36 mt-28 font-header h-10 mb-12 rounded-lg bg-button-blue text-white relative z-10 
                     px-4 font-medium text-center flex items-center justify-center
                     drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] 
                     shadow-lg hover:scale-105 transition duration-300 ease-in-out" 

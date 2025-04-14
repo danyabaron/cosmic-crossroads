@@ -37,6 +37,10 @@ module.exports = {
       narrow: ['Arial Narrow', 'sans-serif'], 
       arial: ['Arial', 'sans-serif'], // Fallback for Arial in case Pixellari fails to load
       techno: ['Handjet', 'sans-serif'], 
+      ttneueReg: ['TT Neue Regular', 'sans-serif'],
+      ttneueMedium: ['TT Neue Medium', 'sans-serif'],
+      ttneueBold: ['TT Neue Bold', 'sans-serif'],
+      ttneueLight: ['TT Neue Light', 'sans-serif'],
     
 
     },
@@ -59,6 +63,7 @@ module.exports = {
         'fire-trail': 'moveTrail 2s linear infinite, fadeOut 2s linear infinite',
         'twinkle': 'starTwinkle 3s ease-in-out infinite alternate',
         'shootingStar': 'shootStar 6s linear infinite',
+        'sparkle': 'sparkle 3s infinite',
       },
       keyframes: {
         fieryPulse: {
@@ -94,10 +99,46 @@ module.exports = {
           '0%': { transform: 'translateX(0) translateY(0)', opacity: 1 },
           '100%': { transform: 'translateX(150vw) translateY(-100vh)', opacity: 0 },
         },
-
+        sparkle: {
+          '0%, 100%': { opacity: '0', transform: 'scale(0.5)' },
+          '50%': { opacity: '0.8', transform: 'scale(1.2)' },
+        },
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addComponents }) {
+      addComponents({
+        '.corner-sparkle': {
+          position: 'relative',
+          '&::before, &::after': {
+            content: '""',
+            position: 'absolute',
+            width: '10px',
+            height: '10px',
+            backgroundColor: 'white',
+            borderRadius: '50%',
+            filter: 'blur(1px)',
+          },
+          '&::before': {
+            top: '10%',
+            right: '10%',
+            animationName: 'sparkle',
+            animationDuration: '3s',
+            animationIterationCount: 'infinite',
+            animationDelay: '0.5s',
+          },
+          '&::after': {
+            bottom: '10%',
+            left: '10%',
+            animationName: 'sparkle',
+            animationDuration: '3s',
+            animationIterationCount: 'infinite',
+            animationDelay: '1.5s',
+          },
+        },
+      })
+    },
+  ],
 }
 
