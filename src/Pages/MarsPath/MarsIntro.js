@@ -227,7 +227,7 @@ function MarsIntro({ addCharacter, characters }) {
                             </div>
                         </div>
 
-                        <div className='flex flex-col gap-3 justify-center items-center'>
+                        <div className='flex flex-col gap-3 justify-center items-center text-center'>
                             <div className='w-1/2 flex justify-center drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] shadow-2xl p-7 bg-main-black relative z-[15]'>
                                 <p ref={addToDialogueRefs} className='text-md'> 
                                     Malefic planets! That's you. Sound familiar? Maybe not.
@@ -252,7 +252,7 @@ function MarsIntro({ addCharacter, characters }) {
                     </div>
                 </section>
 
-                <section id='benefic' className='flex flex-col items-center justify-center relative z-[15]'>
+                <section id='benefic' className='flex flex-col items-center justify-center relative text-center  z-[15]'>
                     <div id='benefic-description' className='flex flex-col justify-center items-center'>
                         <h3 className="text-xl font-header text-center mb-4">THE BENEFICS</h3>
 
@@ -306,7 +306,7 @@ function MarsIntro({ addCharacter, characters }) {
                     </div>
                 </section>
 
-                <section id='game-description' className='flex flex-col gap-8 items-center justify-center relative z-[15]'>
+                <section id='game-description' className='flex flex-col gap-8 items-center justify-center relative text-center z-[15]'>
                     <h3 className='font-header text-xl'>Okay... so what now?</h3>
 
                     <div id='mars-header' className='flex flex-row gap-2 justify-center items-center bg-mars-bg-reg rounded-lg

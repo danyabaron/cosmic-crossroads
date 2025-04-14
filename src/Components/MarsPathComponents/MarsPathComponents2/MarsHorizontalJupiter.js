@@ -178,7 +178,7 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
 
         // Create a scroll trigger for the coin sound
         let soundScrollTrigger = ScrollTrigger.create({
-            trigger: jupiterBattleRef.current,
+            trigger: document.querySelectorAll('#panel')[1],
             start: 'top center',
             end: 'bottom center',
             onEnter: () => {
@@ -262,7 +262,7 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
     
         // Trigger coin shooting when scroll is in the correct section
         let coinShootScrollTrigger = ScrollTrigger.create({
-            trigger: jupiterBattleRef.current,
+            trigger: document.querySelectorAll('#panel')[1],
             start: 'top center',
             end: 'bottom center',
             onEnter: shootCoinsContinuously,
@@ -303,7 +303,6 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                                 return;
                             }
                 
-                            // Timeline for coordinated animations
                             const tl = gsap.timeline({
                                 onComplete: () => {
                                     asteroid.remove();
@@ -311,20 +310,22 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                                     timeouts.current.push(timeoutId);
                                 }
                             });
-                
-                            // Add asteroid movement animation
-                            tl.to(asteroid, {
-                                x: "-100vw", // Move fully off-screen
-                                duration: 3, // Animation duration
-                                ease: "linear"
+                            
+                            // Phase 1: Asteroid enters from the right to some distance in
+                            tl.fromTo(asteroid, {
+                                x: '0vw',
+                            }, {
+                                x: '-50vw',
+                                duration: 1.5,
+                                ease: 'linear'
                             });
-                
-                            // Add opacity animation that starts at the halfway point
+                            
+                            // Phase 2: Asteroid "gets hit" and turns back around
                             tl.to(asteroid, {
-                                opacity: 0, // Fade to transparent
-                                duration: .2, // Half the duration of the movement
-                                ease: "power1.in" // Smooth easing for fade
-                            }, "-=1.5"); // Start 1.5 seconds before the main animation ends (halfway through)
+                                x: '100vw', // Exit back to the right
+                                duration: 1.5,
+                                ease: 'power2.in'
+                            }, "+=0"); // No delay between reversal
                         });
                     }
                 };
@@ -535,7 +536,12 @@ function MarsHorizontalJupiter({ setScreen, addCharacter, characters }) {
                             <img id='corner-yellow-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -top-8 -left-11 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] animate-pulse' loading='lazy' src={YellowSparkle}/>
                             <img id='corner-yellow-sparkle' className='absolute w-[100px] h-auto max-w-full max-h-full object-contain -bottom-8 -right-11 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] animate-pulse ' loading='lazy' src={YellowSparkle}/>
                             <h1 className='text-center text-lg text-white font-header font-bold mb-3'>Benefic Fact:</h1>
-                            Benefic planets, such as Jupiter, tend to have an overindulgent streak. Jupiter's optimist attitude can help balance out your will to take action. However, Jupiter sometimes needs to understand that their buoyance attitude sometimes can get them in trouble.
+                            Benefic planets, such as Jupiter, tend to have an overindulgent streak. 
+                            Jupiter's optimist attitude can help balance out your will to take action. 
+                            <br></br>
+                            <br></br>
+                            
+                            However, Jupiter sometimes needs to understand that their buoyance attitude sometimes can get them in trouble.
                         </div>
                     </div>
 

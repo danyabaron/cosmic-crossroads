@@ -163,9 +163,16 @@ function StickMarsDecision1({ setScreen, characters, removeCharacter }) {
                 <div id='venus-pic' className='mt-14'>
                     <img className="w-[80px]" src={VenusGifAnnoyed} alt="Venus Gif"/>
                 </div>
-                <div id ='venus-text' className='flex w-1/3 h-fit bg-main-black rounded-md text-white  text-wrap p-5 text-xs md:text-sm'>
-                    You decided to stick to your Martian gut and channel your Malefic traits! You’re going to choose to fight the asteroids back. 
-                    As a result, Venus is not on your team. You’re riding solo... for now ...
+                <div id ='venus-text' className='flex w-1/2 h-fit bg-main-black rounded-md text-white  text-center  p-5 text-xs md:text-sm'>
+                    You decided to stick to your Martian gut and channel your Malefic traits! 
+                    <br></br>
+                    <br></br>
+                    You’re going to choose to fight the asteroids back. 
+                    As a result, Venus is not on your team. 
+                    <br></br>
+                    <br></br>
+                    
+                    You’re riding solo... for now ...
                 </div>
             </div>
 

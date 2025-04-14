@@ -781,8 +781,11 @@ function MarsHorizontalVenus({ setScreen, addCharacter, characters }) {
                             <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={MarsGif} alt="Mars Gif"/>
                             <img className="w/[100px] sm:w/[100px] md:w/[100px] lg:w/[150px]" src={VenusGifMouthOpen} alt="Mars Gif"/>
                         </div>
-                        <div id='decision-text' className='flex w-1/3 h-fit bg-white text-main-black rounded-md shadow-md  text-wrap p-5 text-md '>
-                            It’s up to you to decide if you want to compromise with Venus, or fight the asteroids in the way that you want to. The decision is yours.
+                        <div id='decision-text' className='flex w-1/3 h-fit bg-white shadow-lg text-main-black text-center rounded-md shadow-md  text-wrap p-5 text-md '>
+                            It’s up to you to decide if you want to compromise with Venus, or fight the asteroids in the way that you want to. 
+                            <br></br>
+                            <br></br>
+                            The decision is yours.
                         </div>
                         <div id='button-container-wrapper' >
                             <ButtonContainer 
