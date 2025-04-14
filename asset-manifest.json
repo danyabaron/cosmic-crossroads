@@ -1,11 +1,16 @@
 {
   "files": {
-    "main.css": "/cosmic-crossroads/static/css/main.a8496d36.css",
-    "main.js": "/cosmic-crossroads/static/js/main.9b20015d.js",
+    "main.css": "/cosmic-crossroads/static/css/main.e5e692d7.css",
+    "main.js": "/cosmic-crossroads/static/js/main.5bb8194c.js",
     "static/media/theme-music2.wav": "/cosmic-crossroads/static/media/theme-music2.9206d4efa5f6a710ddc8.wav",
     "static/media/theme-music.wav": "/cosmic-crossroads/static/media/theme-music.f97e722940ca3d92919b.wav",
     "static/media/title-art2.jpeg": "/cosmic-crossroads/static/media/title-art2.03c2c1d57d2e165b773a.jpeg",
+    "static/media/beyonce.png": "/cosmic-crossroads/static/media/beyonce.18c6845aa0fe9bc9c7e6.png",
     "static/media/default-background.png": "/cosmic-crossroads/static/media/default-background.2ed5b49f759ed91284cb.png",
+    "static/media/tt-rounds-bold.ttf": "/cosmic-crossroads/static/media/tt-rounds-bold.fd647a058b6f42fe6f42.ttf",
+    "static/media/tt-rounds-light.ttf": "/cosmic-crossroads/static/media/tt-rounds-light.f05fe9101d0286c3452e.ttf",
+    "static/media/tt-rounds-medium.ttf": "/cosmic-crossroads/static/media/tt-rounds-medium.95000395e4c0f3e97166.ttf",
+    "static/media/tt-rounds-regular.ttf": "/cosmic-crossroads/static/media/tt-rounds-regular.13b8d8198ccba6a02970.ttf",
     "static/media/coin-sound.mp3": "/cosmic-crossroads/static/media/coin-sound.393006ae0e87c334cced.mp3",
     "static/media/mars-normal-size.png": "/cosmic-crossroads/static/media/mars-normal-size.978c86e0fb5ef52ba794.png",
     "static/media/venus-normal-size.png": "/cosmic-crossroads/static/media/venus-normal-size.08cbb340a6207b2edcd3.png",
@@ -15,11 +20,11 @@
     "static/media/04B_03__.TTF": "/cosmic-crossroads/static/media/04B_03__.ed67d9fa50d78d4e9598.TTF",
     "static/media/mars-cloud-long.png": "/cosmic-crossroads/static/media/mars-cloud-long.68b1969e647b13887be9.png",
     "index.html": "/cosmic-crossroads/index.html",
-    "main.a8496d36.css.map": "/cosmic-crossroads/static/css/main.a8496d36.css.map",
-    "main.9b20015d.js.map": "/cosmic-crossroads/static/js/main.9b20015d.js.map"
+    "main.e5e692d7.css.map": "/cosmic-crossroads/static/css/main.e5e692d7.css.map",
+    "main.5bb8194c.js.map": "/cosmic-crossroads/static/js/main.5bb8194c.js.map"
   },
   "entrypoints": [
-    "static/css/main.a8496d36.css",
-    "static/js/main.9b20015d.js"
+    "static/css/main.e5e692d7.css",
+    "static/js/main.5bb8194c.js"
   ]
 }
