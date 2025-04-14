@@ -174,7 +174,7 @@ function MarsIntro({ addCharacter, characters }) {
             <div className="absolute inset-0 bg-default-bg bg-contain z-[5]"></div>
             
             {/* Main content with higher z-index */}
-            <div className="relative flex flex-col gap-8 items-center min-w-screen justify-center min-h-screen text-white pt-14 px-6 z-[10]">
+            <div className="relative flex flex-col gap-14 items-center min-w-screen justify-center min-h-screen text-white pt-14 px-6 z-[10]">
                 {/* Header */}
                 <h1 className="text-4xl font-header text-center mt-6 mb-8">
                     Welcome to Cosmic Crossroads
@@ -198,10 +198,10 @@ function MarsIntro({ addCharacter, characters }) {
                     </h1>
                 </div>
 
-                <section id='malefic' className='flex flex-col items-center justify-center relative z-[15]'>
+                <section id='malefic' className='flex flex-col items-center my-12 justify-center relative z-[15]'>
                     <h2 className="text-2xl font-header text-center mb-4">What are the Malefic and Benefic Planets?</h2>
 
-                    <div id='malefic-description' className='flex flex-col gap-5 justify-center items-center'>
+                    <div id='malefic-description' className='flex flex-col gap-9 justify-center items-center'>
                         <h3 className="text-xl font-header text-center mb-4">THE MALEFICS</h3>
 
                         <div id='malefic-img-container' className='flex flex-row justify-center gap-2 w-full'>
@@ -253,7 +253,7 @@ function MarsIntro({ addCharacter, characters }) {
                 </section>
 
                 <section id='benefic' className='flex flex-col items-center justify-center relative text-center  z-[15]'>
-                    <div id='benefic-description' className='flex flex-col justify-center items-center'>
+                    <div id='benefic-description' className='flex flex-col gap-9 justify-center items-center'>
                         <h3 className="text-xl font-header text-center mb-4">THE BENEFICS</h3>
 
                         <div id='benefic-img-container' className='flex flex-row justify-center gap-2 w-full'>
@@ -306,7 +306,7 @@ function MarsIntro({ addCharacter, characters }) {
                     </div>
                 </section>
 
-                <section id='game-description' className='flex flex-col gap-8 items-center justify-center relative text-center z-[15]'>
+                <section id='game-description' className='flex flex-col gap-9 items-center justify-center my-10 relative text-center z-[15]'>
                     <h3 className='font-header text-xl'>Okay... so what now?</h3>
 
                     <div id='mars-header' className='flex flex-row gap-2 justify-center items-center bg-mars-bg-reg rounded-lg
