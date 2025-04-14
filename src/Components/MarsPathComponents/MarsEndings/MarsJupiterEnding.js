@@ -15,6 +15,9 @@ import { useGSAP } from '@gsap/react';
 import StarBackground from '../../../Components/StarBackground.js';
 import ThemeMusic2 from '../../../assets/other-art/theme-music2.wav';
 import { useAudio } from '../../../Components/AudioContext';
+import AsteroidMouthOpen from '../../../assets/asteroid-art/asteroid-mouth-open.png';
+import YellowSparkle from '../../../assets/other-art/yellow-sparkle.png';
+import BlackSparkle from '../../../assets/other-art/black-sparkle.png';
 
 // Register plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -153,7 +156,7 @@ function MarsJupiterEnding({ characters, resetCharacters }) {
             
             {/* Main content with higher z-index */}
             <div className="relative w-full min-w-screen pt-14 overflow-x-hidden flex flex-col justify-center items-center z-[20]">
-                <section className='w-full min-h-screen flex flex-col pt-6 justify-center items-center gap-3'>
+                <section className='w-full min-h-screen flex flex-col pt-6 justify-center items-center gap-7'>
                     <h1 className="text-white font-header text-3xl mb-5 mt-5 z-10">The Result</h1>
                     <div className='flex flex-row gap-3 justify-center items-center w-full'>
                         <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
@@ -163,7 +166,11 @@ function MarsJupiterEnding({ characters, resetCharacters }) {
                     <div id='intro-text' className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)]  w-1/2 flex justify-center items-center rounded-md p-6 shadow-xl'>
                         <p ref={addToIntroRefs} className='text-white text-md text-center p-4'>
                             You chose to team up with Jupiter! Together, Mars and 
-                            Jupiter create a powerful yet contrasting alliance. Mars, 
+                            Jupiter create a powerful yet contrasting alliance. 
+                            <br></br>
+                            <br></br>
+                            
+                            Mars, 
                             a traditional malefic planet, brings its fiery aggression, 
                             drive, and combat skill, while Jupiter, a benefic force, contributes 
                             wisdom, optimism, and expansive thinking. 
@@ -173,6 +180,9 @@ function MarsJupiterEnding({ characters, resetCharacters }) {
                         <p ref={addToIntroRefs} className='text-white text-md text-center p-4'>
                             Mars' determination and assertiveness complement Jupiter's strategic 
                             vision and ability to see the bigger picture. 
+
+                            <br></br>
+                            <br></br>
                             However, the absence of Venus—the other benefic planet—means you lack diplomatic 
                             finesse and charm that could have helped establish a more peaceful resolution. 
                         </p>
@@ -184,7 +194,11 @@ function MarsJupiterEnding({ characters, resetCharacters }) {
                             your approach to the asteroid threat relies 
                             more heavily on force and authority, making it 
                             challenging to gain the complete trust of all 
-                            the asteroids. Some asteroids remain suspicious of your
+                            the asteroids. 
+                            <br></br>
+                            <br></br>
+                            
+                            Some asteroids remain suspicious of your
                             intentions, creating potential for future conflict 
                             even as you successfully deflect the immediate danger to the solar system.
                         </p>
@@ -194,11 +208,19 @@ function MarsJupiterEnding({ characters, resetCharacters }) {
                 <section className='w-full h-fit p-12 flex flex-col gap-3 justify-center items-center'>
                     <div id='mars-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
                         <h1 className="text-white font-header text-3xl z-10"> Mars </h1>
-                        <div className='flex flex-row gap-3 justify-center items-center w-full'>
+                        <div className='flex flex-col gap-3 justify-center relative items-center text-center w-full'>
                             <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
-                            <p ref={marsTextRef} className='text-main-black rounded-lg p-6 text-md bg-white w-1/2'>
+                            <p ref={marsTextRef} className='text-white rounded-lg p-6 text-md drop-shadow-[0_15px_20px_rgba(189,53,8,0.6)]   bg-main-black w-1/3'>
+                            <img id='corner-asteroid' className='absolute w-12 h-auto max-w-full max-h-full object-contain -top-6 -right-5 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={AsteroidMouthOpen}/>
+                            <img id='black-sparkle' className='absolute  w-[100px] h-auto max-w-full max-h-full object-contain  -bottom-10 -left-12 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={BlackSparkle}/>
                                 As Mars, your assertiveness and willingness to take action were crucial in forming this alliance. 
+                                <br></br>
+                                <br></br>
+                               
                                 However, your malefic nature can sometimes lead to impulsive decisions, which Jupiter's wisdom helps balance. 
+                                <br></br>
+                                <br></br>
+                                
                                 Together, you were able to rally the solar system's forces against the asteroid threat.
                             </p>
                         </div>
@@ -208,11 +230,17 @@ function MarsJupiterEnding({ characters, resetCharacters }) {
                 <section className='w-full min-h-screen flex flex-col gap-3 justify-center items-center'>
                     <div id='jupiter-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
                         <h1 className="text-white font-header text-3xl z-10"> Jupiter </h1>
-                        <div className='flex flex-row gap-3 justify-center items-center w-full'>
+                        <div className='flex flex-col gap-3 justify-center items-center w-full'>
                             <img src={JupiterGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Jupiter" />
-                            <p ref={jupiterTextRef} className='text-main-black rounded-lg p-6 text-md bg-white w-1/2'>
+                            <p ref={jupiterTextRef} className='text-white rounded-lg p-6 text-md bg-main-black drop-shadow-[0_10px_20px_rgba(217,207,170,0.6)] text-center w-1/3'>
+                            <img id='corner-asteroid' className='absolute w-12 h-auto max-w-full max-h-full object-contain -top-6 -right-5 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={AsteroidMouthOpen}/>
+                            <img id='yellow-sparkle' className='absolute  w-[100px] h-auto max-w-full max-h-full object-contain  -bottom-10 -left-12 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={YellowSparkle}/>
                                 Jupiter's benefic qualities of optimism and expansion were instrumental in forming a united front. 
+                                <br></br>
+                                <br></br>
                                 However, without Venus' charm and diplomacy, the asteroids were not fully convinced of the alliance's sincerity. 
+                                <br></br>
+                                <br></br>
                                 This lack of Venus' influence left some asteroids feeling excluded, which could lead to future challenges.
                             </p>
                         </div>

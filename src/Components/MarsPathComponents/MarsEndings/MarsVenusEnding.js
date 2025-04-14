@@ -156,7 +156,7 @@ function MarsVenusEnding({ characters, resetCharacters }) {
             {/* Main content with higher z-index */}
             <div className="relative w-full min-w-screen pt-14 overflow-x-hidden
             flex flex-col justify-center items-center z-[20]">
-                <section className='w-full min-h-screen flex flex-col pt-6  justify-center items-center gap-3'>
+                <section className='w-full min-h-screen flex flex-col pt-6  justify-center items-center gap-8'>
                     <h1 className="text-white font-header text-3xl mb-5 mt-5 z-10">The Result</h1>
 
                     
@@ -200,7 +200,7 @@ function MarsVenusEnding({ characters, resetCharacters }) {
                 <section className='w-full  min-h-[80vh] flex flex-col gap-3 justify-center  items-center'>
                     <div id='mars-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
                         <h1 className="text-white font-header mt-6 text-3xl mb-3 z-10"> Mars </h1>
-                        <div className='flex flex-row gap-3 relative justify-center items-center w-full drop-shadow-[0_15px_20px_rgba(189,53,8,0.6)] '>
+                        <div className='flex flex-col gap-3 relative justify-center items-center w-full drop-shadow-[0_15px_20px_rgba(189,53,8,0.6)] '>
                             <img src={MarsGif} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Mars" />
                             <p ref={marsTextRef} className='text-white rounded-lg text-md p-6 text-center bg-main-black w-1/3'>
                             <img id='corner-asteroid' className='absolute w-12 h-auto max-w-full max-h-full object-contain -top-6 -right-5 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={AsteroidMouthOpen}/>
@@ -219,15 +219,23 @@ function MarsVenusEnding({ characters, resetCharacters }) {
                     </div>
                 </section>
 
-                <section className='w-full min-h-screen flex flex-col gap-3 justify-center  items-center'>
+                <section className='w-full  min-h-[80vh] flex flex-col gap-3 justify-center  items-center'>
                     <div id='venus-ending' className='flex flex-col gap-4 justify-center items-center w-full'>
                         <h1 className="text-white font-header text-3xl mb-3 z-10"> Venus </h1>
-                        <div className='flex flex-row gap-3 justify-center items-center w-full'>
+                        <div className='flex flex-col gap-3 justify-center items-center w-full'>
                             <img src={VenusGifMouthOpen} className="w-[100px] sm:w-[60px] md:w-[80px] lg:w-[100px]" alt="Venus" />
-                            <p ref={venusTextRef} className='text-main-black rounded-lg p-6 text-md  bg-white w-1/2'>
+                            <p ref={venusTextRef} className='text-white rounded-lg p-6 text-md relative text-center bg-main-black drop-shadow-[0_10px_20px_rgba(215,123,186,0.6)]  w-1/3'>
+                            <img id='yellow-sparkle' className='absolute  w-[100px] h-auto max-w-full max-h-full object-contain  -bottom-10 -left-10 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={YellowSparkle}/>
+                            <img id='yellow-sparkle' className='absolute  w-[100px] h-auto max-w-full max-h-full object-contain  -top-8 -right-10 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] ' loading='lazy' src={YellowSparkle}/>
                                 Venus brought her charm and grace to the forefront, using her benefic qualities to foster understanding and unity. 
+                                <br></br>
+                                <br></br>
                                 She even suggested hosting a celebratory gathering for the asteroids to solidify the new alliance. 
+                                <br></br>
+                                <br></br>
                                 Without Venus, the asteroids might have felt alienated or undervalued, but her diplomatic skills ensured they felt welcomed and appreciated. 
+                                <br></br>
+                                <br></br>
                                 Her presence was instrumental in turning a potential conflict into a harmonious resolution.
                             </p>
                         </div>
