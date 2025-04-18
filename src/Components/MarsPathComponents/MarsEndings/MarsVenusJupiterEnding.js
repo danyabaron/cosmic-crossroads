@@ -375,9 +375,10 @@ function MarsVenusJupiterEnding({ characters, resetCharacters }) {
             <div className='bg-main-black drop-shadow-[0_4px_6px_rgba(255,255,255,0.3)] w-1/3 flex justify-center items-center rounded-md p-6 shadow-xl'>
               <p ref={conclusionTextRef} className=' text-white text-md text-center p-4'>
                 Together with your benefic friends, you combined both your strengths and weaknesses to tackle 
+                the crisis of the asteroids.
                 <br></br>
                 <br></br>
-                the crisis of the asteroids. The asteroids and your team of planets have formed a strong alliance and
+                The asteroids and your team of planets have formed a strong alliance and
                 it's time to party!
               </p>
             </div>
