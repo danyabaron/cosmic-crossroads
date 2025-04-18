@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/cosmic-crossroads/static/css/main.e5e692d7.css",
-    "main.js": "/cosmic-crossroads/static/js/main.5bb8194c.js",
+    "main.js": "/cosmic-crossroads/static/js/main.8f9f8658.js",
     "static/media/theme-music2.wav": "/cosmic-crossroads/static/media/theme-music2.9206d4efa5f6a710ddc8.wav",
     "static/media/theme-music.wav": "/cosmic-crossroads/static/media/theme-music.f97e722940ca3d92919b.wav",
     "static/media/title-art2.jpeg": "/cosmic-crossroads/static/media/title-art2.03c2c1d57d2e165b773a.jpeg",
@@ -21,10 +21,10 @@
     "static/media/mars-cloud-long.png": "/cosmic-crossroads/static/media/mars-cloud-long.68b1969e647b13887be9.png",
     "index.html": "/cosmic-crossroads/index.html",
     "main.e5e692d7.css.map": "/cosmic-crossroads/static/css/main.e5e692d7.css.map",
-    "main.5bb8194c.js.map": "/cosmic-crossroads/static/js/main.5bb8194c.js.map"
+    "main.8f9f8658.js.map": "/cosmic-crossroads/static/js/main.8f9f8658.js.map"
   },
   "entrypoints": [
     "static/css/main.e5e692d7.css",
-    "static/js/main.5bb8194c.js"
+    "static/js/main.8f9f8658.js"
   ]
 }
